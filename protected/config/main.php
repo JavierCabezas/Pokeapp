@@ -17,6 +17,8 @@ return array(
     ),
     
     'modules' => array(
+        'pokeball', //First pokéapp: Catch rate calculator.
+
         'gii' => array(
             'class' => 'system.gii.GiiModule',
             'password' => 'gii',

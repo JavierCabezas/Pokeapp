@@ -1,10 +1,11 @@
 <?php /* @var $this Controller */ ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-
 	<!-- blueprint CSS framework -->
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
@@ -27,16 +28,15 @@
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-			),
-		)); ?>
+		<nav>
+			<ul>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokeball.png" width="300" height="100" />',  Yii::app()->createurl('pokeball/pokeball/index')) //Module/controller/view ?> </li>
+				<li><img src="<?php echo Yii::app()->request->baseUrl ?>/images/nav/breed.png" width="300" height="100" /></li>
+				<li><?php echo CHtml::link('<img src="'. Yii::app()->request->baseUrl .'/images/nav/about.png" width="300" height="100" />', array('/site/about')) ?></li>
+			</ul>
+		</nav>
 	</div><!-- mainmenu -->
+	
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -48,9 +48,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Contenido de Fans para Fans<br/>
+		Agradecemos dar créditos respectivos al compartir las Apps.<br/>
+		PokéDaisuki.cl
 	</div><!-- footer -->
 
 </div><!-- page -->
