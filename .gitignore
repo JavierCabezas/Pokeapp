@@ -1,0 +1,6 @@
+protected/runtime/*
+!protected/runtime/.htaccess
+assets/*
+.idea/*
+assets
+Thumbs.db
