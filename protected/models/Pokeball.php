@@ -109,4 +109,13 @@ class Pokeball extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	*	Returns the pokéball name in the format English name ( spanish name) Ex: Safari ball (bola safari)
+	*	@return string the name of the pokéball in both languages.
+	*/
+	public function getNombrePokeball()
+	{
+		return ucfirst($this->name_pokeball) . ' (' . ucfirst($this->name_es_pokeball) . ') ' ;
+	}
 }

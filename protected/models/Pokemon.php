@@ -72,7 +72,7 @@ class Pokemon extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'identifier' => 'Identifier',
+			'identifier' => 'Nombre',
 			'species_id' => 'Species',
 			'height' => 'Height',
 			'weight' => 'Weight',
