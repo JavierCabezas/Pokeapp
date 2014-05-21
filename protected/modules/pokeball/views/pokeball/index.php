@@ -25,7 +25,7 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 					);
 				?>			
 			</td>
-			<td> <div id="pokemon_elegido"> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites/0.png'); ?>  </div></td>
+			<td> <div id="pokemon_elegido"> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sugimori/104px-Sugimori_000.png'); ?>  </div></td>
 		</tr>
 		<tr><!-- Pokéball -->
 			<td> <h4> Pokéball a utilizar </h4> </td>
@@ -298,17 +298,27 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 	</table>
 	<!-- Fin Quinta generación -->
 
-	 <?php echo CHtml::ajaxButton("Calcular probabilidad",
-            CController::createUrl('CalcularProba'),
-            array('update' => '#result', 'type' => "POST" )); ?>
+	 <?php echo CHtml::ajaxButton("Realizar cálculo",
+		CController::createUrl('CalcularProba'),
+		array('update' => '#result', 'type' => "POST" )); ?>
 	<?php echo CHtml::endForm(); ?>
 </div><!--- form -->
+
+<div id="result"><!-- Entrega de resultados -->
+	<?php $this->renderPartial('_showResults', array(
+		'contenido' => ""
+	)); ?>
+</div>
 
 
 <script type="text/javascript">
 	function preloadImg(src) {
     	$('<img/>')[0].src = src;
 	}
+	function pad(a, b){
+  		return (1e15 + a + "" ).slice(-b)
+	}
+
 
 	$(document).ready(function() {
 		//Hide everything
@@ -366,8 +376,9 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 
 		$('#pokemon_to_capture').change(function() {
 			var pokemon_id = $('#pokemon_to_capture').val();
-			preloadImg( domain + '/images/sprites/'+pokemon_id+'.png');
-			setTimeout(function(){ $('#pokemon_elegido').html("<img src='/pokeapp/images/sprites/"+pokemon_id+".png'>") }, 800);
+			pokemon_id = pad(pokemon_id, 3); 
+			preloadImg( domain + '/images/sugimori/104px-Sugimori_'+pokemon_id+'.png');
+			setTimeout(function(){ $('#pokemon_elegido').html("<img src='/pokeapp/images/sugimori/104px-Sugimori_"+pokemon_id+".png'>") }, 800);
 		});
 
 	});
