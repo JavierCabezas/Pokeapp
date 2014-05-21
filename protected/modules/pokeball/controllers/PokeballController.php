@@ -17,7 +17,7 @@ class PokeballController extends Controller
         ));
     }
     
-    public function actionCalcularProba()
+    public function actionCalculateProbability()
     {
         if (isset($_POST['pokemon_to_capture'], $_POST['pokeball_to_use'], $_POST['gen'], $_POST['hp_percentage'], 
         		  $_POST['select_diveball'], $_POST['select_nestball'], $_POST['select_repeatball'], $_POST['select_timerball'], 
@@ -25,8 +25,32 @@ class PokeballController extends Controller
         		  $_POST['select_levelball_nivel_jugador'], $_POST['select_lureball'], $_POST['select_loveball'], 
         		  $_POST['select_grass'], $_POST['select_numpokemon'], $_POST['select_entralink'])) {
             
+            //Get (and cast) the $_POST data.
             ($_POST['pokemon_to_capture'] == 0)?$id_pokeyman = rand(1, 719):$id_pokeyman=(int)$_POST['pokemon_to_capture'];
-        	echo $id_pokeyman;
+        	$id_pokeball       = (int)     $_POST['pokeball_to_use'];
+            $gen               = (int)     $_POST['gen'];
+            $status            = (string)  $_POST['status'];
+            $hp_percentage     = (int)     $_POST['hp_percentage'];
+
+            //Get the models.
+            $pokeyman = PokemonSpecies::model()->findByPk($id_pokeyman);
+            $pokeball = Pokeball::model()->findByPk($id_pokeball);
+
+            //Get the text to show at the showResults partial.
+            if($gen == 1) $gentext = 'primera'; elseif($gen == 2) $gentext = 'segunda'; elseif($gen == 3) $gentext = 'tercera'; 
+            elseif($gen == 4) $gentext = 'cuarta';  elseif($gen == 5) $gentext = 'quinta';  elseif($gen == 6) $gentext = 'sexta'; 
+            if($status == 'Normal') $statustext = 'sin problemas de salud'; elseif($status == 'Sleep') $statustext = 'durmiendo';
+            elseif($status =='Freeze') $statustext = 'congelado/a'; elseif($status == 'Burn') $statustext = 'quemado/a';
+            elseif($status == 'Poison') $statustext = 'envenenado/a'; else $statustext = 'Paralizado/a';
+
+            $this->renderPartial('_showResults', array(
+                'pokemon_to_catch' => ucfirst($pokeyman->identifier),
+                'gen'              => $gentext,
+                'pokeball_en'      => $pokeball->name_pokeball, 
+                'pokeball_es'      => $pokeball->name_es_pokeball,
+                'hp_percentage'    => $hp_percentage,
+                'status_text'      => $statustext,
+            )); 
         }
     }
 }

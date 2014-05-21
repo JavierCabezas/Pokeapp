@@ -6,7 +6,7 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 
 
 <div class="form">
-	<?php echo CHtml::beginForm(array('calcularProba')); ?>
+	<?php echo CHtml::beginForm(array('calculateProbability')); ?>
 
 	<table border="1">
 		<tr><!-- Pokémon -->
@@ -299,14 +299,14 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 	<!-- Fin Quinta generación -->
 
 	 <?php echo CHtml::ajaxButton("Realizar cálculo",
-		CController::createUrl('CalcularProba'),
+		CController::createUrl('calculateProbability'),
 		array('update' => '#result', 'type' => "POST" )); ?>
 	<?php echo CHtml::endForm(); ?>
 </div><!--- form -->
 
 <div id="result"><!-- Entrega de resultados -->
 	<?php $this->renderPartial('_showResults', array(
-		'contenido' => ""
+		'pokemon_to_catch' => null
 	)); ?>
 </div>
 
