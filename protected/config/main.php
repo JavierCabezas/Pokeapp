@@ -78,6 +78,7 @@ return array(
     ),
     
     'params' => array(
-        'adminEmail' => 'jcleyton@gmail.com'
+        'adminEmail'            => 'jcleyton@gmail.com',
+        'pokeball_math_page'    => '[INSERT LINK HERE]',
     )
 );

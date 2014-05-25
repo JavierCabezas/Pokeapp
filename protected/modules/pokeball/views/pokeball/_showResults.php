@@ -8,7 +8,7 @@
 
 
 
-
+<?php echo $text_pokeball ?> 
 
 
 
