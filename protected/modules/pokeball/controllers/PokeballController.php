@@ -4,6 +4,13 @@ class PokeballController extends Controller
 {
     public function actionIndex()
 	{
+		//Register G-raphael for the pie chart.
+		$baseUrl = Yii::app()->baseUrl; 
+		$cs = Yii::app()->getClientScript();
+		$cs->registerScriptFile($baseUrl.'/js/raphael.js');
+		$cs->registerScriptFile($baseUrl.'/js/g.raphael-min.js');
+		$cs->registerScriptFile($baseUrl.'/js/g.pie-min.js');
+
         $array_pokeymans = CHtml::listData(PokemonSpecies::model()->findAll(), 'id', 'nombrePokemon');
         $array_pokeballs = CHtml::listData(Pokeball::model()->findAll(), 'id', 'nombrePokeball');
         $array_turnos    = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','30+');
@@ -50,6 +57,8 @@ class PokeballController extends Controller
             
             
             //Now we actually do the calculation.
+           
+            //Getting the first variable: The pokéball multiplier.
             switch ($id_pokeball) {
                 case 6: //Net ball
                 	$water=11;
@@ -57,37 +66,37 @@ class PokeballController extends Controller
                     $is_water_pokemon = PokemonTypes::model()->findByAttributes(array('pokemon_id' => $id_pokeyman,'type_id' => $water));
                     $is_bug_pokemon   = PokemonTypes::model()->findByAttributes(array('pokemon_id' => $id_pokeyman,'type_id' => $bug));
                     if(is_null($is_water_pokemon)&&is_null($is_bug_pokemon)){
-                        $multiplier 	= 1;
+                        $pball_multiplier 	= 1;
                         $text_pokeball 	= 'Dado que se usó una Net Ball y el pokémon a atrapar ('.$pokemon_name.') no es tipo agua ni bicho no hay modificadores adicionales para la captura';
                     } else {
-                        $multiplier = 3;
+                        $pball_multiplier = 3;
                         $text_pokeball = 'Dado que se usó una Net Ball y el pokémon a capturar ('.$pokemon_name.') es tipo bicho o agua se tiene una modificación de x3';
                    }break;
                 case 7: //Dive ball
                     if (0 == (int) $_POST["select_diveball"]) {
                         $text_pokeball 	= "Dado que se usó una Dive Ball y el encuentro no ocurrió bajo el agua, al pescar o al surfear no hay ningún modificador especial por esta pokéball.";
-                        $multiplier 	= 1;
+                        $pball_multiplier 	= 1;
                     } else {
                         $text_pokeball 	= "Dado que se usó una Dive Ball y el encuentro ocurrió pescando, bajo el agua o surfeando se aplica un modificador de x3";
-                        $multiplier 	= 3;
+                        $pball_multiplier 	= 3;
                     }break;
                 case 8: //Nest ball
                     $nestball_level = (int) $_POST["select_nestball"];
                     if(($gen == 5)||($gen == 6)){
-						$multiplier = max(1, (41 - $nestball_level) / 10); // ((41 - Pokémon's level) ÷ 10)×, minimum 1×
+						$pball_multiplier = max(1, (41 - $nestball_level) / 10); // ((41 - Pokémon's level) ÷ 10)×, minimum 1×
                     }
                     else{
-						$multiplier = max(1, (40 - $nestball_level) / 10); // ((40 - Pokémon's level) ÷ 10)×, minimum 1× 
+						$pball_multiplier = max(1, (40 - $nestball_level) / 10); // ((40 - Pokémon's level) ÷ 10)×, minimum 1× 
                     }
-					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
+					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$pball_multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
                     break;
                 case 9: //Repeat ball
                     if (0 == (int) $_POST["select_repeatball"]) {
                         $text_pokeball	= 'Dado que se usó una Repeat Ball y el pokémon a capturar no ha sido atrapado anteriormente no hay modificación por este aspecto';
-                        $multiplier 	= 1;
+                        $pball_multiplier 	= 1;
                     } else {
                         $text_pokeball	= 'Dado que se usó una Repeat Ball y el pokémon a capturar fue capturado anteriormente se aplica un modificador de x3';
-                        $multiplier 	= 3;
+                        $pball_multiplier 	= 3;
                     }
                     break;
                 case 10: //Timer ball
@@ -99,33 +108,33 @@ class PokeballController extends Controller
 					else
 						$turnos_text = 'han pasado '.$turnos.' turnos';
 					if (($gen == 5)||($gen == 6)){
-					    $multiplier = min(4, 1 + 0.3 * $turnos);
+					    $pball_multiplier = min(4, 1 + 0.3 * $turnos);
 					}
 					else{
-					    $multiplier = min(4, ($turnos + 10) / 10);
+					    $pball_multiplier = min(4, ($turnos + 10) / 10);
 					}
-					$text_pokeball = "Dado que se usó Timer Ball en ".$gentext." generación y $turnos_text se tiene un multiplicador de  x".$multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
+					$text_pokeball = "Dado que se usó Timer Ball en ".$gentext." generación y $turnos_text se tiene un multiplicador de  x".$pball_multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
 					break;
                 case 13: //Dusk ball
                     if (0 == (int) $_POST["select_duskball"]) {
                         $text_pokeball	= 'Dado que la captura fue con Dusk Ball y no ocurrió de noche o en una cueva no se tienen modificadores adicionales por esta pokéball';
-                        $multiplier 	= 1;
+                        $pball_multiplier 	= 1;
                     } else {
                         $text_pokeball	= 'Dado que la captura fue con Dusk Ball y ocurrió de noche o en una cueva se tiene un modificador adicional de x3,5';
-                        $multiplier 	= 3.5;
+                        $pball_multiplier 	= 3.5;
                     } break;
                 case 15: //Quick ball
                     if (0 == (int) $_POST["select_quickball"]){
-                        $multiplier = 1;
+                        $pball_multiplier = 1;
                     	$text_pokeball = 'Dado que se usó Quick Ball y no era el primer turno de la pelea no se obtiene modificador adicional por este medio.';
                     } else {
                         if (($gen == 5)||($gen == 6)){
-                            $multiplier = 5;
+                            $pball_multiplier = 5;
                         }
                         else{
-                            $multiplier = 4;
+                            $pball_multiplier = 4;
                         }
-                        $text_pokeball = 'Dado que se usó Quick Ball en '.$gentext.' generación y se usó la pokéball al primer turno de la pelea se tiene un multiplicador de x'.$multiplier.'. Para ver más detalles del algoritmo pueden revisar '.Yii::app()->params["pokeball_math_page"];
+                        $text_pokeball = 'Dado que se usó Quick Ball en '.$gentext.' generación y se usó la pokéball al primer turno de la pelea se tiene un multiplicador de x'.$pball_multiplier.'. Para ver más detalles del algoritmo pueden revisar '.Yii::app()->params["pokeball_math_page"];
                     } break;
                 case 17: //Fast Ball
                     if ($gen == 2) {
@@ -133,76 +142,136 @@ class PokeballController extends Controller
                     	$grimer 	= 88;
                     	$magnemite 	= 81;
                         if (($id_pokeyman == $magnemite) || ($id_pokeyman == $tangela) || ($id_pokeyman == $grimer)) { //For some reason in second generation it works this way...
-                            $multiplier = 4;
+                            $pball_multiplier = 4;
                             $text_pokeball = "Dado que se usó Fast Ball en segunda generación y el pokémon a capturar es magnemite, grimer o tangela en segunda generación se tiene un modificador de x4";
                         }else{
-                     		$multiplier = 1;
+                     		$pball_multiplier = 1;
                      		$text_pokeball = "Dado que se usó Fast Ball en segunda generación y el pokémon a capturar no es magnemite, grimer o tangela en segunda generación se tiene un modificador de x1";
                         }
                     } else {
                     	$speed = 6;
                     	$pokemon_speed = PokemonStats::model()->findByAttributes(array('pokemon_id' => $id_pokeyman, 'stat_id' => $speed))->base_stat;
                         if ($pokemon_speed > 99) {
-                            $multiplier = 4;
+                            $pball_multiplier = 4;
                         }else{
-                        	$multiplier = 1;
+                        	$pball_multiplier = 1;
                         }
-                        $text_pokeball = "Dado que se usó Fast Ball en ".$gentext." generación y el pokémon a capturar tiene ".$pokemon_speed." de velocidad base se tiene un modificador de x".$multiplier;
+                        $text_pokeball = "Dado que se usó Fast Ball en ".$gentext." generación y el pokémon a capturar tiene ".$pokemon_speed." de velocidad base se tiene un modificador de x".$pball_multiplier;
                     }  break;
                 case 18: //Level Ball
                     $oponent_level = (int) $_POST["select_levelball_nivel_oponente"];
                     $player_level  = (int) $_POST["select_levelball_nivel_jugador"];
                     if (($oponent_level < $player_level) && ((4 * $oponent_level) < $player_level)) {
-                        $multiplier = 4;
+                        $pball_multiplier = 4;
                     } elseif (($oponent_level < $player_level) && ((2 * $oponent_level) < $player_level)) {
-                        $multiplier = 2;
+                        $pball_multiplier = 2;
                     } elseif ($oponent_level >= $player_level) {
-                        $multiplier = 1;
+                        $pball_multiplier = 1;
                     } else{
-                        $multiplier = 8;
+                        $pball_multiplier = 8;
                     }
-                    $text_pokeball = 'Dado que se usó una Level Ball, el nivel oponente es '.$oponent_level.' y el del pokémon a la defensa es '.$player_level.' se tiene un multiplicador de x'.$multiplier;
+                    $text_pokeball = 'Dado que se usó una Level Ball, el nivel oponente es '.$oponent_level.' y el del pokémon a la defensa es '.$player_level.' se tiene un multiplicador de x'.$pball_multiplier;
                     break;
                 case 19: //Lure ball
                     $lure_ball_bool = (int) $_POST["select_lureball"];
                     if ($lure_ball_bool == "0") {
                         $text_pokeball 	= 'Dado que se usó Lure Ball y el pokémon no fue encontrado pescando no se tiene bonificador por este medio';
-                        $multiplier 	= 1;
+                        $pball_multiplier 	= 1;
                     } else {
                         $text_pokeball 	= 'Dado que se usó Lure Ball y el encuentro fue pescando se tiene modificador de x3';
-                        $multiplier = 3;
+                        $pball_multiplier = 3;
                     } break;
                 case 21: //Love ball
                     if (0 == (int) $_POST["select_loveball"]) {
                     	if($gen == 2){
-							$multiplier = 8;
+							$pball_multiplier = 8;
 						}else{
-							$multiplier = 1;
+							$pball_multiplier = 1;
 						}
-						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son de género opuesto y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$multiplier;
+						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son de género opuesto y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
                     } else {
                     	if($gen != 2){
-                        	$multiplier = 8;
+                        	$pball_multiplier = 8;
                     	}else{
-                    		$multiplier = 1;
+                    		$pball_multiplier = 1;
                     	}
-						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son del mismo género y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$multiplier;
+						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son del mismo género y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
                     }
                     break;
                 case 23: //Moon ball
                     $array_pokemon_moonball = array('29','30','31','32','33','34','35','36','39','40','300','301','517','518');
                     if (in_array($id_pokeyman, $array_pokemon_moonball)) {
-                        $multiplier = 4;
+                        $pball_multiplier = 4;
                         $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un pokémon relacionado con la roca lunar se tiene un modiifcador de x4';
                     } else {
-                        $multiplier = 1;
+                        $pball_multiplier = 1;
                         $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un pokémon que no está relacionado con la roca lunar no se tiene modificación extra por este medio';
                     } break;
                 default: //Fixed rate pokéball
-                    $multiplier 	= $pokeball->catch_rate_pokeball;
-                    $text_pokeball = 'Se usó '.$pokeball->name_pokeball.', que tiene un modificador fijo de x'.$multiplier;
+                    $pball_multiplier 	= $pokeball->catch_rate_pokeball;
+                    $text_pokeball = 'Se usó '.$pokeball->name_pokeball.', que tiene un modificador fijo de x'.$pball_multiplier;
                     break;
-            }
+            } //End switch to get the pokéball multiplier
+
+            //Getting the second variable:
+            $H 			= (int) $_POST['hp_percentage'];
+            $catch_rate = $pokeyman->capture_rate;
+			$text_gen = '';
+			$out = array();
+			switch($gen){
+				case 2: //// http://www.dragonflycave.com/gen2capture.aspx ^\text{Probabilidad captura segunda generaci\'{o}n}=\frac{\left( max\left\{ \255, \left \left [ \left(1-\dfrac{H}{100}  \right ) \cdot P \cdot C  +S \right ]\right\} +1 \right)}{256}
+					if ($status == "Normal")
+	                	$S = 0;
+	                else if (($status == "Sleep")||($status == "Freeze"))
+	                   	$S = 10;
+	                else if (($status == "Paralysis")||($status == "Burn")||($status == "Poison"))
+	                    $S = 0;
+					$x = max( ((1-(2/3*$H/100)) * $pball_multiplier * $catch_rate), 1) + $S; //X = max(((M - H) * C) / M, 1) + S
+					$x = min ($x, 255); // x can't be greater than 255.
+					$out['prob_win'] = 100*round( (max(0, min(1, ($x+1)/256))), 4); //the chance to capture the Pokémon is (X + 1)/256).
+					if($out['prob_win'] != 100){
+						if ($x <= 1)$y = 63; elseif ($x == 2) $y = 75;	elseif ($x == 3) $y = 84; elseif ($x == 5) $y = 95; elseif (($x == 6)||($x == 7)) $y = 103;	elseif (($x >= 8)&&($x <= 10))
+								    $y = 113; elseif (($x >= 11)&&($x <= 15)) $y = 126; elseif (($x >= 16)&&($x <= 20)) $y = 134; elseif (($x >= 21)&&($x <= 30)) $y = 149; elseif (($x >= 31)&&($x <= 40)) 	
+									$y = 160; elseif (($x >= 41)&&($x <= 50)) $y = 169; elseif (($x >= 51)&&($x <= 60)) $y = 177; elseif (($x >= 61)&&($x <= 80)) $y = 191; elseif (($x >= 81)&&($x <= 100))
+									$y = 201; elseif (($x >= 101)&&($x <= 120))	$y = 221; elseif (($x >= 121)&&($x <= 140))	$y = 220; elseif (($x >= 141)&&($x <= 160)) $y = 227; elseif (($x >= 161)&&($x <= 180))
+									$y = 234; elseif (($x >= 181)&&($x <= 200)) $y = 240; elseif (($x >= 201)&&($x <= 220)) $y = 246; elseif (($x >= 221)&&($x <= 240)) $y = 251; elseif (($x >= 241)&&($x <= 254))
+									$y = 253; else $y=255;	
+						$out['prob_fail'] 		= 100-$out['prob_win'];
+						$out['prob_0_wobble'] 	= round(($y/255)*$out['prob_fail'], 2);
+						$out['prob_1_wobble'] 	= round(($y/255)*((255-$y)/255)*$out['prob_fail'], 2);
+						$out['prob_2_wobble'] 	= round(($y/255)*pow((255-$y)/255, 2)*$out['prob_fail'], 2);
+						$out['prob_3_wobble'] 	= round((pow((255-$y)/255, 3)*$out['prob_fail']), 2);
+					}else{
+						$out['prob_win'] 		= 100;
+						$out['prob_fail'] 		= 0;
+						$out['prob_0_wobble'] 	= 0;
+						$out['prob_1_wobble'] 	= 0;
+						$out['prob_2_wobble'] 	= 0;
+						$out['prob_3_wobble'] 	= 0;
+					}
+				break;
+				case 3:
+				case 4: //Third and fourth generations use the same formula.
+					if ($status == "Normal")
+		            	$S = 1;
+		           	else if (($status == "Sleep")||($status == "Freeze"))
+		               	$S = 2;
+					else
+		                $S = 1.5;
+
+					$x = (1-(2/3*$H/100))*$catch_rate*$pball_multiplier*$S;
+					$y = min(65535, 65535/(sqrt(sqrt(255/$x))));
+
+					$out['prob_win'] = round( 100*pow(($y-1)/(65535),4) ,3);//100*$y/65535;
+					$out['prob_fail'] = 100-$out['prob_win'];
+					//Revisar: esto está mal
+					$out['prob_0_wobble'] = round(100*($out['prob_fail']/100),2);
+					$out['prob_1_wobble'] = round(100*($out['prob_win']/100)*($out['prob_fail']/100),2);
+					$out['prob_2_wobble'] = round(100*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_fail']/100),2);
+					$out['prob_3_wobble'] = round(100*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_fail']/100),2);
+					break;
+
+			}//End switch generation.
             
             $this->renderPartial('_showResults', array(
                 'pokemon_to_catch'	=> $pokemon_name,
@@ -211,8 +280,10 @@ class PokeballController extends Controller
                 'pokeball_es'		=> $pokeball->name_es_pokeball,
                 'hp_percentage'		=> $hp_percentage,
                 'status_text'		=> $statustext,
-                'text_pokeball' 	=> $text_pokeball,
-                'multiplier'		=> $multiplier,
+                'text_pokeball' 	=> $x,
+                'pball_multiplier'	=> $pball_multiplier,
+                'text_gen' 			=> $text_gen,
+                'out'				=> $out,
             ));
         }
     }
