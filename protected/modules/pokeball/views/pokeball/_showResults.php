@@ -14,23 +14,30 @@
 <?php echo var_dump($out); ?>
 <?php echo $out['prob_0_wobble']+$out['prob_1_wobble']+$out['prob_2_wobble']+$out['prob_3_wobble']?>
 
-	<h3> Análisis simple de probabilidad de captura. </h3>
+	<h3> Análisis de éxito de captura</h3>
    	<div id="pie_chart_div_simple"></div>
 
-   <h3> Análisis detallado de probabilidad de captura. </h3>
-   <p> La cantidad de veces que se agita la pokéball se refiere a, en caso de que la captura haya fracasado, cuantas veces se agitó la pokéball antes de que el pokémon saliese de ella </p>
-   <div id="pie_chart_div_detailed"></div>
+   	<h3> Veces que se agita la pokéball. </h3>
+   	<p> Esta información se calcula <b> en caso de que la captura haya fracasado </b>. En caso de que la captura haya sido exitosa la pokéball se agita tres veces y finalmente se cierra. </p>
+   	<?php if($out['prob_win'] != 100): //Just show the wobble graph if the probability of catching isn't a 100% ?>
+   		<div id="pie_chart_div_detailed"></div>	
+   	<?php else: ?>
+   		<p> Dado que la probabilidad de captura es del 100% no se necesita este análisis. </p>
+   	<?php endif; ?>
+<p>
+	Para ver con mayor rigurosidad el análisis matemático detrás de estos números puedes revisar <?php Yii::app()->params["pokeball_math_page"] ?>
+</p>
 
 <script type='text/javascript'>
 	//For simple pie chart.
 	var simple = Raphael("pie_chart_div_simple"),
 	pie_simple = simple.piechart(200,200, 130, [
-				<?php echo $out['prob_win'] ?>, 
-				<?php echo $out['prob_fail'] ?>,
+				<?php if($out['prob_win'] != 0): ?> <?php echo $out['prob_win'] ?>,  <?php endif; ?> 
+				<?php if($out['prob_fail'] != 0):?> <?php echo $out['prob_fail'] ?>, <?php endif; ?>
 			], { legend: [
-				"%%.%% - Captura exitosa", 
-				"%%.%% - Captura sin éxito",
-				], legendpos: "east"});
+				<?php if($out['prob_win'] != 0):  ?> "%%.%% - Captura exitosa", <?php endif; ?> 
+				<?php if($out['prob_fail'] != 0): ?> "%%.%% - Captura sin éxito", <?php endif; ?>
+			], legendpos: "east"});
 		
 	pie_simple.hover(function () {
 		this.sector.stop();
@@ -50,16 +57,15 @@
 		}
 	});
 
+	<?php if($out['prob_win'] != 100): //Don't include the javascript of the second graph in case the catch chance is 100% ?>
 	//For the detailed pie chart.
 	var detailed = Raphael("pie_chart_div_detailed"),
 		pie_detailed = detailed.piechart(320, 240, 100, [
-					<?php echo $out['prob_win'] ?>, 
 					<?php echo $out['prob_0_wobble'] ?>,
 					<?php echo $out['prob_1_wobble'] ?>,
 					<?php echo $out['prob_2_wobble'] ?>,
 					<?php echo $out['prob_3_wobble'] ?>,
 				], { legend: [
-					"%%.%% - Captura exitosa", 
 					"%%.%% - La pokéball no se agita",
 					"%%.%% - La pokéball se agita una vez", 
 					"%%.%% - La pokéball se agita dos veces", 
@@ -83,5 +89,7 @@
 			this.label[1].attr({ "font-weight": 400 });
 		}
 	});
+	<?php endif; 	//Endif for is prob_win != 100 ?>
+	
 </script>
 <?php endif; //Endif of content?>

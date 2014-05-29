@@ -1,4 +1,7 @@
 <?php
+//Include the global functions file.
+$globals = dirname(__FILE__).'/protected/globals.php';
+require_once($globals);
 
 // change the following paths if necessary
 $yii=dirname(__FILE__).'/../Yii/framework/yii.php';

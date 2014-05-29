@@ -54,8 +54,6 @@ class PokeballController extends Controller
                 $statustext = 'envenenado/a';
             else
                 $statustext = 'Paralizado/a';
-            
-            
             //Now we actually do the calculation.
            
             //Getting the first variable: The pokéball multiplier.
@@ -88,7 +86,7 @@ class PokeballController extends Controller
                     else{
 						$pball_multiplier = max(1, (40 - $nestball_level) / 10); // ((40 - Pokémon's level) ÷ 10)×, minimum 1× 
                     }
-					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$pball_multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
+					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$pball_multiplier.".";
                     break;
                 case 9: //Repeat ball
                     if (0 == (int) $_POST["select_repeatball"]) {
@@ -113,7 +111,7 @@ class PokeballController extends Controller
 					else{
 					    $pball_multiplier = min(4, ($turnos + 10) / 10);
 					}
-					$text_pokeball = "Dado que se usó Timer Ball en ".$gentext." generación y $turnos_text se tiene un multiplicador de  x".$pball_multiplier.". Para ver más detalles del algoritmo pueden revisar ".Yii::app()->params["pokeball_math_page"];
+					$text_pokeball = "Dado que se usó Timer Ball en ".$gentext." generación y $turnos_text se tiene un multiplicador de  x".$pball_multiplier.".";
 					break;
                 case 13: //Dusk ball
                     if (0 == (int) $_POST["select_duskball"]) {
@@ -134,7 +132,7 @@ class PokeballController extends Controller
                         else{
                             $pball_multiplier = 4;
                         }
-                        $text_pokeball = 'Dado que se usó Quick Ball en '.$gentext.' generación y se usó la pokéball al primer turno de la pelea se tiene un multiplicador de x'.$pball_multiplier.'. Para ver más detalles del algoritmo pueden revisar '.Yii::app()->params["pokeball_math_page"];
+                        $text_pokeball = 'Dado que se usó Quick Ball en '.$gentext.' generación y se usó la pokéball al primer turno de la pelea se tiene un multiplicador de x'.$pball_multiplier.'.';
                     } break;
                 case 17: //Fast Ball
                     if ($gen == 2) {
@@ -220,36 +218,30 @@ class PokeballController extends Controller
 			$out = array();
 			switch($gen){
 				case 2: //// http://www.dragonflycave.com/gen2capture.aspx ^\text{Probabilidad captura segunda generaci\'{o}n}=\frac{\left( max\left\{ \255, \left \left [ \left(1-\dfrac{H}{100}  \right ) \cdot P \cdot C  +S \right ]\right\} +1 \right)}{256}
-					if ($status == "Normal")
-	                	$S = 0;
-	                else if (($status == "Sleep")||($status == "Freeze"))
-	                   	$S = 10;
-	                else if (($status == "Paralysis")||($status == "Burn")||($status == "Poison"))
-	                    $S = 0;
-					$x = max( ((1-(2/3*$H/100)) * $pball_multiplier * $catch_rate), 1) + $S; //X = max(((M - H) * C) / M, 1) + S
-					$x = min ($x, 255); // x can't be greater than 255.
-					$out['prob_win'] = 100*round( (max(0, min(1, ($x+1)/256))), 4); //the chance to capture the Pokémon is (X + 1)/256).
-					if($out['prob_win'] != 100){
-						if ($x <= 1)$y = 63; elseif ($x == 2) $y = 75;	elseif ($x == 3) $y = 84; elseif ($x == 5) $y = 95; elseif (($x == 6)||($x == 7)) $y = 103;	elseif (($x >= 8)&&($x <= 10))
-								    $y = 113; elseif (($x >= 11)&&($x <= 15)) $y = 126; elseif (($x >= 16)&&($x <= 20)) $y = 134; elseif (($x >= 21)&&($x <= 30)) $y = 149; elseif (($x >= 31)&&($x <= 40)) 	
-									$y = 160; elseif (($x >= 41)&&($x <= 50)) $y = 169; elseif (($x >= 51)&&($x <= 60)) $y = 177; elseif (($x >= 61)&&($x <= 80)) $y = 191; elseif (($x >= 81)&&($x <= 100))
-									$y = 201; elseif (($x >= 101)&&($x <= 120))	$y = 221; elseif (($x >= 121)&&($x <= 140))	$y = 220; elseif (($x >= 141)&&($x <= 160)) $y = 227; elseif (($x >= 161)&&($x <= 180))
-									$y = 234; elseif (($x >= 181)&&($x <= 200)) $y = 240; elseif (($x >= 201)&&($x <= 220)) $y = 246; elseif (($x >= 221)&&($x <= 240)) $y = 251; elseif (($x >= 241)&&($x <= 254))
-									$y = 253; else $y=255;	
-						$out['prob_fail'] 		= 100-$out['prob_win'];
-						$out['prob_0_wobble'] 	= round(($y/255)*$out['prob_fail'], 2);
-						$out['prob_1_wobble'] 	= round(($y/255)*((255-$y)/255)*$out['prob_fail'], 2);
-						$out['prob_2_wobble'] 	= round(($y/255)*pow((255-$y)/255, 2)*$out['prob_fail'], 2);
-						$out['prob_3_wobble'] 	= round((pow((255-$y)/255, 3)*$out['prob_fail']), 2);
-					}else{
-						$out['prob_win'] 		= 100;
-						$out['prob_fail'] 		= 0;
-						$out['prob_0_wobble'] 	= 0;
-						$out['prob_1_wobble'] 	= 0;
-						$out['prob_2_wobble'] 	= 0;
-						$out['prob_3_wobble'] 	= 0;
-					}
-				break;
+				    if ($status == "Normal")
+                        $S = 0;
+                    else if (($status == "Sleep")||($status == "Freeze"))
+                        $S = 10;
+                    else if (($status == "Paralysis")||($status == "Burn")||($status == "Poison"))
+                        $S = 0; //It should be 5 but the game is bugged :P
+                    $x = max( ((1-(2/3*$H/100)) * $pball_multiplier * $catch_rate), 1) + $S; //X = max(((M - H) * C) / M, 1) + S
+                    $x = intval(min ($x, 255)); // x can't be greater than 255.
+                    $out['prob_win'] = 100*round( (max(0, min(1, ($x+1)/256))), 4); //the chance to capture the Pokémon is (X + 1)/256).
+                    if ($x <= 1) $y = 63; elseif ($x == 2) $y = 75; elseif ($x == 3) $y = 84; elseif ($x == 5) $y = 95; elseif (its_in_between($x, 6, 7)) $y=103;
+                    elseif (its_in_between($x, 8, 10))      $y=113; elseif (its_in_between($x, 11, 15))     $y=126; elseif (its_in_between($x, 16, 20)) $y=134;
+                    elseif (its_in_between($x, 21, 30))     $y=149; elseif (its_in_between($x, 31, 40))     $y=160; elseif (its_in_between($x, 41, 50)) $y=169;
+                    elseif (its_in_between($x, 51, 60))     $y=177; elseif (its_in_between($x, 61, 80))     $y=191; elseif (its_in_between($x, 81, 100)) $y=201;
+                    elseif (its_in_between($x, 101, 120))   $y=211; elseif (its_in_between($x, 121, 140))   $y=220; elseif (its_in_between($x, 141, 160)) $y=227;
+                    elseif (its_in_between($x, 161, 180))   $y=234; elseif (its_in_between($x, 181, 200))   $y=240; elseif (its_in_between($x, 201, 220)) $y=246;
+                    elseif (its_in_between($x, 221, 240))   $y=251; elseif (its_in_between($x, 241, 254))   $y=253; else $y=255;
+                    $out['prob_fail']      = 100-$out['prob_win'];
+                    $wobble_chance         = (256-$y)/256;
+                    $wobble_fail_chance    = $y/256;
+                    $out['prob_0_wobble']  = round( $wobble_fail_chance, 4); //If the first generated number is over y then the pokéball won't wobble.
+                    $out['prob_1_wobble']  = round( $wobble_chance * $wobble_fail_chance, 4); //Y is greater than the first number but it fails at the second one.
+                    $out['prob_2_wobble']  = round( $wobble_chance * $wobble_chance * $wobble_fail_chance, 4); //The first two numbers generated are smaller than Y but it fails on the third one.
+                    $out['prob_3_wobble']  = round( $wobble_chance * $wobble_chance * $wobble_chance, 4); //The 3 numbers are greater than Y.
+				break; //End of second generation.
 				case 3:
 				case 4: //Third and fourth generations use the same formula.
 					if ($status == "Normal")
@@ -280,7 +272,7 @@ class PokeballController extends Controller
                 'pokeball_es'		=> $pokeball->name_es_pokeball,
                 'hp_percentage'		=> $hp_percentage,
                 'status_text'		=> $statustext,
-                'text_pokeball' 	=> $x,
+                'text_pokeball' 	=> $text_pokeball,
                 'pball_multiplier'	=> $pball_multiplier,
                 'text_gen' 			=> $text_gen,
                 'out'				=> $out,
