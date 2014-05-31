@@ -1,5 +1,3 @@
-
-
 <?php  if(!is_null($pokemon_to_catch)): ?>
 
 
@@ -18,7 +16,13 @@
    	<div id="pie_chart_div_simple"></div>
 
    	<h3> Veces que se agita la pokéball. </h3>
-   	<p> Esta información se calcula <b> en caso de que la captura haya fracasado </b>. En caso de que la captura haya sido exitosa la pokéball se agita tres veces y finalmente se cierra. </p>
+
+   	<?php if($gen = 'segunda'): //For second generation the wobble mechanics are different than in the other gens ?>
+   		<p> Esta información se calcula, en segunda generación, <b> en caso de que la captura haya fracasado </b>. En caso de que la captura haya sido exitosa la pokéball se agita tres veces y finalmente se cierra. </p>
+   	<?php else: //All generations but second.?>
+   		<p> Las veces que se agita la pokéball, desde tercera generación en adelante, representa a un intento del pokémon de salir fuera de la pokéball. El pokémon hace 4 intentos de escaparse y si falla en todos ellos la captura es exitosa. El siguiente gráfico se calcula suponiendo que la captura falló.</p>
+   	<?php endif; ?>
+   	
    	<?php if($out['prob_win'] != 100): //Just show the wobble graph if the probability of catching isn't a 100% ?>
    		<div id="pie_chart_div_detailed"></div>	
    	<?php else: ?>

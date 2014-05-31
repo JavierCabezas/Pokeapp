@@ -251,17 +251,22 @@ class PokeballController extends Controller
 					else
 		                $S = 1.5;
 
-					$x = (1-(2/3*$H/100))*$catch_rate*$pball_multiplier*$S;
-					$y = min(65535, 65535/(sqrt(sqrt(255/$x))));
+					$x = intval( (1-(2/3*$H/100))*$catch_rate*$pball_multiplier*$S);
+					$y = intval(min(65535, 65535/(sqrt(sqrt(255/$x)))));
 
-					$out['prob_win'] = round( 100*pow(($y-1)/(65535),4) ,3);//100*$y/65535;
+                    $pokemon_stays_in_pball = $y/65535;
+                    $pokemon_breaks_out = 1-($y/65535);
+					$out['prob_win'] = round(100*$pokemon_stays_in_pball*$pokemon_stays_in_pball*$pokemon_stays_in_pball*$pokemon_stays_in_pball ,3); //100*$y/65535;
+                    if($out['prob_win'] > 99.99) $out['prob_win'] = 100; //skip the formula for masterball.
 					$out['prob_fail'] = 100-$out['prob_win'];
-					//Revisar: esto está mal
-					$out['prob_0_wobble'] = round(100*($out['prob_fail']/100),2);
-					$out['prob_1_wobble'] = round(100*($out['prob_win']/100)*($out['prob_fail']/100),2);
-					$out['prob_2_wobble'] = round(100*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_fail']/100),2);
-					$out['prob_3_wobble'] = round(100*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_win']/100)*($out['prob_fail']/100),2);
-					break;
+					$out['prob_0_wobble'] = round(100 * $pokemon_breaks_out ,2);
+					$out['prob_1_wobble'] = round(100 * $pokemon_stays_in_pball * $pokemon_breaks_out,2);
+					$out['prob_2_wobble'] = round(100 * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_breaks_out,2);
+					$out['prob_3_wobble'] = round(100 * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_breaks_out, 2);
+				break; //End of third and fourth generation.
+                case 5:
+                        /** TODO **/
+                break;
 
 			}//End switch generation.
             
