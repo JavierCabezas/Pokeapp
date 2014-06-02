@@ -104,4 +104,15 @@ class Nature extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	*	Returns the nature name in the format English name ( spanish name) Ex: Adamant (firme)
+	*	@return string the name of the nature in both languages.
+	*/
+	public function getNatureName()
+	{
+		$spanish = 7;
+		$name_es = NatureNames::model()->findByAttributes(array('nature_id' => $this->id, 'local_language_id' => $spanish))->name;
+		return ucfirst($this->identifier) . ' (' . ucfirst($name_es) . ') ' ;
+	}
 }

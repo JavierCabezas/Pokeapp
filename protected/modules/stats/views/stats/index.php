@@ -6,33 +6,34 @@ los stats de tus pokémon antes de entrenarlos o estimar cuantos EV necesitarás
 <!-- Render the two forms partials -->
 <div class='pokemon_1'>
 	<?php $this->renderPartial('_form', array(
-		'n' 			  	=> 1,
-		'array_pokeymans' 	=> $array_pokeymans,
-		'array_items' 	  	=> $array_items,
+		'n' 			  		=> 1,
+		'array_pokeymans' 		=> $array_pokeymans,
+		'array_items' 	  		=> $array_items,
+		'array_nature'			=> $array_nature,
 		));
 	?>
-</div> <!-- form 1 -->
+</div> <!-- end of form 1 -->
 
 <div clas='pokemon_2'>
 	<?php $this->renderPartial('_form', array(
-		'n' 			  	=> 2,
-		'array_pokeymans' 	=> $array_pokeymans,
-		'array_items' 		=> $array_items,
+		'n' 			  		=> 2,
+		'array_pokeymans' 		=> $array_pokeymans,
+		'array_items' 			=> $array_items,
+		'array_nature'			=> $array_nature,
 		));
 	?>
-</div> <!-- form 2 -->
+</div> <!-- end of form 2 -->
 
 <div class='result_1'>
-	<!-- Render the two results partials -->
 	<?php $this->renderPartial('_showResults', array(
 		'n'		 => 1,
 		'pokemon' => null
 	)); ?>
-</div> <!-- results 1 -->
+</div> <!-- end of results 1 -->
 
 <div class='result_2'>
 	<?php $this->renderPartial('_showResults', array(
 		'n'		 => 2,
 		'pokemon' => null
 	)); ?>
-</div> <!-- results 2 -->
+</div> <!-- end of results 2 -->

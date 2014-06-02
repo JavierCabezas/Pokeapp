@@ -124,4 +124,13 @@ class Pokemon extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	*	Returns the name of the pokémon with the correct capitalization and spacing. (Example: Gardevoir mega instead of gardevoir-mega)
+	*	@return string the name of the pokémon.
+	*/
+	public function getPokemonName()
+	{
+		return str_replace('-', ' ', ucfirst($this->identifier));
+	}
 }

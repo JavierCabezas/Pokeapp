@@ -51,7 +51,7 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 	   				<option value="2">Segunda (GS-C)</option>
 	     			<option value="3">Tercera (RS-E-FRLG)</option>
 	  				<option value="4">Cuarta (DP-Pl-HGSS)</option>
-	   				<option value="5">Quinta (BW-BW2)</option>
+	   				<!-- TODO <option value="5">Quinta (BW-BW2)</option> -->
 	   				<!-- <option value="6">Sexta (XY-&alpha;S &beta;R)</option> I don't know the catch rate mechanics for sixth generation yet! -->
 				</select>
 			</td> 
@@ -365,21 +365,21 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
     	$('#hp_percentage').change(function() {
     		var hp =  parseInt((parseInt($('#hp_percentage').val()))/10);
     		preloadImg( domain + '/images/pokeball/hp'+hp+'.png');
-    		setTimeout(function(){ $('#hp_percentage_photo').html("<img src='/pokeapp/images/pokeball/hp"+hp+".png'>") } , 400);
+    		setTimeout(function(){ $('#hp_percentage_photo').html("<img src='/pokeapp/images/pokeball/hp"+hp+".png'>") } , 600);
     	});
 
     	//Update status
     	$('#status').change(function() {
     		var status = $('#status').val();
 			preloadImg( domain + '/images/pokeball/status'+status+'.png');
-			setTimeout(function(){ $('#foto_status').html("<img src='/pokeapp/images/pokeball/status"+status+".png'>") }, 800);
+			setTimeout(function(){ $('#foto_status').html("<img src='/pokeapp/images/pokeball/status"+status+".png'>") }, 1200);
     	});
 
 		$('#pokemon_to_capture').change(function() {
 			var pokemon_id = $('#pokemon_to_capture').val();
 			pokemon_id = pad(pokemon_id, 3); 
 			preloadImg( domain + '/images/sugimori/104px-Sugimori_'+pokemon_id+'.png');
-			setTimeout(function(){ $('#pokemon_elegido').html("<img src='/pokeapp/images/sugimori/104px-Sugimori_"+pokemon_id+".png'>") }, 800);
+			setTimeout(function(){ $('#pokemon_elegido').html("<img src='/pokeapp/images/sugimori/104px-Sugimori_"+pokemon_id+".png'>") }, 1200);
 		});
 
 	});
