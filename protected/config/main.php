@@ -17,7 +17,8 @@ return array(
     ),
     
     'modules' => array(
-        'pokeball', //First pokéapp: Catch rate calculator.
+        'pokeball', //Catch rate calculator.
+        'stats',    //Stats calculator.
 
         'gii' => array(
             'class' => 'system.gii.GiiModule',
