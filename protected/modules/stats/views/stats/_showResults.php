@@ -7,8 +7,7 @@
 
 
 <?php if(!is_null($pokemon)): ?>
-
-	<?php// echo var_dump($asdf); ?>
+	<?php $hp=1; $atk=2; $def=3; $spa=4; $spd=5; $spe=6 ?>
 
 	<?php echo "NÚMERO ".$n; ?>
 
