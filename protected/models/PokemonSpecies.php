@@ -162,7 +162,7 @@ class PokemonSpecies extends CActiveRecord
 	*	Returns the name of the pokémon with the correct capitalization. (Example: Gardevoir instead of gardevoir)
 	*	@return string the name of the pokémon.
 	*/
-	public function getNombrePokemon()
+	public function getPokemonName()
 	{
 		return ucfirst($this->identifier);
 	}

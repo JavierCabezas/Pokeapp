@@ -11,8 +11,8 @@ class PokeballController extends Controller
 		$cs->registerScriptFile($baseUrl.'/js/g.raphael-min.js');
 		$cs->registerScriptFile($baseUrl.'/js/g.pie-min.js');
 
-        $array_pokeymans = CHtml::listData(PokemonSpecies::model()->findAll(), 'id', 'nombrePokemon');
-        $array_pokeballs = CHtml::listData(Pokeball::model()->findAll(), 'id', 'nombrePokeball');
+        $array_pokeymans = CHtml::listData(PokemonSpecies::model()->findAll(), 'id', 'pokemonName');
+        $array_pokeballs = CHtml::listData(Pokeball::model()->findAll(), 'id', 'pokeballName');
         $array_turnos    = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','30+');
         array_unshift($array_pokeymans, 'Pokémon al azar');
         $this->render('index', array(
@@ -264,8 +264,38 @@ class PokeballController extends Controller
 					$out['prob_2_wobble'] = round(100 * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_breaks_out,2);
 					$out['prob_3_wobble'] = round(100 * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_stays_in_pball * $pokemon_breaks_out, 2);
 				break; //End of third and fourth generation.
-                case 5:
-                        /** TODO **/
+                case 5:/*
+                    $grass = $_POST['select_grass'];
+                    $mod_grass = $_POST['select_numpokemon'];
+                    $entralink = $_POST['select_entralink'];
+                    if ($status == "Normal")
+                        $S = 1;
+                    else if (($status == "Sleep")||($status == "Freeze"))
+                        $S = 2;
+                    else if (($status == "Paralysis")||($status == "Burn")||($status == "Poison"))
+                        $S = 1.5;
+                    $E= $entralink/10;
+                    if($grass){ 
+                        $G = $mod_grass/10;
+                    }else{
+                        $G=1;
+                    }
+                    $x = min(65535, (1-(2/3)*($H/100))*$catch_rate*$pball_multiplier*$S*$G*$E);
+                    $Y = min(65536, floor(65536 / sqrt(sqrt(255 / $x))));
+                    if($mod_grass == 10) $cc_dex = 2.5; elseif($mod_grass == 9) $cc_dex = 2; elseif($mod_grass == 8) $cc_dex = 1.5; elseif($mod_grass == 7) $cc_dex = 1; 
+                    elseif($mod_grass == 5) $cc_dex = 0.5; else $cc_dex = 0;
+                    $CC = floor( (min(255, $x) * $cc_dex) / 6);
+                    $prob_captura_sincc = round( 100*pow(($Y / 65536),3) ,2);
+                    $prob_win = $Y/65536;
+                    $prob_fail = 1-$prob_win;
+                    $prob_0_wobble = round(100*$prob_fail,2);
+                    $prob_1_wobble = round(100*$prob_win*$prob_fail,2);
+                    $prob_1_wobble = round(100*$prob_win*$prob_fail,2);
+                    $prob_2_wobble = 0;
+                    $prob_3_wobble = round(100*$prob_win*$prob_win*$prob_fail,2);
+                    $prob_CC = round(100*$CC/256, 2);
+                    $prob_captura_concc = round(100*(($CC/256)*($Y/65536)+(1-$CC/256)*pow(($Y / 65536),3)),2);
+                */
                 break;
 
 			}//End switch generation.
