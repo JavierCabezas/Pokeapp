@@ -119,7 +119,10 @@ class PokemonStats extends CActiveRecord
 	 * @return int the HP of the pokémon.
 	 */
 	public function getHp($base_hp, $level, $ev_hp, $iv_hp){
-		return ( intval((($iv_hp + (2*$base_hp) + intval($ev_hp/4) + 100)*$level)/100) + 10);
+		if($base_hp == 1) 
+			return 1; //shedninja is a special case
+		else
+			return ( intval((($iv_hp + (2*$base_hp) + intval($ev_hp/4) + 100)*$level)/100) + 10);
 	}
 
 	/**
@@ -130,16 +133,19 @@ class PokemonStats extends CActiveRecord
 	 * @param int level the level of the pokémon.
 	 * @param int ev_stat the effor points in the stat.
 	 * @param int iv_stat the individual value of the stat.
+	 * @param int id_item the item of the pokémon.
 	 * @return int the stat of the pokémon.
 	 */
-	public function getStat($stat_id, $id_nature, $base_stat, $level, $ev_stat, $iv_stat){
+	public function getStat($stat_id, $id_nature, $base_stat, $level, $ev_stat, $iv_stat, $id_item = null){
 		$nature = Nature::model()->findByPk($id_nature);
 		if($nature->decreased_stat_id == $nature->increased_stat_id)
 			$nature_multiplier = 1;
 		elseif($nature->increased_stat_id == $stat_id)
 			$nature_multiplier = 1.1;
-		else
+		elseif($nature->decreased_stat_id == $stat_id)
 			$nature_multiplier = 0.9;
+		else
+			$nature_multiplier = 1;
 
 		return intval( (( $iv_stat + (2*$base_stat) + intval($ev_stat/4))*$level/100 + 5)*$nature_multiplier);
 	}

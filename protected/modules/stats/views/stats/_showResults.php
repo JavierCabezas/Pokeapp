@@ -7,7 +7,7 @@
 
 
 <?php if(!is_null($pokemon)): ?>
-	<?php $hp=1; $atk=2; $def=3; $spa=4; $spd=5; $spe=6 ?>
+	<?php $hp=0; $atk=1; $def=2; $spa=3; $spd=4; $spe=5; ?>
 
 	<?php echo "NÚMERO ".$n; ?>
 
