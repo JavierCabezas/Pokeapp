@@ -108,4 +108,39 @@ class PokemonStats extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+
+	/**
+	 * Returns the HP of a certain pokémon. 
+	 * @param int base_hp the base hit point stat for the pokémon (for example 68 for gardevoir)
+	 * @param int level the level of the pokémon
+	 * @param int ev_hp the effor points in the hp stat.
+	 * @param int iv_hp the individual value of the HP.
+	 * @return int the HP of the pokémon.
+	 */
+	public function getHp($base_hp, $level, $ev_hp, $iv_hp){
+		return ( intval((($iv_hp + (2*$base_hp) + intval($ev_hp/4) + 100)*$level)/100) + 10);
+	}
+
+	/**
+	 * Returns any stat (other than HP since it uses a different algorithm)
+	 * @param int stat_id the identifier of the stat (2 atk, 3 def, 4spa, ... ).
+	 * @param int base_stat the base  stat for the pokémon (for example 125 for gardevoir's special attack or 80 for her speed).
+	 * @param int id_nature the nature identifier.
+	 * @param int level the level of the pokémon.
+	 * @param int ev_stat the effor points in the stat.
+	 * @param int iv_stat the individual value of the stat.
+	 * @return int the stat of the pokémon.
+	 */
+	public function getStat($stat_id, $id_nature, $base_stat, $level, $ev_stat, $iv_stat){
+		$nature = Nature::model()->findByPk($id_nature);
+		if($nature->decreased_stat_id == $nature->increased_stat_id)
+			$nature_multiplier = 1;
+		elseif($nature->increased_stat_id == $stat_id)
+			$nature_multiplier = 1.1;
+		else
+			$nature_multiplier = 0.9;
+
+		return intval( (( $iv_stat + (2*$base_stat) + intval($ev_stat/4))*$level/100 + 5)*$nature_multiplier);
+	}
 }
