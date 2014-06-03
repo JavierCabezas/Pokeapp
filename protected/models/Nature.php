@@ -106,13 +106,25 @@ class Nature extends CActiveRecord
 	}
 
 	/**
-	*	Returns the nature name in the format English name ( spanish name) Ex: Adamant (firme)
-	*	@return string the name of the nature in both languages.
-	*/
+	 *	Returns the nature name in the format English name ( spanish name) Ex: Adamant (firme)
+	 *	@return string the name of the nature in both languages.
+	 */
 	public function getNatureName()
 	{
 		$spanish = 7;
 		$name_es = NatureNames::model()->findByAttributes(array('nature_id' => $this->id, 'local_language_id' => $spanish))->name;
 		return ucfirst($this->identifier) . ' (' . ucfirst($name_es) . ') ' ;
+	}
+
+	/**
+	 * 	Returns the stats that the nature raises and decreases. Ex: +atk -spa for Adamant
+	 *	@return string the text 
+	 */
+	public function getNatureStats()
+	{
+		if($this->decreased_stat_id == $this->increased_stat_id)
+			return "Naturaleza neutral";
+		else
+			return "+".str_replace('-', ' ', ($this->decreasedStat->short)).", -".str_replace('-', ' ', ($this->increasedStat->short));
 	}
 }

@@ -37,7 +37,7 @@ class PokeballController extends Controller
             $pokeyman = PokemonSpecies::model()->findByPk($id_pokeyman);
             $pokeball = Pokeball::model()->findByPk($id_pokeball);
             
-            $pokemon_name = ucfirst($pokeyman->identifier);
+            $pokemon_name = beautify($pokeyman->identifier);
             //Get the text to show at the showResults partial.
             if ($gen == 1) $gentext = 'primera'; elseif ($gen == 2) $gentext = 'segunda';
             elseif ($gen == 3) $gentext = 'tercera'; elseif ($gen == 4) $gentext = 'cuarta';
