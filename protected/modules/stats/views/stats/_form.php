@@ -25,7 +25,7 @@
 			?>
 		</div>
 		<div>
-			<label>Item: </label>
+			<label>  Item: </span> </u> </label>
 			<?php 
 				$this->widget(
 					'bootstrap.widgets.TbSelect2',
@@ -80,7 +80,7 @@
 
 	<!-- IV Zone -->
 	<div class="iv">
-		<h4>IVs</h4>
+		<h4> <u class ="dotted"><span title="Valores individuales o Individual values">IVs</span></u></h4>
 		<div>
 			<label>IV Puntos de impacto:</label>
 			<input type="number" id="iv_hp_<?php echo $n ?>" name="iv_hp_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="31" min="1" max="31" />
@@ -212,10 +212,10 @@
 
 	<!-- EV zone -->
 	<div class="ev">
-		<h4>EVs</h4>
+		<h4> <u class ="dotted"> <span title="Puntos de esfuerzo o effort values"> EVs </span> </u> </h4>
 		<div>
 			<label for="amt">EV Puntos de impacto:</label>
-			<input type="number" id="ev_hp<?php echo $n ?>" name="ev_hp_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="0" min="1" max="252" />
+			<input type="number"  id="ev_hp<?php echo $n ?>" name="ev_hp_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="0" min="1" max="252" />
 			<?php
 			$this->widget('zii.widgets.jui.CJuiSliderInput', array(
 			    'name'=>'ev_hp'.$n,
@@ -226,7 +226,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_hp'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_hp'.$n.'").val(ui.value); sumEV(); }',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -247,7 +247,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_atk'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_atk'.$n.'").val(ui.value); sumEV();}',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -268,7 +268,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_def'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_def'.$n.'").val(ui.value); sumEV();}',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -278,7 +278,7 @@
 		</div>
 		<div>
 			<label for="amt">EV Ataque especial:</label>
-			<input type="number" id="ev_spa<?php echo $n ?>" name="ev_spa_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="0" min="1" max="252" />
+			<input type="number"  id="ev_spa<?php echo $n ?>" name="ev_spa_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="0" min="1" max="252" />
 			<?php
 			$this->widget('zii.widgets.jui.CJuiSliderInput', array(
 			    'name'=>'ev_spa'.$n,
@@ -289,7 +289,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_spa'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_spa'.$n.'").val(ui.value); sumEV();}',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -310,7 +310,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_spd'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_spd'.$n.'").val(ui.value); sumEV();}',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -331,7 +331,7 @@
 			        'max'=>252, 
 			        'animate'=>true,
 			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#ev_spe'.$n.'").val(ui.value);}',
+			        'slide'=>'js:function(event,ui){$("#ev_spe'.$n.'").val(ui.value); sumEV();}',
 			    ),
 			    'htmlOptions'=>array(
 			        'style'=>'width:200px;background-color:red;'
@@ -339,12 +339,16 @@
 			));
 			?>
 		</div>
+		<div class='sum_ev'> 
+			<label>Suma EV pokémon #<?php echo $n ?>:</label>
+			<input type="number" id="ev_sum_<?php echo $n ?>" value="0" disabled='true' />
+		</div>
 	</div>
 	<!-- End of EV -->
 
 	<!-- Stat changes -->
 	<div class="stat">
-		<h4>Cambios de Stats</h4>
+		<h4> <u class ="dotted"> <span title="Cambios de stat dados por movimientos. Por ejemplo swords dance da +2 al ataque y calm mind da +1 al ataque especial y a la defensa especial"> Cambios de Stats </span> </u> </h4>
 		<div>
 			<label for="amt">Cambios de estado ataque:</label>
 			<input type="number" id="stat_change_atk<?php echo $n ?>" name="stat_change_atk_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="0" min="-6" max="6" />
@@ -457,3 +461,26 @@
 			array('update' => '.result_'.$n, 'type' => "POST")
 		); ?>
 	<?php echo CHtml::endForm(); ?>
+
+<script type='text/javascript'>
+//Get the sum of the EV.
+function sumEV(){
+	hp_1 	= parseInt($('#ev_hp1').val());  	hp_2 = $('#ev_hp2').val();
+	atk_1 	= parseInt($('#ev_atk1').val()); 	atk_2 = $('#ev_atk2').val();
+	def_1 	= parseInt($('#ev_def1').val()); 	def_2 = $('#ev_def2').val();
+	spa_1 	= parseInt($('#ev_spa1').val()); 	spa_2 = $('#ev_spa2').val();
+	spd_1 	= parseInt($('#ev_spd1').val()); 	spd_2 = $('#ev_spd2').val();
+	spe_1 	= parseInt($('#ev_spe1').val()); 	spe_2 = $('#ev_spe2').val();
+	sum_ev_1 = hp_1 + atk_1 + def_1 + spa_1 + spd_1 + spe_1;
+	sum_ev_2 = hp_2 + atk_2 + def_2 + spa_2 + spd_2 + spe_2;
+
+	$( "#ev_sum_1" ).val( sum_ev_1 );
+	$( "#ev_sum_2" ).val( sum_ev_2 );
+
+}
+
+	//Call the function each time any number field changes
+	$( "input[type='number']" ).change(function() {
+		sumEV();
+	});
+</script>

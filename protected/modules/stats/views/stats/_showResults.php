@@ -36,7 +36,7 @@
 				<th> EV </th>
 				<th> IV </th>
 				<th> Cambio de stats </th>
-				<th> <b> Resultado </b> </th>
+				<th> <b> Stat final </b> </th>
 			</tr>
 			<tr>
 				<td class="title"> Puntos de impacto </td>

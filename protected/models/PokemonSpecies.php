@@ -164,6 +164,19 @@ class PokemonSpecies extends CActiveRecord
 	*/
 	public function getPokemonName()
 	{
-		return ucfirst($this->identifier);
+		return beautify($this->identifier);
+	}
+
+	/**
+	 * Checks if the pokémon can evolve. Useful for eviolite.
+	 * @param integer id_pokemon the identifier of the pokémon that you are going to check for evolutions.
+	 * @return bool true if the pokémon evolves and false otherwise.
+	 */
+	public function getCanPokemonEvolve(){
+		$evolution = PokemonSpecies::model()->findByAttributes(array('evolves_from_species_id' => $this->id));
+		if(isset($evolution->id))
+			return true;
+		else
+			return false;
 	}
 }
