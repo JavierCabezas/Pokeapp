@@ -1,24 +1,142 @@
 #pokemon_info, #results_info {
-	width: 1050px;
-	height: 1550px;
+	width: 1100px;
+	height: 1300px;
 	clear: both;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#pokemon_info .pokemon_1,
-#pokemon_info .pokemon_2,
-#results_info .results_1,
-#results_info .results_2 {
-	width: 500px;
+#results_info {
+	height: 800px;
+}
+
+#pokemon_info div {
+	width: 45%;
+	float: left;
+	margin-bottom: 2%;
+}
+
+#pokemon_info div label {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#pokemon_info .basic,
+#pokemon_info .iv,
+#pokemon_info .ev,
+#pokemon_info .stat {
+	width: 100%;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 2px solid #000;
+	clear: both;
+	margin-top: 0;
+}
+
+#pokemon_info .stat {
+	border-bottom: none;
+}
+
+#pokemon_info .pokemon_1, #pokemon_info .pokemon_2,
+#results_info .result_1, #results_info .result_2 {
+	width: 49%;
 	height: 1550px;
 	float: left;
 }
 
 #pokemon_info .pokemon_2,
-#results_info .results_2 {
-	width: 530px;
+#results_info .result_2 {
 	padding-left: 10px;
 	border-left: 2px solid #000;
 	float: right;
+}
+
+#pokemon_info .pokemon_1 h3,
+#pokemon_info .pokemon_2 h3,
+#results_info .result_1 h3,
+#results_info .result_2 h3 {
+	background-color: #BF0B11;
+	color: #FFF;
+    font-weight: bold;
+    height: 3%;
+    text-align: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+#results_info .poke {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #FFF;
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+	-webkit-border: 5px solid #A50606;
+	-moz-border: 5px solid #A50606;
+	border: 5px solid #A50606;
+}
+
+#results_info .poke img {
+    margin-left: 8%;
+    margin-top: 5%;
+}
+
+#results_info .poke table {
+	float: right;
+	width: 60%;
+	height: auto;
+	background-color: #595959;
+	color: #FFF;
+	padding: 10px;
+	margin: 0;
+}
+
+#results_info .stats {
+	padding: 10px;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+
+#results_info .stats h4 {
+	-webkit-border-radius: 10px 10px 0 0;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+	background-color: #000;
+	color: #FFF;
+	margin-bottom: 0;
+    padding: 5px;
+    text-align: center;
+}
+
+#results_info .stats table {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-border: 5px solid #000;
+	-moz-border: 5px solid #000;
+	border: 5px solid #000;
+	text-align: center;
+	line-height: 100%;
+}
+
+#results_info .stats td {
+	-webkit-border: 2px solid #000;
+	-moz-border: 2px solid #000;
+	border: 2px solid #000;
+	text-align: center;
+	font-size: 12px;
+}
+
+#results_info .stats th,
+#results_info .stats .title {
+	-webkit-border: 2px solid #000;
+	-moz-border: 2px solid #000;
+	border: 2px solid #000;
+	background-color: #FFF;
+	font-size: 14px;
 }

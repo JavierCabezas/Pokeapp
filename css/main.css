@@ -3,7 +3,8 @@ body
 	margin: 0;
 	padding: 0;
 	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
+	font-family: "Trebuchet MS",Helvetica,Arial,sans-serif;
+	font-size: 10pt;
 	background: #e3e3e3;
 }
 
@@ -13,14 +14,16 @@ div {
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
 	background: #e3e3e3;
+	width: 100%;
+	font-family: "Trebuchet MS",Helvetica,Arial,sans-serif;
 }
 
 #header
 {
-	margin-left: 100px;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 0;
 	background-image: url(../images/nav/header_app.png);
 	background-repeat: no-repeat;
@@ -30,7 +33,10 @@ div {
 
 #content
 {
+    margin-left: auto;
+    margin-right: auto;
     padding: 20px;
+    width: 80%;
 }
 
 nav
@@ -90,6 +96,9 @@ img.yo
 #mainmenu
 {
 	background: #FFFFFF;
+	margin-left: auto;
+    margin-right: auto;
+    width: 90%;
 }
 
 #mainmenu ul

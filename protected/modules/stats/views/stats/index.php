@@ -7,6 +7,7 @@ los stats de tus pokémon antes de entrenarlos o estimar cuantos EV necesitarás
 
 <div id="pokemon_info">
 	<div class='pokemon_1'>
+		<h3>Pokemon 1</h3>
 		<?php $this->renderPartial('_form', array(
 			'n' 			  		=> 1,
 			'array_pokeymans' 		=> $array_pokeymans,
@@ -17,6 +18,7 @@ los stats de tus pokémon antes de entrenarlos o estimar cuantos EV necesitarás
 	</div> <!-- end of form 1 -->
 
 	<div class='pokemon_2'>
+		<h3>Pokemon 2</h3>
 		<?php $this->renderPartial('_form', array(
 			'n' 			  		=> 2,
 			'array_pokeymans' 		=> $array_pokeymans,
