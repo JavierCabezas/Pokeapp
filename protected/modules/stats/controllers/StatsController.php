@@ -4,15 +4,8 @@ class StatsController extends Controller
 {
 	public function actionIndex()
 	{
-		$criteria = new CDbCriteria;
-		$berry = 5;
-		$choice = 13;
-		$effort =  14;
-		$criteria->condition = "category_id in('".$berry."', '".$effort."', '".$choice."')"; //Its not neccesary to show all the items...
-		$items = Items::model()->findAll($criteria);
 		$array_pokeymans = CHtml::listData(Pokemon::model()->findAll(), 'id', 'pokemonName');
-		
-		$array_items = array(); //For some reason listData wasn't working as expected o I coded this. Im sure there is a better way to do it =P.
+		$items = Items::model()->getAllItemsThatAffectStats();
 		$array_items[0] = 'Ninguno';
 		foreach($items as $item)
 			$array_items[$item->id] = beautify($item->identifier);
@@ -64,14 +57,15 @@ class StatsController extends Controller
 								    (int) $pokemon_stats[$spa]->base_stat, (int) $pokemon_stats[$spd]->base_stat, (int) $pokemon_stats[$spe]->base_stat
 					  );
 
+			//Get the final stats of the pokémon.
 			$final_stats = array();
 			array_push($final_stats,
 						PokemonStats::model()->getHp($base_stats[$hp], $level, $evs[$hp], $ivs[$hp]),
-						PokemonStats::model()->getStat(2, $id_nature, $base_stats[$atk], $level, $evs[$atk], $ivs[$atk]),
-						PokemonStats::model()->getStat(3, $id_nature, $base_stats[$def], $level, $evs[$def], $ivs[$def]),
-						PokemonStats::model()->getStat(4, $id_nature, $base_stats[$spa], $level, $evs[$spa], $ivs[$spa]),
-						PokemonStats::model()->getStat(5, $id_nature, $base_stats[$spd], $level, $evs[$spd], $ivs[$spd]),
-						PokemonStats::model()->getStat(6, $id_nature, $base_stats[$spe], $level, $evs[$spe], $ivs[$spe])
+						PokemonStats::model()->getStat(2, $id_nature, $base_stats[$atk], $level, $evs[$atk], $ivs[$atk], $stat_changes[$atk], $id_item, $id_pokeyman),
+						PokemonStats::model()->getStat(3, $id_nature, $base_stats[$def], $level, $evs[$def], $ivs[$def], $stat_changes[$def], $id_item, $id_pokeyman),
+						PokemonStats::model()->getStat(4, $id_nature, $base_stats[$spa], $level, $evs[$spa], $ivs[$spa], $stat_changes[$spa], $id_item, $id_pokeyman),
+						PokemonStats::model()->getStat(5, $id_nature, $base_stats[$spd], $level, $evs[$spd], $ivs[$spd], $stat_changes[$spd], $id_item, $id_pokeyman),
+						PokemonStats::model()->getStat(6, $id_nature, $base_stats[$spe], $level, $evs[$spe], $ivs[$spe], $stat_changes[$spe], $id_item, $id_pokeyman)
 				);
 
 			

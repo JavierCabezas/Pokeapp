@@ -113,4 +113,20 @@ class Stats extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 *	Returns the multiplier associated with a certain stat change number (for example a multiplier of 4 for 6 stat changes)
+	 *	@param integer stat_changes the number of stat changes.
+	 *	@return float multiplier associated with that stat_change.
+	 */
+	public function getStatChangeMultiplier($stat_changes){
+		 $stat_changes = min($stat_changes, 6);
+		 $stat_changes = max($stat_changes, -6);
+		 if($stat_changes == 0)
+		 	return 1;
+		 elseif($stat_changes > 0)
+		 	return (1+$stat_changes * 0.5);
+		 else
+		 	return (2/(2-$stat_changes));
+	}
 }

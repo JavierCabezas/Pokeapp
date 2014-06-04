@@ -131,6 +131,6 @@ class Pokemon extends CActiveRecord
 	*/
 	public function getPokemonName()
 	{
-		return str_replace('-', ' ', ucfirst($this->identifier));
+		return beautify($this->identifier);
 	}
 }

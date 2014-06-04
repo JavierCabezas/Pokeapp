@@ -131,12 +131,15 @@ class PokemonStats extends CActiveRecord
 	 * @param int base_stat the base  stat for the pokémon (for example 125 for gardevoir's special attack or 80 for her speed).
 	 * @param int id_nature the nature identifier.
 	 * @param int level the level of the pokémon.
-	 * @param int ev_stat the effor points in the stat.
+	 * @param int ev_stat the effort points in the stat.
 	 * @param int iv_stat the individual value of the stat.
 	 * @param int id_item the item of the pokémon.
+	 * @param int stat_changes the number of stat changes.
+	 * @param int id_pokemon the intifier of the pokémon.
 	 * @return int the stat of the pokémon.
 	 */
-	public function getStat($stat_id, $id_nature, $base_stat, $level, $ev_stat, $iv_stat, $id_item = null){
+	public function getStat($stat_id, $id_nature, $base_stat, $level, $ev_stat, $iv_stat, $stat_changes, $id_item, $id_pokemon){
+		//Nature multiplier
 		$nature = Nature::model()->findByPk($id_nature);
 		if($nature->decreased_stat_id == $nature->increased_stat_id)
 			$nature_multiplier = 1;
@@ -147,6 +150,28 @@ class PokemonStats extends CActiveRecord
 		else
 			$nature_multiplier = 1;
 
-		return intval( (( $iv_stat + (2*$base_stat) + intval($ev_stat/4))*$level/100 + 5)*$nature_multiplier);
+		//Item multiplier
+		$item_multiplier = 1;
+		if(!is_null($id_item)){
+			$changed_stat = array();
+
+			$changed_stat = Items::model()->getItemChangedStat($id_item, $id_pokemon);
+			for ($i = 0; $i < sizeof($changed_stat) ; $i = $i+2) { //IM SO SORRY FOR THIS CODE, I KNOW IT SUCKS...but it works.
+				if($changed_stat[$i] != 0){ //If the item changes an stat (if its 0 the item does not change anything)
+					if($stat_id == $changed_stat[$i]){ 
+						if($changed_stat[$i+1] == -2)
+							$stat_changes = $stat_changes - 1;
+						elseif($changed_stat[$i+1] == -1)
+							$item_multiplier = 0.5;
+						elseif($changed_stat[$i+1] == 1)
+							$item_multiplier = 1.5;
+						else
+							$stat_changes = $stat_changes + 1;
+					}
+				}
+			}
+			$changed_stat_multiplier = Stats::model()->getStatChangeMultiplier($stat_changes);
+		}
+		return intval( (( $iv_stat + (2*$base_stat) + intval($ev_stat/4))*$level/100 + 5)*$nature_multiplier * $changed_stat_multiplier * $item_multiplier);
 	}
 }

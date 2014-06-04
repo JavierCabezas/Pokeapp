@@ -35,7 +35,6 @@
 				<th> Base </th>
 				<th> EV </th>
 				<th> IV </th>
-				<th> Item </th>
 				<th> Cambio de stats </th>
 				<th> <b> Resultado </b> </th>
 			</tr>
@@ -44,7 +43,6 @@
 				<td> <?php echo $base_stats[$hp] ?> </td>
 				<td> <?php echo $evs[$hp] ?> </td>
 				<td> <?php echo $ivs[$hp] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$hp]) ?> </td>
 				<td> <b> <?php echo $final_stats[$hp] ?> </b> </td>
 			</tr>
@@ -53,7 +51,6 @@
 				<td> <?php echo $base_stats[$atk] ?> </td>
 				<td> <?php echo $evs[$atk] ?> </td>
 				<td> <?php echo $ivs[$atk] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$atk]) ?> </td>
 				<td> <b> <?php echo $final_stats[$atk] ?>  </b> </td>
 			</tr>
@@ -62,7 +59,6 @@
 				<td> <?php echo $base_stats[$def] ?> </td>
 				<td> <?php echo $evs[$def] ?> </td>
 				<td> <?php echo $ivs[$def] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$def]) ?> </td>
 				<td> <b> <?php echo $final_stats[$def] ?>  </b> </td>
 			</tr>
@@ -71,7 +67,6 @@
 				<td> <?php echo $base_stats[$spa] ?> </td>
 				<td> <?php echo $evs[$spa] ?> </td>
 				<td> <?php echo $ivs[$spa] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$spa]) ?> </td>
 				<td> <b> <?php echo $final_stats[$spa] ?>  </b> </td>
 			</tr>
@@ -80,7 +75,6 @@
 				<td> <?php echo $base_stats[$spd] ?> </td>
 				<td> <?php echo $evs[$spd] ?> </td>
 				<td> <?php echo $ivs[$spd] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$spd]) ?> </td>
 				<td> <b> <?php echo $final_stats[$spd] ?>  </b> </td>
 			</tr>
@@ -89,7 +83,6 @@
 				<td> <?php echo $base_stats[$spe] ?> </td>
 				<td> <?php echo $evs[$spe] ?> </td>
 				<td> <?php echo $ivs[$spe] ?> </td>
-				<td> d </td>
 				<td> <?php echo signify($stat_changes[$spe]) ?> </td>
 				<td> <b> <?php echo $final_stats[$spe] ?>  </b> </td>
 			</tr>
