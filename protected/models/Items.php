@@ -12,6 +12,7 @@
  * The followings are the available model relations:
  * @property EvolutionChains[] $evolutionChains
  * @property ItemCategories $category
+ * @property ItemsNames[] $itemsNames
  * @property Pokeball $pokeball
  * @property Pokeball[] $pokeballs
  */
@@ -52,6 +53,7 @@ class Items extends CActiveRecord
 		return array(
 			'evolutionChains' => array(self::HAS_MANY, 'EvolutionChains', 'baby_trigger_item_id'),
 			'category' => array(self::BELONGS_TO, 'ItemCategories', 'category_id'),
+			'itemsNames' => array(self::HAS_MANY, 'ItemsNames', 'item_id'),
 			'pokeball' => array(self::HAS_ONE, 'Pokeball', 'id'),
 			'pokeballs' => array(self::HAS_MANY, 'Pokeball', 'index_pokeball'),
 		);
@@ -115,7 +117,12 @@ class Items extends CActiveRecord
 	 */
 	public function getItemName()
 	{
-		return beautify($this->identifier);
+		$spanish = 7;
+		$items = ItemsNames::model()->findByAttributes(array('item_id' => $this->id, 'local_language_id' => $spanish));
+		if(isset($items))
+			return beautify($this->identifier)." (".utf8_decode(beautify($items->name)).")";
+		else
+			return beautify($this->identifier);
 	}
 
 	/**
@@ -124,7 +131,8 @@ class Items extends CActiveRecord
 	 */
 	public function getAllItemsThatAffectStats()
 	{
-		$array_items = array(178, 179, 180, 181, 182, 192, 197, 202, 203, 204, 213, 235, 255, 264, 267, 268, 269, 270, 271, 274, 581, 682, 683);
+		$array_items = array(178, 179, 180, 181, 182, 192, 197, 202, 203, 204, 213, 235, 
+							 255, 264, 267, 268, 269, 270, 271, 274, 581, 682, 683); //id of the items that may affect the stats.
 		$criteria = new CDbCriteria();
 		$criteria->addInCondition("id", $array_items);
 		return Items::model()->findAll($criteria);
@@ -143,15 +151,13 @@ class Items extends CActiveRecord
 	 */
 	public function getItemChangedStat($id_item, $id_pokemon)
 	{
-		$atk = 2; $def = 3; $spa = 4; $spd = 5; $spe = 6;
-		$positive_percent = 1; $negative_percent = -1; $positive_modifier = 2; $negative_modifier = -2;
-		$liechi_berry = 178; $choice_band = 197; $ganlon_berry = 179; $petaya_berry = 181; $choice_specs = 274;
-		$apicot_berry = 182; $macho_brace = 192; $salac_berry = 180; $choice_scarf = 264; $iron_ball = 255;
-		$power_belt = 267; $power_lens = 268; $power_band=269; $power_anklet = 270; $power_weight = 271;
-		$eviolite = 581; $light_ball = 213; $soul_dew = 202; $thick_club = 235; $deep_sea_tooth = 203;
-		$deep_sea_scale = 204; $weakness_policy = 682; $assault_vest = 683;
-
-		$out = array();
+		$atk = 2; 	$def = 3; 	$spa = 4; $spd = 5; 	$spe = 6; 				$out = array();
+		$positive_percent = 1; 	$negative_percent = -1; $positive_modifier = 2; $negative_modifier = -2;
+		$liechi_berry = 178; 	$choice_band = 197; 	$ganlon_berry = 179; 	$petaya_berry = 181; 	$choice_specs = 274;
+		$apicot_berry = 182;	$macho_brace = 192;	 	$salac_berry = 180; 	$choice_scarf = 264; 	$iron_ball = 255;
+		$power_belt = 267; 		$power_lens = 268; 		$power_band=269; 		$power_anklet = 270; 	$power_weight = 271;
+		$eviolite = 581; 		$light_ball = 213; 		$soul_dew = 202; 		$thick_club = 235; 		$deep_sea_tooth = 203;
+		$deep_sea_scale = 204; 	$weakness_policy = 682; $assault_vest = 683;
 
 		switch ($id_item){
 			//attack
