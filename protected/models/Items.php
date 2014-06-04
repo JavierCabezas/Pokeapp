@@ -216,17 +216,17 @@ class Items extends CActiveRecord
 				}
 				break;
 			case $soul_dew:
-				if($id_pokemon == 381 || $id_pokemon == 382){
+				if($id_pokemon == 381 || $id_pokemon == 382){ //latios and latias
 					array_push($out, $spa, $positive_percent);
 					array_push($out, $spd, $positive_percent);
 				}else{
 					array_push($out, 0, 0);
 				}
 				break;
+
 			default:
 				array_push($out, 0, 0);
 		}
-
 		return $out;
 	}
 }
