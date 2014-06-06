@@ -1,7 +1,7 @@
 <h1> Calculadora de probabilidad de captura </h1>
 
 <p>Este módulo calcula la probabilidad de capturar un pokémon bajo distintos parámetros.
-En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en pokémon red) se da la posibilidad de hacer el cálculo teórico como si se pudiese hacer la captura.</p>
+En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en pokémon red) se realiza cálculo teórico, como si la captura fuese posible. </p>
 <p>Si te interesa conocer a fondo el algoritmo detrás de la calculadora te invito a leer <a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-1/">mi artículo al respecto</a>.</p>
 
 

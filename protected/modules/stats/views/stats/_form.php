@@ -465,12 +465,12 @@
 <script type='text/javascript'>
 //Get the sum of the EV.
 function sumEV(){
-	hp_1 	= parseInt($('#ev_hp1').val());  	hp_2 = $('#ev_hp2').val();
-	atk_1 	= parseInt($('#ev_atk1').val()); 	atk_2 = $('#ev_atk2').val();
-	def_1 	= parseInt($('#ev_def1').val()); 	def_2 = $('#ev_def2').val();
-	spa_1 	= parseInt($('#ev_spa1').val()); 	spa_2 = $('#ev_spa2').val();
-	spd_1 	= parseInt($('#ev_spd1').val()); 	spd_2 = $('#ev_spd2').val();
-	spe_1 	= parseInt($('#ev_spe1').val()); 	spe_2 = $('#ev_spe2').val();
+	hp_1 	= parseInt($('#ev_hp1').val());  	hp_2 =  parseInt($('#ev_hp2').val());
+	atk_1 	= parseInt($('#ev_atk1').val()); 	atk_2 = parseInt($('#ev_atk2').val());
+	def_1 	= parseInt($('#ev_def1').val()); 	def_2 = parseInt($('#ev_def2').val());
+	spa_1 	= parseInt($('#ev_spa1').val()); 	spa_2 = parseInt($('#ev_spa2').val());
+	spd_1 	= parseInt($('#ev_spd1').val()); 	spd_2 = parseInt($('#ev_spd2').val());
+	spe_1 	= parseInt($('#ev_spe1').val()); 	spe_2 = parseInt($('#ev_spe2').val());
 	sum_ev_1 = hp_1 + atk_1 + def_1 + spa_1 + spd_1 + spe_1;
 	sum_ev_2 = hp_2 + atk_2 + def_2 + spa_2 + spd_2 + spe_2;
 

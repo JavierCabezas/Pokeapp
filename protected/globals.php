@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains global functions for all the aplication. 
+ * This file contains useful functions accesible by the entire application.
  * Its inserted by the main index.php file.
  */
 
@@ -47,4 +47,23 @@ function signify($i){
 		return "+".$i;
 	else
 		return $i;
+}
+
+/**
+ * Returns the image directory.
+ */
+function imageDir(){
+	return Yii::app()->baseUrl."/images";
+}
+
+/**
+ *	In case the number given by argument has a decimal part != from 0 returns the next integer. Ex: roundUp(6.0) = 6, roundUp(3.1) = 4.
+ *	@param $i the number to roundUp
+ *	@return integer the number rounded up.	
+ */
+function roundUp($i){
+	if(intval($i) == $i)
+		return $i;
+	else
+		return (intval($i)+1);
 }

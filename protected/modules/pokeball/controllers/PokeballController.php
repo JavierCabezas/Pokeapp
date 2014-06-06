@@ -11,11 +11,15 @@ class PokeballController extends Controller
 		$cs->registerScriptFile($baseUrl.'/js/g.raphael-min.js');
 		$cs->registerScriptFile($baseUrl.'/js/g.pie-min.js');
 
+        //Get the form data
 		$array_pokeymans = CHtml::listData(PokemonSpecies::model()->findAll(), 'id', 'pokemonName');
-		$array_pokeballs = CHtml::listData(Pokeball::model()->findAll(), 'id', 'pokeballName');
+		$criteria=new CDbCriteria;
+        $criteria->addCondition("id != 20"); //Exclude heavy ball (for now at least!)
+        $array_pokeballs = CHtml::listData(Pokeball::model()->findAll($criteria), 'id', 'pokeballName');
 		$array_turnos    = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','30+');
 		array_unshift($array_pokeymans, 'Pokémon al azar');
-		$this->render('index', array(
+		
+        $this->render('index', array(
 		    'array_pokeymans' => $array_pokeymans,
 		    'array_pokeballs' => $array_pokeballs,
 		    'array_turnos' => $array_turnos
@@ -42,20 +46,23 @@ class PokeballController extends Controller
             if ($gen == 1) $gentext = 'primera'; elseif ($gen == 2) $gentext = 'segunda';
             elseif ($gen == 3) $gentext = 'tercera'; elseif ($gen == 4) $gentext = 'cuarta';
             elseif ($gen == 5) $gentext = 'quinta'; elseif ($gen == 6) $gentext = 'sexta';
+            
+            //Get the status text.
             if ($status == 'Normal')
-                $statustext = 'sin problemas de salud';
+                $statustext = 'Sin problemas de salud';
             elseif ($status == 'Sleep')
-                $statustext = 'durmiendo';
+                $statustext = 'Dormido';
             elseif ($status == 'Freeze')
-                $statustext = 'congelado/a';
+                $statustext = 'Congelado/a';
             elseif ($status == 'Burn')
-                $statustext = 'quemado/a';
+                $statustext = 'Quemado/a';
             elseif ($status == 'Poison')
-                $statustext = 'envenenado/a';
+                $statustext = 'Qnvenenado/a';
             else
                 $statustext = 'Paralizado/a';
+
             //Now we actually do the calculation.
-           
+    
             //Getting the first variable: The pokéball multiplier.
             switch ($id_pokeball) {
                 case 6: //Net ball
@@ -209,7 +216,7 @@ class PokeballController extends Controller
                     $pball_multiplier 	= $pokeball->catch_rate_pokeball;
                     $text_pokeball = 'Se usó '.$pokeball->name_pokeball.', que tiene un modificador fijo de x'.$pball_multiplier;
                     break;
-            } //End switch to get the pokéball multiplier
+            } //End switch to get the pokéball multiplier (geez, that was long. Screw you Kurt and your fancy pokeyballs.)
 
             //Getting the second variable:
             $H 			= (int) $_POST['hp_percentage'];
@@ -234,6 +241,16 @@ class PokeballController extends Controller
                     elseif (its_in_between($x, 101, 120))   $y=211; elseif (its_in_between($x, 121, 140))   $y=220; elseif (its_in_between($x, 141, 160)) $y=227;
                     elseif (its_in_between($x, 161, 180))   $y=234; elseif (its_in_between($x, 181, 200))   $y=240; elseif (its_in_between($x, 201, 220)) $y=246;
                     elseif (its_in_between($x, 221, 240))   $y=251; elseif (its_in_between($x, 241, 254))   $y=253; else $y=255;
+                    
+                    $math_details = "<ul>".
+                                        "<li> H (porcentaje de H) = ". $H . "</li>".
+                                        "<li> S (por status) =".$S."</li>".
+                                        "<li> x ('fuerza' del pokémon vs la pokéball) =".$x."</li>".
+                                        "<li> y (parámetro para ver cuantas veces se agita la pokéball) =".$y."</li>".
+                                        "<li> B (Multiplicador pokéball ) = ".$pball_multiplier."</li>".
+                                        "<li> R (Catch rate pokémon) = ".$catch_rate." </li>".
+                                    "</ul>";
+
                     $out['prob_fail']      = 100-$out['prob_win'];
                     $wobble_chance         = (256-$y)/256;
                     $wobble_fail_chance    = $y/256;
@@ -253,6 +270,11 @@ class PokeballController extends Controller
 
 					$x = intval( (1-(2/3*$H/100))*$catch_rate*$pball_multiplier*$S);
 					$y = intval(min(65535, 65535/(sqrt(sqrt(255/$x)))));
+
+                    $math_details = "<ul>".
+                                        "<li> H (porcentaje HP) " . $H . "</li>" .
+                                        //TODO TODO 
+                                    "</ul>";
 
                     $pokemon_stays_in_pball = $y/65535;
                     $pokemon_breaks_out = 1-($y/65535);
@@ -300,6 +322,8 @@ class PokeballController extends Controller
 
 			}//End switch generation.
             
+            $expected_value = roundUp(100/($out['prob_win'])); //FIXX
+            
             $this->renderPartial('_showResults', array(
                 'pokemon_to_catch'	=> $pokemon_name,
                 'gen'				=> $gentext,
@@ -311,6 +335,8 @@ class PokeballController extends Controller
                 'pball_multiplier'	=> $pball_multiplier,
                 'text_gen' 			=> $text_gen,
                 'out'				=> $out,
+                'expected_value'    => $expected_value,
+                'math_details'      => $math_details,
             ));
         }
     }
