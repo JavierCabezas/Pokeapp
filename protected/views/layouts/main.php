@@ -33,7 +33,7 @@
 			<ul>
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokeball.png" width="300" height="100" />',  Yii::app()->createurl('pokeball/pokeball/index')) //Module/controller/view ?> </li>
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/breed.png" width="300" height="100" />',  Yii::app()->createurl('stats/stats/index'))?> </li>
-				<li><?php echo CHtml::link('<img src="'. Yii::app()->request->baseUrl .'/images/nav/about.png" width="300" height="100" />', array('/site/about')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/about.png" width="300" height="100" />', array('/site/about')) ?></li>
 			</ul>
 		</nav>
 	</div><!-- mainmenu -->
