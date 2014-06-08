@@ -1,20 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "egg_groups".
+ * This is the model class for table "pokemon_shapes".
  *
- * The followings are the available columns in table 'egg_groups':
+ * The followings are the available columns in table 'pokemon_shapes':
  * @property integer $id
  * @property string $identifier
+ *
+ * The followings are the available model relations:
+ * @property PokemonSpecies[] $pokemonSpecies
  */
-class EggGroups extends CActiveRecord
+class PokemonShapes extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'egg_groups';
+		return 'pokemon_shapes';
 	}
 
 	/**
@@ -25,9 +28,8 @@ class EggGroups extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, identifier', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('identifier', 'length', 'max'=>15),
+			array('identifier', 'required'),
+			array('identifier', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, identifier', 'safe', 'on'=>'search'),
@@ -42,6 +44,7 @@ class EggGroups extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'pokemonSpecies' => array(self::HAS_MANY, 'PokemonSpecies', 'shape_id'),
 		);
 	}
 
@@ -86,7 +89,7 @@ class EggGroups extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return EggGroups the static model class
+	 * @return PokemonShapes the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -94,10 +97,10 @@ class EggGroups extends CActiveRecord
 	}
 
 	/**
-	*	Returns the egg group with correct capitalization. (Example: humanshape instead of Humanshape)
+	*	Returns the shape with correct capitalization. (Example: humanshape Humanoid of humanoid)
 	*	@return string the name of the color.
 	*/
-	public function getEggGroupName()
+	public function getShapeName()
 	{
 		return beautify($this->identifier);
 	}
