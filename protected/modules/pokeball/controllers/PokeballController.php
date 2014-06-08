@@ -29,13 +29,12 @@ class PokeballController extends Controller
     public function actionCalculateProbability()
     {
         if (isset($_POST['pokemon_to_capture'], $_POST['pokeball_to_use'], $_POST['gen'], $_POST['hp_percentage'], $_POST['select_diveball'], $_POST['select_nestball'], $_POST['select_repeatball'], $_POST['select_timerball'], $_POST['select_duskball'], $_POST['select_quickball'], $_POST['select_levelball_nivel_oponente'], $_POST['select_levelball_nivel_jugador'], $_POST['select_lureball'], $_POST['select_loveball'], $_POST['select_grass'], $_POST['select_numpokemon'], $_POST['select_entralink'])) {
-            
-            //Get (and cast) the $_POST data.
-            ($_POST['pokemon_to_capture'] == 0) ? $id_pokeyman = rand(1, 719) : $id_pokeyman = (int) $_POST['pokemon_to_capture'];
-            $id_pokeball   = (int) $_POST['pokeball_to_use'];
-            $gen           = (int) $_POST['gen'];
+            //Get  the $_POST data.
+            ($_POST['pokemon_to_capture'] == 0) ? $id_pokeyman = rand(1, 719) : $id_pokeyman = $_POST['pokemon_to_capture'];
+            $id_pokeball   = $_POST['pokeball_to_use'];
+            $gen           = $_POST['gen'];
             $status        = (string) $_POST['status'];
-            $hp_percentage = (int) $_POST['hp_percentage'];
+            $hp_percentage = $_POST['hp_percentage'];
             
             //Get the models.
             $pokeyman = PokemonSpecies::model()->findByPk($id_pokeyman);
@@ -272,8 +271,12 @@ class PokeballController extends Controller
 					$y = intval(min(65535, 65535/(sqrt(sqrt(255/$x)))));
 
                     $math_details = "<ul>".
-                                        "<li> H (porcentaje HP) " . $H . "</li>" .
-                                        //TODO TODO 
+                                        "<li> H (porcentaje de H) = ". $H . "</li>".
+                                        "<li> S (por status) =".$S."</li>".
+                                        "<li> x ('fuerza' del pokémon vs la pokéball) =".$x."</li>".
+                                        "<li> y (parámetro para ver cuantas veces se agita la pokéball) =".$y."</li>".
+                                        "<li> B (Multiplicador pokéball ) = ".$pball_multiplier."</li>".
+                                        "<li> R (Catch rate pokémon) = ".$catch_rate." </li>".
                                     "</ul>";
 
                     $pokemon_stays_in_pball = $y/65535;
