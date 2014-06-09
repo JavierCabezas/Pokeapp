@@ -1,4 +1,4 @@
-<h2> Calculadora de stats </h2>
+<h1 class="stats"> Calculadora de stats </h1>
 
 <p> En este módulo puedes hacer una simulación de stats de algún pokémon y compararlo con otro. Puedes usar esta calculadora para hacer estimaciones de
 los stats de tus pokémon antes de entrenarlos o estimar cuantos EV necesitarás entregarle a tu pokémon. </p>

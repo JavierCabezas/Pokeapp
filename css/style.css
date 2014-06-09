@@ -1,0 +1,20 @@
+h1.autor {
+	background-image: url(../images/titles/autor_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.stats {
+	background-image: url(../images/titles/stats_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.captura {
+	background-image: url(../images/titles/captura_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}

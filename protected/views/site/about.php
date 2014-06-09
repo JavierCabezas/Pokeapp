@@ -1,4 +1,4 @@
-<h1> Sobre Javier </h1>
+<h1 class="autor">Sobre el autor</h1>
 
 <p align="justify"> <?php echo  $foto_yo ?> Hola! Mi nombre es Javier y desde Junio del 2013 que estoy encargado de la sección <b>"Bajo el camión del S.S. Anne"</b> y también soy el autor de la <b>Pokéapp</b> acá en <a href="http://www.pokedaisuki.cl">PokéDaisuki</a>. 
 Si han asistido a un evento de la comunidad posiblemente me hayan visto con mi notebook en la sección del  <u class ="dotted"><span title="La aplicación antidopping fue la primera que hice para Pokédaisuki">antidopping</span></u> del torneo.
@@ -8,7 +8,7 @@ Es por esto que me encanta entender a fondo, a nivel técnico, el funcionamiento
 por alguno de mis artículos, tienen ganas de un duelo pokémon o quieren decirme hola siéntase totalmente libres de escribirme!</p>
 <p align="justify"> Aprovecho de dar las gracias a <a href="http://fermotousan.cl">Fernanda Kauak</a> por su ayuda con respecto a lo que es <u class="dotted"> <span title="Yo soy súper torpe en ese aspecto">diseño de la aplicación</span></u> y a los chicos de Daisuki por darme la oportunidad de hacer mis ñoñerías en la página de una comunidad tan bacán como esta. Por mucho que los tenga medios abandonados los adoro &lt; 3.  </p>
 
-<h2> Sobre la Pokéapp </h2>
+<h2> Acerca de la PokéApp </h2>
 <p align="justify"> Dado que además de pokémon gusta harto el asunto de programar decidí de usar mis conocimientos para hacer la cúspide de lo ñoño: 
 Hacer una aplicación de pokémon. Es por esto que me propuse a hacer distintas calculadoras con el fin de facilitarles un poco la vida a los jugadores del 
 mismo. Las hice pensando en que me fuesen útiles a mi como jugador del juego así que espero que lo sean también para ustedes!. 
