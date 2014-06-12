@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "player".
+ * This is the model class for table "Player".
  *
- * The followings are the available columns in table 'player':
+ * The followings are the available columns in table 'Player':
  * @property integer $id
  * @property string $nickname
  * @property string $name
@@ -12,32 +12,43 @@
  * @property integer $friendcode_3
  * @property integer $id_safari_type
  * @property integer $tsv
+ * @property integer $duel_single
+ * @property integer $tier_single
+ * @property integer $duel_doble
+ * @property integer $tier_doble
+ * @property integer $duel_triple
+ * @property integer $tier_triple
+ * @property integer $duel_rotation
+ * @property integer $tier_rotation
  * @property string $skype
  * @property string $whatsapp
  * @property string $facebook
  * @property string $mail
+ * @property integer $public_mail
  * @property string $others
  * @property string $comment
  * @property integer $auth
  *
  * The followings are the available model relations:
+ * @property Tiers $tierRotation
  * @property Types $idSafariType
+ * @property Tiers $tierSingle
+ * @property Tiers $tierDoble
+ * @property Tiers $tierTriple
  * @property PlayerPokemon[] $playerPokemons
  */
 class Player extends CActiveRecord
 {
-	//Variables for the auth variable.
-	public $created = 0;
-	public $allowed = 1;
-	public $banned  = 2;
-
-	public $created 
+	const STATUS_PENDING 	= 0;
+	const STATUS_OK			= 1;
+	const STATUS_BANNED 	= 2;
+	
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'player';
+		return 'Player';
 	}
 
 	/**
@@ -48,15 +59,18 @@ class Player extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nickname, friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv', 'required'),
-			array('friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, auth', 'numerical', 'integerOnly'=>true),
+			array('nickname, friendcode_1, friendcode_2, friendcode_3, mail, public_mail', 'required'),
+			array('friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
+			array('tsv, friendcode_1, friendcode_2, friendcode_3', 'numerical', 'max' => 9999, 'min' => 1),
 			array('name', 'length', 'max'=>80),
+			array('mail', 'email'),
+			array('mail', 'unique'),
 			array('facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nickname, name, friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, skype, whatsapp, facebook, mail, others, comment, auth', 'safe', 'on'=>'search'),
+			array('id, nickname, name, friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, skype, whatsapp, facebook, mail, public_mail, others, comment, auth', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +82,11 @@ class Player extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'tierRotation' => array(self::BELONGS_TO, 'Tiers', 'tier_rotation'),
 			'idSafariType' => array(self::BELONGS_TO, 'Types', 'id_safari_type'),
+			'tierSingle' => array(self::BELONGS_TO, 'Tiers', 'tier_single'),
+			'tierDoble' => array(self::BELONGS_TO, 'Tiers', 'tier_doble'),
+			'tierTriple' => array(self::BELONGS_TO, 'Tiers', 'tier_triple'),
 			'playerPokemons' => array(self::HAS_MANY, 'PlayerPokemon', 'id_player'),
 		);
 	}
@@ -80,22 +98,32 @@ class Player extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'nickname' => 'Nick',
-			'name' => 'Nombre',
+			'nickname' => 'Nickname (sobrenombre)',
+			'name' => 'Nombre real',
 			'friendcode_1' => 'Código amigo 1',
 			'friendcode_2' => 'Código amigo 2',
 			'friendcode_3' => 'Código amigo 3',
-			'id_safari_type' => 'Tipo Safari',
+			'id_safari_type' => 'Tipo de Safari',
 			'tsv' => 'TSV',
+			'duel_single' => 'Duelos single',
+			'tier_single' => 'Tier Single',
+			'duel_doble' => 'Duelos dobles',
+			'tier_doble' => 'Tier Doble',
+			'duel_triple' => 'Duelos triples',
+			'tier_triple' => 'Tier Triple',
+			'duel_rotation' => 'Duelos rotación',
+			'tier_rotation' => 'Tier Rotation',
 			'skype' => 'Skype',
 			'whatsapp' => 'Whatsapp',
 			'facebook' => 'Facebook',
-			'mail' => 'Mail',
-			'others' => 'Others',
-			'comment' => 'Comment',
+			'mail' => 'Correo electrónico',
+			'public_mail' => '¿Autorizas a se publique tu correo electrónico?',
+			'others' => 'Otros',
+			'comment' => 'Deja algún comentario para los que lean tu perfil...',
 			'auth' => 'Auth',
 		);
 	}
+
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -123,10 +151,19 @@ class Player extends CActiveRecord
 		$criteria->compare('friendcode_3',$this->friendcode_3);
 		$criteria->compare('id_safari_type',$this->id_safari_type);
 		$criteria->compare('tsv',$this->tsv);
+		$criteria->compare('duel_single',$this->duel_single);
+		$criteria->compare('tier_single',$this->tier_single);
+		$criteria->compare('duel_doble',$this->duel_doble);
+		$criteria->compare('tier_doble',$this->tier_doble);
+		$criteria->compare('duel_triple',$this->duel_triple);
+		$criteria->compare('tier_triple',$this->tier_triple);
+		$criteria->compare('duel_rotation',$this->duel_rotation);
+		$criteria->compare('tier_rotation',$this->tier_rotation);
 		$criteria->compare('skype',$this->skype,true);
 		$criteria->compare('whatsapp',$this->whatsapp,true);
 		$criteria->compare('facebook',$this->facebook,true);
 		$criteria->compare('mail',$this->mail,true);
+		$criteria->compare('public_mail',$this->public_mail);
 		$criteria->compare('others',$this->others,true);
 		$criteria->compare('comment',$this->comment,true);
 		$criteria->compare('auth',$this->auth);

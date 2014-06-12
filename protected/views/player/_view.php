@@ -33,6 +33,38 @@
 	<?php echo CHtml::encode($data->tsv); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_single')); ?>:</b>
+	<?php echo CHtml::encode($data->duel_single); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_single')); ?>:</b>
+	<?php echo CHtml::encode($data->tier_single); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_doble')); ?>:</b>
+	<?php echo CHtml::encode($data->duel_doble); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_doble')); ?>:</b>
+	<?php echo CHtml::encode($data->tier_doble); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_triple')); ?>:</b>
+	<?php echo CHtml::encode($data->duel_triple); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_triple')); ?>:</b>
+	<?php echo CHtml::encode($data->tier_triple); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_rotation')); ?>:</b>
+	<?php echo CHtml::encode($data->duel_rotation); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_rotation')); ?>:</b>
+	<?php echo CHtml::encode($data->tier_rotation); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('skype')); ?>:</b>
 	<?php echo CHtml::encode($data->skype); ?>
 	<br />
@@ -47,6 +79,10 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('mail')); ?>:</b>
 	<?php echo CHtml::encode($data->mail); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('public_mail')); ?>:</b>
+	<?php echo CHtml::encode($data->public_mail); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('others')); ?>:</b>

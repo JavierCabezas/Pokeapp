@@ -27,11 +27,12 @@ class StatsController extends Controller
 		if(isset($_POST)){
 			$hp=0; $atk=1; 	$def=2; $spa=3; $spd=4; $spe=5;
 			//Get user imput.
-			$id_pokeyman 	= (int) $_POST['pokemon_'.$id];
-			$id_item 	 	= (int) $_POST['item_'.$id];
-			$id_nature 	 	= (int) $_POST['nature_'.$id];
-			$level		 	= min( (int)$_POST['level_text_'.$id], 100);
-			$pokemon_name 	= Pokemon::model()->findByAttributes(array('id' => $id_pokeyman))->identifier;
+			$id_pokeyman 	= $_POST['pokemon_'.$id];
+			$id_item 	 	= $_POST['item_'.$id];
+			$id_nature 	 	= $_POST['nature_'.$id];
+			$level		 	= min( $_POST['level_text_'.$id], 100) + 0;
+			$pokemon_model 	= Pokemon::model()->findByPk($id_pokeyman);
+			$id_pokeyman 	= $pokemon_model->id;
 			$pokemon_stats 	= PokemonStats::model()->findAllByAttributes(array('pokemon_id' => $id_pokeyman));
 			$nature 		= Nature::model()->findByPk($id_nature);
 			$item 			= Items::model()->FindByPk($id_item);

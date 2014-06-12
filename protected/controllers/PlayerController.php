@@ -26,21 +26,28 @@ class PlayerController extends Controller
     public function actionCreate()
     {
         $model = new Player;
-        
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        
+        $this->performAjaxValidation($model);
+        $criteria=new CDbCriteria;
+        $criteria->addCondition("id != 10001"); //Exclude unkown type
+        $criteria->addCondition("id != 10002"); //Exlude shadow type
+        $array_types        = CHtml::listData(Types::model()->findAll($criteria), 'id', 'typeName');
+        $array_auth_mail    = array('0' => 'No', '1' => 'Sí');
+        $array_tiers        = CHtml::listData(Tiers::model()->findAll($criteria), 'id', 'tierName');
         if (isset($_POST['Player'])) {
             $model->attributes = $_POST['Player'];
-            if ($model->save())
+            echo "";
+            /*if ($model->save())
                 $this->redirect(array(
                     'view',
                     'id' => $model->id
-                ));
+                ));*/
         }
         
         $this->render('create', array(
-            'model' => $model
+            'model'             => $model,
+            'array_types'       => $array_types,
+            'array_auth_mail'   => $array_auth_mail,
+            'array_tiers'       => $array_tiers,
         ));
     }
     
@@ -51,12 +58,13 @@ class PlayerController extends Controller
     public function actionIndex()
     {
         $criteria = new CDbCriteria(array(
-            'condition' => 'status=' . Project::STATUS_FINISHED . ' OR user.id = 6'
+            'condition' => 'auth !=' . Player::STATUS_BANNED
         ));
         
         $dataProvider = new CActiveDataProvider('Player', array(
             'criteria' => $criteria
         ));
+        
         $this->render('index', array(
             'dataProvider' => $dataProvider
         ));

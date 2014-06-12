@@ -19,6 +19,22 @@
 
 		<?php echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
 
+		<?php echo $form->textFieldRow($model,'duel_single',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'tier_single',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'duel_doble',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'tier_doble',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'duel_triple',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'tier_triple',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'duel_rotation',array('class'=>'span5')); ?>
+
+		<?php echo $form->textFieldRow($model,'tier_rotation',array('class'=>'span5')); ?>
+
 		<?php echo $form->textFieldRow($model,'skype',array('class'=>'span5','maxlength'=>30)); ?>
 
 		<?php echo $form->textFieldRow($model,'whatsapp',array('class'=>'span5','maxlength'=>30)); ?>
@@ -26,6 +42,8 @@
 		<?php echo $form->textFieldRow($model,'facebook',array('class'=>'span5','maxlength'=>100)); ?>
 
 		<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
+
+		<?php echo $form->textFieldRow($model,'public_mail',array('class'=>'span5')); ?>
 
 		<?php echo $form->textFieldRow($model,'others',array('class'=>'span5','maxlength'=>100)); ?>
 

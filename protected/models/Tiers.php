@@ -1,31 +1,30 @@
 <?php
 
 /**
- * This is the model class for table "types".
+ * This is the model class for table "tiers".
  *
- * The followings are the available columns in table 'types':
+ * The followings are the available columns in table 'tiers':
  * @property integer $id
  * @property string $identifier
- * @property string $name_es
+ * @property string $short
  * @property integer $gen
- * @property integer $damage_class
+ * @property string $description
  *
  * The followings are the available model relations:
- * @property Moves[] $moves
  * @property Player[] $players
- * @property PokemonFriendSafari[] $pokemonFriendSafaris
- * @property PokemonTypes[] $pokemonTypes
+ * @property Player[] $players1
+ * @property Player[] $players2
+ * @property Player[] $players3
  * @property Generations $gen0
- * @property MoveDamageClasses $damageClass
  */
-class Types extends CActiveRecord
+class Tiers extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'types';
+		return 'tiers';
 	}
 
 	/**
@@ -36,13 +35,14 @@ class Types extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, identifier, gen', 'required'),
-			array('id, gen, damage_class', 'numerical', 'integerOnly'=>true),
-			array('identifier', 'length', 'max'=>12),
-			array('name_es', 'length', 'max'=>20),
+			array('identifier, short, gen, description', 'required'),
+			array('gen', 'numerical', 'integerOnly'=>true),
+			array('identifier', 'length', 'max'=>40),
+			array('short', 'length', 'max'=>4),
+			array('description', 'length', 'max'=>300),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, identifier, name_es, gen, damage_class', 'safe', 'on'=>'search'),
+			array('id, identifier, short, gen, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,12 +54,11 @@ class Types extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'moves' => array(self::HAS_MANY, 'Moves', 'type_id'),
-			'players' => array(self::HAS_MANY, 'Player', 'id_safari_type'),
-			'pokemonFriendSafaris' => array(self::HAS_MANY, 'PokemonFriendSafari', 'id_type'),
-			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'type_id'),
+			'players' => array(self::HAS_MANY, 'Player', 'tier_single'),
+			'players1' => array(self::HAS_MANY, 'Player', 'tier_doble'),
+			'players2' => array(self::HAS_MANY, 'Player', 'tier_triple'),
+			'players3' => array(self::HAS_MANY, 'Player', 'tier_rotation'),
 			'gen0' => array(self::BELONGS_TO, 'Generations', 'gen'),
-			'damageClass' => array(self::BELONGS_TO, 'MoveDamageClasses', 'damage_class'),
 		);
 	}
 
@@ -71,9 +70,9 @@ class Types extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'identifier' => 'Identifier',
-			'name_es' => 'Name Es',
+			'short' => 'Short',
 			'gen' => 'Gen',
-			'damage_class' => 'Damage Class',
+			'description' => 'Description',
 		);
 	}
 
@@ -91,15 +90,12 @@ class Types extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
-
 		$criteria=new CDbCriteria;
-
 		$criteria->compare('id',$this->id);
 		$criteria->compare('identifier',$this->identifier,true);
-		$criteria->compare('name_es',$this->name_es,true);
+		$criteria->compare('short',$this->short,true);
 		$criteria->compare('gen',$this->gen);
-		$criteria->compare('damage_class',$this->damage_class);
+		$criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -110,7 +106,7 @@ class Types extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Types the static model class
+	 * @return Tiers the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -118,11 +114,14 @@ class Types extends CActiveRecord
 	}
 
 	/**
-	*	Returns the type name in the format English name ( spanish name) Ex: Fire (fuego)
-	*	@return string the type name in both languages.
+	*	Returns the Tier name in the format Tier(short). Ex: UnderUsed(UU)  
+	*	@return string the tier.
 	*/
-	public function getTypeName()
+	public function getTierName()
 	{
-		return ucfirst($this->identifier) . ' (' . ucfirst($this->name_es) . ') ' ;
+		if($this->short != ' ')
+			return beautify($this->identifier).' ('. beautify($this->short) .')';
+		else
+			return beautify($this->identifier);
 	}
 }

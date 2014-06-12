@@ -1,31 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "types".
+ * This is the model class for table "pokemon_friend_safari".
  *
- * The followings are the available columns in table 'types':
+ * The followings are the available columns in table 'pokemon_friend_safari':
  * @property integer $id
- * @property string $identifier
- * @property string $name_es
- * @property integer $gen
- * @property integer $damage_class
+ * @property integer $id_pokemon
+ * @property integer $id_type
+ * @property integer $slot
  *
  * The followings are the available model relations:
- * @property Moves[] $moves
- * @property Player[] $players
- * @property PokemonFriendSafari[] $pokemonFriendSafaris
- * @property PokemonTypes[] $pokemonTypes
- * @property Generations $gen0
- * @property MoveDamageClasses $damageClass
+ * @property Pokemon $idPokemon
+ * @property Types $idType
  */
-class Types extends CActiveRecord
+class PokemonFriendSafari extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'types';
+		return 'pokemon_friend_safari';
 	}
 
 	/**
@@ -36,13 +31,11 @@ class Types extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, identifier, gen', 'required'),
-			array('id, gen, damage_class', 'numerical', 'integerOnly'=>true),
-			array('identifier', 'length', 'max'=>12),
-			array('name_es', 'length', 'max'=>20),
+			array('id_pokemon, id_type, slot', 'required'),
+			array('id_pokemon, id_type, slot', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, identifier, name_es, gen, damage_class', 'safe', 'on'=>'search'),
+			array('id, id_pokemon, id_type, slot', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,12 +47,8 @@ class Types extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'moves' => array(self::HAS_MANY, 'Moves', 'type_id'),
-			'players' => array(self::HAS_MANY, 'Player', 'id_safari_type'),
-			'pokemonFriendSafaris' => array(self::HAS_MANY, 'PokemonFriendSafari', 'id_type'),
-			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'type_id'),
-			'gen0' => array(self::BELONGS_TO, 'Generations', 'gen'),
-			'damageClass' => array(self::BELONGS_TO, 'MoveDamageClasses', 'damage_class'),
+			'idPokemon' => array(self::BELONGS_TO, 'Pokemon', 'id_pokemon'),
+			'idType' => array(self::BELONGS_TO, 'Types', 'id_type'),
 		);
 	}
 
@@ -70,10 +59,9 @@ class Types extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'identifier' => 'Identifier',
-			'name_es' => 'Name Es',
-			'gen' => 'Gen',
-			'damage_class' => 'Damage Class',
+			'id_pokemon' => 'Id Pokemon',
+			'id_type' => 'Id Type',
+			'slot' => 'Slot',
 		);
 	}
 
@@ -96,10 +84,9 @@ class Types extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('identifier',$this->identifier,true);
-		$criteria->compare('name_es',$this->name_es,true);
-		$criteria->compare('gen',$this->gen);
-		$criteria->compare('damage_class',$this->damage_class);
+		$criteria->compare('id_pokemon',$this->id_pokemon);
+		$criteria->compare('id_type',$this->id_type);
+		$criteria->compare('slot',$this->slot);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -110,7 +97,7 @@ class Types extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Types the static model class
+	 * @return PokemonFriendSafari the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -118,11 +105,11 @@ class Types extends CActiveRecord
 	}
 
 	/**
-	*	Returns the type name in the format English name ( spanish name) Ex: Fire (fuego)
-	*	@return string the type name in both languages.
+	*	Returns the name of the pokémon, with the correct capitalization and spacing, instead of the id of it. (Example: Gardevoir instead of 282)
+	*	@return string the name of the pokémon.
 	*/
-	public function getTypeName()
+	public function getPokemonName()
 	{
-		return ucfirst($this->identifier) . ' (' . ucfirst($this->name_es) . ') ' ;
+		return beautify($this->idPokemon->identifier);
 	}
 }
