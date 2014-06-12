@@ -1,5 +1,5 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'player-form',
+	'id'=>'player-form', 'htmlOptions' => array('enctype' => 'multipart/form-data'),
 	'enableAjaxValidation'=>true,
 )); ?>
 
@@ -10,6 +10,10 @@
 	<?php echo $form->textFieldRow($model,'nickname',array('class'=>'span5','maxlength'=>30)); ?>
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>80)); ?>
+
+	<p class='note'>Avatar (formatos válidos png, jpg, gif. Máximo 1 megabyte) </p> 
+	<?php echo $form->fileField($model,'avatar'); ?>
+	<?php echo $form->error($model,'avatar'); ?>
 
 	<?php echo $form->textFieldRow($model,'friendcode_1',array('class'=>'span5')); ?>
 

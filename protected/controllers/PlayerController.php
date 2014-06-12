@@ -35,12 +35,16 @@ class PlayerController extends Controller
         $array_tiers        = CHtml::listData(Tiers::model()->findAll($criteria), 'id', 'tierName');
         if (isset($_POST['Player'])) {
             $model->attributes = $_POST['Player'];
+            $guia_subida     = CUploadedFile::getInstance($model, 'avatar');
+            $model->pic = $model->id . '.' . $guia_subida->extensionName;
             echo "";
-            /*if ($model->save())
+            if ($model->save()){
+                $guia_subida->saveAs('./images/foto_jugadores/'. $model->id . $model->pic);
                 $this->redirect(array(
                     'view',
                     'id' => $model->id
-                ));*/
+                ));
+            }
         }
         
         $this->render('create', array(

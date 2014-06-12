@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $nickname
  * @property string $name
+ * @property string $pic
  * @property integer $friendcode_1
  * @property integer $friendcode_2
  * @property integer $friendcode_3
@@ -39,6 +40,7 @@
  */
 class Player extends CActiveRecord
 {
+	public $avatar;
 	const STATUS_PENDING 	= 0;
 	const STATUS_OK			= 1;
 	const STATUS_BANNED 	= 2;
@@ -56,20 +58,17 @@ class Player extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('nickname, friendcode_1, friendcode_2, friendcode_3, mail, public_mail', 'required'),
 			array('friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
 			array('tsv, friendcode_1, friendcode_2, friendcode_3', 'numerical', 'max' => 9999, 'min' => 1),
+			array('avatar', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024, 'tooLarge'=>'El archivo tiene que ser menor a 1MB'), 
 			array('name', 'length', 'max'=>80),
 			array('mail', 'email'),
 			array('mail', 'unique'),
-			array('facebook, mail, others', 'length', 'max'=>100),
+			array('pic, facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
 			array('id, nickname, name, friendcode_1, friendcode_2, friendcode_3, id_safari_type, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, skype, whatsapp, facebook, mail, public_mail, others, comment, auth', 'safe', 'on'=>'search'),
 		);
 	}
@@ -79,8 +78,6 @@ class Player extends CActiveRecord
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'tierRotation' => array(self::BELONGS_TO, 'Tiers', 'tier_rotation'),
 			'idSafariType' => array(self::BELONGS_TO, 'Types', 'id_safari_type'),
@@ -97,30 +94,31 @@ class Player extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'nickname' => 'Nickname (sobrenombre)',
-			'name' => 'Nombre real',
-			'friendcode_1' => 'Código amigo 1',
-			'friendcode_2' => 'Código amigo 2',
-			'friendcode_3' => 'Código amigo 3',
-			'id_safari_type' => 'Tipo de Safari',
-			'tsv' => 'TSV',
-			'duel_single' => 'Duelos single',
-			'tier_single' => 'Tier Single',
-			'duel_doble' => 'Duelos dobles',
-			'tier_doble' => 'Tier Doble',
-			'duel_triple' => 'Duelos triples',
-			'tier_triple' => 'Tier Triple',
+			'id' 			=> 'ID',
+			'nickname' 		=> 'Nickname (sobrenombre)',
+			'name' 			=> 'Nombre real',
+			'pic' 			=> 'Foto',
+			'friendcode_1' 	=> 'Código amigo 1',
+			'friendcode_2' 	=> 'Código amigo 2',
+			'friendcode_3' 	=> 'Código amigo 3',
+			'id_safari_type'=> 'Tipo de Safari',
+			'tsv' 			=> 'TSV',
+			'duel_single' 	=> 'Duelos single',
+			'tier_single' 	=> 'Tier Single',
+			'duel_doble' 	=> 'Duelos dobles',
+			'tier_doble' 	=> 'Tier Doble',
+			'duel_triple' 	=> 'Duelos triples',
+			'tier_triple' 	=> 'Tier Triple',
 			'duel_rotation' => 'Duelos rotación',
 			'tier_rotation' => 'Tier Rotation',
-			'skype' => 'Skype',
-			'whatsapp' => 'Whatsapp',
-			'facebook' => 'Facebook',
-			'mail' => 'Correo electrónico',
-			'public_mail' => '¿Autorizas a se publique tu correo electrónico?',
-			'others' => 'Otros',
-			'comment' => 'Deja algún comentario para los que lean tu perfil...',
-			'auth' => 'Auth',
+			'skype' 		=> 'Skype',
+			'whatsapp' 		=> 'Whatsapp',
+			'facebook' 		=> 'Facebook',
+			'mail' 			=> 'Correo electrónico',
+			'public_mail' 	=> '¿Autorizas a se publique tu correo electrónico?',
+			'others' 		=> 'Otros',
+			'comment' 		=> 'Deja algún comentario para los que lean tu perfil...',
+			'auth' 			=> 'Auth',
 		);
 	}
 
