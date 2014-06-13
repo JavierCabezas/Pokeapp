@@ -18,3 +18,80 @@ h1.captura {
 	width: 800px;
 	height: 70px;
 }
+
+#userdata,
+#dueldata,
+#contactdata {
+	width: 100%;
+	height: auto;
+	-webkit-border-bottom: 2px solid #000;
+	-moz-border-bottom: 2px solid #000;
+	border-bottom: 2px solid #000;
+}
+
+#userdata .bloq,
+#dueldata .bloq,
+#contactdata .bloq {
+	width: 30%;
+	height: 30%;
+	background-color: #FFF;
+	float: left;
+	margin-right: 1%;
+	margin-bottom: 1%;
+	padding: 1%;
+}
+
+#dueldata .bloq,
+#contactdata .bloq {
+	width: 22%;
+}
+
+#userdata .bloq .name {
+	width: 100%;
+	height: 15%;
+	clear: both;
+	background-color: #FFF;
+	float: left;
+	margin-bottom: 1%;
+}
+
+#userdata .bloq .name p {
+	font-weight: bold;
+}
+
+#userdata .bloq:last-child,
+#dueldata .bloq:last-child,
+#contactdata .bloq:last-child {
+	margin-right: 0%;
+}
+
+#userdata .bloq .name input,  #userdata .bloq input, #dueltier .bloq input {
+	width: 93%;
+}
+
+#dueldata .bloq .duel input {
+	width: 4%;
+	float: left;
+}
+
+#dueldata .bloq .duel label {
+	width: 92%;
+	float: right;
+	text-align: left;
+}
+
+#contactdata .bloq input {
+	width: 93%;
+}
+
+#contactdata .message {
+	width: 98%;
+	height: auto;
+	padding: 1%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contactdata .message textarea {
+	width: 98%;
+}
