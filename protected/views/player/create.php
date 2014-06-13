@@ -9,7 +9,7 @@ de acuerdo con que esta sea <b>totalmente pública</b>.
 <p> 
 La razón por la cual el correo electrónico es obligatorio es que, para cambiar o borrar tus datos, tienes que contactarnos con la misma dirección de
 correo a <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/correo.gif', "mail") ?>. Así puedes probar que tu eres realmente quien publicó 
-los datos. Aún así puedes elegir que dejemos tu correo electrónico privado.
+los datos. Aún así puedes elegir que no se muestre tu correo electrónico en el buscador.
 </p>
 
 <p>

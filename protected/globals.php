@@ -31,10 +31,11 @@ function beautify($s){
 /**
  * This function adds up to two zeros to the number (Ex: 1 to 001 and 90 to 090). 
  * @param $i the integer used to add zeros.
+ * @param $n the number of zeros (default its 3)
  * @return string the number with the added zeros.
  */
-function addZeros($i){
-	return sprintf('%03d', $i);
+function addZeros($i, $n = 3){
+	return sprintf('%0'.$n.'d', $i);
 }
 
 /**

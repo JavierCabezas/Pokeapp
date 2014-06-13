@@ -75,13 +75,13 @@
 
 	<?php echo $form->textAreaRow($model,'comment',array('class'=>'span5','maxlength'=>999)); ?>
 
-<div class="form-actions">
-	<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>'Agregar',
-		)); ?>
-</div>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+				'buttonType'=>'submit',
+				'type'=>'primary',
+				'label'=>'Agregar',
+			)); ?>
+	</div>
 
 <?php $this->endWidget(); ?>
 
@@ -105,7 +105,7 @@
 		                slot: 1,
 		            },
 		            'success': function (data) {
-		               $('#safari_1').html(data);
+		               $('#safari_1').html('<p> Pokémon del slot #1 </p>' + data);
 		            }
 		        });
 
@@ -119,7 +119,7 @@
 		                slot: 2,
 		            },
 		            'success': function (data) {
-		               $('#safari_2').html(data);
+		               $('#safari_2').html('<p> Pokémon del slot #2 </p>' + data);
 		            }
 		        });
 
@@ -133,7 +133,7 @@
 		                slot: 3,
 		            },
 		            'success': function (data) {
-		               $('#safari_3').html(data);
+		               $('#safari_3').html('<p> Pokémon del slot #3 </p>' + data);
 		            }
 		        });
 		    }else{ //if type equals ''
@@ -141,7 +141,8 @@
 		    	$('#safari_2').html('');
 		    	$('#safari_3').html('');
 		    }
-	    });
+	    }); //End of ajax calls on safari change.
+
 	//Checkboxes
 	$('#Player_duel_single').change(function() {
 		if($(this).is(":checked")) {

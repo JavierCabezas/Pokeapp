@@ -12,10 +12,11 @@ class PlayerController extends Controller
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id)
+    public function actionView($id, $code)
     {
         $this->render('view', array(
-            'model' => $this->loadModel($id)
+            'model'     => $this->loadModel($id),
+            'code'      => $code,
         ));
     }
     
@@ -36,13 +37,19 @@ class PlayerController extends Controller
         if (isset($_POST['Player'])) {
             $model->attributes = $_POST['Player'];
             $guia_subida     = CUploadedFile::getInstance($model, 'avatar');
-            $model->pic = $model->id . '.' . $guia_subida->extensionName;
-            echo "";
+            $creation_time   = time();
+            $model->created = $creation_time;
+            if(isset($guia_subida)){
+                $model->pic =  $guia_subida->extensionName;
+            }
             if ($model->save()){
-                $guia_subida->saveAs('./images/foto_jugadores/'. $model->id . $model->pic);
+                if(isset($guia_subida)){
+                    $guia_subida->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
+                }
                 $this->redirect(array(
                     'view',
-                    'id' => $model->id
+                    'id'    => $model->id,
+                    'code'  => md5($model->created),
                 ));
             }
         }
@@ -61,30 +68,29 @@ class PlayerController extends Controller
      */
     public function actionIndex()
     {
-        $criteria = new CDbCriteria(array(
+        $this->redirect('buscador');
+    }
+    
+    /**
+     * Manages all models.
+     */
+    public function actionBuscador()
+    {
+
+                $criteria = new CDbCriteria(array(
             'condition' => 'auth !=' . Player::STATUS_BANNED
         ));
         
         $dataProvider = new CActiveDataProvider('Player', array(
             'criteria' => $criteria
         ));
-        
-        $this->render('index', array(
-            'dataProvider' => $dataProvider
-        ));
-    }
-    
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin()
-    {
+
         $model = new Player('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Player']))
             $model->attributes = $_GET['Player'];
         
-        $this->render('admin', array(
+        $this->render('buscador', array(
             'model' => $model
         ));
     }

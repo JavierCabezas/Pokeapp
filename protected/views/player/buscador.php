@@ -13,7 +13,15 @@ return false;
 ");
 ?>
 
-<h1>Buscar jugadores</h1>
+<h1>Buscador de jugadores</h1>
+
+<p> 
+	Puedes buscar jugadores bajo distintos parámetros filtrándolos. Para ello ingresa el filtro que estés buscando en los cuadritos de más abajo y luego presiona la tecla enter. 
+</p>
+
+<p>	
+	Luego, para ver la información de algún jugador que te llame la atención puedes hacer click en el símbolo del ojo y verás más detalles.
+</p>
 
 <?php 
 $this->widget('bootstrap.widgets.TbGridView',array(
@@ -21,8 +29,14 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'nickname',
-		'name',
+		array(
+			'name' 	=> 'search_nickname',
+			'value' => '$data->nickname',
+		),
+		array(
+			'name' 	=> 'search_safari', 
+			'value' => 'isset($data->id_safari_type)?$data->idSafariType->typeName:"No asignado"',
+		),
 		'id_safari_type',
 		'tsv',
 		'duel_single',
