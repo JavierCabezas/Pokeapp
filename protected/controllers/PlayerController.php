@@ -68,7 +68,7 @@ class PlayerController extends Controller
      */
     public function actionIndex()
     {
-        $this->redirect('buscador');
+        $this->redirect(array('buscador'));
     }
     
     /**
@@ -76,15 +76,6 @@ class PlayerController extends Controller
      */
     public function actionBuscador()
     {
-
-                $criteria = new CDbCriteria(array(
-            'condition' => 'auth !=' . Player::STATUS_BANNED
-        ));
-        
-        $dataProvider = new CActiveDataProvider('Player', array(
-            'criteria' => $criteria
-        ));
-
         $model = new Player('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Player']))
@@ -119,4 +110,17 @@ class PlayerController extends Controller
             Yii::app()->end();
         }
     }
+
+    /**
+     * Echoes the information of a certain player.
+     * @param integer id the identifier of the player.
+     */
+    public function actionShowPlayerInfo() {
+        echo "holi";
+
+        echo "chai";
+
+        echo $_POST['id'];
+    }
+
 }

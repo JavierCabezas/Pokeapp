@@ -55,6 +55,12 @@ class Player extends CActiveRecord
 	//Variables for the search functions.
 	public $search_nickname;
 	public $search_safari;
+	public $search_tsv;
+	public $search_duel_single;
+	public $search_duel_doble;
+	public $search_duel_triple;
+	public $search_duel_rotation;
+	
 
 	public $avatar; //To store the avatar when creating the profile.
 		
@@ -84,7 +90,7 @@ class Player extends CActiveRecord
 			array('mail', 'unique'),
 			array('pic, facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
-			array('search_nickname, search_safari', 'safe', 'on'=>'search'),
+			array('search_nickname, search_safari, search_tsv, search_duel_single, search_duel_doble, search_duel_triple, search_duel_rotation', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -143,8 +149,14 @@ class Player extends CActiveRecord
 			'created'		=> 'Fecha de creación',
 			'auth' 			=> 'Auth',
 
-			'search_nickname'	=> 'Nickname',
-			'search_safari'		=> 'Tipo Safari',
+			'search_nickname'		=> 'Nickname',
+			'search_safari'			=> 'Tipo Safari',
+			'search_duel_single'	=> 'Duelos single',
+			'search_duel_doble'		=> 'Duelos doble',
+			'search_duel_triple'	=> 'Duelos triple',
+			'search_duel_rotation'	=> 'Duelos rotation',
+
+
 		);
 	}
 
@@ -163,36 +175,86 @@ class Player extends CActiveRecord
 	 */
 	public function search()
 	{
-		// @todo Please modify the following code to remove attributes that should not be searched.
+		$criteria=new CDbCriteria(array( //Just show aproved players.
+            'condition' => 'auth =' . Player::STATUS_OK
+        ));
 
-		$criteria=new CDbCriteria;
+        $criteria->with = array(
+            'idSafariType',
+        );
 
 		$criteria->compare('nickname',$this->search_nickname,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('friendcode_1',$this->friendcode_1);
-		$criteria->compare('friendcode_2',$this->friendcode_2);
-		$criteria->compare('friendcode_3',$this->friendcode_3);
-		$criteria->compare('id_safari_type',$this->id_safari_type);
-		$criteria->compare('safari_slot_1',$this->safari_slot_1);
-		$criteria->compare('safari_slot_2',$this->safari_slot_2);
-		$criteria->compare('safari_slot_3',$this->safari_slot_3);
-		$criteria->compare('tsv',$this->tsv);
-		$criteria->compare('duel_single',$this->duel_single);
-		$criteria->compare('tier_single',$this->tier_single);
-		$criteria->compare('duel_doble',$this->duel_doble);
-		$criteria->compare('tier_doble',$this->tier_doble);
-		$criteria->compare('duel_triple',$this->duel_triple);
-		$criteria->compare('tier_triple',$this->tier_triple);
-		$criteria->compare('duel_rotation',$this->duel_rotation);
-		$criteria->compare('tier_rotation',$this->tier_rotation);
-		$criteria->compare('skype',$this->skype,true);
-		$criteria->compare('whatsapp',$this->whatsapp,true);
-		$criteria->compare('facebook',$this->facebook,true);
-		$criteria->compare('mail',$this->mail,true);
-		$criteria->compare('public_mail',$this->public_mail);
-		$criteria->compare('others',$this->others,true);
-		$criteria->compare('comment',$this->comment,true);
-		$criteria->compare('auth',$this->auth);
+		$criteria->compare('idSafariType.identifier', $this->search_safari, true);
+		$criteria->compare('idSafariType.name_es', $this->search_safari, true, 'OR');
+		$criteria->compare('tsv',$this->search_tsv);
+		switch (strlen($this->search_duel_single)) {
+			case 0: //Show all results
+				break;
+			case 1: //Compare "n" with "no" and "s" with "si" (yes)
+				if(strcasecmp($this->search_duel_single, 'n')==0){
+					$criteria->compare('duel_single',0); break;}
+				if(strcasecmp($this->search_duel_single, 's')==0){
+					$criteria->compare('duel_single',1); break;}
+			case 2:
+				if(strcasecmp($this->search_duel_single,"no")==0){
+					$criteria->compare('duel_single',0); break;}
+				if(strcasecmp($this->search_duel_single,"si")==0||strcasecmp($this->search_duel_single,"sí")==0||strcasecmp($this->search_duel_single,"sÍ")==0){
+					$criteria->compare('duel_single',1, '>'); break;}
+			default: //Don't show anything.
+				$criteria->compare('duel_single',2); break;
+		}
+		
+		switch (strlen($this->search_duel_doble)) {
+			case 0: 
+				break;
+			case 1:
+				if(strcasecmp($this->search_duel_doble, 'n')==0){
+					$criteria->compare('duel_doble',0); break;}
+				if(strcasecmp($this->search_duel_doble, 's')==0){
+					$criteria->compare('duel_doble',1); break;}
+			case 2:
+				if(strcasecmp($this->search_duel_doble,"no")==0){
+					$criteria->compare('duel_doble',0); break;}
+				if(strcasecmp($this->search_duel_doble,"si")==0||strcasecmp($this->search_duel_doble,"sí")==0||strcasecmp($this->search_duel_doble,"sÍ")==0){
+					$criteria->compare('duel_doble',1, '>'); break;}
+			default:
+				$criteria->compare('duel_doble',2); break;
+		}
+
+		switch (strlen($this->search_duel_triple)) {
+			case 0: 
+				break;
+			case 1:
+				if(strcasecmp($this->search_duel_triple, 'n')==0){
+					$criteria->compare('duel_triple',0); break;}
+				if(strcasecmp($this->search_duel_triple, 's')==0){
+					$criteria->compare('duel_triple',1); break;}
+			case 2:
+				if(strcasecmp($this->search_duel_triple,"no")==0){
+					$criteria->compare('duel_triple',0); break;}
+				if(strcasecmp($this->search_duel_triple,"si")==0||strcasecmp($this->search_duel_triple,"sí")==0||strcasecmp($this->search_duel_triple,"sÍ")==0){
+					$criteria->compare('duel_triple',1, '>'); break;}
+			default:
+				$criteria->compare('duel_triple',2); break;
+		}
+
+		switch (strlen($this->search_duel_rotation)) {
+			case 0: 
+				break;
+			case 1:
+				if(strcasecmp($this->search_duel_rotation, 'n')==0){
+					$criteria->compare('duel_rotation',0); break;}
+				if(strcasecmp($this->search_duel_rotation, 's')==0){
+					$criteria->compare('duel_rotation',1); break;}
+			case 2:
+				if(strcasecmp($this->search_duel_rotation,"no")==0){
+					$criteria->compare('duel_rotation',0); break;}
+				if(strcasecmp($this->search_duel_rotation,"si")==0||strcasecmp($this->search_duel_rotation,"sí")==0||strcasecmp($this->search_duel_rotation,"sÍ")==0){
+					$criteria->compare('duel_rotation',1, '>'); break;}
+			default:
+				$criteria->compare('duel_rotation',2); break;
+		}
+
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
