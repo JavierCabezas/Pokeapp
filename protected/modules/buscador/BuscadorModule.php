@@ -1,6 +1,6 @@
 <?php
 
-class SearchModule extends CWebModule
+class BuscadorModule extends CWebModule
 {
 	public function init()
 	{
@@ -9,8 +9,8 @@ class SearchModule extends CWebModule
 
 		// import the module-level models and components
 		$this->setImport(array(
-			'search.models.*',
-			'search.components.*',
+			'buscador.models.*',
+			'buscador.components.*',
 		));
 	}
 
