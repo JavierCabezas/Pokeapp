@@ -27,7 +27,6 @@ class PlayerController extends Controller
     public function actionCreate()
     {
         $model = new Player;
-        $this->performAjaxValidation($model);
         $criteria=new CDbCriteria;
         $criteria->addCondition("id != 10001"); //Exclude unkown type
         $criteria->addCondition("id != 10002"); //Exlude shadow type
@@ -116,11 +115,41 @@ class PlayerController extends Controller
      * @param integer id the identifier of the player.
      */
     public function actionShowPlayerInfo() {
-        echo "holi";
+        if(isset($_POST['id'])){
+            $id = (int) $_POST['id'];
+            $player = $this->loadModel($id);
+            if($player->auth != Player::STATUS_OK)
+                return;
+            $safari = is_null($player->id_safari_type);
 
-        echo "chai";
-
-        echo $_POST['id'];
+            echo $this->renderPartial('_view', array(
+                    'player_nickname'       => $player->nickname,
+                    'safari_type'           => ($safari)?'(No ingresado)':$player->idSafariType->typeName,
+                    'player_pic'            => is_null($player->pic)?"<img src='/pokeapp/images/sprites/0.png'>":"<img src='/pokeapp/images/foto_jugadores/". $player->id .".". $player->pic ."'>",
+                    'pokemon_safari_1'      => ($safari)?'':$player->safariSlot1->pokemonName,
+                    'pic_pokemon_1'         => ($safari)?'':"<img src='/pokeapp/images/sugimori/104px-Sugimori_".addZeros($player->safariSlot1->id).".png'>",
+                    'pokemon_safari_2'      => ($safari)?'':$player->safariSlot2->pokemonName,
+                    'pic_pokemon_2'         => ($safari)?'':"<img src='/pokeapp/images/sugimori/104px-Sugimori_".addZeros($player->safariSlot2->id).".png'>",
+                    'pokemon_safari_3'      => ($safari)?'':$player->safariSlot3->pokemonName,
+                    'pic_pokemon_3'         => ($safari)?'':"<img src='/pokeapp/images/sugimori/104px-Sugimori_".addZeros($player->safariSlot3->id).".png'>",
+                    'friend_code'           => $player->friendcode_1.' - '.$player->friendcode_2.' - '.$player->friendcode_3,
+                    'tsv'                   => is_null($player->tsv)?"No ingresado":$player->tsv,
+                    'duel_single'           => $player->duel_single,
+                    'tier_single'           => is_null($player->tier_single)?null:beautify($player->tierSingle->identifier),
+                    'duel_doble'            => $player->duel_doble,
+                    'tier_doble'            => is_null($player->tier_doble)?null:beautify($player->tierDoble->identifier),
+                    'duel_triple'           => $player->duel_triple,
+                    'tier_triple'           => is_null($player->tier_triple)?null:beautify($player->tierTriple->identifier),
+                    'duel_rotation'         => $player->duel_rotation,
+                    'tier_rotation'         => is_null($player->tier_rotation)?null:beautify($player->tierRotation->identifier),
+                    'skype'                 => ($player->skype == '')?'No ingresado':$player->skype,
+                    'whatsapp'              => ($player->whatsapp == '')?'No ingresado':$player->whatsapp,
+                    'facebook'              => ($player->facebook == '')?'No ingresado':$player->facebook,
+                    'mail'                  => ($player->public_mail == 0)?'Privado':$player->mail,
+                    'others'                => ($player->others == '')?'No ingresado':$player->others,
+                    'comment'               => ($player->comment == '')?'No ingresado':$player->comment,
+                )
+            );
+        }   
     }
-
 }

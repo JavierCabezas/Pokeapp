@@ -62,9 +62,9 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 			'class'=>'zii.widgets.grid.ButtonColumn',
 			'template'=>'{view}',
 			'evaluateID'=>true,
-			'viewButtonUrl'=>null,
 			'buttons' => array(
 				'view' => array(
+					'url' => null,
                 	'options'=>array(
                 		'id'	=> '$data->id',
                 		'class' => 'view_button',
@@ -83,6 +83,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 
 <script type='text/javascript'>
 	jQuery('.view_button').live('click',function(event) {
+		event.preventDefault();
 		id = event.currentTarget.id;
 		$.ajax({
                'type':'POST', 
@@ -93,5 +94,9 @@ $this->widget('bootstrap.widgets.TbGridView',array(
                     $('#result').html(data);
                 }
         });
+		$( "#result" ).scroll();
 	});
+
+
+
 </script>

@@ -1,102 +1,94 @@
 <div class="view">
 
-		<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
-	<br />
+	<div class='basic_info'>
+		<div class='nickname'>
+			Nickname: <?php echo $player_nickname ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('nickname')); ?>:</b>
-	<?php echo CHtml::encode($data->nickname); ?>
-	<br />
+		<div class ='avatar'>
+			<?php echo $player_pic ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
-	<?php echo CHtml::encode($data->name); ?>
-	<br />
+		<div class='friend_code'>
+			Código amigo: <b> <?php echo $friend_code ?> </b>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('friendcode_1')); ?>:</b>
-	<?php echo CHtml::encode($data->friendcode_1); ?>
-	<br />
+		<div class='tsv'>
+			TSV: <?php echo $tsv ?>
+		</div>
+	</div> <!-- end of basic info -->
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('friendcode_2')); ?>:</b>
-	<?php echo CHtml::encode($data->friendcode_2); ?>
-	<br />
+	<div class='safari'>
+		<div class='type'>
+			Safari: <?php echo $safari_type ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('friendcode_3')); ?>:</b>
-	<?php echo CHtml::encode($data->friendcode_3); ?>
-	<br />
+		<?php if($safari_type != '(No asignado)'): //Just show the safari pokémon if the safari is defined ?>
+			<div class='safari_pokemon' id='1'>
+				<?php echo $pokemon_safari_1 ?>
+				<?php echo $pic_pokemon_1 ?>
+			</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_safari_type')); ?>:</b>
-	<?php echo CHtml::encode($data->id_safari_type); ?>
-	<br />
+			<div class='safari_pokemon' id='2'>
+				<?php echo $pokemon_safari_2 ?>
+				<?php echo $pic_pokemon_2 ?>
+			</div>
+			
+			<div class='safari_pokemon' id='3'>
+				<?php echo $pokemon_safari_3 ?>
+				<?php echo $pic_pokemon_3 ?>
+			</div>
+			
+		<?php endif; ?>
+	</div> <!-- end of safari -->
 
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tsv')); ?>:</b>
-	<?php echo CHtml::encode($data->tsv); ?>
-	<br />
+	<div class='duel'>
+		<div class='single_<?php echo $duel_single?>'>
+			<?php if(!is_null($tier_single)): ?>
+				<?php echo $tier_single ?>
+			<?php endif; ?>
+		</div>
+		<div class='doble_<?php echo $duel_doble?>'>
+			<?php if(!is_null($tier_doble)): ?>
+				<?php echo $tier_doble ?>
+			<?php endif; ?>
+		</div>
+		<div class='triple_<?php echo $duel_triple?>'>
+			<?php if(!is_null($tier_triple)): ?>
+				<?php echo $tier_triple ?>
+			<?php endif; ?>
+		</div>
+		<div class='rotation_<?php echo $duel_triple?>'>
+			<?php if(!is_null($tier_rotation)): ?>
+				<?php echo $tier_rotation ?>
+			<?php endif; ?>
+		</div>
+	</div> <!-- end of duels  -->
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_single')); ?>:</b>
-	<?php echo CHtml::encode($data->duel_single); ?>
-	<br />
+	<div class='contact'>
+		<div class='skype'>
+			<?php echo $skype ?>
+		</div>
+	
+		<div class='whatsapp'>
+			<?php echo $whatsapp ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_single')); ?>:</b>
-	<?php echo CHtml::encode($data->tier_single); ?>
-	<br />
+		<div class='facebook'>
+			<?php echo $facebook ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_doble')); ?>:</b>
-	<?php echo CHtml::encode($data->duel_doble); ?>
-	<br />
+		<div class='mail'>
+			<?php echo $mail ?>
+		</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_doble')); ?>:</b>
-	<?php echo CHtml::encode($data->tier_doble); ?>
-	<br />
+		<div class='others'>
+			<?php echo $others ?>
+		</div> <!-- end of contact info -->
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_triple')); ?>:</b>
-	<?php echo CHtml::encode($data->duel_triple); ?>
-	<br />
+	</div>
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_triple')); ?>:</b>
-	<?php echo CHtml::encode($data->tier_triple); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('duel_rotation')); ?>:</b>
-	<?php echo CHtml::encode($data->duel_rotation); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('tier_rotation')); ?>:</b>
-	<?php echo CHtml::encode($data->tier_rotation); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('skype')); ?>:</b>
-	<?php echo CHtml::encode($data->skype); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('whatsapp')); ?>:</b>
-	<?php echo CHtml::encode($data->whatsapp); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('facebook')); ?>:</b>
-	<?php echo CHtml::encode($data->facebook); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('mail')); ?>:</b>
-	<?php echo CHtml::encode($data->mail); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('public_mail')); ?>:</b>
-	<?php echo CHtml::encode($data->public_mail); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('others')); ?>:</b>
-	<?php echo CHtml::encode($data->others); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('comment')); ?>:</b>
-	<?php echo CHtml::encode($data->comment); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('auth')); ?>:</b>
-	<?php echo CHtml::encode($data->auth); ?>
-	<br />
-
-	*/ ?>
-
+	<div class='comments'>
+		<?php echo $comment ?>
+	</div>
 </div>

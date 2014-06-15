@@ -1,6 +1,6 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'player-form', 'htmlOptions' => array('enctype' => 'multipart/form-data'),
-	'enableAjaxValidation'=>true,
+	'enableAjaxValidation'=>false,
 )); ?>
 
 <p class="help-block">Campos con <span class="required">*</span> son obligatorios.</p>
@@ -112,15 +112,6 @@
 			<?php echo $form->textAreaRow($model,'comment',array('class'=>'span5','maxlength'=>999)); ?>
 		</div>
 	</div>
-
-   
-
-
-
-
-
-
-
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
