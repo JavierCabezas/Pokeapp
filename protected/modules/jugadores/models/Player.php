@@ -94,6 +94,8 @@ class Player extends CActiveRecord
 		);
 	}
 
+
+
 	/**
 	 * @return array relational rules.
 	 */
@@ -151,6 +153,7 @@ class Player extends CActiveRecord
 
 			'search_nickname'		=> 'Nickname',
 			'search_safari'			=> 'Tipo Safari',
+			'search_tsv'			=> 'TSV',
 			'search_duel_single'	=> 'Duelos single',
 			'search_duel_doble'		=> 'Duelos doble',
 			'search_duel_triple'	=> 'Duelos triple',

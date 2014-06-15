@@ -11,6 +11,7 @@ class JugadoresModule extends CWebModule
 		$this->setImport(array(
 			'jugadores.models.*',
 			'jugadores.components.*',
+			'jugadores.controllers.*',
 		));
 	}
 

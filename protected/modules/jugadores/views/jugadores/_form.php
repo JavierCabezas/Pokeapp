@@ -136,7 +136,7 @@
 	    	//Ajax call to get the first pokémon slot.
 		    	$.ajax({
 		            'type': 'POST',
-		            'url': "<?php echo Yii::app()->createUrl('pokemonFriendSafari/getPokemon') ?>",
+		            'url': "<?php echo Yii::app()->createUrl('jugadores/pokemonFriendSafari/getPokemon') ?>",
 		            'dataType': 'html',
 		            data: {
 		                id_type: type,
@@ -150,7 +150,7 @@
 		    	//Second pokémon slot ...
 		    	$.ajax({
 		            'type': 'POST',
-		            'url': "<?php echo Yii::app()->createUrl('pokemonFriendSafari/getPokemon') ?>",
+		            'url': "<?php echo Yii::app()->createUrl('jugadores/pokemonFriendSafari/getPokemon') ?>",
 		            'dataType': 'html',
 		            data: {
 		                id_type: type,
@@ -164,7 +164,7 @@
 		    	//Third pokémon slot ...
 		    	$.ajax({
 		            'type': 'POST',
-		            'url': "<?php echo Yii::app()->createUrl('pokemonFriendSafari/getPokemon') ?>",
+		            'url': "<?php echo Yii::app()->createUrl('jugadores/pokemonFriendSafari/getPokemon') ?>",
 		            'dataType': 'html',
 		            data: {
 		                id_type: type,

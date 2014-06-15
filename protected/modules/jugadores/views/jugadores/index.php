@@ -17,8 +17,7 @@
 <p>
 	Para usar la aplicación pueden:
 	<ul>
-		<!-- TODO: Fix these links!! -->
-		<li> Crear su perfil en <?php echo CHtml::link('la sección de creación de perfil', array('player/create')) ?> </li>
-		<li> Buscar a otros jugadores en <?php echo CHtml::link('la sección de búsqueda', array('player/buscador')) ?> </li>
+		<li> Crear su perfil en <?php echo CHtml::link('la sección de creación de perfil', array('jugadores/create')) ?> </li>
+		<li> Buscar a otros jugadores en <?php echo CHtml::link('la sección de búsqueda', array('jugadores/buscador')) ?> </li>
 	</ul>
 </p>

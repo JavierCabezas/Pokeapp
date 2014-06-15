@@ -87,7 +87,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 		id = event.currentTarget.id;
 		$.ajax({
                'type':'POST', 
-               'url' : "<?php echo Yii::app()->createUrl('Player/showPlayerInfo') ?>",
+               'url' : "<?php echo Yii::app()->createUrl('jugadores/jugadores/showPlayerInfo') ?>",
                        'dataType': 'html',
                         data:  {id: id },
                 'success': function(data){
