@@ -132,7 +132,7 @@ class PlayerController extends Controller
                     'pic_pokemon_2'         => ($safari)?'':"<img src='/pokeapp/images/sugimori/104px-Sugimori_".addZeros($player->safariSlot2->id).".png'>",
                     'pokemon_safari_3'      => ($safari)?'':$player->safariSlot3->pokemonName,
                     'pic_pokemon_3'         => ($safari)?'':"<img src='/pokeapp/images/sugimori/104px-Sugimori_".addZeros($player->safariSlot3->id).".png'>",
-                    'friend_code'           => $player->friendcode_1.' - '.$player->friendcode_2.' - '.$player->friendcode_3,
+                    'friend_code'           => addZeros($player->friendcode_1, 4).' - '.addZeros($player->friendcode_2, 4).' - '.addZeros($player->friendcode_3, 4),
                     'tsv'                   => is_null($player->tsv)?"No ingresado":$player->tsv,
                     'duel_single'           => $player->duel_single,
                     'tier_single'           => is_null($player->tier_single)?null:beautify($player->tierSingle->identifier),
