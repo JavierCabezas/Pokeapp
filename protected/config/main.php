@@ -17,9 +17,10 @@ return array(
     ),
     
     'modules' => array(
-        'pokeball', //Catch rate calculator.
-        'stats',    //Stats calculator.
-        'buscador',   //Pokémon search tool.
+        'pokeball',     //Catch rate calculator.
+        'stats',        //Stats calculator.
+        'buscador',     //Pokémon search tool.
+        'jugadores',    //Player search tool.
 
         'gii' => array(
             'class' => 'system.gii.GiiModule',
