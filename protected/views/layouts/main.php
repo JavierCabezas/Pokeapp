@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/stats.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/profile.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -26,15 +27,16 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo"><a href="#"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
 		<nav>
 			<ul>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/captura.png" width="300" height="100" />',  Yii::app()->createurl('pokeball/pokeball/index')) //Module/controller/view ?> </li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/stats.png" width="300" height="100" />',  Yii::app()->createurl('stats/stats/index'))?> </li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/about.png" width="300" height="100" />', array('/site/about')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokecalc.png" width="220" height="100" />',  Yii::app()->createurl('pokeball/pokeball/index')) //Module/controller/view ?> </li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/stats.png" width="220" height="100" />',  Yii::app()->createurl('stats/stats/index'))?> </li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/jugadores.png" width="220" height="100" />', array('/site/about')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/autor.png" width="220" height="100" />', array('/site/about')) ?></li>
 			</ul>
 		</nav>
 	</div><!-- mainmenu -->

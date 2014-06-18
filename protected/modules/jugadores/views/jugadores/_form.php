@@ -41,9 +41,11 @@
 		<div class="bloq">
 			<?php echo $form->textFieldRow($model,'friendcode_3',array('class'=>'span5')); ?>
 		</div>
-		<div class="bloq">
-			<?php echo $form->labelEx($model,'id_safari_type'); ?> 
-    		<?php echo CHtml::dropDownList('Player[id_safari_type]', $model->id_safari_type, $array_types, array('empty' => 'Ingresar tipo de safari'));  ?>
+		<div class="safari">
+			<div class="bloq">
+				<?php echo $form->labelEx($model,'id_safari_type'); ?> 
+    			<?php echo CHtml::dropDownList('Player[id_safari_type]', $model->id_safari_type, $array_types, array('empty' => 'Ingresar tipo de safari'));  ?>
+    		</div>
     		<div class='safari' id='safari_1'>
     		</div>
 

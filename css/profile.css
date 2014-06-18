@@ -1,0 +1,91 @@
+#content .detail-view th {
+    background-color: #7C7C7C;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+    color: #FFF;
+    font-size: 14px;
+}
+
+#content .detail-view td {
+	padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 60%;
+}
+
+
+#content #yw0 {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.even, .odd {
+	padding: 5px;
+	background-color: #E3E3E3;
+}
+
+#content .table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th {
+	background-color: #E3E3E3;
+}
+
+#player-grid {
+	width: 80%;
+	background-color: #C82135;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#player-grid table {
+	background-color: #C82135;
+}
+
+#player-grid #player-grid_c0, #player-grid #player-grid_c1, #player-grid #player-grid_c2,
+#player-grid #player-grid_c3, #player-grid #player-grid_c4, #player-grid #player-grid_c5,
+#player-grid #player-grid_c6, #player-grid #player-grid_c7 {
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFF;
+	background-color: #C82135;
+}
+
+#player-grid td.empty {
+	background-color: #C82135;
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	color: #FFF;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	padding-top: 0%;
+	padding-bottom: 0%;
+}
+
+#player-grid .summary {
+    background-color: #28AAFD;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-border: #FFF solid 4px;
+    -moz-border: #FFF solid 4px;
+    border: #FFF solid 4px;
+    -webkit-box-shadow: -0.4em -0.2em 1.1em #196A9E inset;
+    -moz-box-shadow: -0.4em -0.2em 1.1em #196A9E inset;
+    box-shadow: -0.4em -0.2em 1.1em #196A9E inset;
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 2%;
+    padding: 5px;
+    text-align: center;
+    width: 25%;
+    font-weight: bold;
+    color: #FFF;
+}
