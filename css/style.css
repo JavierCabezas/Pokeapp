@@ -19,6 +19,20 @@ h1.captura {
 	height: 70px;
 }
 
+h1.pokeapp {
+	background-image: url(../images/titles/pokeapp_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.art_daisuki {
+	background-image: url(../images/titles/articulos_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
 #userdata,
 #dueldata,
 #contactdata {
@@ -125,53 +139,45 @@ h1.captura {
 	margin-top: -5px;
 }
 
-#dex {
-	background-color: #C82135;
-	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	padding: 10px;
-}
-
-#dex img.yo {
+img.yo {
 	float: left;
-	height: 20%;
-	width: 20%;
+	height: 30%;
+	width: 30%;
     -webkit-border-radius: 10px 0 0 10px;
     -moz-border-radius: 10px 0 0 10px;
     border-radius: 10px 0 0 10px;
 }
 
-#dex .autorinfo {
-	background-color: #A5E2F4;
+#autorinfo {
+	background-color: #F4F081;
 	-webkit-border-radius: 0 10px 10px 0;
 	-moz-border-radius: 0 10px 10px 0;
 	border-radius: 0 10px 10px 0;
-	padding: 10px;
-	width: 78%;
+	padding: 15px;
+	width: 67%;
 	height: auto;
 	float: right;
 	text-align: justify;
-	font-size: 13px;
-    line-height: 107%;
+	font-size: 15px;
+    line-height: 115%;
 }
 
-#dex .autorinfo a {
+#autorinfo a {
 	text-decoration: none;
 	color: #16548E;
 }
 
-#dex .autorinfo a:hover {
+#autorinfo a:hover {
 	text-decoration: none;
 	color: #02182D;
 }
 
-.appinfo {
+#appinfo {
 	width: 98%;
 	padding: 10px;
 }
 
-.appinfo .bloq {
+#appinfo .bloq {
 	width: 29%;
 	font-size: 14px;
 	line-height: 110%;
@@ -183,27 +189,61 @@ h1.captura {
 	float: left;
 }
 
-.appinfo .bloq:last-child {
+#appinfo .bloq:last-child {
 	-webkit-border-right: none;
 	-moz-border-right: none;
 	border-right: none;
 }
 
+#appinfo .bloq img {
+	margin-left: 15%;
+}
+
 #articulos {
-	width: 80%;
 	margin-top: 1%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#articulos h2 {
-	padding-right: 2%;
+#articulos .art {
+	width: 15%;
+	margin-left: 1%;
+	margin-bottom: 1%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #B51015;
 	float: left;
-	width: 25%;	
-	height: 165px;
+	padding: 10px;
+	-webkit-box-shadow: -0.5em -0.5em 3em #63080A inset;
+	-moz-box-shadow: -0.5em -0.5em 3em #63080A inset;
+	box-shadow: -0.5em -0.5em 3em #63080A inset;
 }
 
-#articulos ul {
-	width: 67%;
-	float: right;
+#articulos .art img {
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	padding-bottom: 10px;
 }
+
+#articulos .art .name {
+	height: 30px;
+	text-align: center;
+}
+
+#articulos .art .name a {
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 5px;
+	color: #FFF;
+	clear: both;
+	line-height: 100%;
+}
+
+#articulos .art .name a:hover {
+	color: #B5B5B5;
+	font-weight: bold;
+	font-style: italic;
