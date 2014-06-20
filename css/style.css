@@ -33,6 +33,13 @@ h1.art_daisuki {
 	height: 70px;
 }
 
+h1.jugadores {
+	background-image: url(../images/titles/jugadores_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
 #userdata,
 #dueldata,
 #contactdata {
