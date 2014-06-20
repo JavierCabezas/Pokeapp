@@ -35,7 +35,7 @@
 			<ul>
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokecalc.png" width="220" height="100" />',  Yii::app()->createurl('pokeball/pokeball/index')) //Module/controller/view ?> </li>
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/stats.png" width="220" height="100" />',  Yii::app()->createurl('stats/stats/index'))?> </li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/jugadores.png" width="220" height="100" />', array('/site/about')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/jugadores.png" width="220" height="100" />', array('/jugadores/jugadores/index')) ?></li>
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/autor.png" width="220" height="100" />', array('/site/about')) ?></li>
 			</ul>
 		</nav>

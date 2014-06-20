@@ -119,7 +119,7 @@
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 				'buttonType'=>'submit',
 				'type'=>'primary',
-				'label'=>'Agregar',
+				'label'=> $model->isNewRecord ? 'Agregar' : 'Modificar',
 			)); ?>
 	</div>
 

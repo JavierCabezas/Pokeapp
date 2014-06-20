@@ -15,9 +15,11 @@
 </p>
 
 <p>
-	Para usar la aplicación pueden:
+	Para usar la aplicación puedes:
 	<ul>
-		<li> Crear su perfil en <?php echo CHtml::link('la sección de creación de perfil', array('jugadores/create')) ?> </li>
-		<li> Buscar a otros jugadores en <?php echo CHtml::link('la sección de búsqueda', array('jugadores/buscador')) ?> </li>
+		<li> Creación de perfil: <?php echo CHtml::link('Crear nuevo', array('jugadores/create')) ?> </li>
+		<li> Búsqueda de jugadores: en <?php echo CHtml::link('Buscar jugadores', array('jugadores/buscador')) ?> </li>
+		<li> Obtención de código de modificación de perfil: <?php echo CHtml::link('Obtener nuevo código', array('jugadores/nuevoCodigo')) ?> </li> 
+		<li> Modificar mi perfil: <?php echo CHtml::link('Modificar', array('jugadores/updateForm')) ?> </li>
 	</ul>
 </p>

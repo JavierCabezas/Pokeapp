@@ -17,6 +17,7 @@ return false;
 
 <p> 
 	Puedes buscar jugadores bajo distintos parámetros filtrándolos. Para ello ingresa el filtro que estés buscando en los cuadritos de más abajo y luego presiona la tecla enter. 
+	Por ejemplo, si estás buscando a alguien que <b>quiera duelos single escribe "Si" en la casilla</b> y luego apretas enter.
 </p>
 
 <p>	
@@ -80,7 +81,6 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 	
 </div>
 
-
 <script type='text/javascript'>
 	jQuery('.view_button').live('click',function(event) {
 		event.preventDefault();
@@ -96,7 +96,6 @@ $this->widget('bootstrap.widgets.TbGridView',array(
         });
 		$( "#result" ).scroll();
 	});
-
 
 
 </script>

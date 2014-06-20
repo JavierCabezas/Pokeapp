@@ -1,7 +1,8 @@
-<?php if($code == md5($model->created)): //Since we are showing public info just a very basic verification, its not my intention to make it hacker-proof ?>
+<?php if($code == $model->code): //Since we are showing public info just a very basic verification, its not my intention to make it hacker-proof ?>
 
-	<h1>Se creó el perfil #<?php echo $model->id; ?> con éxito</h1>
+	<h1>Guardado del perfil #<?php echo $model->id; ?> exitoso </h1>
 
+	<p> Puedes modificar esta información con el código que se envió a tu correo (<?php echo $model->mail?>). </p> 
 	<p> Se mostrará en el buscador una vez que este sea autorizado. Los datos que se guardaron son: </p>
 
 		<?php $this->widget('bootstrap.widgets.TbDetailView',array(
@@ -74,10 +75,6 @@
 		); 
 	?>
 
-	<p> 
-		Recuerda que podemos cambiar tus datos en cualquier momento si nos escribes a <?php echo CHtml::image(Yii::app()->request->baseUrl . '/images/correo.gif', "mail") ?>
-		con la dirección de correo que tienes registrada. 
-	</p>
 <?php else: ?>
 
 	<?php $this->redirect('index'); ?>

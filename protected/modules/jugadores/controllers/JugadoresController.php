@@ -41,19 +41,21 @@ class JugadoresController extends Controller
         if (isset($_POST['Player'])) {
             $model->attributes = $_POST['Player'];
             $avatar         = CUploadedFile::getInstance($model, 'avatar');
-            $creation_time  = time();
-            $model->created = $creation_time;
+            $model->created = time();
+            $model->code = md5(rand(0,100000).time());
             if(isset($avatar)){
                 $model->pic =  $avatar->extensionName;
             }
             if ($model->save()){
+                //@todo: SEND MAIL HERE.
+
                 if(isset($avatar)){
                     $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
                 }
                 $this->redirect(array(
                     'view',
                     'id'    => $model->id,
-                    'code'  => md5($model->created),
+                    'code'  => $model->code,
                 ));
             }
         }
@@ -65,7 +67,107 @@ class JugadoresController extends Controller
             'array_tiers'       => $array_tiers,
         ));
     }
-        
+     
+    /**
+     *  Loads the form that calls the update method.
+     */
+    public function actionUpdateForm(){
+        $model = new Player;
+        $this->render('updateForm', array(
+            'model' => $model
+        ));
+    }
+
+    /**
+    * Updates a particular model.
+    * If update is successful, the browser will be redirected to the 'view' page.
+    * @param integer $mail the email the model to be updated
+    * @param integer $code, the "password" to edit a profile.
+    */
+    public function actionUpdate($mail, $code)
+    {
+        //Hacer una pausa de como 2 segundos acá...
+        $model = Player::model()->findByAttributes(array('mail' => (string) $mail)); //@todo: MYSQL injection.
+        if($model->code != $code){
+            $error_text = '<p>El código ingresado no corresponde al correo. Puedes intentarlo nuevamente haciendo click en ';
+            $error_text = $error_text .  CHtml::link('el siguiente link', array('jugadores/updateForm')).'.</p>';
+            $error_text = $error_text . '<p>Los datos que ingresaste fueron:'; 
+            $error_text = $error_text . '<ul><li>Mail: ' . $mail . '</li><li> Código: ' . $code . '</li> </ul>'; 
+            throw new CHttpException(403, $error_text);
+        }
+        $criteria=new CDbCriteria;
+        $criteria->addCondition("id != 10001"); //Exclude unkown type
+        $criteria->addCondition("id != 10002"); //Exlude shadow type
+        $array_types        = CHtml::listData(Types::model()->findAll($criteria), 'id', 'typeName');
+        $array_auth_mail    = array('0' => 'No', '1' => 'Sí');
+        $array_tiers        = CHtml::listData(Tiers::model()->findAll($criteria), 'id', 'tierName');
+            
+
+        if(isset($_POST['Player'])){
+            $model->attributes  = $_POST['Player'];
+            $model->modified    = time();
+            $model->auth        = Player::STATUS_PENDING;
+            $avatar             = CUploadedFile::getInstance($model, 'avatar');
+            $model->code        = md5(rand(0,100000).time());
+            if(isset($avatar)){
+                $model->pic =  $avatar->extensionName;
+            }
+            if ($model->save()){
+                //@todo: SEND MAIL WITH NEW CODE HERE.
+
+                if(isset($avatar)){
+                    $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
+                }
+                $this->redirect(array(
+                    'view',
+                    'id'    => $model->id,
+                    'code'  => $model->code,
+                ));
+            }
+        }
+
+        $this->render('update',array(
+            'model'             => $model,
+            'array_types'       => $array_types,
+            'array_auth_mail'   => $array_auth_mail,
+            'array_tiers'       => $array_tiers,
+        ));
+    }
+
+
+    /**
+    * Deletes a particular model.
+    * If deletion is successful, the browser will be redirected to the 'admin' page.
+    * @param integer $id the ID of the model to be deleted
+    */
+    public function actionDelete($id)
+    {/*
+        if(Yii::app()->request->isPostRequest){
+            // we only allow deletion via POST request
+            $this->loadModel($id)->delete();
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    */
+    }
+
+    /**
+     *  Loads the form to send a new code to the player.
+     *  
+     */
+    public function actionNuevoCodigo()
+    {
+        if(isset($_POST[''])){
+
+        }else{ //We don't have a POST: show the form 
+            $this->render('nuevoCodigo');
+        }
+    }
+
     /**
      * Manages all models.
      */
