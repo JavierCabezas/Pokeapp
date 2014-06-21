@@ -24,9 +24,6 @@
 		</div>
 		<div class="bloq">
 			<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
-
-    		<?php echo $form->labelEx($model,'public_mail'); ?> 
-   			<?php echo CHtml::dropDownList('Player[public_mail]', $model->public_mail, $array_auth_mail);   ?>
 		</div>
 	</div>
 

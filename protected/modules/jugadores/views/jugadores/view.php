@@ -55,7 +55,7 @@
 			        ),
 					array(
 						'name' 	=> 'mail',
-						'value' => $model->mail . ($model->public_mail == 1)? $model->mail . " (Público)":"(Privado, no se mostrará)",
+						'value' => $model->mail . "(Privado, no se mostrará)",
 					),
 				    array(
 			        	'name' 	=> 'others',

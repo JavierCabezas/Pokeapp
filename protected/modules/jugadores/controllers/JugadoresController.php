@@ -87,7 +87,8 @@ class JugadoresController extends Controller
     public function actionUpdate($mail, $code)
     {
         //Hacer una pausa de como 2 segundos acá...
-        $model = Player::model()->findByAttributes(array('mail' => (string) $mail)); //@todo: MYSQL injection.
+        $model = Player::model()->findByAttributes(array('mail' => mysql_real_escape_string($mail)));
+        $code = str_replace(' ', '', $code); //Remove the spaces from the code
         if($model->code != $code){
             $error_text = '<p>El código ingresado no corresponde al correo. Puedes intentarlo nuevamente haciendo click en ';
             $error_text = $error_text .  CHtml::link('el siguiente link', array('jugadores/updateForm')).'.</p>';
@@ -161,11 +162,34 @@ class JugadoresController extends Controller
      */
     public function actionNuevoCodigo()
     {
-        if(isset($_POST[''])){
-
-        }else{ //We don't have a POST: show the form 
-            $this->render('nuevoCodigo');
-        }
+		if(isset($_POST['mail'])){
+			$mail = mysql_real_escape_string($_POST['mail']);
+			$model = Player::model()->findByAttributes(array('mail' => $mail));
+			if(isset($model)){
+				$model->code        = md5(rand(0,100000).time());
+				if($model->save()){
+					$link_form = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
+					$body = '<p> Se acaba de pedir un reseteo del código del buscador de jugadores de la Pokéapp a este correo. </p>';
+					$body = $body . ' <p> El nuevo código es <b>'.$model->code.'</b>';
+					$body = $body . ' Para editar tu perfil debes de ingresar tu correo y el código en nuestro '.$link_form.' </p>';
+					$body = $body . ' <p> Si tu no hiciste esta petición puedes ignorar este correo. </p>';
+					$body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
+					Mail::sendMail( 
+						Yii::app()->params['adminEmail'], //from 
+						$model->mail, //to
+						'Nuevo código para edición de perfil', //subject
+						'Reseteo código Pokéapp', //mail_title
+						$body//mail body
+					);
+					Yii::app()->user->setFlash('success', "Se envió el correo a ".$model->mail." con éxito");
+				}else{
+					Yii::app()->user->setFlash('error', "Ocurrió un error inesperado, por favor inténtalo nuevamente");
+				}
+			}else{
+				Yii::app()->user->setFlash('error', "El correo ".$mail." no está registrado en nuestra base de datos ... ");
+			}
+		}
+		$this->render('nuevoCodigo');
     }
 
     /**
@@ -243,7 +267,6 @@ class JugadoresController extends Controller
                     'skype'                 => ($player->skype == '')?'No ingresado':$player->skype,
                     'whatsapp'              => ($player->whatsapp == '')?'No ingresado':$player->whatsapp,
                     'facebook'              => ($player->facebook == '')?'No ingresado':$player->facebook,
-                    'mail'                  => ($player->public_mail == 0)?'Privado':$player->mail,
                     'others'                => ($player->others == '')?'No ingresado':$player->others,
                     'comment'               => ($player->comment == '')?'No ingresado':$player->comment,
                 )

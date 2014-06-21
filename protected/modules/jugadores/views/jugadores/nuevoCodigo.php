@@ -1,36 +1,54 @@
 <?php
 	$this->pageTitle=Yii::app()->name . ' - Obtención de nuevo código';
 	$this->breadcrumbs=array(
-		'Jugadores' => array('jugadores'),
+		'Jugadores'=>array('jugadores/index'),
 		'Obtención de nuevo código',
 	);
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'player-form', 'action' => 'update', 'method' => 'GET',
+	'id'=>'player-form', 'action' => 'nuevoCodigo',
 	'enableAjaxValidation'=>false,
 )); ?>
 
+	<?php
+	    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+	        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+	    }
+	?>
 
-<h2> Modificación de perfil </h2>
+	<h2> Modificación de perfil </h2>
 
-<p> 
-Para modificar tu perfil primero debes de llenar este formulario con tu correo electrónico y tu código. El código fue enviado a tu dirección de correo electrónico cuando creaste tu perfil. En caso de que requieras uno nuevo puedes hacerlo en el
-<?php echo CHtml::link('siguiente link', array('jugadores/nuevoCodigo')) ?>.
-</p>
+	<p> 
+		Si no tienes el código que te enviamos para modificar tu perfil puedes generar uno nuevo ingresando tu dirección de correo electrónico aquí.
+	</p>
 
-<label class="required" for="mail"> Correo electrónico <span class="required">*</span> </label>
-<input id="mail" class="span5" type="text" name="mail" placeholder="Correo electrónico" maxlength="100">
-
-<label class="required" for="code"> Código <span class="required">*</span> </label>
-<input id="code" class="span5" type="text" name="code" placeholder="Tu código..." maxlength="32">
+	<label class="required" for="mail"> Correo electrónico <span class="required">*</span> </label>
+	<input id="mail" class="span5" type="text" name="mail" placeholder="Ingresa tu correo electrónico..." maxlength="100">
+	<div class="help-block error"> </div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 				'buttonType'=>'submit',
 				'type'=>'primary',
-				'label'=>'Ir a modificación de perfil',
+				'label'=>'Enviar código al correo',
 			)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<script type = 'text/javascript'>
+	/*$(document).ready(function () {	
+		$.ajax({
+		    'type': 'POST',
+		    'url': "<?php echo Yii::app()->createUrl(' ') ?>",
+		    'dataType': 'html',
+		    'data:' {
+		        mail: $('#Player_id_safari_type').val();
+		    },
+		    'success': function (data) {
+		       $('#safari_1').html('<p> Pokémon del slot #1 </p>' + data);
+		    }
+		});	
+	});*/
+</script>

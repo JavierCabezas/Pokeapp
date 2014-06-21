@@ -78,14 +78,9 @@
 			<?php echo $facebook ?>
 		</div>
 
-		<div class='mail'>
-			<?php echo $mail ?>
-		</div>
-
 		<div class='others'>
 			<?php echo $others ?>
 		</div> <!-- end of contact info -->
-
 	</div>
 
 	<div class='comments'>
