@@ -216,7 +216,7 @@ img.yo {
     width: 90%;
 }
 
-#articulos .art, #secciones .param {
+#articulos .art, .param {
 	width: 15%;
 	margin-left: 1%;
 	margin-bottom: 1%;
@@ -231,15 +231,15 @@ img.yo {
 	box-shadow: -0.5em -0.5em 3em #63080A inset;
 }
 
-#secciones .param {
+.param {
 	background-color: #9260EA;
-	width: 29%;
+	width: 18%;
 	-webkit-box-shadow: -0.5em -0.5em 3em #34156B inset;
 	-moz-box-shadow: -0.5em -0.5em 3em #34156B inset;
 	box-shadow: -0.5em -0.5em 3em #34156B inset;
 }
 
-#articulos .art img, #secciones .param img {
+#articulos .art img, .param img {
 	clear: both;
 	margin-left: auto;
 	margin-right: auto;
@@ -247,21 +247,21 @@ img.yo {
 	padding-bottom: 10px;
 }
 
-#articulos .art .name, #secciones .param h4 {
+#articulos .art .name, .param h4 {
 	height: 30px;
 	text-align: center;
 	margin: 0px;
 	margin-bottom: 1%;
 }
 
-#secciones .param h4 {
+.param h4 {
 	color: #FFF;
 	padding-top: 0;
 	height: auto;
     line-height: 100%;
 }
 
-#secciones .param p {
+.param p {
 	clear: both;
 	text-align: justify;
 	font-size: 12px;
