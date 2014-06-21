@@ -21,7 +21,11 @@ return false;
 </p>
 
 <p>	
-	Luego, para ver la información de algún jugador que te llame la atención puedes hacer click en el símbolo del ojo y verás más detalles.
+	Luego, para ver la información de algún jugador que te llame la atención puedes hacer click en el símbolo de la lupa y verás más detalles.
+</p>
+
+<p>
+	Si estás buscando un pokémon de safari en específico puedes ver a <a href='http://www.serebii.net/xy/friendsafari.shtml'>serebii</a> para ver en que slot se guarda cada uno de ellos.
 </p>
 
 <?php 
