@@ -96,7 +96,7 @@ class Player extends CActiveRecord
 			array('safari_slot_3','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
 			array('pic, facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
-			array('search_nickname, search_safari, search_tsv, search_duel_single, search_duel_doble, search_duel_triple, search_duel_rotation', 'safe', 'on'=>'search'),
+			array('search_nickname, search_safari, search_poke_1, search_poke_2, search_poke_3, search_tsv, search_duel_single, search_duel_doble, search_duel_triple, search_duel_rotation', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -175,8 +175,9 @@ class Player extends CActiveRecord
 			'search_duel_doble'		=> 'Duelos doble',
 			'search_duel_triple'	=> 'Duelos triple',
 			'search_duel_rotation'	=> 'Duelos rotation',
-
-
+			'search_poke_1'			=> 'Pókemon 1',
+			'search_poke_2'			=> 'Pókemon 2',
+			'search_poke_3'			=> 'Pókemon 3',
 		);
 	}
 
@@ -201,11 +202,17 @@ class Player extends CActiveRecord
 
         $criteria->with = array(
             'idSafariType',
+        	'safariSlot1',
+    		'safariSlot2',
+			'safariSlot3',
         );
 
 		$criteria->compare('nickname',$this->search_nickname,true);
 		$criteria->compare('idSafariType.identifier', $this->search_safari, true);
 		$criteria->compare('idSafariType.name_es', $this->search_safari, true, 'OR');
+		$criteria->compare('safariSlot1.identifier',$this->search_poke_1,true);
+		$criteria->compare('safariSlot2.identifier',$this->search_poke_2,true);
+		$criteria->compare('safariSlot3.identifier',$this->search_poke_3,true);
 		$criteria->compare('tsv',$this->search_tsv);
 		switch (strlen($this->search_duel_single)) {
 			case 0: //Show all results

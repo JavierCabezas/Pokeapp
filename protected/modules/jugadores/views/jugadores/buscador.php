@@ -41,7 +41,19 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 		),
 		array(
 			'name' 	=> 'search_safari', 
-			'value' => 'isset($data->id_safari_type)?$data->idSafariType->typeName:"No asignado"',
+			'value' => 'isset($data->id_safari_type)?$data->idSafariType->typeName:"-"',
+		),
+		array(
+			'name' 	=> 'search_poke_1', 
+			'value' => 'isset($data->id_safari_type)?$data->safariSlot1->pokemonName:"-"',
+		),
+		array(
+			'name' 	=> 'search_poke_2', 
+			'value' => 'isset($data->id_safari_type)?$data->safariSlot2->pokemonName:"-"',
+		),
+		array(
+			'name' 	=> 'search_poke_3', 
+			'value' => 'isset($data->id_safari_type)?$data->safariSlot3->pokemonName:"-"',
 		),
 		array(
 			'name' => 'search_tsv',
