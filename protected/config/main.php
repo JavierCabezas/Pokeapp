@@ -1,5 +1,6 @@
 <?php
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+Yii::setPathOfAlias('yii-mail', dirname(__FILE__) . '/../extensions/yii-mail/YiiMailMessage.php');
 
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -8,6 +9,7 @@ return array(
     'preload' => array(
         'log',
         'bootstrap',
+        'yii-mail',
     ),
     
     // autoloading model and component classes
@@ -59,6 +61,20 @@ return array(
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8'
+        ),
+        'mail' => array(
+            'class' => 'ext.yii-mail.YiiMail',
+            'transportType' => 'smtp',
+            'transportOptions' => array(
+                'host'=>'smtp.gmail.com',
+                'username'=>'YYYYY',
+                'password'=>'ZZZZZ',
+                'port'=>'465',
+                'encryption' => 'ssl'
+            ),
+            'viewPath' => 'application.views.mail',
+            'logging' => true,
+            'dryRun' => false
         ),
         'errorHandler' => array(
             'errorAction' => 'site/error'
