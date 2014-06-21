@@ -47,6 +47,27 @@ h1.crearpj {
 	height: 70px;
 }
 
+h1.buscarpj {
+	background-image: url(../images/titles/buscarpj_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.codmod {
+	background-image: url(../images/titles/codmod_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.modpj {
+	background-image: url(../images/titles/modpj_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
 #userdata,
 #dueldata,
 #contactdata {

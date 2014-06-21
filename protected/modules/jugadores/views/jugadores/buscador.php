@@ -13,20 +13,14 @@ return false;
 ");
 ?>
 
-<h1>Buscador de jugadores</h1>
+<h1 class="buscarpj">Buscar jugadores</h1>
 
-<p> 
-	Puedes buscar jugadores bajo distintos parámetros filtrándolos. Para ello ingresa el filtro que estés buscando en los cuadritos de más abajo y luego presiona la tecla enter. 
-	Por ejemplo, si estás buscando a alguien que <b>quiera duelos single escribe "Si" en la casilla</b> y luego apretas enter.
-</p>
-
-<p>	
-	Luego, para ver la información de algún jugador que te llame la atención puedes hacer click en el símbolo de la lupa y verás más detalles.
-</p>
-
-<p>
-	Si estás buscando un pokémon de safari en específico puedes ver a <a href='http://www.serebii.net/xy/friendsafari.shtml'>serebii</a> para ver en que slot se guarda cada uno de ellos.
-</p>
+<div class="infosec">
+	<p>Puedes buscar jugadores bajo distintos parámetros filtrándolos. Para ello ingresa el filtro que estés buscando en los cuadritos de más abajo y luego presiona la tecla enter. 
+	Por ejemplo, si estás buscando a alguien que <b>quiera duelos single escribe "Si" en la casilla</b> y luego apretas enter.</p>
+	<p>Luego, para ver la información de algún jugador que te llame la atención puedes hacer click en el símbolo de la lupa y verás más detalles.</p>
+	<p>Si estás buscando un pokémon de safari en específico puedes ver a <a href='http://www.serebii.net/xy/friendsafari.shtml'>serebii</a> para ver en que slot se guarda cada uno de ellos.</p>
+</div>
 
 <?php 
 $this->widget('bootstrap.widgets.TbGridView',array(

@@ -11,12 +11,12 @@
 )); ?>
 
 
-<h2> Modificación de perfil </h2>
+<h1 class="modpj">Modificar perfil</h1>
 
-<p> 
-Para modificar tu perfil primero debes de llenar este formulario con tu correo electrónico y tu código. El código fue enviado a tu dirección de correo electrónico cuando creaste tu perfil. En caso de que requieras uno nuevo puedes hacerlo en el
-<?php echo CHtml::link('siguiente link', array('jugadores/nuevoCodigo')) ?>.
-</p>
+<div class="infosec">
+	<p>Para modificar tu perfil primero debes llenar este formulario con tu correo electrónico y tu código. El código fue enviado a tu dirección de correo electrónico cuando creaste tu perfil.
+	En caso de que requieras uno nuevo puedes hacerlo en el <?php echo CHtml::link('siguiente link', array('jugadores/nuevoCodigo')) ?>.</p>
+</div>
 
 <label class="required" for="mail"> Correo electrónico <span class="required">*</span> </label>
 <input id="mail" class="span5" type="text" name="mail" placeholder="Correo electrónico" maxlength="100">

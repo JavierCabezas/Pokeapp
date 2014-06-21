@@ -17,12 +17,11 @@
 	    }
 	?>
 
-	<h2> Modificación de perfil </h2>
+	<h1 class="codmod">Código para modificar perfil</h1>
 
-	<p> 
-		Si no tienes el código que te enviamos para modificar tu perfil puedes generar uno nuevo ingresando tu dirección de correo electrónico aquí.
-	</p>
-
+	<div class="infosec">
+		<p>Si no tienes el código que te enviamos para modificar tu perfil puedes generar uno nuevo ingresando tu dirección de correo electrónico aquí.</p>
+	</div>
 	<label class="required" for="mail"> Correo electrónico <span class="required">*</span> </label>
 	<input id="mail" class="span5" type="text" name="mail" placeholder="Ingresa tu correo electrónico..." maxlength="100">
 	<div class="help-block error"> </div>
