@@ -60,6 +60,9 @@ class Player extends CActiveRecord
 	public $search_duel_doble;
 	public $search_duel_triple;
 	public $search_duel_rotation;
+	public $search_poke_1;
+	public $search_poke_2;
+	public $search_poke_3;
 	
 
 	public $avatar; //To store the avatar when creating the profile.
@@ -79,7 +82,7 @@ class Player extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('nickname, friendcode_1, friendcode_2, friendcode_3, mail, public_mail', 'required'),
+			array('nickname, friendcode_1, friendcode_2, friendcode_3, mail', 'required'),
 			array('friendcode_1, friendcode_2, friendcode_3, id_safari_type, safari_slot_1, safari_slot_2, safari_slot_3, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
 			array('created, code', 'length', 'max'=>32),
@@ -88,13 +91,26 @@ class Player extends CActiveRecord
 			array('name', 'length', 'max'=>80),
 			array('mail', 'email'),
 			array('mail', 'unique'),
+			array('safari_slot_1','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
+			array('safari_slot_2','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
+			array('safari_slot_3','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
 			array('pic, facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
 			array('search_nickname, search_safari, search_tsv, search_duel_single, search_duel_doble, search_duel_triple, search_duel_rotation', 'safe', 'on'=>'search'),
 		);
 	}
 
-
+	/*
+	 * Does the conditional validation for the safari pokémon (if the player has chosen a safari it must pick the pokémon on them)
+	 */
+	public function safariValidation($attribute_name, $params)
+	{
+	    if (empty($this->$attribute_name) && !empty($this->$params['safari'])) {
+	        $this->addError($attribute_name, Yii::t('user', "Si se elige un tipo de safari se tienen que elegir los pokémon de este"));
+	        return false;
+	    }
+	    return true;
+	}
 
 	/**
 	 * @return array relational rules.

@@ -43,11 +43,34 @@ class JugadoresController extends Controller
             $avatar         = CUploadedFile::getInstance($model, 'avatar');
             $model->created = time();
             $model->code = md5(rand(0,100000).time());
+            $model->public_mail = 0;
             if(isset($avatar)){
                 $model->pic =  $avatar->extensionName;
             }
             if ($model->save()){
-                //@todo: SEND MAIL HERE.
+                    $link_form      = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
+                    $link_search    = CHtml::link('el buscador de jugadores', $this->createAbsoluteUrl('jugadores/buscador'));
+                    $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que este no estará inmediatamente disponible en la aplicación sino que se pondrá luego de que sea aceptado por alguno de nuestros administradores. </p>';
+                    $body = $body . '<p> Además, tu código secreto es <b>'.$model->code.'</b>. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
+                    $body = $body . '<p> Ahora te invitamos a buscar a otros jugadores en '.$link_search.' </p>';
+                    $body = $body . '<p> ¡Muchas gracias por usar nuestra aplicación! </p>';
+                    //Send the email to the player
+                    Mail::sendMail( 
+                        Yii::app()->params['adminEmail'], //from 
+                        $model->mail, //to
+                        'Confirmación de creación de nuevo jugador en la pokéapp', //subject
+                        'Bievenido al buscador!', //mail_title
+                        $body//mail body
+                    );
+
+                    //Send the email to me <3
+                    Mail::sendMail( 
+                        Yii::app()->params['adminEmail'], //from 
+                        Yii::app()->params['adminEmail'], //to
+                        'Se agregó un jugador en la pokéapp', //subject
+                        'Se registro un nuevo jugador', //mail_title
+                        '<p>Apúrate y acéptalo. Su mail es '.$model->mail.'</p>'//mail body
+                    );
 
                 if(isset($avatar)){
                     $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
@@ -109,13 +132,10 @@ class JugadoresController extends Controller
             $model->modified    = time();
             $model->auth        = Player::STATUS_PENDING;
             $avatar             = CUploadedFile::getInstance($model, 'avatar');
-            $model->code        = md5(rand(0,100000).time());
             if(isset($avatar)){
                 $model->pic =  $avatar->extensionName;
             }
             if ($model->save()){
-                //@todo: SEND MAIL WITH NEW CODE HERE.
-
                 if(isset($avatar)){
                     $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
                 }
