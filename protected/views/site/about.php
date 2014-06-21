@@ -16,7 +16,7 @@
 	<div class="bloq">
 		<img src='<?php echo imageDir()?>/about/about_01.png' alt='PokeApp' />
 		<p>Dado, que además de Pokémon, me gusta harto el asunto de programar decidí de usar mis conocimientos para hacer la cúspide de lo ñoño: Una aplicación de Pokémon. Es por esto que me propuse a hacer distintas calculadoras con el fin de facilitarles un poco la vida a los jugadores del 
-		mismo. Las hice pensando en que me fuesen útiles a mí como jugador del juego así que espero que lo sean también para ustedes!.</p>
+		mismo. Las hice pensando en que me fuesen útiles a mí como jugador del juego así que espero que lo sean también para ustedes!</p>
 	</div>
 	<div class="bloq">
 		<img src='<?php echo imageDir()?>/about/about_02.png' alt='GitHub' />
