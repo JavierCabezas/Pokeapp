@@ -29,14 +29,17 @@
 
 	<div id="userdata">
 		<h3>Friend Safari</h3>
-		<div class="bloq">
+		<div class="fc">
 			<?php echo $form->textFieldRow($model,'friendcode_1',array('class'=>'span5')); ?>
 		</div>
-		<div class="bloq">
+		<div class="fc">
 			<?php echo $form->textFieldRow($model,'friendcode_2',array('class'=>'span5')); ?>
 		</div>
-		<div class="bloq">
+		<div class="fc">
 			<?php echo $form->textFieldRow($model,'friendcode_3',array('class'=>'span5')); ?>
+		</div>
+		<div class="bloq">
+			<?php echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
 		</div>
 		<div class="safari">
 			<div class="bloq">
@@ -51,9 +54,6 @@
 
     		<div class='safari' id='safari_3'>
     		</div>		
-		</div>
-		<div class="bloq">
-			<?php echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
 		</div>
 	</div>
 
