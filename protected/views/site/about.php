@@ -20,14 +20,14 @@
 	</div>
 	<div class="bloq">
 		<img src='<?php echo imageDir()?>/about/about_02.png' alt='GitHub' />
-		<p> Además, para los que estén interesados en programación: Decidí lanzar el código fuente de la misma aplicación en un <?php echo CHtml::link('repositorio en GitHub', 'https://github.com/JavierCabezas/Pokeapp') ?> 
-		que está libre para cualquiera que lo quiera descargar, ver o editar. La aplicación está hecha con lenguaje de programación php, trabaja con una base de datos MySQL y 
-		usa el <u class ="dotted"><span title="Que es un framework MCV fabuloso, lo recomiendo totalmente.">framework Yii</span></u>. Además acá pueden ir viendo las actualizaciones que les vaya heciendo a la aplicación.</p>
+		<p>Para los que estén interesados en programación, decidí lanzar el código fuente de esta aplicación en un <?php echo CHtml::link('repositorio en GitHub', 'https://github.com/JavierCabezas/Pokeapp') ?> que está libre para cualquiera que lo quiera descargar, ver o editar.
+		La aplicación está hecha con lenguaje de programación PHP, trabaja con una base de datos MySQL y usa el <u class ="dotted"><span title="Que es un framework MCV fabuloso, lo recomiendo totalmente.">Framework Yii</span></u>.
+		También pueden ver las actualizaciones que se le vayan haciendo a la aplicación.</p>
 	</div>
 	<div class="bloq">
 		<img src='<?php echo imageDir()?>/about/about_03.png' alt='Agradecimientos' />
-		<p> Doy infinitas gracias a los chicos de <?php echo CHtml::link('veekun', 'http://www.veekun.com') ?> que, además de tener un pokédex completísimo, tienen 
-		la base de datos que yo usé para este proyecto. Ellos también usan un repositorio en GitHub que pueden ubicar <?php echo CHtml::link('el siguiente link', 'https://github.com/veekun/pokedex') ?>.</p>
+		<p>Doy infinitas gracias a los chicos de <?php echo CHtml::link('veekun', 'http://www.veekun.com') ?> que, además de tener un pokédex completísimo, tienen la base de datos que yo usé para este proyecto.
+		Ellos también usan un repositorio en GitHub que pueden ubicar <?php echo CHtml::link('el siguiente link', 'https://github.com/veekun/pokedex') ?>.</p>
 	</div>
 </div>
 

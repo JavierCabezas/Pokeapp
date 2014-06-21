@@ -206,13 +206,17 @@ img.yo {
 	margin-left: 15%;
 }
 
-#articulos {
+#articulos, #secciones {
 	margin-top: 1%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#articulos .art {
+#secciones {
+    width: 90%;
+}
+
+#articulos .art, #secciones .param {
 	width: 15%;
 	margin-left: 1%;
 	margin-bottom: 1%;
@@ -227,7 +231,15 @@ img.yo {
 	box-shadow: -0.5em -0.5em 3em #63080A inset;
 }
 
-#articulos .art img {
+#secciones .param {
+	background-color: #9260EA;
+	width: 29%;
+	-webkit-box-shadow: -0.5em -0.5em 3em #34156B inset;
+	-moz-box-shadow: -0.5em -0.5em 3em #34156B inset;
+	box-shadow: -0.5em -0.5em 3em #34156B inset;
+}
+
+#articulos .art img, #secciones .param img {
 	clear: both;
 	margin-left: auto;
 	margin-right: auto;
@@ -235,9 +247,25 @@ img.yo {
 	padding-bottom: 10px;
 }
 
-#articulos .art .name {
+#articulos .art .name, #secciones .param h4 {
 	height: 30px;
 	text-align: center;
+	margin: 0px;
+	margin-bottom: 1%;
+}
+
+#secciones .param h4 {
+	color: #FFF;
+	padding-top: 0;
+	height: auto;
+    line-height: 100%;
+}
+
+#secciones .param p {
+	clear: both;
+	text-align: justify;
+	font-size: 12px;
+	color: #FFF;
 }
 
 #articulos .art .name a {
@@ -254,3 +282,19 @@ img.yo {
 	color: #B5B5B5;
 	font-weight: bold;
 	font-style: italic;
+}
+
+.infosec {
+	width: 90%;
+	height: auto;
+	font-size: 14px;
+	color: #000;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #FFF;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1%;
+}
