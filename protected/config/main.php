@@ -5,7 +5,8 @@ Yii::setPathOfAlias('yii-mail', dirname(__FILE__) . '/../extensions/yii-mail/Yii
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'Daisuki Pokéapp',
-    
+    'language' => 'es',
+
     'preload' => array(
         'log',
         'bootstrap',
@@ -36,7 +37,7 @@ return array(
         	),
         ),
     ),
-    
+
     // application components
     'components' => array(
         'user' => array(
@@ -67,9 +68,9 @@ return array(
             'transportType' => 'smtp',
             'transportOptions' => array(
                 'host'=>'smtp.gmail.com',
-                'username'=>'YYYYY',
-                'password'=>'ZZZZZ',
-                'port'=>'465',
+                'username'=>'XXXX',
+                'password'=>'YYYY',
+                'port'=>'ZZZZ',
                 'encryption' => 'ssl'
             ),
             'viewPath' => 'application.views.mail',
