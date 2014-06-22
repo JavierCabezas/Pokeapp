@@ -59,7 +59,7 @@ class JugadoresController extends Controller
                         Yii::app()->params['adminEmail'], //from 
                         $model->mail, //to
                         'Confirmación de creación de nuevo jugador en la pokéapp', //subject
-                        'Bievenido al buscador!', //mail_title
+                        'Bievenido!', //mail_title
                         $body//mail body
                     );
 

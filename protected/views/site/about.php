@@ -35,55 +35,55 @@
 <div id="articulos">
 	<h1 class="art_daisuki">Mis artículos en PokeDaisuki</h1>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/001.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n1-introduccion-a-hexadecimal-y-binario/"> <img src='<?php echo imageDir()?>/articulos/001.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n1-introduccion-a-hexadecimal-y-binario/">Introducción a hexadecimal y binario.</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/002.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n2-por-que-missingno-clona-el-sexto-item/"> <img src='<?php echo imageDir()?>/articulos/002.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n2-por-que-missingno-clona-el-sexto-item/">¿Por qué MissingNo clona el sexto ítem?</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/003.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n3-por-que-nos-encontramos-con-missingno/"> <img src='<?php echo imageDir()?>/articulos/003.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n3-por-que-nos-encontramos-con-missingno/">¿Por qué nos encontramos con MissingNo?</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/004.png' />		
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n4-items-de-las-versiones-beta-de-pokemon/"> <img src='<?php echo imageDir()?>/articulos/004.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n4-items-de-las-versiones-beta-de-pokemon/">Items de las versiones beta de pokémon RB.</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/005.png' />
+		<a href="http://www.pokedaisuki.cl/?p=1898">  <img src='<?php echo imageDir()?>/articulos/005.png' /> </a> 
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/?p=1898"> Fórmulas de captura: Parte 1.</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/005.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-2/">  <img src='<?php echo imageDir()?>/articulos/005.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-2/"> Fórmulas de captura: Parte 2. </a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/006.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n6-intercambio-de-missingnos-a-segunda-generacion/"> <img src='<?php echo imageDir()?>/articulos/006.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n6-intercambio-de-missingnos-a-segunda-generacion/">Intercambio de MissingNo a segunda generación.</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/007.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n7-curiosidades-varias/"> <img src='<?php echo imageDir()?>/articulos/007.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n7-curiosidades-varias/">Curiosidades varias</a>
 		</div>
 	</div>
 	<div class="art">
-		<img src='<?php echo imageDir()?>/articulos/008.png' />
+		<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n8-bugs-de-primera-generacion-parte-1/"> <img src='<?php echo imageDir()?>/articulos/008.png' /> </a>
 		<div class="name">
 			<a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n8-bugs-de-primera-generacion-parte-1/">Bugs de primera generación: Parte 1.</a>
 		</div>
