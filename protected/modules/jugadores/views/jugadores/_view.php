@@ -22,6 +22,28 @@
 				<?php echo $comment ?>
 			</div>
 		</div>
+
+		<div class="contact">
+			<div class="skype">
+				Skype:
+				<?php echo $skype ?>
+			</div>
+	
+			<div class="whatsapp">
+				WhatsApp:
+				<?php echo $whatsapp ?>
+			</div>
+
+			<div class="facebook">
+				Facebook:
+				<?php echo $facebook ?>
+			</div>
+
+			<div class="others">
+				Otros:
+				<?php echo $others ?>
+			</div> <!-- end of contact info -->
+		</div>
 	</div> <!-- end of basic info -->
 
 	<div class="safari">
@@ -73,22 +95,6 @@
 		</div>
 	</div> <!-- end of duels  -->
 
-	<div class="contact">
-		<div class="skype">
-			<?php echo $skype ?>
-		</div>
-	
-		<div class="whatsapp">
-			<?php echo $whatsapp ?>
-		</div>
 
-		<div class="facebook">
-			<?php echo $facebook ?>
-		</div>
-
-		<div class="others">
-			<?php echo $others ?>
-		</div> <!-- end of contact info -->
-	</div>
 	
 </div>

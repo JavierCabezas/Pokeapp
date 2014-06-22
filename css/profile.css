@@ -111,12 +111,12 @@
 #result .view .duel {
     clear: none;
     float: left;
-    width: 49%;
+    width: 45%;
 }
 
 #result .view .basic_info .avatar {
     float: left;
-    width: 25%;
+    width: 20%;
     height: auto;
 }
 
@@ -138,6 +138,8 @@
     box-shadow: -0.4em -0.2em 1.1em #7F1019 inset;
     background-color: #C91221;
     color: #FFF;
+    padding: 5px;
+    text-align: center;
 }
 
 #result .view .basic_info .data .friend_code,
@@ -152,47 +154,77 @@
     -webkit-border-bottom: 0px;
     -moz-border-bottom: 0px;
     border-bottom: 0px;
+    font-size: 14px;
     font-style: italic;
-    font-size: 16px;
+    text-align: justify;
+    line-height: 120%;
 }
 
+#result .view .basic_info .data .contact {
+    width: 98%;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result .view .basic_info  .contact .skype, #result .view .basic_info .contact .whatsapp,
+#result .view .basic_info  .contact .facebook, #result .view .basic_info .contact .others {
+    width: 21%;
+    margin-right: 2%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #7f1019;
+    color: #FFF;
+    float: left;
+    padding: 5px;
+    text-align: center;
+}
+
+ #result .view .basic_info .contact .others {
+    margin-right: 0;
+ }
+
 #result .view .safari .type {
-    width: 20%;
+    width: 100%;
     float: left;
     font-size: 18px;
+    clear: both;
+    margin-bottom: 3%;
 }
 
 #result .view .safari .pokes {
-    width: 27%;
+    width: 100%;
+    height: 160px;
     float: right;
 }
 
 #result .view .safari .pokes .safari_pokemon {
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 28%;
+    height: 90%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    color: #FFF;
-    margin-bottom: 1%;
+    background-color: #FFF;
     padding: 5px;
+    float: left;
+    margin-right: 2%;
+    text-align: center;
+    width: 28%;
+    color: #000;
+    font-weight: bold;
+    -webkit-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+    -moz-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+    box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
 }
 
 #result .view .safari .pokes .safari_pokemon:last-child {
     margin-bottom: 0;
 }
 
-#result .view .safari .pokes .safari_pokemon p {
-    padding: 5px;
-    font-size: 18px;
-    clear: both;
-    text-align: center;
-}
-
 #result .view .safari .pokes .safari_pokemon img {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 5%;
+    margin-top: 3%;
     width: 90%;
 }
 
