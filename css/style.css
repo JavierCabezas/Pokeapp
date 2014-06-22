@@ -68,6 +68,13 @@ h1.modpj {
 	height: 70px;
 }
 
+h1.re_pokecalc {
+	background-image: url(../images/titles/re_pokecalc_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
 #userdata,
 #dueldata,
 #contactdata {

@@ -1,9 +1,10 @@
-<h1 class="captura">Calculadora de probabilidad de captura </h1>
+<h1 class="captura">Calculadora de captura </h1>
 
-<p>Este módulo calcula la probabilidad de capturar un pokémon bajo distintos parámetros.
-En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en pokémon red) se realiza cálculo teórico, como si la captura fuese posible. </p>
-<p>Si te interesa conocer a fondo el algoritmo detrás de la calculadora te invito a leer <a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-1/">mi artículo al respecto</a>.</p>
-
+<div class="infosec">
+	<p>Este módulo calcula la probabilidad de capturar un pokémon bajo distintos parámetros.
+	En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en pokémon red) se realiza cálculo teórico, como si la captura fuese posible.</p>
+	<p>Si te interesa conocer a fondo el algoritmo detrás de la calculadora te invito a leer <a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-1/">mi artículo al respecto</a>.</p>
+</div>
 
 <div class="form">
 	<?php echo CHtml::beginForm(array('calculateProbability')); ?>
@@ -299,10 +300,12 @@ En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captu
 	</table>
 	<!-- Fin Quinta generación -->
 
-	 <?php echo CHtml::ajaxButton("Realizar cálculo",
-		CController::createUrl('calculateProbability'),
-		array('update' => '#result', 'type' => "POST" )); ?>
-	<?php echo CHtml::endForm(); ?>
+	<div style="width:40%; margin-right:auto; margin-left:auto">
+	 	<?php echo CHtml::ajaxButton("Realizar cálculo",
+			CController::createUrl('calculateProbability'),
+			array('update' => '#result', 'type' => "POST" )); ?>
+		<?php echo CHtml::endForm(); ?>
+	</div>
 </div><!--- form -->
 
 <div id="result"><!-- Entrega de resultados -->

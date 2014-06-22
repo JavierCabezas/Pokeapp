@@ -1,23 +1,29 @@
 <?php  if(!is_null($pokemon_to_catch)): ?>
 
 
-<h3> Calculando la probabilidad de... </h3>
-<ul>
-	<li> Atrapar a <b><?php echo $pokemon_to_catch; ?></b>. </li>
-	<li> <?php echo $status_text ?>. </li>
-	<li> Con <b><?php echo $hp_percentage?>%</b> de vida. </li>
-	<li> <b><?php echo $pokeball_en ?></b> (<?php echo $pokeball_es?>). </li> 
-	<li> En <?php echo $gen ?> generación.</li>
-</ul>
+<h1 class="re_pokecalc">Resultados</h1>
 
-	<h3> Análisis de éxito de captura</h3>
-   	<div id="pie_chart_div_simple"></div>
+<div id="item">
+	<h3>Parámetros</h3>
+	<ul>
+		<li> Pokémon a atrapar: <b><?php echo $pokemon_to_catch; ?></b>. </li>
+		<li> <?php echo $status_text ?>. </li>
+		<li> Con <b><?php echo $hp_percentage?>%</b> de vida. </li>
+		<li> <b><?php echo $pokeball_en ?></b> (<?php echo $pokeball_es?>). </li> 
+		<li> En <?php echo $gen ?> generación.</li>
+	</ul>
+</div>
+
+<div id="item">
+	<h3>Análisis de éxito de captura</h3>
+	<div id="pie_chart_div_simple"></div>
 
    	<!-- Expected value -->
    	<p> Con <?php echo $out['prob_win'].'%' ?> de probabilidad de éxito necesitas, en promedio, unas <b> <?php echo $expected_value . " " . $pokeball_en ?></b> para capturar a <?php echo $pokemon_to_catch ?>. </p>
-   	<p> &nbsp; </p>
+</div>
 
-   	<h3> Veces que se agita la pokéball. </h3>
+<div id="item">
+	<h3> Veces que se agita la pokéball. </h3>
 
    	<?php if($gen = 'segunda'): //For second generation the wobble mechanics are different than in the other gens ?>
    		<p> Esta información se calcula, en segunda generación, <b> en caso de que la captura haya fracasado </b>. En caso de que la captura haya sido exitosa la pokéball se agita tres veces y finalmente se cierra. </p>
@@ -31,31 +37,25 @@
    		<p> Dado que la probabilidad de captura es del 100% no se necesita este análisis. </p>
    	<?php endif; ?>
 
-   	<p> &nbsp; </p>
+</div>
 
-   	<h3> Más información ... </h3>
+<div id="item">
+   	<h3>Más información</h3>
 
-   	<p> Si quieres encontrar más información acerca del algoritmo que se usa para el cálculo de las probabilidades puedes revisar mi artículo al 
-   		respecto ( <?php echo CHtml::link('Parte 1', 'http://www.pokedaisuki.cl/?p=1898') ?> | <?php echo CHtml::link('Parte 2', 'http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-2/') ?> ).
-		Para escribirlos adapté de los artículos de probabilidad de captura que hizo la autora de <?php echo CHtml::link('The Cave of the Dragonflies', 'http://www.dragonflycave.com/') ?>.
-	</p>
+   	<p>Si quieres encontrar más información acerca del algoritmo que se usa para el cálculo de las probabilidades puedes revisar mi artículo al respecto ( <?php echo CHtml::link('Parte 1', 'http://www.pokedaisuki.cl/?p=1898') ?> | <?php echo CHtml::link('Parte 2', 'http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-2/') ?> ).
+	Para escribirlos adapté de los artículos de probabilidad de captura que hizo la autora de <?php echo CHtml::link('The Cave of the Dragonflies', 'http://www.dragonflycave.com/') ?>. </p>
 
-	<p> 
-		Si les interesa pegarles una leida (son bien buenos, la autora es súper seca) pueden hacerlo en los siguientes links: <?php echo CHtml::link('Generación 2', 'http://www.dragonflycave.com/gen2capture.aspx') ?>, 
-   		<?php echo CHtml::link('generaciones 3 y 4', 'http://www.dragonflycave.com/capture.aspx') ?> (estas dos comparten el mismo algoritmo) y 
-		<?php echo CHtml::link('generación 5', 'http://www.dragonflycave.com/gen5capture.aspx') ?>. Ojo que estos están en inglés.
-	</p>
+	<p>Si les interesa pegarles una leida (son bien buenos, la autora es súper seca) pueden hacerlo en los siguientes links: <?php echo CHtml::link('Generación 2', 'http://www.dragonflycave.com/gen2capture.aspx') ?>,
+	<?php echo CHtml::link('generaciones 3 y 4', 'http://www.dragonflycave.com/capture.aspx') ?> (estas dos comparten el mismo algoritmo) y 
+	<?php echo CHtml::link('generación 5', 'http://www.dragonflycave.com/gen5capture.aspx') ?>. Ojo que estos están en inglés.</p>
 
-	<p> Aún no he hecho la calculadora para sexta generación dado que desconozco el algoritmo. Estoy seguro que algún grupo de ñoños lo lanzará eventualmente y, cuando lo hagan,
-		actualizaré la calculadora con la información respectiva. La verdad tengo ene ganas de ver como funciona esa cuestión!
-	</p>
+	<p>Aún no he hecho la calculadora para sexta generación dado que desconozco el algoritmo.
+	Estoy seguro que algún grupo de ñoños lo lanzará eventualmente y, cuando lo hagan, actualizaré la calculadora con la información respectiva. ¡La verdad tengo ene ganas de ver como funciona esa cuestión!</p>
 
-	<p> 
-		Y por último en todos estos análisis no incluí a la Heavy Ball. Esto es totalmente intencional y es dado que esta funciona con un algoritmo súper especial que me requerirá más tiempo en
-		programar. Estoy seguro que en una versión futura de esta aplicación lo iré agregando.
-	</p>
-
-	<p> &nbsp; </p>
+	<p>Y por último en todos estos análisis no incluí a la Heavy Ball. Esto es totalmente intencional y es dado que esta funciona con un algoritmo súper especial que me requerirá más tiempo en programar.
+	Estoy seguro que en una versión futura de esta aplicación lo iré agregando.</p>
+</div>
+	
 <!-- inicio accordeon -->
 <div class="accordion-group">
 	<div class="accordion-heading">
