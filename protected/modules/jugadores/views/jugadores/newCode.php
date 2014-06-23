@@ -7,7 +7,7 @@
 ?>
 
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'player-form', 'action' => 'nuevoCodigo',
+	'id'=>'player-form', 'action' => 'newCode',
 	'enableAjaxValidation'=>false,
 )); ?>
 

@@ -50,10 +50,23 @@ return array(
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
+            'showScriptName' => false,
             'rules' => array(
+                 'jugadores'                => 'jugadores/jugadores/index',
+                 'jugadores/crear'          => 'jugadores/jugadores/create',
+                 'jugadores/nuevo_codigo'   => 'jugadores/jugadores/newCode',
+                 'jugadores/actualizar'     => 'jugadores/jugadores/updateForm',
+                 'jugadores/<page>'         => 'jugadores/jugadores/<page>',
+                 'pokeball'                 => 'pokeball/pokeball/index',
+                 'pokeball/<page>'          => 'pokeball/pokeball/<page>',
+                 'stats'                    => 'stats/stats/index',
+                 'stats/<page>'             => 'stats/stats/<page>',
+                 'sobre_mi'                 => 'site/about',
+
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>'
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+               
             )
         ),
         'db' => array(
