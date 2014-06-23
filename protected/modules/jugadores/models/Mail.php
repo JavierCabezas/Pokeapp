@@ -1,6 +1,6 @@
 <?php 
 class Mail extends CActiveRecord{
-	function sendMail($from, $to, $subject, $mail_title, $mail_content){
+	public static function sendMail($from, $to, $subject, $mail_title, $mail_content){
 		Yii::import('ext.yii-mail.YiiMailMessage');
 		$message = new YiiMailMessage;
 		$message->view = 'mailView';
