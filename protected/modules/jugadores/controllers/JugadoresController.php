@@ -186,7 +186,7 @@ class JugadoresController extends Controller
      *  Loads the form to send a new code to the player.
      *  
      */
-    public function actionNuevoCodigo()
+    public function actionNewCode()
     {
         if(isset($_POST['mail'])){
             $p = new CHtmlPurifier();
@@ -216,7 +216,7 @@ class JugadoresController extends Controller
                 Yii::app()->user->setFlash('error', "El correo ".$mail." no está registrado en nuestra base de datos ... ");
             }
         }
-        $this->render('nuevoCodigo');
+        $this->render('newCode');
     }
 
     /**
