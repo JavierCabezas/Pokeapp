@@ -81,9 +81,9 @@ return array(
             'transportType' => 'smtp',
             'transportOptions' => array(
                 'host'=>'smtp.gmail.com',
-                'username'=>'XXXX',
-                'password'=>'YYYY',
-                'port'=>'ZZZZ',
+                'username'=>'prueba.skymarket@gmail.com',
+                'password'=>'testsky2014',
+                'port'=>'465',
                 'encryption' => 'ssl'
             ),
             'viewPath' => 'application.views.mail',

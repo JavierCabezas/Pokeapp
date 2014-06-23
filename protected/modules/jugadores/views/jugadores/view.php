@@ -1,7 +1,7 @@
 <?php if($code == $model->code): //Since we are showing public info just a very basic verification, its not my intention to make it hacker-proof ?>
 
-	<h1>Guardado del perfil #<?php echo $model->id; ?> exitoso </h1>
-
+<h1>Guardado del perfil #<?php echo $model->id; ?> exitoso </h1>
+<div class="infosec">
 	<p> Puedes modificar esta información con el código que se envió a tu correo (<?php echo $model->mail?>). </p> 
 	<p> Se mostrará en el buscador una vez que este sea autorizado. Los datos que se guardaron son: </p>
 
@@ -74,7 +74,7 @@
 			)
 		); 
 	?>
-
+</div>
 <?php else: ?>
 
 	<?php $this->redirect('index'); ?>

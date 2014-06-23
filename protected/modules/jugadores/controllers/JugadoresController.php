@@ -50,8 +50,8 @@ class JugadoresController extends Controller
             if ($model->save()){
                     $link_form      = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
                     $link_search    = CHtml::link('el buscador de jugadores', $this->createAbsoluteUrl('jugadores/buscador'));
-                    $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que este no estará inmediatamente disponible en la aplicación sino que se pondrá luego de que sea aceptado por alguno de nuestros administradores. </p>';
-                    $body = $body . '<p> Además, tu código secreto es <b>'.$model->code.'</b>. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
+                    $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que el perfil será puesto luego de que sea aceptado por alguno de nuestros administradores. </p>';
+                    $body = $body . '<p> Además recuerda que  tu código secreto es <b>'.$model->code.'</b>. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
                     $body = $body . '<p> Ahora te invitamos a buscar a otros jugadores en '.$link_search.' </p>';
                     $body = $body . '<p> ¡Muchas gracias por usar nuestra aplicación! </p>';
                     //Send the email to the player
@@ -59,7 +59,7 @@ class JugadoresController extends Controller
                         Yii::app()->params['adminEmail'], //from 
                         $model->mail, //to
                         'Confirmación de creación de nuevo jugador en la pokéapp', //subject
-                        'Bievenido al buscador!', //mail_title
+                        'Bievenido!', //mail_title
                         $body//mail body
                     );
 
@@ -107,10 +107,16 @@ class JugadoresController extends Controller
     * @param integer $mail the email the model to be updated
     * @param integer $code, the "password" to edit a profile.
     */
-    public function actionUpdate($mail, $code)
+    public function actionUpdate()
     {
-        //Hacer una pausa de como 2 segundos acá...
-        $model = Player::model()->findByAttributes(array('mail' => mysql_real_escape_string($mail)));
+        if(!isset($_POST['mail'], $_POST['code']))
+            throw new CHttpException(403, 'No estás autorizado a entrar a esta sección');
+        $p = new CHtmlPurifier();
+        $mail = $p->purify($_POST['mail']);
+        $code = $p->purify($_POST['code']);
+        sleep(1);
+
+        $model=Player::model()->find('mail=:mail',array(':mail'=>$mail));
         $code = str_replace(' ', '', $code); //Remove the spaces from the code
         if($model->code != $code){
             $error_text = '<p>El código ingresado no corresponde al correo. Puedes intentarlo nuevamente haciendo click en ';
@@ -180,36 +186,37 @@ class JugadoresController extends Controller
      *  Loads the form to send a new code to the player.
      *  
      */
-    public function actionNewCode()
+    public function actionNuevoCodigo()
     {
-		if(isset($_POST['mail'])){
-			$mail = mysql_real_escape_string($_POST['mail']);
-			$model = Player::model()->findByAttributes(array('mail' => $mail));
-			if(isset($model)){
-				$model->code        = md5(rand(0,100000).time());
-				if($model->save()){
-					$link_form = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
-					$body = '<p> Se acaba de pedir un reseteo del código del buscador de jugadores de la Pokéapp a este correo. </p>';
-					$body = $body . ' <p> El nuevo código es <b>'.$model->code.'</b>';
-					$body = $body . ' Para editar tu perfil debes de ingresar tu correo y el código en nuestro '.$link_form.' </p>';
-					$body = $body . ' <p> Si tu no hiciste esta petición puedes ignorar este correo. </p>';
-					$body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
-					Mail::sendMail( 
-						Yii::app()->params['adminEmail'], //from 
-						$model->mail, //to
-						'Nuevo código para edición de perfil', //subject
-						'Reseteo código Pokéapp', //mail_title
-						$body//mail body
-					);
-					Yii::app()->user->setFlash('success', "Se envió el correo a ".$model->mail." con éxito");
-				}else{
-					Yii::app()->user->setFlash('error', "Ocurrió un error inesperado, por favor inténtalo nuevamente");
-				}
-			}else{
-				Yii::app()->user->setFlash('error', "El correo ".$mail." no está registrado en nuestra base de datos ... ");
-			}
-		}
-		$this->render('newCode');
+        if(isset($_POST['mail'])){
+            $p = new CHtmlPurifier();
+            $mail = $p->purify($_POST['mail']);
+            $model=Player::model()->find('mail=:mail',array(':mail'=>$mail));
+            if(isset($model)){
+                $model->code        = md5(rand(0,100000).time());
+                if($model->save()){
+                    $link_form = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
+                    $body = '<p> Se acaba de pedir un reseteo del código del buscador de jugadores de la Pokéapp a este correo. </p>';
+                    $body = $body . ' <p> El nuevo código es <b>'.$model->code.'</b>.';
+                    $body = $body . ' Para editar tu perfil debes de ingresar tu correo y el código en nuestro '.$link_form.' </p>';
+                    $body = $body . ' <p> Si tu no hiciste esta petición puedes ignorar este correo. </p>';
+                    $body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
+                    Mail::sendMail( 
+                        Yii::app()->params['adminEmail'], //from 
+                        $model->mail, //to
+                        'Nuevo código para edición de perfil', //subject
+                        'Reseteo código Pokéapp', //mail_title
+                        $body//mail body
+                    );
+                    Yii::app()->user->setFlash('success', "Se envió el correo a ".$model->mail." con éxito");
+                }else{
+                    Yii::app()->user->setFlash('error', "Ocurrió un error inesperado, por favor inténtalo nuevamente");
+                }
+            }else{
+                Yii::app()->user->setFlash('error', "El correo ".$mail." no está registrado en nuestra base de datos ... ");
+            }
+        }
+        $this->render('nuevoCodigo');
     }
 
     /**

@@ -64,9 +64,12 @@ u.dotted {
 
 #footer {
 	padding: 10px;
-	margin: 10px 20px;
-	font-size: 0.8em;
-	text-align: center;
+	padding-right: 70px;
+	font-size: 1em;
+	text-align: right;
+	background-color: #7FC680;
+	color: #FFF;
+	font-weight: bold;
 }
 
 #logo {

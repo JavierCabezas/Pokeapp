@@ -52,8 +52,7 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Contenido de Fans para Fans<br/>
-		Agradecemos dar créditos respectivos al compartir las Apps.<br/>
+		Contenido de Fans para Fans. Agradecemos dar créditos respectivos al compartir las Apps.<br/>
 		PokéDaisuki.cl
 	</div><!-- footer -->
 
