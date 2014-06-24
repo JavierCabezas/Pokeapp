@@ -215,13 +215,13 @@ img.yo {
 	-webkit-border-radius: 0 10px 10px 0;
 	-moz-border-radius: 0 10px 10px 0;
 	border-radius: 0 10px 10px 0;
-	padding: 15px;
+	padding: 10px;
 	width: 67%;
 	height: auto;
 	float: right;
 	text-align: justify;
 	font-size: 15px;
-    line-height: 115%;
+    line-height: 103%;
 }
 
 #autorinfo a {
