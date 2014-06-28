@@ -9,22 +9,6 @@ class JugadoresController extends Controller
     public $layout = '//layouts/column2';
     
     /**
-     * Displays a particular model.
-     * @param integer $id the ID of the model to be displayed
-     */
-    public function actionView($id, $code)
-    {
-        if ( ($code == $model->code) || Admin::model()->isAdmin() ){
-            $this->render('view', array(
-                'model'     => $this->loadModel($id),
-                'code'      => $code,
-            ));
-        }else{
-            $this->render('index');
-        }
-    }
-    
-    /**
      * @return array action filters
      */
     public function filters()
@@ -52,6 +36,7 @@ class JugadoresController extends Controller
                     'create', 
                     'updateForm', 
                     'index',
+                    'view',
 
                 ),
                 'users' => array(
@@ -78,6 +63,22 @@ class JugadoresController extends Controller
 	{
 		$this->render('index');
 	}
+
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionView($id, $code)
+    {
+        $model = $this->loadModel($id);
+        if ( ($code == $model->code) || Admin::model()->isAdmin() ){
+            $this->render('view', array(
+                'model'     => $model,
+            ));
+        }else{
+            $this->render('index');
+        }
+    }
 	
     /**
      * Creates a new model.
