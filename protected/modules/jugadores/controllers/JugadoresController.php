@@ -14,12 +14,66 @@ class JugadoresController extends Controller
      */
     public function actionView($id, $code)
     {
-        $this->render('view', array(
-            'model'     => $this->loadModel($id),
-            'code'      => $code,
-        ));
+        if ( ($code == $model->code) || Admin::model()->isAdmin() ){
+            $this->render('view', array(
+                'model'     => $this->loadModel($id),
+                'code'      => $code,
+            ));
+        }else{
+            $this->render('index');
+        }
     }
     
+    /**
+     * @return array action filters
+     */
+    public function filters()
+    {
+        return array(
+            'accessControl'
+        );
+    }
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules()
+    {
+        return array(
+            array(
+                'allow',
+                'actions' => array(
+                    'index',
+                    'ShowPlayerInfo',
+                    'buscador', 
+                    'newCode',
+                    'update',
+                    'create', 
+                    'updateForm', 
+                    'index',
+
+                ),
+                'users' => array(
+                    '*'
+                )
+            ),
+            array(
+                'allow',
+                'actions' => array(
+                    'authorize',
+                ),
+                'users' => Admin::model()->getArrayAdmins()
+            ),
+            array(
+                'deny', // deny all users
+                'users' => array(
+                    '*'
+                )
+            )
+        );
+    }
+
 	public function actionIndex()
 	{
 		$this->render('index');
@@ -299,5 +353,28 @@ class JugadoresController extends Controller
                 )
             );
         }   
+    }
+
+    public function actionAuthorize(){
+        $pending_players = Player::model()->findAllByAttributes(array('auth' => Player::STATUS_PENDING));
+        $pending_provider = new CArrayDataProvider($pending_players);
+
+        $gridColumns = array(
+            array('name'=>'id', 'header'=>'#', 'htmlOptions'=>array('style'=>'width: 60px')),
+            array('name'=>'nickname', 'header'=>'Nickname'),
+            array('name'=>'mail', 'header'=>'Mail'),
+            array(
+                'htmlOptions' => array('nowrap'=>'nowrap'),
+                'class'=>'bootstrap.widgets.TbButtonColumn',
+                'viewButtonUrl'=>null,
+                'updateButtonUrl'=>null,
+                'deleteButtonUrl'=>null,
+            )
+        );
+
+        $this->render('authorize', array(
+            'gridDataProvider'  => $pending_provider,
+            'gridColumns'       => $gridColumns,
+        ));
     }
 }

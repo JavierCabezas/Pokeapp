@@ -58,7 +58,7 @@
 	</div>
 
 	<div id="dueldata">
-		<h3>Información de duelos</h3>
+		<h3>Interés en duelos</h3>
 		<div class="bloq">
 			<div class="duel">
 				<?php echo $form->labelEx($model,'duel_single'); ?> 
