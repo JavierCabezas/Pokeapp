@@ -41,6 +41,11 @@
 		</nav>
 	</div><!-- mainmenu -->
 	
+
+	<?php if(Admin::model()->isAdmin()): ?>
+		<p> Estás logeado como admin con nombre <?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+	<?php endif;?>
+
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,

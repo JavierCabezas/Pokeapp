@@ -35,7 +35,6 @@ class JugadoresController extends Controller
                     'update',
                     'create', 
                     'updateForm', 
-                    'index',
                     'view',
 
                 ),
@@ -47,6 +46,7 @@ class JugadoresController extends Controller
                 'allow',
                 'actions' => array(
                     'authorize',
+                    'changeStatus',
                 ),
                 'users' => Admin::model()->getArrayAdmins()
             ),
@@ -68,7 +68,7 @@ class JugadoresController extends Controller
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id, $code)
+    public function actionView($id, $code = null)
     {
         $model = $this->loadModel($id);
         if ( ($code == $model->code) || Admin::model()->isAdmin() ){
@@ -218,23 +218,15 @@ class JugadoresController extends Controller
 
 
     /**
-    * Deletes a particular model.
-    * If deletion is successful, the browser will be redirected to the 'admin' page.
-    * @param integer $id the ID of the model to be deleted
+    * changes the player status
+    * @param integer $id the ID of the model to be banned
     */
-    public function actionDelete($id)
-    {/*
-        if(Yii::app()->request->isPostRequest){
-            // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if(!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }
-        else
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-    */
+    public function actionChangeStatus($jugador, $status)
+    {
+        Player::model()->updateByPk($jugador, array(
+                'auth' => $status
+        ));
+        $this->redirect( array('authorize'));
     }
 
     /**
@@ -364,13 +356,42 @@ class JugadoresController extends Controller
             array('name'=>'id', 'header'=>'#', 'htmlOptions'=>array('style'=>'width: 60px')),
             array('name'=>'nickname', 'header'=>'Nickname'),
             array('name'=>'mail', 'header'=>'Mail'),
-            array(
-                'htmlOptions' => array('nowrap'=>'nowrap'),
-                'class'=>'bootstrap.widgets.TbButtonColumn',
-                'viewButtonUrl'=>null,
-                'updateButtonUrl'=>null,
-                'deleteButtonUrl'=>null,
-            )
+        array(
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+            'template'=>'{view} {add} {remove}',
+            'buttons'=>array(
+                'view' => array
+                (
+                    'label'=>'Ver detalles',
+                    'icon'=>'search',
+                    'options'=>array(
+                        'class'=>'btn btn-small',
+                    ),
+                ),
+                            'add' => array
+                (
+                    'label'=>'Autorizar jugador',
+                    'icon'=>'plus',
+                    'url'=>'Yii::app()->createUrl("jugadores/changeStatus", array("jugador"=>$data->id, "status" => 1))',
+                    'options'=>array(
+                        'class'=>'btn btn-small',
+                    ),
+                ),
+
+                'remove' => array
+                (
+                    'label'=>'Banear jugador',
+                    'icon'=>'minus',
+                    'url'=>'Yii::app()->createUrl("jugadores/changeStatus", array("jugador"=>$data->id, "status" => 2))',
+                    'options'=>array(
+                        'class'=>'btn btn-small',
+                    ),
+                ),
+            ),
+            'htmlOptions'=>array(
+                'style'=>'width: 220px',
+            ),
+        ) 
         );
 
         $this->render('authorize', array(
