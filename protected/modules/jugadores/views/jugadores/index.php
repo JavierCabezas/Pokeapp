@@ -13,13 +13,13 @@
 	<p>En esta sección pueden buscar a otros jugadores del juego con intereses similares, con un pokémon en específico del Friend Safari (Safari Amigo) o simplemente conocer gente nueva.</p>
 	<p>Los parámetros actuales que se están guardando en el módulo hasta la fecha son:</p>
 	<div class="param">
-		<img src='<?php echo imageDir()?>/articulos/003.png' />
+		<img src='<?php echo imageDir()?>/jugadores_info/jug_001.png' />
 		<h4>Pokémon Safari</h4>
-		<p>Explicación bonita de pokémon safari</p>
+		<p>Tipo y especie de Pokémon que da el usuario por medio de su Friend Code.</p>
 	</div>
 	<div class="param">
-		<img src='<?php echo imageDir()?>/articulos/003.png' />
-		<h4>TSV</h4>
+		<img src='<?php echo imageDir()?>/jugadores_info/jug_002.png' />
+		<h4>Trainer Shiny Value</h4>
 		<p>Explicación bonita de TSV</p>
 	</div>
 	<div class="param">
