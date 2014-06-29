@@ -28,14 +28,3 @@
 		<p>(separados por tipo de duelo y tier).</p>
 	</div>
 </div>
-
-
-
-
-
-
-	<!--<li> Creación de perfil: <?php echo CHtml::link('Crear nuevo', array('jugadores/crear')) ?> </li>
-		<li> Búsqueda de jugadores: en <?php echo CHtml::link('Buscar jugadores', array('jugadores/buscador')) ?> </li>
-		<li> Obtención de código de modificación de perfil: <?php echo CHtml::link('Obtener nuevo código', array('jugadores/newCode')) ?> </li> 
-		<li> Modificar mi perfil: <?php echo CHtml::link('Modificar', array('jugadores/updateForm')) ?> </li>
-	</ul>-->
