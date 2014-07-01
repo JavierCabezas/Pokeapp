@@ -55,18 +55,22 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 		),
 		array(
 			'name' => 'search_duel_single',
+			'filter'	=> array(0 => 'No', 1 => 'Sí'),
 			'value' => '($data->duel_single == 0)?"No":"Sí";'
 		),
 		array(
 			'name' => 'search_duel_doble',
+			'filter'	=> array(0 => 'No', 1 => 'Sí'),
 			'value' => '($data->duel_doble == 0)?"No":"Sí";'
 		),
 		array(
 			'name' => 'search_duel_triple',
+			'filter'	=> array(0 => 'No', 1 => 'Sí'),
 			'value' => '($data->duel_triple == 0)?"No":"Sí";'
 		),
 		array(
 			'name' => 'search_duel_rotation',
+			'filter'	=> array(0 => 'No', 1 => 'Sí'),
 			'value' => '($data->duel_rotation == 0)?"No":"Sí";'
 		),
 		array(

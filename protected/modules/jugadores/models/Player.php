@@ -214,74 +214,10 @@ class Player extends CActiveRecord
 		$criteria->compare('safariSlot2.identifier',$this->search_poke_2,true);
 		$criteria->compare('safariSlot3.identifier',$this->search_poke_3,true);
 		$criteria->compare('tsv',$this->search_tsv);
-		switch (strlen($this->search_duel_single)) {
-			case 0: //Show all results
-				break;
-			case 1: //Compare "n" with "no" and "s" with "si" (yes)
-				if(strcasecmp($this->search_duel_single, 'n')==0){
-					$criteria->compare('duel_single',0); break;}
-				if(strcasecmp($this->search_duel_single, 's')==0){
-					$criteria->compare('duel_single',1); break;}
-			case 2:
-				if(strcasecmp($this->search_duel_single,"no")==0){
-					$criteria->compare('duel_single',0); break;}
-				if(strcasecmp($this->search_duel_single,"si")==0||strcasecmp($this->search_duel_single,"sí")==0||strcasecmp($this->search_duel_single,"sÍ")==0){
-					$criteria->compare('duel_single',1, '>'); break;}
-			default: //Don't show anything.
-				$criteria->compare('duel_single',2); break;
-		}
-		
-		switch (strlen($this->search_duel_doble)) {
-			case 0: 
-				break;
-			case 1:
-				if(strcasecmp($this->search_duel_doble, 'n')==0){
-					$criteria->compare('duel_doble',0); break;}
-				if(strcasecmp($this->search_duel_doble, 's')==0){
-					$criteria->compare('duel_doble',1); break;}
-			case 2:
-				if(strcasecmp($this->search_duel_doble,"no")==0){
-					$criteria->compare('duel_doble',0); break;}
-				if(strcasecmp($this->search_duel_doble,"si")==0||strcasecmp($this->search_duel_doble,"sí")==0||strcasecmp($this->search_duel_doble,"sÍ")==0){
-					$criteria->compare('duel_doble',1, '>'); break;}
-			default:
-				$criteria->compare('duel_doble',2); break;
-		}
-
-		switch (strlen($this->search_duel_triple)) {
-			case 0: 
-				break;
-			case 1:
-				if(strcasecmp($this->search_duel_triple, 'n')==0){
-					$criteria->compare('duel_triple',0); break;}
-				if(strcasecmp($this->search_duel_triple, 's')==0){
-					$criteria->compare('duel_triple',1); break;}
-			case 2:
-				if(strcasecmp($this->search_duel_triple,"no")==0){
-					$criteria->compare('duel_triple',0); break;}
-				if(strcasecmp($this->search_duel_triple,"si")==0||strcasecmp($this->search_duel_triple,"sí")==0||strcasecmp($this->search_duel_triple,"sÍ")==0){
-					$criteria->compare('duel_triple',1, '>'); break;}
-			default:
-				$criteria->compare('duel_triple',2); break;
-		}
-
-		switch (strlen($this->search_duel_rotation)) {
-			case 0: 
-				break;
-			case 1:
-				if(strcasecmp($this->search_duel_rotation, 'n')==0){
-					$criteria->compare('duel_rotation',0); break;}
-				if(strcasecmp($this->search_duel_rotation, 's')==0){
-					$criteria->compare('duel_rotation',1); break;}
-			case 2:
-				if(strcasecmp($this->search_duel_rotation,"no")==0){
-					$criteria->compare('duel_rotation',0); break;}
-				if(strcasecmp($this->search_duel_rotation,"si")==0||strcasecmp($this->search_duel_rotation,"sí")==0||strcasecmp($this->search_duel_rotation,"sÍ")==0){
-					$criteria->compare('duel_rotation',1, '>'); break;}
-			default:
-				$criteria->compare('duel_rotation',2); break;
-		}
-
+		$criteria->compare('duel_single',$this->search_duel_single);
+		$criteria->compare('duel_doble',$this->search_duel_doble);
+		$criteria->compare('duel_triple',$this->search_duel_triple);
+		$criteria->compare('duel_rotation',$this->search_duel_rotation);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
