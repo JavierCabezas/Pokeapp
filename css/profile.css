@@ -208,7 +208,7 @@
     float: right;
 }
 
-#result .view .safari .pokes .safari_pokemon {
+#result .view .safari .pokes .safari_pokemon, #result .view .safari .pokes .no_safari {
     width: 28%;
     height: 90%;
     -webkit-border-radius: 10px;
@@ -225,6 +225,11 @@
     -webkit-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
     -moz-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
     box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+}
+
+#result .view .safari .pokes .no_safari {
+    background-color: none;
+    background-image: url (../images/varios/duelbg.png);
 }
 
 #result .view .safari .pokes .safari_pokemon:last-child {
@@ -257,13 +262,33 @@
 #result .view .duel .rotation_1 {
     color: #000;
     text-align: center;
-    background-color: #FFF;
+    background-image: url (../images/varios/duelbg1.png);
     float: left;
     margin-bottom: 1%;
     margin-right: 1%;
-    font-size: 25px;
-    height: 30px;
+    font-size: 24px;
+    height: 100px;
     width: 49%;
     padding-top: 35px;
-    padding:bottom: 35px;
+    padding-bottom: 35px;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+}
+
+#result .view .duel .single_0 h5,
+#result .view .duel .doble_0 h5,
+#result .view .duel .triple_0 h5,
+#result .view .duel .rotation_0 h5,
+#result .view .duel .single_1 h5,
+#result .view .duel .doble_1 h5,
+#result .view .duel .triple_1 h5,
+#result .view .duel .rotation_1 h5 {
+    font-weight: bold;
+    margin-bottom: 1%;
+    padding: 0px;
+    background-color: #CCC;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
 }

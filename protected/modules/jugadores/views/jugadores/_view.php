@@ -69,27 +69,32 @@
 				</div>
 				
 			<?php endif; ?>
+				<div class="no_safari"></div>
 		</div>
 	</div> <!-- end of safari -->
 
 	<div class="duel">
 		<div class="single_<?php echo $duel_single?>">
 			<?php if(!is_null($tier_single)): ?>
+				<h5>Single:</h5>
 				<?php echo $tier_single ?>
 			<?php endif; ?>
 		</div>
 		<div class="doble_<?php echo $duel_doble?>">
 			<?php if(!is_null($tier_doble)): ?>
+				<h5>Doble:</h5>
 				<?php echo $tier_doble ?>
 			<?php endif; ?>
 		</div>
 		<div class="triple_<?php echo $duel_triple?>">
 			<?php if(!is_null($tier_triple)): ?>
+				<h5>Triple:</h5>
 				<?php echo $tier_triple ?>
 			<?php endif; ?>
 		</div>
 		<div class="rotation_<?php echo $duel_triple?>">
 			<?php if(!is_null($tier_rotation)): ?>
+				<h5>Rotation:</h5>
 				<?php echo $tier_rotation ?>
 			<?php endif; ?>
 		</div>
