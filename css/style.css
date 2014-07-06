@@ -288,10 +288,15 @@ img.yo {
 
 .param {
 	background-color: #9260EA;
-	width: 18%;
+	width: 29%;
 	-webkit-box-shadow: -0.5em -0.5em 3em #34156B inset;
 	-moz-box-shadow: -0.5em -0.5em 3em #34156B inset;
 	box-shadow: -0.5em -0.5em 3em #34156B inset;
+}
+
+.param .info {
+	float: right;
+	width: 43%;
 }
 
 #articulos .art img, .param img {
@@ -302,25 +307,32 @@ img.yo {
 	padding-bottom: 10px;
 }
 
-#articulos .art .name, .param h4 {
+.param img {
+	width: 55%;
+	float: left;
+	clear: none;
+}
+
+#articulos .art .name, .param .info h4 {
 	height: 30px;
 	text-align: center;
 	margin: 0px;
 	margin-bottom: 1%;
 }
 
-.param h4 {
+.param .info h4, .param .info h4 a {
 	color: #FFF;
 	padding-top: 0;
 	height: auto;
     line-height: 100%;
 }
 
-.param p {
-	clear: both;
+.param .info p {
+	float: right;
 	text-align: justify;
 	font-size: 12px;
 	color: #FFF;
+	margin-top: 1%;
 }
 
 #articulos .art .name a {
