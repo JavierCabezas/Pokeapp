@@ -1,3 +1,4 @@
+
 <h1> Buscador de pokémon por criterios interesantes </h1>
 
 <div id="column1-wrap">
@@ -131,14 +132,9 @@
 		</div> <!-- end of weight results -->
 
 		<div class='type_results'>
-			<div id='div_type_1_result'>
-				<p> Tipo 1: <span class='type' id='type_1_result'> </span> </p>
-				<div class='type_remove' id='1'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
-			</div>
-			<div id='div_type_2_result'>
-				<p> Tipo 2: <span class='type' id='type_2_result'> </span> </p>
-				<div class='type_remove' id='2'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
-			</div>
+			<p> Tipo 1: <span class='type' id='type_1'> </span> </p>
+			<p> Tipo 2: <span class='type' id='type_1'> </span> </p>
+			<div class='type_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
 		</div> <!-- end of type results -->
 
 		<div class='gen_results'>
@@ -165,21 +161,7 @@
 $(".height_results").children().hide();
 $(".weight_results").children().hide();
 $(".gen_results").children().hide();
-$(".type_results").children().hide();
-
-//Variables
-min_height_calculate = -1;
-max_height_calculate = -1;
-min_weight_calculate = -1;
-max_weight_calculate = -1;
-gen_1_calculate = 0;
-gen_2_calculate = 0;
-gen_3_calculate = 0;
-gen_4_calculate = 0;
-gen_5_calculate = 0;
-gen_6_calculate = 0;
-type_1_calculate = -1;
-type_2_calculate = -1;
+$(".types_results").children().hide();
 
 //Height
 $(".height_form").change(function(){
@@ -191,13 +173,9 @@ $(".height_form").change(function(){
 		if(min <= max){	
 			$('#height_from').html(min);
 			$('#height_to').html(max);
-			min_height_calculate = min;
-			max_height_calculate = max;
 		}else{
 			$('#height_from').html(max);
 			$('#height_to').html(min);
-			min_height_calculate = max;
-			max_height_calculate = min;
 		}
 	}else{
 		$(".height_results").children().hide();
@@ -208,8 +186,6 @@ $(".height_remove").click(function(){
 	$(".height_results").children().hide();
 	$("#height_min").val('');
 	$("#height_max").val('');
-	min_height_calculate = -1;
-	max_height_calculate = -1;
 });
 //End of height_max
 
@@ -223,13 +199,9 @@ $(".weigth_form").change(function(){
 		if(min <= max){	
 			$('#weight_from').html(min);
 			$('#weight_to').html(max);
-			min_weight_calculate = min;
-			max_weight_calculate = max;			
 		}else{
 			$('#weight_from').html(max);
 			$('#weight_to').html(min);
-			min_weight_calculate = max;
-			max_weight_calculate = min;
 		}
 	}else{
 		$(".weight_results").children().hide();
@@ -240,8 +212,6 @@ $(".weight_remove").click(function(){
 	$(".weight_results").children().hide();
 	$("#weight_min").val('');
 	$("#weight_max").val('');
-	min_weight_calculate = -1;
-	max_weight_calculate = -1;
 });
 //End of Weight
 
@@ -255,43 +225,21 @@ $('.gen_checkbox').change(function() {
 		$(".gen_results").children().show();
 
 	for(i = 1 ; i < 7 ; i++){
-		if( ($('#gen_checkbox_'+i)).is(":checked") ){
+		if( ($('#gen_checkbox_'+i)).is(":checked") )
 			($('#gen_result_'+i)).show()
-			gen_1_calculate = 0;
-		}
-		else{
+		else
 			($('#gen_result_'+i)).hide()
-		}
-	}
+	}		
 });
 //End of generation checkboxes
 
 //Start of type dropdowns
-$(".type_dropdown").change(function() {
-	type1 = $("#type_1").val();
-	type2 = $("#type_2").val();
-	type1_selected = (type1 != '');
-	type2_selected = (type2 != '');
-	if( type1_selected || type2_selected ){
-		$(".type_results").children().show();
-		if(type1_selected){
-			$("#div_type_1_result").hide();
-			type_1_calculate = type_1;
-		}else{
-			type_1_calculate = -1;
-		}
-		if(type2_selected){
-			$("#div_type_1_result").hide();
-			type_2_calculate = type_2;
-		}else{
-			type_1_calculate = -1;
-		}
-		type1_text = $("#type_1").children("option").filter(":selected").text();
-		type2_text = $("#type_2").children("option").filter(":selected").text();
-
-	}else{
-		$(".type_results").children().hide();
-	}
+$("#type_1").change(function() {
+	type1 = $( "#type_1" ).val();
+	if( type1 == '')
+		alert('nada');
+	else
+		alert( $( "#type_1" ).text());
 });
 //end of type dropdowns
 </script>

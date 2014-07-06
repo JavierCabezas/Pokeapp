@@ -52,6 +52,7 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                'buscador'                 => 'buscador/buscador/index',
                 'jugadores'                => 'jugadores/jugadores/index',
                 'jugadores/crear'          => 'jugadores/jugadores/create',
                 'jugadores/nuevo_codigo'   => 'jugadores/jugadores/newCode',

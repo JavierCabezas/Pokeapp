@@ -1,0 +1,15 @@
+#column1-wrap {
+    float: left;
+    width: 100%;
+}
+#column1 {
+    margin-right: 50%;
+}
+#column2 {
+    float: left;
+    width: 50%;
+    margin-left: -50%;
+}
+#clear {
+    clear: both;
+}

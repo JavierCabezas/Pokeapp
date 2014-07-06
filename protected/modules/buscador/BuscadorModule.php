@@ -4,9 +4,7 @@ class BuscadorModule extends CWebModule
 {
 	public function init()
 	{
-		// this method is called when the module is being created
-		// you may place code here to customize the module or the application
-
+		$this->registerCore();
 		// import the module-level models and components
 		$this->setImport(array(
 			'buscador.models.*',
@@ -25,4 +23,10 @@ class BuscadorModule extends CWebModule
 		else
 			return false;
 	}
+
+	protected function registerCore()
+    {
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/buscador.css');
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/buscador.js');
+    }
 }
