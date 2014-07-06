@@ -12,6 +12,6 @@ $this->pageTitle=Yii::app()->name;
 
 <?php else: ?>
 	
-	<?php echo CHtml::link('Entrar sección admin', array('/login')) ?>
+	<!--<?php echo CHtml::link('Entrar sección admin', array('/login')) ?>-->
 
 <?php endif; ?>
