@@ -63,6 +63,7 @@ return array(
                 'stats'                    => 'stats/stats/index',
                 'stats/<page>'             => 'stats/stats/<page>',
                 'sobre_mi'                 => 'site/about',
+                'gii'                      => 'gii/default/login',
                 '<page>'                   => 'site/<page>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',

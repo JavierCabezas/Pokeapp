@@ -45,6 +45,9 @@
 			<div class="bloq">
 				<?php echo $form->labelEx($model,'id_safari_type'); ?> 
     			<?php echo CHtml::dropDownList('Player[id_safari_type]', $model->id_safari_type, $array_types, array('empty' => 'Ingresar tipo de safari'));  ?>
+	    		<div class='loading'>
+	    			<img src="<?php echo Yii::app()->request->baseUrl ?>/images/ajax-loader.gif" /> 
+	    		</div>
     		</div>
     		<div class='safari' id='safari_1'>
     		</div>
@@ -124,6 +127,7 @@
 
 <script type='text/javascript'>
 	$(document).ready(function () {
+		$(".loading").hide()
 		$("#Player_tier_single").prop("disabled", true);
 		$("#Player_tier_doble").prop("disabled", true);
 		$("#Player_tier_triple").prop("disabled", true);
@@ -211,6 +215,12 @@
 		}else{
 			$("#Player_tier_rotation").prop("disabled", true);
 		}
+	});
+
+	$('.loading').bind('ajaxStart', function(){
+		$(".loading").show();
+	}).bind('ajaxStop', function(){
+		$(".loading").hide();
 	});
 
 });
