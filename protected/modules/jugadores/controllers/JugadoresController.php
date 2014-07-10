@@ -36,6 +36,9 @@ class JugadoresController extends Controller
                     'create', 
                     'updateForm', 
                     'view',
+                    'tsv',
+                    'safari',
+                    'duels',
 
                 ),
                 'users' => array(
@@ -119,13 +122,14 @@ class JugadoresController extends Controller
                     );
 
                     //Send the email to me <3
+                    /*
                     Mail::sendMail( 
                         Yii::app()->params['adminEmail'], //from 
                         Yii::app()->params['adminEmail'], //to
                         'Se agregó un jugador en la pokéapp', //subject
                         'Se registro un nuevo jugador', //mail_title
                         '<p>Apúrate y acéptalo. Su mail es '.$model->mail.'</p>'//mail body
-                    );
+                    );*/
 
                 if(isset($avatar)){
                     $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
@@ -164,9 +168,32 @@ class JugadoresController extends Controller
     */
     public function actionUpdate()
     {
-        if(!isset($_POST['mail'], $_POST['code']))
-            throw new CHttpException(403, 'No estás autorizado a entrar a esta sección');
         $p = new CHtmlPurifier();
+        if(isset($_POST['Player'], $_POST['mail'], $_POST['code'])){
+            $mail = $p->purify($_POST['mail']);
+            $code = $p->purify($_POST['code']);
+            $model = Player::model()->findByAttributes(array('mail' => $mail, 'code' => $code));
+            $model->attributes  = $_POST['Player'];
+            $model->modified    = time();
+            $model->auth        = Player::STATUS_PENDING;
+            $avatar             = CUploadedFile::getInstance($model, 'avatar');
+            if(isset($avatar)){
+                $model->pic =  $avatar->extensionName;
+            }
+            if ($model->save()){
+                if(isset($avatar)){
+                    $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
+                }
+                $this->redirect(array(
+                    'view',
+                    'id'    => $model->id,
+                    'code'  => $model->code,
+                ));
+            }
+        }
+
+        if(!(isset($_POST['mail'], $_POST['code'])))
+            throw new CHttpException(403, 'No estás autorizado a entrar a esta sección.');
         $mail = $p->purify($_POST['mail']);
         $code = $p->purify($_POST['code']);
         sleep(1);
@@ -187,32 +214,13 @@ class JugadoresController extends Controller
         $array_auth_mail    = array('0' => 'No', '1' => 'Sí');
         $array_tiers        = CHtml::listData(Tiers::model()->findAll($criteria), 'id', 'tierName');
             
-
-        if(isset($_POST['Player'])){
-            $model->attributes  = $_POST['Player'];
-            $model->modified    = time();
-            $model->auth        = Player::STATUS_PENDING;
-            $avatar             = CUploadedFile::getInstance($model, 'avatar');
-            if(isset($avatar)){
-                $model->pic =  $avatar->extensionName;
-            }
-            if ($model->save()){
-                if(isset($avatar)){
-                    $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
-                }
-                $this->redirect(array(
-                    'view',
-                    'id'    => $model->id,
-                    'code'  => $model->code,
-                ));
-            }
-        }
-
         $this->render('update',array(
             'model'             => $model,
             'array_types'       => $array_types,
             'array_auth_mail'   => $array_auth_mail,
             'array_tiers'       => $array_tiers,
+            'code'              => $code,
+            'mail'              => $mail
         ));
     }
 
@@ -398,5 +406,9 @@ class JugadoresController extends Controller
             'gridDataProvider'  => $pending_provider,
             'gridColumns'       => $gridColumns,
         ));
+    }
+
+    public function actionTsv(){
+        $this->render('tsv');
     }
 }

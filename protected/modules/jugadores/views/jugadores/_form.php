@@ -6,6 +6,10 @@
 <p class="help-block">Campos con <span class="required">*</span> son obligatorios.</p>
 
 <?php echo $form->errorSummary($model); ?>
+<?php if(isset($mail, $code)): ?>
+	<input type="hidden" name="code" value="<?php echo $code ?>">
+	<input type="hidden" name="mail" value="<?php echo $mail ?>">
+<?php endif; ?>
 
 	<div id="userdata">
 		<h3>Datos generales</h3>
@@ -128,6 +132,7 @@
 <script type='text/javascript'>
 	$(document).ready(function () {
 		$(".loading").hide()
+		$('#Player_id_safari_type').val('');
 		$("#Player_tier_single").prop("disabled", true);
 		$("#Player_tier_doble").prop("disabled", true);
 		$("#Player_tier_triple").prop("disabled", true);
