@@ -13,23 +13,23 @@
 	<p>En esta sección pueden buscar a otros jugadores del juego con intereses similares, con un pokémon en específico del Friend Safari (Safari Amigo) o simplemente conocer gente nueva.</p>
 	<p>Los parámetros actuales que se están guardando en el módulo hasta la fecha son:</p>
 	<div class="param">
-		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_001.png' />", array('')) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_001.png' />", array('safari')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Pokémon Safari</h4>', array(''))?>
+			<?php echo CHtml::link('<h4>Pokémon Safari</h4>', array('safari'))?>
 			<p>Tipo y especie de Pokémon que da el usuario por medio de su Friend Code.</p>
 		</div>
 	</div>
 	<div class="param">
-		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_002.png' />", array('')) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_002.png' />", array('tsv')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Trainer Shiny Value</h4>', array('')) ?>
+			<?php echo CHtml::link('<h4>Trainer Shiny Value</h4>', array('tsv')) ?>
 			<p>Busca jugadores que te puedan asegurar huevos shiny por medio del TSV (Trainer shiny value).</p>
 		</div>
 	</div>
 	<div class="param">
-		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_003.png' />", array('')) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_003.png' />", array('duelos')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Interés en duelos</h4>', array(''))?>
+			<?php echo CHtml::link('<h4>Interés en duelos</h4>', array('duelos'))?>
 			<p>Busca jugadores no sólo por preferencia de tipo de duelo (single, doble, triple o rotación) sino que también por Tiers.</p>
 		</div>
 	</div>

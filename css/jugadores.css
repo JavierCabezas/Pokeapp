@@ -1,0 +1,12 @@
+.col_left {
+    background-color: #ddf;
+    float: left;
+}
+.col_mid {
+    background-color: #dfd;
+    float: none;
+}
+.col_right {
+    background-color: #fdd;
+    float: right;
+}

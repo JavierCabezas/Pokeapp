@@ -411,4 +411,44 @@ class JugadoresController extends Controller
     public function actionTsv(){
         $this->render('tsv');
     }
+
+    public function actionSafari(){
+        $gridColumns = array(
+            array(
+                'name' => 'id_pokemon',
+                'header' => 'Pokémon',
+                'value' => '$data->idPokemon->pokemonName',
+            ),
+            array(
+              'type' => 'raw',
+              'value' => 'CHtml::image(Yii::app()->baseUrl . "/images/sprites/".$data->id_pokemon.".png")'
+
+           ),
+            array(
+                'name' => 'slot',
+                'header' => 'Ranura',
+                'value' => '$data->slot',
+            ),
+        );
+        $types = Types::model()->findAll(); 
+
+        $data_providers = array();
+        foreach($types as $type){
+            $data_providers[$type->identifier] = new CActiveDataProvider('PokemonFriendSafari', array(
+                'criteria' => array(
+                    'condition' => 'id_type=' . $type->id)
+                )
+            );
+        }
+
+        $this->render('safari', array(
+            'data_providers'    => $data_providers,
+            'gridColumns'       => $gridColumns,
+            'types'             => $types,
+        ));
+    }
+
+    public function actionDuelos(){
+        $this->render('duelos');
+    }
 }

@@ -4,7 +4,7 @@ class JugadoresModule extends CWebModule
 {
 	public function init()
 	{
-		// import the module-level models and components
+		$this->registerCore();
 		$this->setImport(array(
 			'jugadores.models.*',
 			'jugadores.components.*',
@@ -23,4 +23,9 @@ class JugadoresModule extends CWebModule
 		else
 			return false;
 	}
+
+	protected function registerCore()
+    {
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/jugadores.css');
+    }
 }
