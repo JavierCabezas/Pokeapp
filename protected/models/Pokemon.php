@@ -14,12 +14,15 @@
  * @property integer $is_default
  *
  * The followings are the available model relations:
- * @property PlayerPokemon[] $playerPokemons
+ * @property Player[] $players
+ * @property Player[] $players1
+ * @property Player[] $players2
  * @property PokemonSpecies $species
  * @property PokemonAbilities[] $pokemonAbilities
  * @property PokemonForms[] $pokemonForms
  * @property PokemonFriendSafari[] $pokemonFriendSafaris
  * @property PokemonMoves[] $pokemonMoves
+ * @property PokemonSearchCriteria[] $pokemonSearchCriterias
  * @property PokemonStats[] $pokemonStats
  * @property PokemonTypes[] $pokemonTypes
  */
@@ -59,12 +62,15 @@ class Pokemon extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'playerPokemons' => array(self::HAS_MANY, 'PlayerPokemon', 'id_pokemon'),
+			'players' => array(self::HAS_MANY, 'Player', 'safari_slot_1'),
+			'players1' => array(self::HAS_MANY, 'Player', 'safari_slot_2'),
+			'players2' => array(self::HAS_MANY, 'Player', 'safari_slot_3'),
 			'species' => array(self::BELONGS_TO, 'PokemonSpecies', 'species_id'),
 			'pokemonAbilities' => array(self::HAS_MANY, 'PokemonAbilities', 'pokemon_id'),
 			'pokemonForms' => array(self::HAS_MANY, 'PokemonForms', 'pokemon_id'),
 			'pokemonFriendSafaris' => array(self::HAS_MANY, 'PokemonFriendSafari', 'id_pokemon'),
 			'pokemonMoves' => array(self::HAS_MANY, 'PokemonMoves', 'pokemon_id'),
+			'pokemonSearchCriterias' => array(self::HAS_MANY, 'PokemonSearchCriteria', 'id_pokemon'),
 			'pokemonStats' => array(self::HAS_MANY, 'PokemonStats', 'pokemon_id'),
 			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'pokemon_id'),
 		);
@@ -118,18 +124,7 @@ class Pokemon extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Pokemon the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
+	
 	/**
 	*	Returns the name of the pokémon with the correct capitalization and spacing. (Example: Gardevoir mega instead of gardevoir-mega)
 	*	@return string the name of the pokémon.

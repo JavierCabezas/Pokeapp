@@ -112,7 +112,7 @@ class Items extends CActiveRecord
 	}
 
 	/**
-	 *	Returns the name of the item with capitalization and spacing. (Example: Master Ball instead of master-ball)
+	 *	Returns the name of the item with capitalization and spacing and the spanish name in parenthesis. (Example: Master Ball instead of master-ball)
 	 *	@return string the name of the item.
 	 */
 	public function getItemName()

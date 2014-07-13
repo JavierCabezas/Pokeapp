@@ -1,26 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "abilities".
+ * This is the model class for table "move_names".
  *
- * The followings are the available columns in table 'abilities':
+ * The followings are the available columns in table 'move_names':
  * @property integer $id
- * @property string $identifier
- * @property integer $gen
- * @property integer $is_main_series
+ * @property integer $move_id
+ * @property integer $local_language_id
+ * @property string $name
  *
  * The followings are the available model relations:
- * @property Generations $gen0
- * @property PokemonAbilities[] $pokemonAbilities
+ * @property Languages $localLanguage
+ * @property Moves $move
  */
-class Abilities extends CActiveRecord
+class MoveNames extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'abilities';
+		return 'move_names';
 	}
 
 	/**
@@ -31,12 +31,12 @@ class Abilities extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, identifier, gen, is_main_series', 'required'),
-			array('id, gen, is_main_series', 'numerical', 'integerOnly'=>true),
-			array('identifier', 'length', 'max'=>20),
+			array('move_id, local_language_id, name', 'required'),
+			array('move_id, local_language_id', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>25),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, identifier, gen, is_main_series', 'safe', 'on'=>'search'),
+			array('id, move_id, local_language_id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,8 +48,8 @@ class Abilities extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'gen0' => array(self::BELONGS_TO, 'Generations', 'gen'),
-			'pokemonAbilities' => array(self::HAS_MANY, 'PokemonAbilities', 'ability_id'),
+			'localLanguage' => array(self::BELONGS_TO, 'Languages', 'local_language_id'),
+			'move' => array(self::BELONGS_TO, 'Moves', 'move_id'),
 		);
 	}
 
@@ -60,9 +60,9 @@ class Abilities extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'identifier' => 'Identifier',
-			'gen' => 'Gen',
-			'is_main_series' => 'Is Main Series',
+			'move_id' => 'Move',
+			'local_language_id' => 'Local Language',
+			'name' => 'Name',
 		);
 	}
 
@@ -85,9 +85,9 @@ class Abilities extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('identifier',$this->identifier,true);
-		$criteria->compare('gen',$this->gen);
-		$criteria->compare('is_main_series',$this->is_main_series);
+		$criteria->compare('move_id',$this->move_id);
+		$criteria->compare('local_language_id',$this->local_language_id);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -98,25 +98,10 @@ class Abilities extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Abilities the static model class
+	 * @return MoveNames the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-
-	/**
-	 *	Returns the name of the ability with capitalization, spacing and with the spanish name in parenthesis.
-	 *  Ex: Synchronize (Sincronismo) instead of synchronize.
-	 *	@return string the name of the ability.
-	 */
-	public function getAbilityName()
-	{
-		$spanish = 7;
-		$ability = AbilityNames::model()->findByAttributes(array('ability_id' => $this->id, 'local_language_id' => $spanish));
-		if(isset($ability))
-			return beautify($this->identifier)." (".utf8_decode(beautify($ability->name)).")";
-		else
-			return beautify($this->identifier);
 	}
 }

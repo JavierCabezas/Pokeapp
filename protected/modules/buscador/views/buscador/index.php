@@ -31,11 +31,11 @@
 					</div>
 					<div id="acc_weight" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<p> Mínimo: 0.1[kg] - Máximo: 398[kg] </p>
+							<p> Mínimo: 0.1[kg] - Máximo: 950[kg] </p>
 							<label> Desde: </label>
-							<input type="number" class='weigth_form' name="weight_min" id='weight_min' min="0.1" max="398" step='0.1'>
+							<input type="number" class='weigth_form' name="weight_min" id='weight_min' min="0.1" max="950" step='0.1'>
 							<label> Hasta: </label>
-							<input type="number" class='weigth_form' name="weight_max" id='weight_max' min="0.1" max="398" step='0.1'>
+							<input type="number" class='weigth_form' name="weight_max" id='weight_max' min="0.1" max="950" step='0.1'>
 						</div>
 					</div>
 				</div> 	<!-- end of weight -->
@@ -77,7 +77,7 @@
 				<div class='color'>
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_color">				
-							<h4> Color: </h4>
+							<h4> Color </h4>
 						</a>
 					</div>
 					<div id="acc_color" class="accordion-body collapse">
@@ -95,7 +95,7 @@
 					</div>
 					<div id="acc_egg" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<?php echo CHtml::dropDownList('egg', '', $array_egg_groups, array('empty' => '(Seleccionar grupo)')); ?>
+							<?php echo CHtml::dropDownList('eggie_dropdown', '', $array_egg_groups, array('empty' => '(Seleccionar grupo)')); ?>
 						</div>
 					</div>
 				</div> <!-- End of eggs (hehe) -->
@@ -125,7 +125,42 @@
 						</div>
 					</div>
 				</div> <!-- end of ability -->
+
+				<div class='moves'>
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_moves">
+							<h4> Movimientos </h4>
+						</a>
+					</div>
+					<div id="acc_moves" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<p>
+								<label for='moves_1'> Movimiento 1 </label>
+								<?php echo CHtml::dropDownList('moves_1', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+							</p>
+							<p>
+								<label for='moves_2'> Movimiento 2 </label>
+								<?php echo CHtml::dropDownList('moves_2', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+							</p>
+							<p>
+								<label for='moves_3'> Movimiento 3 </label>
+								<?php echo CHtml::dropDownList('moves_3', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+							</p>
+							<p>
+								<label for='moves_4'> Movimiento 4 </label>
+								<?php echo CHtml::dropDownList('moves_4', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+							</p>
+							
+						</div>
+					</div>
+				</div> <!-- end of ability -->
+
 			</div> <!-- end of accordeon -->
+		
+			<div style="width:40%; margin-right:auto; margin-left:auto">
+				<input id="search-data" type="submit" value="Mostrar resultados!" />
+			</div> <!-- End of search button -->
+		
 		</div> <!-- END OF SEARCH CRITERIA -->
     </div> <!-- end of column1 -->
 </div> <!-- end of comlumn1-wrap -->
@@ -178,6 +213,13 @@
 				<div class='color_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
 			</div>
 		</div>
+
+		<div class='egg_results'>
+			<div class='div_egg'>
+				<p> Grupo Huevo: <span class='egg' id='egg_results'> </span> </p>
+				<div class='egg_remove'> <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar'> </div> 
+			</div>
+		</div>
 	</div>
 	<!-- END OF RESULTS -->
 </div>
@@ -188,9 +230,6 @@
 </div> <!-- end of div_show_results-->
 
 
-<div style="width:40%; margin-right:auto; margin-left:auto">
-	<input id="search-data" type="submit" value="Buscar pokémon" />
-</div>
 
 
 <script>
@@ -199,16 +238,20 @@ $(".weight_results").children().hide();
 $(".gen_results").children().hide();
 $(".type_results").children().hide();
 $(".color_results").children().hide();
+$(".move_results").children().hide();
+$(".egg_results").children().hide();
 
 //Variables
 var gen_calculate = new Array(false, false, false, false, false, false);
-min_height_calculate = -1;
-max_height_calculate = -1;
-min_weight_calculate = -1;
-max_weight_calculate = -1;
-type_1_calculate 	= -1;
-type_2_calculate 	= -1;
-color_calculate 	= -1;
+min_height_calculate 	= -1;
+max_height_calculate 	= -1;
+min_weight_calculate 	= -1;
+max_weight_calculate 	= -1;
+type_1_calculate 		= -1;
+type_2_calculate 		= -1;
+color_calculate 		= -1;
+egg_calculate         	= -1;
+
 //Height
 $(".height_form").change(function(){
 	min = parseFloat($('#height_min').val());
@@ -264,8 +307,8 @@ $(".weigth_form").change(function(){
 		$(".weight_results").children().hide();
 
 	if(is_min_number){
-		min_weight_calculate = min;
-		$('#weight_from').html(' - Desde ' + min + ' [m]');
+		min_weight_calculate = 10*min;
+		$('#weight_from').html(' - Desde ' + min + ' [kg]');
 		$('#weight_from').show();
 	}
 	else{
@@ -274,8 +317,8 @@ $(".weigth_form").change(function(){
 	}
 	
 	if(is_max_number){
-		max_weight_calculate = max;		
-		$('#weight_to').html(' - Hasta ' + max + ' [m]');
+		max_weight_calculate = 10*max;		
+		$('#weight_to').html(' - Hasta ' + max + ' [kg]');
 		$('#weight_to').show();
 	}
 	else{
@@ -371,6 +414,28 @@ $(".color_remove").click(function(){
 });
 //end of color
 
+//Start of egg group
+$("#eggie_dropdown").change(function() {
+	eggie = $('#eggie_dropdown').val();
+	eggie_selected = (eggie != '');
+	if(eggie_selected){		
+		eggie_text = $("#eggie_dropdown").children("option").filter(":selected").text();
+		$(".egg_color").show();
+		$("#egg_result").html(eggie_text);
+		egg_calculate = eggie;
+	}else{
+		egg_calculate = -1;
+        $(".div_egg").hide();
+	}
+});
+
+$(".egg_remove").click(function(){
+	$(".egg_results").children().hide();
+	$("#eggr").val('');
+	egg_calculate = -1;
+});
+//end of egg group
+
 //Ajax link.
 $('#search-data').click(function() {
 	$.ajax({
@@ -389,10 +454,10 @@ $('#search-data').click(function() {
                 type_1: type_1_calculate,
                 type_2: type_2_calculate,
                 color: color_calculate,
+                eggie: egg_calculate,
     	} ,
     	'success': function(data) {
       		$('.div_show_results').html(data);
-
     	}
 	});
 });
