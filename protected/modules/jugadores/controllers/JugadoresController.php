@@ -38,7 +38,7 @@ class JugadoresController extends Controller
                     'view',
                     'tsv',
                     'safari',
-                    'duels',
+                    'duelos',
 
                 ),
                 'users' => array(
@@ -449,6 +449,6 @@ class JugadoresController extends Controller
     }
 
     public function actionDuelos(){
-        $this->render('duelos');
+        $this->render('duels');
     }
 }
