@@ -10,8 +10,8 @@
 </nav>
 
 <div class="infosec">
-	<p>En esta sección pueden buscar a otros jugadores del juego con intereses similares, con un pokémon en específico del Friend Safari (Safari Amigo) o simplemente conocer gente nueva.</p>
-	<p>Los parámetros actuales que se están guardando en el módulo hasta la fecha son:</p>
+	<p>Esta sección fue pensada para poder crear tu perfil con tus intereses de juego y además el poder buscar el de otros jugadores. Puedes buscar jugadores bajo los siguientes parámetros:</p>
+	
 	<div class="param">
 		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_001.png' />", array('safari')) ?>
 		<div class="info">
