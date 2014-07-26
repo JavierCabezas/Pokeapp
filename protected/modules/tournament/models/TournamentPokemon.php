@@ -52,7 +52,7 @@ class TournamentPokemon extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_tournament_player, id_pokemon_species, id_ability, id_nature, id_move1, level, hp, atk, def, spa, spd, spe', 'required'),
+			array('id_pokemon_species, id_ability, id_nature, id_move1, level, hp, atk, def, spa, spd, spe', 'required'),
 			array('id_tournament_player, id_pokemon_species, id_ability, id_nature, id_item, id_move1, id_move2, id_move3, id_move4, level, hp, atk, def, spa, spd, spe', 'numerical', 'integerOnly'=>true),
 			array('nickname', 'length', 'max'=>12),
 			// The following rule is used by search().
@@ -90,22 +90,22 @@ class TournamentPokemon extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_tournament_player' => 'Id Tournament Player',
-			'id_pokemon_species' => 'Id Pokemon Species',
-			'nickname' => 'Nickname',
-			'id_ability' => 'Id Ability',
-			'id_nature' => 'Id Nature',
-			'id_item' => 'Id Item',
-			'id_move1' => 'Id Move1',
-			'id_move2' => 'Id Move2',
-			'id_move3' => 'Id Move3',
-			'id_move4' => 'Id Move4',
-			'level' => 'Level',
-			'hp' => 'Hp',
-			'atk' => 'Atk',
-			'def' => 'Def',
-			'spa' => 'Spa',
-			'spd' => 'Spd',
-			'spe' => 'Spe',
+			'id_pokemon_species' => 'Pokémon',
+			'nickname' => 'Nickname (mote)',
+			'id_ability' => 'Habilidad',
+			'id_nature' => 'Naturaleza',
+			'id_item' => 'Item',
+			'id_move1' => 'Movimiento 1',
+			'id_move2' => 'Movimiento 2',
+			'id_move3' => 'Movimiento 3',
+			'id_move4' => 'Movimiento 4',
+			'level' => 'Nivel',
+			'hp' => 'Hit points (Puntos de impacto)',
+			'atk' => 'Attack (Ataque)',
+			'def' => 'Defensa (Defense)',
+			'spa' => 'Special Attack (Ataque especial)',
+			'spd' => 'Special Defense (Defensa especial)',
+			'spe' => 'Speed (Velocidad)',
 		);
 	}
 
