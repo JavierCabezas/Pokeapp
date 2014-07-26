@@ -16,23 +16,22 @@ class UserIdentity extends CUserIdentity
             if(($user_player === null)&&(!($user_admin === null))){
                 if(!$user_admin->validatePassword($this->password)){
                     $this->errorCode=self::ERROR_PASSWORD_INVALID;
-                    //return $this->errorCode==self::ERROR_PASSWORD_INVALID;
+                    return $this->errorCode==self::ERROR_PASSWORD_INVALID;
                 }else{ //Everything went fine and the user is an admin.
                     $this->_id=$user_admin->id;
                     $this->username=$user_admin->user;
                     $this->errorCode=self::ERROR_NONE;
-                    //return $this->errorCode==self::ERROR_NONE;
+                    return $this->errorCode==self::ERROR_NONE;
                 }
             }//end if for admin
             else if(($user_admin === null)&&(!($user_player === null))){
-                if(!$user_player->code == hash('sha512', $this->password)) {
-                    var_dump('contraseña_invalida');
+                if(!($user_player->code == hash('sha512', $this->password))) {
                     $this->errorCode=self::ERROR_PASSWORD_INVALID;
                 }else{ //Everything went fine, and the user is a player.
                     $this->_id=$user_player->id;
                     $this->username=$user_player->mail;
                     $this->errorCode=self::ERROR_NONE;
-                    //return $this->errorCode==self::ERROR_NONE;
+                    return $this->errorCode==self::ERROR_NONE;
                 }
             }else{ //The user isn't an admin or a player....
                 $this->errorCode=self::ERROR_USERNAME_INVALID;
