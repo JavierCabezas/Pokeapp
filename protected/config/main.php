@@ -24,6 +24,7 @@ return array(
         'stats',        //Stats calculator.
         'buscador',     //Pokémon search tool.
         'jugadores',    //Player search tool.
+        'tournament',   //Tournament pokémon registration module.
 
         'gii' => array(
             'class' => 'system.gii.GiiModule',
@@ -52,6 +53,8 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                'torneo'                   => 'tournament/tournament/index',
+                'torneo/<page>'            => 'tournament/tournament/<page>',
                 'buscador'                 => 'buscador/buscador/index',
                 'jugadores'                => 'jugadores/jugadores/index',
                 'jugadores/crear'          => 'jugadores/jugadores/create',
