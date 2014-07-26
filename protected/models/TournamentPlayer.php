@@ -34,7 +34,7 @@ class TournamentPlayer extends CActiveRecord
 		return array(
 			array('nombre, mail, code', 'required'),
 			array('nombre, mail', 'length', 'max'=>100),
-			array('code', 'length', 'max'=>32),
+			array('code', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, nombre, mail, code', 'safe', 'on'=>'search'),
