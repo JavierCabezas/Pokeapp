@@ -4,7 +4,7 @@ $globals = dirname(__FILE__).'/protected/globals.php';
 require_once($globals);
 
 // change the following paths if necessary
-$yii=dirname(__FILE__).'/../Yii/framework/yii.php';
+$yii=dirname(__FILE__).'/Yii/framework/yii.php';
 $config=dirname(__FILE__).'/protected/config/main.php';
 
 define('YII_DEBUG',true);
