@@ -39,18 +39,27 @@
 				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/autor.png" width="220" height="100" />', array('/sobre_mi')) ?></li>
 			</ul>
 		</nav>
+
+		<?php if(Admin::model()->isAdmin()): ?>
+			<p> Estás logeado como admin con nombre <?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+		<?php endif;?>
+
+		<?php if( (!Admin::model()->isAdmin()) && ( isset(Yii::app()->user->id) )): ?>
+			<p> Estás logeado/a como <b><?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+		<?php endif;?>
+	
 	</div><!-- mainmenu -->
 	
 
-	<?php if(Admin::model()->isAdmin()): ?>
-		<p> Estás logeado como admin con nombre <?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
-	<?php endif;?>
+
 
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
+
+
 
 	<?php echo $content; ?>
 
