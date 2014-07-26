@@ -148,8 +148,8 @@ class Moves extends CActiveRecord
 	{
 		$spanish = 7;
 		$move = MoveNames::model()->findByAttributes(array('move_id' => $this->id, 'local_language_id' => $spanish));
-		if(isset($move))
-			return beautify($this->identifier)." (".utf8_decode(beautify($move->name)).")";
+		if(isset($move->name))
+			return beautify($this->identifier)." (".beautify($move->name).")";
 		else
 			return beautify($this->identifier);
 	}
