@@ -55,7 +55,10 @@ class TournamentController extends Controller
 
 	public function actionIndex()
 	{
-		$this->render('index');
+        if(!isset(Yii::app()->user->id))
+    		$this->render('index');
+        else
+            $this->redirect(array('/torneo/miEquipo'));
 	}
 
 	public function actionUserMenu(){
@@ -68,7 +71,7 @@ class TournamentController extends Controller
 			'id_tournament'		   => $next_tournament->id
 		));
 
-		$user_pokemon = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+		$user_pokemon = TournamentPokemon::model()->findAllByAttributes(array(
 			'id_tournament_player' => Yii::app()->user->id,
 		));
 

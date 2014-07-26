@@ -1,18 +1,21 @@
+<?php $this->setPageTitle('Pokéapp - Actualizando pokémon para torneo'); ?>
+
 <?php
 $this->breadcrumbs=array(
-	'Tournament Pokemons'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	'Torneo'=>array('/torneo'),
+	'Mi equipo'=>array('/torneo/miEquipo'),
+	'Actualizando a '.$model->pokemonName,
 );
+?>
 
-	$this->menu=array(
-	array('label'=>'List TournamentPokemon','url'=>array('index')),
-	array('label'=>'Create TournamentPokemon','url'=>array('create')),
-	array('label'=>'View TournamentPokemon','url'=>array('view','id'=>$model->id)),
-	array('label'=>'Manage TournamentPokemon','url'=>array('admin')),
-	);
-	?>
+<h1>Agregar nuevo pokémon</h1>
 
-	<h1>Update TournamentPokemon <?php echo $model->id; ?></h1>
-
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form', array(
+	'model'				=> $model,
+    'array_ability'		=> $array_ability,
+    'array_moves'		=> $array_moves,
+    'array_pokemon'		=> $array_pokemon,
+    'array_nature'		=> $array_nature,
+    'array_item'		=> $array_item,
+    'array_tournament'	=> $array_tournament,
+)); ?>

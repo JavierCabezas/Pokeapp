@@ -44,13 +44,17 @@
 		?>
 
 
-		<label class="required" for="TournamentPokemon_id_item"> Item <span class="required">*</span> </label>
+		<label class="required" for="TournamentPokemon_id_item"> Item </label>
 		<?php
 			$this->widget(
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_item]',
 					'data' => $array_item,
+					'options' => array(
+						'allowClear'=>true,
+						'placeholder' => 'Elige un objeto'
+					),
 				)
 			);
 		?>
@@ -71,8 +75,12 @@
 			$this->widget(
 				'bootstrap.widgets.TbSelect2',
 				array(
-					'name' => 'TournamentPokemon[id_move2]',
-					'data' => $array_moves,
+					'name' 			=> 'TournamentPokemon[id_move2]',
+					'data' 			=> $array_moves,
+					'options' 		=> array(
+						'allowClear'=>true,
+						'placeholder' => 'Elige un movimiento'
+					),
 				)
 			);
 		?>
@@ -84,6 +92,10 @@
 				array(
 					'name' => 'TournamentPokemon[id_move3]',
 					'data' => $array_moves,
+					'options' => array(
+						'allowClear'=>true,
+						'placeholder' => 'Elige un movimiento'
+					),
 				)
 			);
 		?>
@@ -93,13 +105,21 @@
 			$this->widget(
 				'bootstrap.widgets.TbSelect2',
 				array(
-					'name' => 'TournamentPokemon[id_move4]',
-					'data' => $array_moves,
+					'name' 			=> 'TournamentPokemon[id_move4]',
+					'data' 			=> $array_moves,
+					'options' => array(
+						'allowClear'=>true,
+						'placeholder' => 'Elige un movimiento'
+					),
 				)
 			);
 		?>
+		<label class="required" for="torneo"> Inscribir al pokémon en un torneo? </label>
+		<?php echo CHtml::dropDownList('torneo', '' , $array_tournament, array('empty' => '(Seleccionar torneo)', 'class' => 'span5')); ?>
+	
 	</div>
 </div>
+
 <div id="column2_50">
 	<?php echo $form->textFieldRow($model,'nickname',array('class'=>'span5','maxlength'=>12)); ?>
 
@@ -118,11 +138,12 @@
 	<?php echo $form->numberFieldRow($model,'spe',array('class'=>'span5', 'min' => 1)); ?>
 </div>
 <div class='clear'> </div>
+
 <div class="form-actions">
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+			'label'=>$model->isNewRecord ? 'Crear' : 'Actualizar',
 		)); ?>
 </div>
 

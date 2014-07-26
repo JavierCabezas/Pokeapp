@@ -1,3 +1,5 @@
+<?php $this->setPageTitle('Pokéapp - Crear  pokémon para torneo'); ?>
+
 <?php
 $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
@@ -15,4 +17,5 @@ $this->breadcrumbs=array(
     'array_pokemon'		=> $array_pokemon,
     'array_nature'		=> $array_nature,
     'array_item'		=> $array_item,
+    'array_tournament'	=> $array_tournament,
 )); ?>

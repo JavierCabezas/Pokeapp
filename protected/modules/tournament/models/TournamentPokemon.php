@@ -161,4 +161,17 @@ class TournamentPokemon extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 *	Returns the name of the pokémon considering the nickname. 
+	 *	In case the pokémon has a nickname it returns the pokémon nickname followed by the pokémon species in parenthesis. Ex: For a gardevoir nicknamed Sabrina it returns Sabrina (Gardevoir).
+	 *	In case the pokémon doesen't have a nickname it returns the pokémon species (boring) Ex: Gardevoir.
+	 *	@return string the pokémon name.
+	 */
+	public function getPokemonName(){
+		if($this->nickname)
+			return $this->nickname . ' ('.beautify($this->idPokemonSpecies->identifier).')';
+		else
+			return beautify($this->idPokemonSpecies->identifier);
+	}
 }

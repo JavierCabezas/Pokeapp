@@ -1,3 +1,5 @@
+<?php $this->setPageTitle('Pokéapp - Inscripción de pokémon para torneos'); ?>
+
 <h1> Inscripción de equipos </h1>
 
 <p> 

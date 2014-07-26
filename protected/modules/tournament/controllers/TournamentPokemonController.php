@@ -27,33 +27,15 @@ class TournamentPokemonController extends Controller
     {
         return array(
             array(
-                'allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array(
-                    'index',
-                    'view'
-                ),
-                'users' => array(
-                    '*'
-                )
-            ),
-            array(
                 'allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions' => array(
                     'create',
-                    'update'
+                    'update',
+                    'view',
+                    'delete',
                 ),
                 'users' => array(
                     '@'
-                )
-            ),
-            array(
-                'allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array(
-                    'admin',
-                    'delete'
-                ),
-                'users' => array(
-                    'admin'
                 )
             ),
             array(
@@ -71,9 +53,13 @@ class TournamentPokemonController extends Controller
      */
     public function actionView($id)
     {
-        $this->render('view', array(
-            'model' => $this->loadModel($id)
-        ));
+        $model = TournamentPokemon::model()->findByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id' => $id));
+        if(isset($model))
+            $this->render('view', array(
+                'model' => $this->loadModel($id)
+            ));
+        else
+            throw new CHttpException(403, 'No estás autorizado a ver pokémon de otros jugadores.');
     }
     
     /**
@@ -86,12 +72,12 @@ class TournamentPokemonController extends Controller
         $criteria = new CDbCriteria;
         $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
 
-
         $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
 		$array_moves		= CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
 		$array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
         $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
         $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
+        $array_tournament   = CHtml::listData(Tournament::model()->findAll(), 'id', 'name');
         
         if (isset($_POST['TournamentPokemon'])) {
             $model->attributes = $_POST['TournamentPokemon'];
@@ -110,6 +96,7 @@ class TournamentPokemonController extends Controller
             'array_pokemon'	    => $array_pokemon,
             'array_nature'      => $array_nature,
             'array_item'        => $array_item,
+            'array_tournament'  => $array_tournament,
         ));
     }
     
@@ -120,23 +107,35 @@ class TournamentPokemonController extends Controller
      */
     public function actionUpdate($id)
     {
-        $model = $this->loadModel($id);
-        
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        
-        if (isset($_POST['TournamentPokemon'])) {
-            $model->attributes = $_POST['TournamentPokemon'];
-            if ($model->save())
-                $this->redirect(array(
-                    'view',
-                    'id' => $model->id
-                ));
+        $model = TournamentPokemon::model()->findByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id' => $id));
+        if(isset($model)){
+            $criteria = new CDbCriteria;
+            $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
+            $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
+            $array_moves        = CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
+            $array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
+            $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
+            $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
+            $array_tournament   = CHtml::listData(Tournament::model()->findAll(), 'id', 'name');
+
+            if (isset($_POST['TournamentPokemon'])) {
+                $model->attributes = $_POST['TournamentPokemon'];
+                if ($model->save())
+                    $this->redirect('torneo/verPokemon/'.$model->id);
+            }
+            
+            $this->render('update', array(
+                'model'             => $model,
+                'array_ability'     => $array_ability,
+                'array_moves'       => $array_moves,
+                'array_pokemon'     => $array_pokemon,
+                'array_nature'      => $array_nature,
+                'array_item'        => $array_item,
+                'array_tournament'  => $array_tournament,
+            ));
+        }else{
+             throw new CHttpException(403, 'No estás autorizado a editar pokémon de otros jugadores.');
         }
-        
-        $this->render('update', array(
-            'model' => $model
-        ));
     }
     
     /**
@@ -146,17 +145,26 @@ class TournamentPokemonController extends Controller
      */
     public function actionDelete($id)
     {
-        if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-            
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array(
-                    'admin'
-                ));
+        $model = TournamentPokemon::model()->findByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id' => $id));
+        if(isset($model)){
+            echo "holi";
+            $transaction = Yii::app()->db->beginTransaction();
+            try {
+                $pokemons_in_tournament = TournamentPlayerPokemon::model()->findAllByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id_tournament_pokemon' => $id));
+                foreach($pokemons_in_tournament as $pokemon_in_tournament){
+                    $pokemon_in_tournament->delete();
+                }
+                $this->loadModel($id)->delete();
+               $transaction->commit();
+                Yii::app()->user->setFlash("success","Se borró a ".$model->pokemonName." con éxito");
+                $this->redirect(array('/torneo/miEquipo'));
+            }catch(CException $e) {
+                    $transaction->rollback();
+                    Yii::app()->user->setFlash('error',"Ha ocurrido un error con el borrado. Por favor inténtalo nuevamente.");
+                    $this->redirect(array('/torneo/verPokemon/', 'id' =>$id));
+            }
         } else
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, 'No puedes borrar pokémon de otros jugadores.');
     }
     
     /**
@@ -167,21 +175,6 @@ class TournamentPokemonController extends Controller
         $dataProvider = new CActiveDataProvider('TournamentPokemon');
         $this->render('index', array(
             'dataProvider' => $dataProvider
-        ));
-    }
-    
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin()
-    {
-        $model = new TournamentPokemon('search');
-        $model->unsetAttributes(); // clear any default values
-        if (isset($_GET['TournamentPokemon']))
-            $model->attributes = $_GET['TournamentPokemon'];
-        
-        $this->render('admin', array(
-            'model' => $model
         ));
     }
     
