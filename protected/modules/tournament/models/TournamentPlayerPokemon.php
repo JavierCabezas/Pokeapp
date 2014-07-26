@@ -6,13 +6,13 @@
  * The followings are the available columns in table 'tournament_player_pokemon':
  * @property integer $id
  * @property integer $id_tournament
- * @property integer $id_pokemon
+ * @property integer $id_tournament_pokemon
  * @property integer $id_tournament_player
  *
  * The followings are the available model relations:
- * @property TournamentPlayer $idTournamentPlayer
+ * @property TournamentPokemon $idTournamentPokemon
  * @property Tournament $idTournament
- * @property PokemonSpecies $idPokemon
+ * @property TournamentPlayer $idTournamentPlayer
  */
 class TournamentPlayerPokemon extends CActiveRecord
 {
@@ -32,11 +32,11 @@ class TournamentPlayerPokemon extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_tournament, id_pokemon, id_tournament_player', 'required'),
-			array('id_tournament, id_pokemon, id_tournament_player', 'numerical', 'integerOnly'=>true),
+			array('id_tournament, id_tournament_pokemon, id_tournament_player', 'required'),
+			array('id_tournament, id_tournament_pokemon, id_tournament_player', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_tournament, id_pokemon, id_tournament_player', 'safe', 'on'=>'search'),
+			array('id, id_tournament, id_tournament_pokemon, id_tournament_player', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,9 +48,9 @@ class TournamentPlayerPokemon extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idTournamentPlayer' => array(self::BELONGS_TO, 'TournamentPlayer', 'id_tournament_player'),
+			'idTournamentPokemon' => array(self::BELONGS_TO, 'TournamentPokemon', 'id_tournament_pokemon'),
 			'idTournament' => array(self::BELONGS_TO, 'Tournament', 'id_tournament'),
-			'idPokemon' => array(self::BELONGS_TO, 'PokemonSpecies', 'id_pokemon'),
+			'idTournamentPlayer' => array(self::BELONGS_TO, 'TournamentPlayer', 'id_tournament_player'),
 		);
 	}
 
@@ -62,7 +62,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_tournament' => 'Id Tournament',
-			'id_pokemon' => 'Id Pokemon',
+			'id_tournament_pokemon' => 'Id Tournament Pokemon',
 			'id_tournament_player' => 'Id Tournament Player',
 		);
 	}
@@ -87,7 +87,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('id_tournament',$this->id_tournament);
-		$criteria->compare('id_pokemon',$this->id_pokemon);
+		$criteria->compare('id_tournament_pokemon',$this->id_tournament_pokemon);
 		$criteria->compare('id_tournament_player',$this->id_tournament_player);
 
 		return new CActiveDataProvider($this, array(
