@@ -54,6 +54,10 @@ return array(
             'showScriptName' => false,
             'rules' => array(
                 'torneo'                   => 'tournament/tournament/index',
+                'torneo/miEquipo'          => 'tournament/tournament/userMenu',
+                'torneo/agregarPokemon'    => 'tournament/tournamentPokemon/create',
+                'torneo/pokemonTorneo'     => 'tournament/tournamentPokemon/admin',
+                'torneo/modificarPokemon'  => 'tournament/tournamentPokemon/modifyPokemon',
                 'torneo/<page>'            => 'tournament/tournament/<page>',
                 'buscador'                 => 'buscador/buscador/index',
                 'jugadores'                => 'jugadores/jugadores/index',

@@ -61,17 +61,22 @@ class TournamentController extends Controller
 	public function actionUserMenu(){
 		$user = TournamentPlayer::model()->findByPk(Yii::app()->user->id);
 
-		$next_torunament = Tournament::model()->findByAttributes(array('active' => 1));
+		$next_tournament = Tournament::model()->findByAttributes(array('active' => 1));
 		
+		$user_tournament_pokemon = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+			'id_tournament_player' => Yii::app()->user->id,
+			'id_tournament'		   => $next_tournament->id
+		));
+
 		$user_pokemon = TournamentPlayerPokemon::model()->findAllByAttributes(array(
 			'id_tournament_player' => Yii::app()->user->id,
-			'id_tournament'		   => $next_torunament->id
 		));
 
 		$this->render('userMenu', array(
-			'username' 			=> $user->mail,
-			'next_tournament'	=> $next_tournament,
-			'user_pokemon'		=> $dataprovider,
+			'username' 					=> $user->mail,
+			'next_tournament'			=> beautify($next_tournament->name),
+			'user_tournament_pokemon'	=> $user_tournament_pokemon,
+			'user_pokemon'				=> $user_pokemon,
 		));
 	}
 }

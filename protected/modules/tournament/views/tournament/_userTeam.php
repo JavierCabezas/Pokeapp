@@ -1,60 +1,94 @@
 <?php if($pokeymans): //Si tiene pokémon en el equipo desplegarlos ?>
-     <p> Equipo con <?php echo count($pokeymans) ?> pokémon registrados </p>
-    </br>
+    <p> <?php echo count($pokeymans) ?> pokémon. Para ver más detalle de cualquiera de tus pokémon haz click sobre su nombre. </p>
     </br>
      <?php foreach($pokeymans as $pokeyman): ?>
-        <h1>     
-            <img src="<?php echo Yii::app()->params['dominio'];?>/images/animated_sprite/no_shiny/<?php echo sprintf('%03d',$pokeyman->id_pokemon)?>.gif">  
-            <?php echo beautify($poke_name) ?>
-        </h1>
-        
-        <?php $this->widget('bootstrap.widgets.TbDetailView',array(
-        'data'=>$pokeyman,
+
+
+        <!-- inicio accordeon -->
+<div class="accordion-group">
+<div class="accordion-heading">
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<?php echo $pokeyman->id ?>">
+        <h2>
+            <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.$pokeyman->idTournamentPokemon->idPokemonSpecies->identifier.'.gif'); ?>
+            <?php echo beautify($pokeyman->idTournamentPokemon->idPokemonSpecies->identifier) ?>
+            <?php echo $pokeyman->idTournamentPokemon->nickname? '('.$pokeyman->idTournamentPokemon->nickname.')': '' ?>
+        </h2>
+</a>
+</div>
+<div id="<?php echo $pokeyman->id ?>" class="accordion-body collapse">
+    <div class="accordion-inner">
+       <?php $this->widget('bootstrap.widgets.TbDetailView',array(
+        'data'=>$pokeyman->idTournamentPokemon->idPokemonSpecies,
         'attributes'=>array(
             array(
                 'name' => 'nickname',
-                'value' => $pokeyman->nickname?$pokeyman->nickname:"Ninguno",
+                'value' => $pokeyman->idTournamentPokemon->nickname?$pokeyman->idTournamentPokemon->nickname:"Ninguno",
             ),
             array(
-                'name' => 'id_hability',
-                'header' => 'Habilidad',
-                'value' => ucfirst($pokeyman->idAbility->identifier),
+                'name' => 'Habilidad',
+                'value' => beautify($pokeyman->idTournamentPokemon->idAbility->abilityName),
             ),
             array(
-                'name' => 'id_nature',
-                'value' => ucfirst($pokeyman->idNature->identifier),
+                'name' => 'Naturaleza',
+                'value' => beautify($pokeyman->idTournamentPokemon->idNature->natureName),
             ),
             array(
-                'name' => 'id_item',
-                'value' => $pokeyman->idItem?ucfirst($pokeyman->idItem->identifier):"Ninguno",
-            ),
-            'nivel',
-            array(
-                'name' => 'id_move1',
-                'value' => ucfirst($pokeyman->idMove1->identifier),
+                'name' => 'Item',
+                'value' => $pokeyman->idTournamentPokemon->idItem?ucfirst($pokeyman->idTournamentPokemon->idItem->itemName):"Ninguno",
             ),
             array(
-                'name' => 'id_move2',
-                'value' => $pokeyman->idMove2?ucfirst($pokeyman->idMove2->identifier):"Ninguno",
+                'name' => 'Nivel',
+                'value' => $pokeyman->idTournamentPokemon->level,
             ),
             array(
-                'name' => 'id_move3',
-                'value' => $pokeyman->idMove3?ucfirst($pokeyman->idMove3->identifier):"Ninguno",
+                'name' => 'Movimiento 1',
+                'value' => beautify($pokeyman->idTournamentPokemon->idMove1->moveName),
             ),
             array(
-                'name' => 'id_move4',
-                'value' => $pokeyman->idMove4?ucfirst($pokeyman->idMove4->identifier):"Ninguno",
+                'name' => 'Movimiento 2',
+                'value' => $pokeyman->idTournamentPokemon->idMove2?ucfirst($pokeyman->idTournamentPokemon->idMove2->moveName):"Ninguno",
             ),
-            'hp',
-            'atk',
-            'def',
-            'spa',
-            'spd',
-            'spe',
+            array(
+                'name' => 'Movimiento 3',
+                'value' => $pokeyman->idTournamentPokemon->idMove3?ucfirst($pokeyman->idTournamentPokemon->idMove3->moveName):"Ninguno",
+            ),
+            array(
+                'name' => 'Movimiento 4',
+                'value' => $pokeyman->idTournamentPokemon->idMove4?ucfirst($pokeyman->idTournamentPokemon->idMove4->moveName):"Ninguno",
+            ),
+            array(
+                'name' => 'Hit points ',
+                'value' => $pokeyman->idTournamentPokemon->hp,
+            ),
+            array(
+                'name' => 'Attack ',
+                'value' => $pokeyman->idTournamentPokemon->atk,
+            ),
+            array(
+                'name' => 'Defense ',
+                'value' => $pokeyman->idTournamentPokemon->def,
+            ),
+            array(
+                'name' => 'Special Attack ',
+                'value' => $pokeyman->idTournamentPokemon->spa,
+            ),
+            array(
+                'name' => 'Special Defense ',
+                'value' => $pokeyman->idTournamentPokemon->spd,
+            ),
+            array(
+                'name' => 'Speed ',
+                'value' => $pokeyman->idTournamentPokemon->spe,
+            ),
         ),
         )); ?>
+        </div>
+    </div>
+</div><!-- fin accordeon -->
+
+        
      <?php endforeach; ?>
 <?php else: // Caso sin pokémons en equipos ?>
 
-    <p><b> El jugador no tiene pokémon registrados en su equipo </b> </p>
+    <p><b> El jugador no tiene pokémon registrados en su equipo </b>. </p>
 <?php endif; ?>
