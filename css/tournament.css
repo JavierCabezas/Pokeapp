@@ -13,3 +13,12 @@
 #clear {
     clear: both;
 }
+
+#column1_50 {
+    margin-right: 50%;
+}
+#column2_50 {
+    float: left;
+    width: 50%;
+    margin-left: -50%;
+}
