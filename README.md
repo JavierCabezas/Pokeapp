@@ -14,9 +14,9 @@ Friend Code, pokémon in Friend Safari, TSV and duel interest.
 - Tournament module: An online team registration tool intented for tournaments.
 
 You are totally free to use this code as you see fit, just please remember to give me credit for it. Also I got help from:
--The Cave of the Dragonflies (www.dragonflycave.com) for the capture mechanic algorithms. Thanks a lot!
--Veekun's pokédex for the database. This project would be impossible without that information, thanks!
--www.pkparaiso.com for many of the sprites used in the program.
+- The Cave of the Dragonflies (www.dragonflycave.com) for the capture mechanic algorithms. Thanks a lot!
+- Veekun's pokédex for the database. This project would be impossible without that information, thanks!
+- PkParaiso (www.pkparaiso.com) for many of the sprites used in the program.
 
 Español:
 
@@ -31,6 +31,6 @@ con intereses comunes para jugar. Ahora mismo se puede ingresar el Código de am
 - Módulo de torneos: Una herramienta de inscripción de equipos de forma online pensada para organización de torneos.
 
 Cualquiera es totalmente libre de usar el código para lo que estime conveniente, tan solo espero que me den crédito por eso. Además aprovecho de darle las gracias a:
--The Cave of the Dragonflies (www.dragonflycave.com) por los algoritmos de captura que uso en esta sección, muchas gracias!
--Veekun's pokédex por la base de datos. Estos chicos han hecho un trabajo increíble juntando información y el proyecto no podría haber sido hecho sin ella. Muchas gracias!
--www.pkparaiso.com para mucho de los sprites que estoy usando en el programa
+- The Cave of the Dragonflies (www.dragonflycave.com) por los algoritmos de captura que uso en esta sección, muchas gracias!
+- Veekun's pokédex por la base de datos. Estos chicos han hecho un trabajo increíble juntando información y el proyecto no podría haber sido hecho sin ella. Muchas gracias!
+- PkParaiso (www.pkparaiso.com) para mucho de los sprites que estoy usando en el programa
