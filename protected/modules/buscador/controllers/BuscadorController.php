@@ -65,9 +65,11 @@ class BuscadorController extends Controller
                 $params['max_weight'] =  intval($_POST['max_weight']);
             }
 			//END OF WEIGHT
-
+            $criteria->addCondition('species.color_id = :color');
 
             //TYPES
+            
+
             //SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=18) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=14) as B WHERE A.pokemon_id = B.pokemon_id
             /*
             if( ($_POST['type_1'] != -1) && ($_POST['type_2']) ) {

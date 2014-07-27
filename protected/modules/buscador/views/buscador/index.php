@@ -136,21 +136,53 @@
 						<div class="accordion-inner">
 							<p>
 								<label for='moves_1'> Movimiento 1 </label>
-								<?php echo CHtml::dropDownList('moves_1', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+								<?php
+									$this->widget('bootstrap.widgets.TbSelect2',
+										array(
+											'name' => 'moves_1',
+											'data' => $array_moves,
+											'htmlOptions' => array( 'multiple' => false),
+										)
+									);
+								?>
 							</p>
 							<p>
 								<label for='moves_2'> Movimiento 2 </label>
-								<?php echo CHtml::dropDownList('moves_2', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+								<?php
+									$this->widget('bootstrap.widgets.TbSelect2',
+										array(
+											'name' => 'moves_2',
+											'data' => $array_moves,
+											'htmlOptions' => array( 'multiple' => false,  'allowClear' => true ),
+										)
+									);
+								?>
 							</p>
 							<p>
 								<label for='moves_3'> Movimiento 3 </label>
-								<?php echo CHtml::dropDownList('moves_3', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+								<?php
+									$this->widget('bootstrap.widgets.TbSelect2',
+										array(
+											'name' => 'moves_3',
+											'data' => $array_moves,
+											'htmlOptions' => array( 'multiple' => false),
+										)
+									);
+								?>
+
 							</p>
 							<p>
 								<label for='moves_4'> Movimiento 4 </label>
-								<?php echo CHtml::dropDownList('moves_4', '', $array_moves, array('empty' => '(Seleccionar movimiento)')); ?>
+								<?php
+									$this->widget('bootstrap.widgets.TbSelect2',
+										array(
+											'name' => 'moves_4',
+											'data' => $array_moves,
+											'htmlOptions' => array( 'multiple' => false),
+										)
+									);
+								?>
 							</p>
-							
 						</div>
 					</div>
 				</div> <!-- end of ability -->
