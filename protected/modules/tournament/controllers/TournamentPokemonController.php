@@ -120,8 +120,18 @@ class TournamentPokemonController extends Controller
 
             if (isset($_POST['TournamentPokemon'])) {
                 $model->attributes = $_POST['TournamentPokemon'];
-                if ($model->save())
+                if ($model->save()){
+                    if($_POST['torneo']){
+                        echo $_POST['torneo'];
+                        //Add the pokémon to the tournament in case the player selected it.
+                        $tournament_player_pokemon = new TournamentPlayerPokemon();
+                        $tournament_player_pokemon->id_tournament           = $_POST['torneo'];
+                        $tournament_player_pokemon->id_tournament_pokemon   = $model->id;
+                        $tournament_player_pokemon->id_tournament_player    = Yii::app()->user->id;
+                        $tournament_player_pokemon->save();
+                    }
                     $this->redirect('torneo/verPokemon/'.$model->id);
+                }
             }
             
             $this->render('update', array(

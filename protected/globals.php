@@ -68,3 +68,11 @@ function roundUp($i){
 	else
 		return (intval($i)+1);
 }
+
+/**
+ * 	Generates a random password from 5 to 10 characters long.
+ */
+function generatePassword(){
+	$rand = rand(5, 10);
+	return substr(md5(uniqid(mt_rand(), true)), 0, $rand);	
+}

@@ -23,6 +23,8 @@ class TournamentController extends Controller
                 'allow',
                 'actions' => array(
                     'index',
+                    'registration',
+                    'resetPassword',
                 ),
                 'users' => array(
                     '*'
@@ -61,7 +63,11 @@ class TournamentController extends Controller
             $this->redirect(array('/torneo/miEquipo'));
 	}
 
-	public function actionUserMenu(){
+    /**
+     *  Displays the main user menu. Over here you can see your current teams and make modifications to them.
+     */
+	public function actionUserMenu()
+    {
 		$user = TournamentPlayer::model()->findByPk(Yii::app()->user->id);
 
 		$next_tournament = Tournament::model()->findByAttributes(array('active' => 1));
@@ -82,4 +88,10 @@ class TournamentController extends Controller
 			'user_pokemon'				=> $user_pokemon,
 		));
 	}
+
+
+    public function actionResetPassword()
+    {
+        $this->render('resetPassword');
+    }
 }

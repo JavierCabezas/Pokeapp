@@ -23,9 +23,9 @@
 		<?php endif; ?>
 
 		<!-- Aquí podría ir un separador o algo así -->
-
+		<div class='clear'> &nbsp; </div>
 		<?php if(!is_null($next_tournament)): ?>
-			<h2> Todos mi pokémon </h2>
+			<h2> Todos mis pokémon </h2>
 
 			<?php $this->renderPartial('_userTeam', array(
 				'pokeymans' => $user_pokemon

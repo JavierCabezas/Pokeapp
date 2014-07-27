@@ -16,6 +16,8 @@
  */
 class TournamentPlayer extends CActiveRecord
 {
+	public $folio; //To store the folio when creating the profile.
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -32,9 +34,12 @@ class TournamentPlayer extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nombre, mail, code', 'required'),
+			array('nombre, mail', 'required'),
+			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => false, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
 			array('nombre, mail', 'length', 'max'=>100),
 			array('code', 'length', 'max'=>128),
+			array('mail', 'email'),
+			array('mail', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, nombre, mail, code', 'safe', 'on'=>'search'),
@@ -63,8 +68,9 @@ class TournamentPlayer extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nombre' => 'Nombre',
-			'mail' => 'Mail',
+			'mail' => 'Correo electrónico',
 			'code' => 'Code',
+			'folio' => 'Foto de tu entrada (con folio visible)'
 		);
 	}
 

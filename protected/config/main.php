@@ -42,19 +42,20 @@ return array(
     // application components
     'components' => array(
         'user' => array(
-            // enable cookie-based authentication
             'allowAutoLogin' => true
         ),
         'bootstrap' => array(
             'class' => 'bootstrap.components.Bootstrap'
         ),
-        // uncomment the following to enable URLs in path-format
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
                 'torneo'                        => 'tournament/tournament/index',
                 'torneo/miEquipo'               => 'tournament/tournament/userMenu',
+                'torneo/registro'               => 'tournament/tournamentPlayer/create',
+                'torneo/resetearClave'          => 'tournament/tournamentPlayer/resetPassword',
+                'torneo/jugador/<id>'           => 'tournament/tournamentPlayer/view/id/<id>',
                 'torneo/agregarPokemon'         => 'tournament/tournamentPokemon/create',
                 'torneo/verPokemon/<id>'        => 'tournament/tournamentPokemon/view/id/<id>',
                 'torneo/borrarPokemon/<id>'     => 'tournament/tournamentPokemon/delete/id/<id>',
@@ -111,12 +112,6 @@ return array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning'
                 )
-                // uncomment the following to show log messages on web pages
-                /*
-                array(
-                'class'=>'CWebLogRoute',
-                ),
-                */
             )
         )
     ),
