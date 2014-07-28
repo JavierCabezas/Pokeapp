@@ -5,5 +5,6 @@ assets/*
 assets
 Thumbs.db
 images/foto_jugadores/*
+images/foto_folio/*
 protected/config/main.php
 protected/config/main.php
