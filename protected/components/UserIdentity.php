@@ -25,7 +25,7 @@ class UserIdentity extends CUserIdentity
                 }
             }//end if for admin
             else if(($user_admin === null)&&(!($user_player === null))){
-                if(!($user_player->code == hash('sha512', $this->password))) {
+                if(!($user_player->validatePassword($this->password))) {
                     $this->errorCode=self::ERROR_PASSWORD_INVALID;
                 }else{ //Everything went fine, and the user is a player.
                     $this->_id=$user_player->id;

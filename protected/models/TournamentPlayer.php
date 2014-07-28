@@ -112,4 +112,14 @@ class TournamentPlayer extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    public function validatePassword($password)
+    {
+        return CPasswordHelper::verifyPassword($password,$this->code);
+    }
+ 
+    public function hashPassword($password)
+    {
+        return CPasswordHelper::hashPassword($password);
+    }
 }
