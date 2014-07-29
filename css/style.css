@@ -325,6 +325,7 @@ img.yo {
 	padding-top: 0;
 	height: auto;
     line-height: 100%;
+    text-decoration: none;
 }
 
 .param .info p {
