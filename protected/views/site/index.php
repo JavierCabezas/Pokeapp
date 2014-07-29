@@ -10,8 +10,4 @@ $this->pageTitle=Yii::app()->name;
 
 	<?php echo CHtml::link('Autorizar jugadores', array('jugadores/authorize')) ?>
 
-<?php else: ?>
-	
-	<!--<?php echo CHtml::link('Entrar sección admin', array('/login')) ?>-->
-
 <?php endif; ?>
