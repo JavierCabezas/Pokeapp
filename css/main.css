@@ -158,7 +158,9 @@ div.breadcrumbs {
     margin-left: auto;
     margin-right: auto;
     padding: 5px 20px;
-    width: 87%;
+    width: 80%;
+	font-weight: bold;
+	text-decoration: none;
 }
 
 div.breadcrumbs span {
