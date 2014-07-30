@@ -72,7 +72,7 @@ class TournamentController extends Controller
         if(!Admin::model()->isAdmin()){
     		$user = TournamentPlayer::model()->findByPk(Yii::app()->user->id);
 
-    		$next_tournament = Tournament::model()->findByAttributes(array('active' => 1));
+    		$next_tournament = Tournament::model()->getNextTournament();
     		
     		$user_tournament_pokemon = TournamentPlayerPokemon::model()->findAllByAttributes(array(
     			'id_tournament_player' => Yii::app()->user->id,
@@ -136,7 +136,7 @@ class TournamentController extends Controller
             ),
             array(
                 'header'=>'Foto folio', 
-                'value' => "asdf.com",
+                //'value' => CHtml::image(imageDir()."/foto_folio/".$), 
                 'type'  => 'html'
             ),
         );

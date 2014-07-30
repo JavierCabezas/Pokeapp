@@ -115,4 +115,12 @@ class Tournament extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 *	Returns the model of the next tournament (in case it exists)
+	 *	@return Tournament model of the next tournament (in case it exists)
+	 */
+	public function getNextTournament(){
+		return Tournament::model()->findByAttributes(array('active' => 1));
+	}
 }
