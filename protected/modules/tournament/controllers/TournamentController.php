@@ -162,21 +162,42 @@ class TournamentController extends Controller
      *  Renders the actual form to authorize players.
      */
     public function actionAuthorize($id){
-        $player         = TournamentPlayer::model()->findByPk($id);
-        $tournament     = Tournament::model()->getNextTournament();
+        if(isset($_POST['folio'], $_POST['player'], $_POST['tournament'], $_POST['folio'], $_POST['next_page'])){
+            $id_player_post     = intval($_POST['player']);
+            $id_tournament_post = intval($_POST['tournament']);
+            $folio_post         = intval($_POST['folio']);
+            $tournament_player_folio = TournamentPlayerFolio::model()->findByAttributes(array(
+                'id_tournament_player'  => $id_player_post,
+                'id_tournament'         => $id_tournament_post
+            ));
 
-        $model        = TournamentPlayerFolio::model()->findByAttributes(array(
-            'id_tournament_player'  => $id, 
-            'id_tournament'         => $tournament->id 
-        ));
+            if(TournamentPlayerFolio::model()->updateByPk($tournament_player_folio->id, array("folio" => $folio_post)))
+                Yii::app()->user->setFlash('success', "Se agregó el folio ".$folio_post." al jugador ".$tournament_player_folio->idTournamentPlayer->nombre." con éxito");
+            else
+                Yii::app()->user->setFlash('error', "Ocurrió un error al agregar el jugador. Por favor inténtalo nuevamente.");
 
-        $array_folio = array();
-        $array_folio = TournamentPlayerFolio::model()->getRemainingFolio($id_tournament);
+            if($_POST['next_page'] == 'adminMenu')
+                $this->redirect(array('/torneo/adminMenu'));
+            else
+                $this->redirect(array('/torneo/vistaAutorizar'));
+        }else{
+            $player         = TournamentPlayer::model()->findByPk($id);
+            $tournament     = Tournament::model()->getNextTournament();
 
-        $this->render('authorize', array(
-            'player'    => $player,
-            'picture'   => $model->folio_photo,
-            'model'     => $model
-        ));
+            $model        = TournamentPlayerFolio::model()->findByAttributes(array(
+                'id_tournament_player'  => $id, 
+                'id_tournament'         => $tournament->id 
+            ));
+
+            $array_folio = TournamentPlayerFolio::model()->getRemainingFolio($tournament->id);
+
+            $this->render('authorize', array(
+                'player'        => $player,
+                'picture'       => $model->folio_photo,
+                'model'         => $model,
+                'array_folio'   => $array_folio,
+                'tournament'    => $tournament,
+            ));
+        }
     }
 }

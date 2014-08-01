@@ -9,6 +9,12 @@ $this->breadcrumbs=array(
 );
 ?>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <h1> Autorizando a <?php echo $player->nombre ?> </h1>
 
 <p> Foto subida por el usuario: </p>
@@ -23,11 +29,14 @@ $this->breadcrumbs=array(
 
 <?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'folio',array('class'=>'span5','maxlength'=>100)); ?>
+	<input type="hidden" name="player" value="<?php echo $player->id?>">
+	<input type="hidden" name="tournament" value="<?php echo $tournament->id ?>">
 
-	<label class="required" for="folio"> Foto de tu entrada (con folio visible) <span class="required">*</span> </label>
-	<?php echo $form->fileField($model,'folio'); ?>
-	<?php echo $form->error($model,'folio'); ?>
+	<label class="required" for="folio"> Folio del jugador <span class="required">*</span> </label>
+	<?php echo CHtml::dropDownList('folio',$model, $array_folio) ?>
+	
+	<label class="required" for="next_page"> Después de autorizar/banear al jugador ir a...</label>
+	<?php echo CHtml::dropDownList('next_page', '', array('adminMenu' => 'Menú de administradores', 'authorize' => 'Autorizar a otro jugador')) ?>
 
 <div class="form-actions">
 	<?php $this->widget('bootstrap.widgets.TbButton', array(

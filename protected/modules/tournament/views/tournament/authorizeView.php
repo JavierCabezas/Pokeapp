@@ -1,6 +1,12 @@
 <?php $this->setPageTitle('Pokéapp - Autorizar jugador'); ?>
 
 <?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
+<?php
 $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
 	'Menú administradores'=>array('/torneo/adminMenu'),

@@ -10,7 +10,7 @@
 	<?php echo $form->textFieldRow($model,'nombre',array('class'=>'span5','maxlength'=>100)); ?>
 
 	<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
-
+	
 	<label class="required" for="folio"> Foto de tu entrada (con folio visible) <span class="required">*</span> </label>
 	<?php echo $form->fileField($model,'folio'); ?>
 	<?php echo $form->error($model,'folio'); ?>

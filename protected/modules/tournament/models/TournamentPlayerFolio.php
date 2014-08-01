@@ -115,12 +115,20 @@ class TournamentPlayerFolio extends CActiveRecord
      */
     public function getRemainingFolio($id_tournament, $starting_from = 1){
         $tournament         = Tournament::model()->findByPk($id_tournament);
-        $total_folio        = $tournament->total_folio_number;
-
-        $tournament_folio   = TournamentPlayerFolio::model()->findAllByAttributes(array('id_tournament' => $id_tournament));
+        $tournament_folios  = TournamentPlayerFolio::model()->findAllByAttributes(array('id_tournament' => $id_tournament));
+        
         $out = array();
-        for($i=$starting_from ; $i < $starting_from + $total_folio_number ; $i = $i+1){
-            if()
+        $out = range($starting_from-1, $starting_from + $tournament->total_folio_number);
+        unset($out[0]); //Start array from 1, not from 0.
+        
+        foreach($tournament_folios as $tournament_folio){
+            if( ($tournament_folio->folio != null) &&  ($tournament_folio->folio != -1) ){
+                $key = array_search($tournament_folio->folio, $out);
+                unset($out[$key]); //Remove folios that are already in use.
+            }
         }
+        $out = array(-1 => 'Rechazar jugador') + $out; //Prepend the ""
+    
+        return $out;
     }
 }

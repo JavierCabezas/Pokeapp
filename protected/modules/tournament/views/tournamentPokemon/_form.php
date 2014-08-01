@@ -5,7 +5,14 @@
 
 <p class="help-block">Campos con<span class="required">*</span> son requeridos.</p>
 
-<p> La información entregada en este formulario es de tu responsabilidad. No se hizo esfuerzo en evitar combinaciones ilegales (ya sea según las reglas del juego o las del torneo).  </p>
+<p> 
+	El que la información que entregues en este formulario sea verídica y que cumpla las reglas del torneo es de tu total responsabilidad.
+	Aún así se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
+</p>
+<p>
+	Además ten en cuenta que hay movimientos que, si bien son legales {[PATO, NECEISTO EJEMPLOS ACÁ ]}
+</p>
+
 <?php echo $form->errorSummary($model); ?>
 <div id="column1-wrap">
     <div id="column1_50">
