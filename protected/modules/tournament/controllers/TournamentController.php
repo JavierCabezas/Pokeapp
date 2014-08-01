@@ -171,8 +171,24 @@ class TournamentController extends Controller
                 'id_tournament'         => $id_tournament_post
             ));
 
-            if(TournamentPlayerFolio::model()->updateByPk($tournament_player_folio->id, array("folio" => $folio_post)))
-                Yii::app()->user->setFlash('success', "Se agregó el folio ".$folio_post." al jugador ".$tournament_player_folio->idTournamentPlayer->nombre." con éxito");
+            if(TournamentPlayerFolio::model()->updateByPk($tournament_player_folio->id, array("folio" => $folio_post))){
+                if($folio_post != -1){
+                    Yii::app()->user->setFlash('success', "Se agregó el folio ".$folio_post." al jugador ".$tournament_player_folio->idTournamentPlayer->nombre." con éxito");
+                    $body =         '<p> Un administrador acaba de revisar tu perfil de jugador en la Pokéapp y te asignó el número '.$folio_post.' (según tu número de folio). </p>';
+                    $body = $body . '<p> Recuerda que las dos condiciones para tener tu inscripción online finalizada son la revisión de perfil y la creación de tu equipo pokémon online, ';
+                    $body = $body . 'por lo que si tienes el equipo listo el trámite está finalizado. </p> <p> Además considera que puedes revisar tu perfil en cualquier momento para revisar que tu equipo esté bien ingresado';
+                    $body = $body . 'en nuestro sitio web. </p> <p> Ante cualquier duda siéntete libre de contactarnos en este mismo correo y te atenderemos en cuanto antes. </p>';
+                    Mail::sendMail( 
+                        Yii::app()->params['adminEmail'],
+                            $tournament_player_folio->idTournamentPlayer->mail, 
+                            'Han autorizado tu perfil en la pokéapp', 
+                            'Bienvenido/a!', 
+                            $body
+                    );
+                }else{
+                    Yii::app()->user->setFlash('error', "Se rechazó al jugador ".$tournament_player_folio->idTournamentPlayer->nombre.". Por favor mándale un correo a ".$tournament_player_folio->idTournamentPlayer->mail." para comunicarle en detalle el por qué y si se puede arreglar su situación.");
+                }
+            }
             else
                 Yii::app()->user->setFlash('error', "Ocurrió un error al agregar el jugador. Por favor inténtalo nuevamente.");
 
