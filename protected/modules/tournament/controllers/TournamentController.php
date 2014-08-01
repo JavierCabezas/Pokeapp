@@ -62,7 +62,7 @@ class TournamentController extends Controller
         if(!isset(Yii::app()->user->id))
     		$this->render('index');
         else
-            $this->redirect(array('/torneo/miEquipo'));
+            $this->redirect(array('/torneo/miEquipo')); //If the player is logged redirect to the team view.
 	}
 
     /**

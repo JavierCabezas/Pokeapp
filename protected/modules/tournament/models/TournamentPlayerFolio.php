@@ -112,6 +112,7 @@ class TournamentPlayerFolio extends CActiveRecord
      *      Returns an array (intended for a drop down list) with the remaining folio numbers avaiable for an specific tournament
      *      @param integer $id_tournament the identifier of the tournament 
      *      @param integer $starting_from first folio number avaible for that specific tournament.
+     *      @return array the array with the data using the format array('-1' => 'Ban player', 'n' => n, 'n+1' => n+1 ...)
      */
     public function getRemainingFolio($id_tournament, $starting_from = 1){
         $tournament         = Tournament::model()->findByPk($id_tournament);
@@ -130,5 +131,20 @@ class TournamentPlayerFolio extends CActiveRecord
         $out = array(-1 => 'Rechazar jugador') + $out; //Prepend the ""
     
         return $out;
+    }
+
+    /**
+     *  Returns an array (intended for a dropdownlist) with all the registered folios for an specific tournament.
+     *  @param integer $id_tournament the identifier of the tournament.
+     *  @return array all the registered folios in the format array('n' => n, 'n+1' => n+1 ...)
+     */
+    public function getAllFolio($id_tournament){
+        $tournament_folios  = TournamentPlayerFolio::model()->findAllByAttributes(array('id_tournament' => $id_tournament));
+        $out = array();
+        foreach($tournament_folios as $tournament_folio){
+            if( ($tournament_folio->folio != null) &&  ($tournament_folio->folio != -1) ){
+                $out[$tournament_folio->folio] = $tournament_folio->folio; 
+            }
+        }
     }
 }

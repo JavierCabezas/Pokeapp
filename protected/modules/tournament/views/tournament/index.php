@@ -11,17 +11,18 @@
 		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_001.png' />", array('/torneo/registro')) ?>
 		<div class="info">
 			<?php echo CHtml::link('<h4>Inscríbete</h4>', array('/torneo/registro'))?>
-			<p>Haz tu cuenta en PokéApp.</p>
+			<p> Crea tu cuenta en la pokéapp. </p>
 		</div>
 	</div>
 
 	<div class="tournament_menu">
-		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_002.png' />", array('/torneo/miEquipo')) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_002.png' />", array('/login')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Registra tu equipo</h4>', array('/torneo/miEquipo'))?>
-			<p>Inscribe y organiza a tu equipo Pokémon.</p>
+			<?php echo CHtml::link('<h4>Ingresa a tu cuenta</h4>', array('/login'))?>
+			<p>Si ya estás inscrito puedes ingresar a tu perfil de usuario en este link.</p>
 		</div>
 	</div>
+
 
 	<div class="tournament_menu">
 		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_003.png' />", array('/torneo/registro')) ?>
