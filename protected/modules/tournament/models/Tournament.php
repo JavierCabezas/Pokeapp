@@ -9,6 +9,7 @@
  * @property string $name
  * @property string $date
  * @property integer $total_folio_number
+ * @property ineger $folio_starting_from
  * @property integer $active
  *
  * The followings are the available model relations:
@@ -36,7 +37,7 @@ class Tournament extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, date', 'required'),
-			array('id_ruleset, total_folio_number, active', 'numerical', 'integerOnly'=>true),
+			array('id_ruleset, total_folio_number, folio_starting_from, active', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>30),
 			array('date', 'length', 'max'=>32),
 			// The following rule is used by search().
@@ -71,6 +72,7 @@ class Tournament extends CActiveRecord
 			'name' => 'Name',
 			'date' => 'Date',
 			'total_folio_number' => 'Total Folio Number',
+			'folio_starting_from' => 'Folio parte en',
 			'active' => 'Active',
 		);
 	}
@@ -98,6 +100,7 @@ class Tournament extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('total_folio_number',$this->total_folio_number);
+		$criteria->compare('folio_starting_from', $this->folio_starting_from);
 		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(

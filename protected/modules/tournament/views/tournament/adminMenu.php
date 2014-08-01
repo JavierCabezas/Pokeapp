@@ -11,6 +11,6 @@
 <p> Opciones </p>
 
 <ul>
-	<li> <?php echo CHtml::link('Autorizar fotos de folio de jugadores', array('/torneo/autorizar')) ?> </li>
+	<li> <?php echo CHtml::link('Autorizar fotos de folio de jugadores', array('/torneo/vistaAutorizar')) ?> </li>
 	<li> <?php echo CHtml::link('Ver equipo de jugadores', array('/torneo/verEquipoJugador')) ?> </li>
 </ul>

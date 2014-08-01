@@ -22,3 +22,11 @@
     width: 50%;
     margin-left: -50%;
 }
+
+.preview_folio {
+   width: 150px;
+   height: 150px;
+}
+.preview_folio img {
+   height: 100%;
+}

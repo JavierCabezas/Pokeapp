@@ -53,7 +53,8 @@ return array(
             'rules' => array(
                 'torneo'                        => 'tournament/tournament/index',
                 'torneo/miEquipo'               => 'tournament/tournament/userMenu',
-                'torneo/autorizar'              => 'tournament/tournament/authorize',
+                'torneo/autorizar/<id:\d+>'     => 'tournament/tournament/authorize',
+                'torneo/vistaAutorizar'         => 'tournament/tournament/authorizeView',
                 'torneo/verEquipoJugador'       => 'tournament/tournamentPlayer/viewTeam',
                 'torneo/registro'               => 'tournament/tournamentPlayer/create',
                 'torneo/resetearClave'          => 'tournament/tournamentPlayer/resetPassword',

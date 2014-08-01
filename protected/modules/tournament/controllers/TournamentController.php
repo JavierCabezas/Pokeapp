@@ -43,6 +43,7 @@ class TournamentController extends Controller
                 'allow',
                 'actions' => array(
                     'authorize',
+                    'authorizeView',
                     'adminMenu',
                 ),
                 'users' => Admin::model()->getArrayAdmins()
@@ -114,11 +115,15 @@ class TournamentController extends Controller
     }
 
     /**
-     *  Loads the administrator view to authorize players (by checking the folium of the entrance uploaded by them)
+     *  Renders the administrator view to authorize players (by checking the folium of the entrance uploaded by them)
      */
-    public function actionAuthorize()
+    public function actionAuthorizeView()
     {
-        $criteriaPendingPlayers = TournamentPlayerFolio::model()->findAllByAttributes(array('folio' => null));
+        $id_tournament = Tournament::model()->getNextTournament()->id;
+        $criteriaPendingPlayers = TournamentPlayerFolio::model()->findAllByAttributes(array(
+            'folio' => null, 
+            'id_tournament' => $id_tournament
+        ));
         $pendingPlayers = new CArrayDataProvider($criteriaPendingPlayers);
 
         $pendingPlayersCol = array(
@@ -135,16 +140,43 @@ class TournamentController extends Controller
                 'value' => '$data->idTournament->name'
             ),
             array(
-                'header'=>'Foto folio', 
-                //'value' => CHtml::image(imageDir()."/foto_folio/".$), 
+                'header'=>'Preview foto folio', 
+                'value' => '"<div class=\'preview_folio\'>".CHtml::image(imageDir()."/foto_folio/".$data->folio_photo)."</div>"', 
                 'type'  => 'html'
             ),
+            array(
+                'header' => 'Ver más detalles',
+                'type'  => 'html',
+                'value'  => 'CHtml::link("Autorizar o rechazar", array("/torneo/autorizar", "id" => $data->idTournamentPlayer->id))'
+            )
         );
 
 
-        $this->render('authorize', array(
+        $this->render('authorizeView', array(
             'pendingPlayers'    => $pendingPlayers,
             'pendingPlayersCol' => $pendingPlayersCol,
+        ));
+    }
+
+    /**
+     *  Renders the actual form to authorize players.
+     */
+    public function actionAuthorize($id){
+        $player         = TournamentPlayer::model()->findByPk($id);
+        $tournament     = Tournament::model()->getNextTournament();
+
+        $model        = TournamentPlayerFolio::model()->findByAttributes(array(
+            'id_tournament_player'  => $id, 
+            'id_tournament'         => $tournament->id 
+        ));
+
+        $array_folio = array();
+        $array_folio = TournamentPlayerFolio::model()->getRemainingFolio($id_tournament);
+
+        $this->render('authorize', array(
+            'player'    => $player,
+            'picture'   => $model->folio_photo,
+            'model'     => $model
         ));
     }
 }

@@ -107,4 +107,20 @@ class TournamentPlayerFolio extends CActiveRecord
     {
         return parent::model($className);
     }
+
+    /**
+     *      Returns an array (intended for a drop down list) with the remaining folio numbers avaiable for an specific tournament
+     *      @param integer $id_tournament the identifier of the tournament 
+     *      @param integer $starting_from first folio number avaible for that specific tournament.
+     */
+    public function getRemainingFolio($id_tournament, $starting_from = 1){
+        $tournament         = Tournament::model()->findByPk($id_tournament);
+        $total_folio        = $tournament->total_folio_number;
+
+        $tournament_folio   = TournamentPlayerFolio::model()->findAllByAttributes(array('id_tournament' => $id_tournament));
+        $out = array();
+        for($i=$starting_from ; $i < $starting_from + $total_folio_number ; $i = $i+1){
+            if()
+        }
+    }
 }
