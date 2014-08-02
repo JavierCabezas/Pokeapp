@@ -1,4 +1,4 @@
-<?php if($pokeymans): //Si tiene pokémon en el equipo desplegarlos ?>
+<?php if($pokeymans): //If the player has pokémon on the team then show them ?>
     <p> <?php echo count($pokeymans) ?> pokémon. Para ver más detalles, editar o borrar de cualquiera de tus pokémon haz click sobre su nombre. </p>
     </br>
      <?php foreach($pokeymans as $pokeyman): ?>

@@ -1,27 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "tournament_player_pokemon".
+ * This is the model class for table "tournament_player".
  *
- * The followings are the available columns in table 'tournament_player_pokemon':
+ * The followings are the available columns in table 'tournament_player':
  * @property integer $id
- * @property integer $id_tournament
- * @property integer $id_tournament_pokemon
- * @property integer $id_tournament_player
+ * @property integer $id_user
  *
  * The followings are the available model relations:
- * @property Users $idTournamentPlayer
- * @property Tournament $idTournament
- * @property TournamentPokemon $idTournamentPokemon
+ * @property TournamentPokemon[] $tournamentPokemons
  */
-class TournamentPlayerPokemon extends CActiveRecord
+class TournamentPlayer extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tournament_player_pokemon';
+		return 'tournament_player';
 	}
 
 	/**
@@ -32,11 +28,11 @@ class TournamentPlayerPokemon extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_tournament, id_tournament_pokemon, id_tournament_player', 'required'),
-			array('id_tournament, id_tournament_pokemon, id_tournament_player', 'numerical', 'integerOnly'=>true),
+			array('id_user', 'required'),
+			array('id_user', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_tournament, id_tournament_pokemon, id_tournament_player', 'safe', 'on'=>'search'),
+			array('id, id_user', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,9 +44,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idTournament' => array(self::BELONGS_TO, 'Tournament', 'id_tournament'),
-			'idTournamentPokemon' => array(self::BELONGS_TO, 'TournamentPokemon', 'id_tournament_pokemon'),
-			'idTournamentPlayer' => array(self::BELONGS_TO, 'Users', 'id_tournament_player'),
+			'tournamentPokemons' => array(self::HAS_MANY, 'TournamentPokemon', 'id_tournament_player'),
 		);
 	}
 
@@ -61,9 +55,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_tournament' => 'Id Tournament',
-			'id_tournament_pokemon' => 'Id Tournament Pokemon',
-			'id_tournament_player' => 'Id Tournament Player',
+			'id_user' => 'Id User',
 		);
 	}
 
@@ -86,9 +78,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('id_tournament',$this->id_tournament);
-		$criteria->compare('id_tournament_pokemon',$this->id_tournament_pokemon);
-		$criteria->compare('id_tournament_player',$this->id_tournament_player);
+		$criteria->compare('id_user',$this->id_user);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -99,7 +89,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TournamentPlayerPokemon the static model class
+	 * @return TournamentPlayer the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

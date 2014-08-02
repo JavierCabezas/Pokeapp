@@ -1,15 +1,21 @@
 <?php $this->setPageTitle('Pokéapp - Inscripción de pokémon para torneos'); ?>
 
 <?php
+$this->breadcrumbs=array(
+	'Torneo'=>array('/torneo'),
+	'Administrador de equipos',
+);
+?>
+
+<?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {
         echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
     }
 ?>
 
-<h1> Menú de usuario </h1>
+<h1> Administrador de equipos </h1>
 
 <p> Aquí puedes organizar a tu equipo pokémon para algún torneo en específico. </p>
-<p> &nbsp; </p>
 
 <div id="column1-wrap">
     <div id="column1">

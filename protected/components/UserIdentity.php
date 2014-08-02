@@ -8,7 +8,7 @@ class UserIdentity extends CUserIdentity
     {
         $username=strtolower($this->username);
         $user_admin=Admin::model()->find('LOWER(user)=?',array($username));
-        $user_player=TournamentPlayer::model()->find('LOWER(mail)=?',array($username));
+        $user_player=Users::model()->find('LOWER(mail)=?',array($username));
 
         if(($user_admin===null)&&($user_player===null)){
             $this->errorCode=self::ERROR_USERNAME_INVALID;

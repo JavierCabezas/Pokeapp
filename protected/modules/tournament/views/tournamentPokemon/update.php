@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Agregar nuevo pokémon</h1>
+<h1>Actualizando a <?php echo $model->pokemonName ?> </h1>
 
 <?php echo $this->renderPartial('_form', array(
 	'model'				=> $model,

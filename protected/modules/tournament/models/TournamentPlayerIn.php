@@ -9,7 +9,7 @@
  * @property integer $id_tournament_player
  *
  * The followings are the available model relations:
- * @property TournamentPlayer $idTournamentPlayer
+ * @property Users $idTournamentPlayer
  * @property Tournament $idTournament
  */
 class TournamentPlayerIn extends CActiveRecord
@@ -46,7 +46,7 @@ class TournamentPlayerIn extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idTournamentPlayer' => array(self::BELONGS_TO, 'TournamentPlayer', 'id_tournament_player'),
+			'idTournamentPlayer' => array(self::BELONGS_TO, 'Users', 'id_tournament_player'),
 			'idTournament' => array(self::BELONGS_TO, 'Tournament', 'id_tournament'),
 		);
 	}

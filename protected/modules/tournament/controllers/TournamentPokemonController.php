@@ -72,22 +72,30 @@ class TournamentPokemonController extends Controller
         $criteria = new CDbCriteria;
         $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
 
-        $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
-		$array_moves		= CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
-		$array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
-        $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
-        $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
-        $array_tournament   = CHtml::listData(Tournament::model()->findAll(), 'id', 'name');
-        
         if (isset($_POST['TournamentPokemon'])) {
             $model->attributes = $_POST['TournamentPokemon'];
             $model->id_tournament_player = Yii::app()->user->id;
-            if ($model->save())
+            if ($model->save()){
+                $id_torneo = intval($_POST['torneo']);
+                if($id_torneo != -1){ //-1 means that the player does not want to add the pokémon to any specific tournament.
+                    $tpp = new TournamentPlayerPokemon;
+                    $tpp->id_tournament = $id_torneo;
+                    $tpp->id_tournament_pokemon = $model->id;
+                    $tpp->id_tournament_player = Yii::app()->user->id;
+                    $tpp->save();
+                }
                 $this->redirect(array(
                     'view',
                     'id' => $model->id
                 ));
+            }
         }
+
+        $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
+        $array_moves        = CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
+        $array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
+        $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
+        $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
         
         $this->render('create', array(
             'model' 			=> $model,
@@ -96,7 +104,7 @@ class TournamentPokemonController extends Controller
             'array_pokemon'	    => $array_pokemon,
             'array_nature'      => $array_nature,
             'array_item'        => $array_item,
-            'array_tournament'  => $array_tournament,
+            'array_tournament'  => array(),
         ));
     }
     
@@ -111,29 +119,22 @@ class TournamentPokemonController extends Controller
         if(isset($model)){
             $criteria = new CDbCriteria;
             $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
+        
+            if (isset($_POST['TournamentPokemon'])) {
+                $model->attributes = $_POST['TournamentPokemon'];
+                if ($model->save()){
+                    $this->redirect(array('/torneo/verPokemon/', 'id' => $model->id));
+                }
+            }
+            
             $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
             $array_moves        = CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
             $array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
             $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
             $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
             $array_tournament   = CHtml::listData(Tournament::model()->findAll(), 'id', 'name');
+            $array_tournament   = $array_tournament + array('-1' => 'No agrear a ningún torneo');    
 
-            if (isset($_POST['TournamentPokemon'])) {
-                $model->attributes = $_POST['TournamentPokemon'];
-                if ($model->save()){
-                    if($_POST['torneo']){
-                        echo $_POST['torneo'];
-                        //Add the pokémon to the tournament in case the player selected it.
-                        $tournament_player_pokemon = new TournamentPlayerPokemon();
-                        $tournament_player_pokemon->id_tournament           = $_POST['torneo'];
-                        $tournament_player_pokemon->id_tournament_pokemon   = $model->id;
-                        $tournament_player_pokemon->id_tournament_player    = Yii::app()->user->id;
-                        $tournament_player_pokemon->save();
-                    }
-                    $this->redirect('torneo/verPokemon/'.$model->id);
-                }
-            }
-            
             $this->render('update', array(
                 'model'             => $model,
                 'array_ability'     => $array_ability,
@@ -157,7 +158,6 @@ class TournamentPokemonController extends Controller
     {
         $model = TournamentPokemon::model()->findByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id' => $id));
         if(isset($model)){
-            echo "holi";
             $transaction = Yii::app()->db->beginTransaction();
             try {
                 $pokemons_in_tournament = TournamentPlayerPokemon::model()->findAllByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id_tournament_pokemon' => $id));
@@ -174,7 +174,7 @@ class TournamentPokemonController extends Controller
                     $this->redirect(array('/torneo/verPokemon/', 'id' =>$id));
             }
         } else
-            throw new CHttpException(400, 'No puedes borrar pokémon de otros jugadores.');
+            throw new CHttpException(403, 'No puedes borrar pokémon de otros jugadores.');
     }
     
     /**

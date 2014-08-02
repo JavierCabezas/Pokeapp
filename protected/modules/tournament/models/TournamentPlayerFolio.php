@@ -11,7 +11,7 @@
  * @property integer $folio
  *
  * The followings are the available model relations:
- * @property TournamentPlayer $idTournamentPlayer
+ * @property Users $idTournamentPlayer
  * @property Tournament $idTournament
  */
 class TournamentPlayerFolio extends CActiveRecord
@@ -49,7 +49,7 @@ class TournamentPlayerFolio extends CActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'idTournamentPlayer' => array(self::BELONGS_TO, 'TournamentPlayer', 'id_tournament_player'),
+            'idTournamentPlayer' => array(self::BELONGS_TO, 'Users', 'id_tournament_player'),
             'idTournament' => array(self::BELONGS_TO, 'Tournament', 'id_tournament'),
         );
     }
@@ -143,8 +143,9 @@ class TournamentPlayerFolio extends CActiveRecord
         $out = array();
         foreach($tournament_folios as $tournament_folio){
             if( ($tournament_folio->folio != null) &&  ($tournament_folio->folio != -1) ){
-                $out[$tournament_folio->folio] = $tournament_folio->folio; 
+                $out[$tournament_folio->folio] = $tournament_folio->folio;
             }
         }
+        return $out;
     }
 }

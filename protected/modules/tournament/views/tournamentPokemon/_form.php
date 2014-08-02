@@ -10,7 +10,7 @@
 	Aún así se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
-	Además ten en cuenta que hay movimientos que, si bien son legales {[PATO, NECEISTO EJEMPLOS ACÁ ]}
+	Además ten en cuenta que hay movimientos que, si bien son legales <b> {[PATO, NECEISTO EJEMPLOS ACÁ ]} </b>
 </p>
 
 <?php echo $form->errorSummary($model); ?>
@@ -121,8 +121,10 @@
 				)
 			);
 		?>
-		<label class="required" for="torneo"> Inscribir al pokémon en un torneo? </label>
-		<?php echo CHtml::dropDownList('torneo', '' , $array_tournament, array('empty' => '(Seleccionar torneo)', 'class' => 'span5')); ?>
+		<?php if($model->isNewRecord): //Just show the tournament inscription if the pokémon is a new one. ?>
+			<label class="required" for="torneo"> Inscribir al pokémon en un torneo? </label>
+			<?php echo CHtml::dropDownList('torneo', '' , $array_tournament, array('class' => 'span5')); ?>
+		<?php endif; ?>
 	
 	</div>
 </div>

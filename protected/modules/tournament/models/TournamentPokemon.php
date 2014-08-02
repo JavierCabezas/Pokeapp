@@ -70,7 +70,7 @@ class TournamentPokemon extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'tournamentPlayerPokemons' => array(self::HAS_MANY, 'TournamentPlayerPokemon', 'id_tournament_pokemon'),
-			'idTournamentPlayer' => array(self::BELONGS_TO, 'TournamentPlayer', 'id_tournament_player'),
+			'idTournamentPlayer' => array(self::BELONGS_TO, 'Users', 'id_tournament_player'),
 			'idPokemonSpecies' => array(self::BELONGS_TO, 'PokemonSpecies', 'id_pokemon_species'),
 			'idAbility' => array(self::BELONGS_TO, 'Abilities', 'id_ability'),
 			'idItem' => array(self::BELONGS_TO, 'Items', 'id_item'),

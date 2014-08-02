@@ -15,4 +15,3 @@ $this->breadcrumbs=array(
 ?>
 
 <h1> Ver equipo de jugador </h1>
-

@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
 	'Menú administradores' => array('/torneo/adminMenu'),
 	'Autorizar jugadores' => array('/torneo/vistaAutorizar'),
-	'Autorizando a '.$player->nombre
+	'Autorizando a '.$player->name
 );
 ?>
 
@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
     }
 ?>
 
-<h1> Autorizando a <?php echo $player->nombre ?> </h1>
+<h1> Autorizando a <?php echo $player->name ?> </h1>
 
 <p> Foto subida por el usuario: </p>
 <?php echo CHtml::image(imageDir().'/foto_folio/'.$picture) ?>
