@@ -51,8 +51,8 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                'usuario/resetearCodigo'            => 'user/resetCodeForm',                                //Resets the user password
-                'torneo/resetearClave'              => 'user/resetCodeForm',                                //Resets the user password
+                'usuario/resetearCodigo'            => 'users/resetCodeForm',                            //Displays the form to reset the user's password
+                'torneo/resetearClave'              => 'users/resetCodeForm',                          //Displays the form to reset the user's password
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
                 'torneo/miEquipo'                   => 'tournament/tournament/userMenu',                //User menu
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize
@@ -78,7 +78,7 @@ return array(
                 'stats/<page>'                      => 'stats/stats/<page>',
                 'sobre_mi'                          => 'site/about',
                 'gii'                               => 'gii/default/login',
-                '<page>'                            => 'site/<page>',
+                '<page>'                            => 'site/<page>', 
                 '<controller:\w+>/<id:\d+>'         => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>'     => '<controller>/<action>',

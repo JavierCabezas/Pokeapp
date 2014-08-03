@@ -1,5 +1,9 @@
+<?php $this->setPageTitle('Pokéapp - Inicio'); ?>
+
 <?php
-$this->pageTitle=Yii::app()->name;
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
 ?>
 
 <div style="height:220px;width:auto"></div>

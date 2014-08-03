@@ -232,7 +232,7 @@ class TournamentController extends Controller
     }
     
     /**
-     * Creates a new model.
+     * Creates a new user to the database. 
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate()

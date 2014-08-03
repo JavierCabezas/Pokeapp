@@ -6,7 +6,15 @@
 		/* @var $form CActiveForm  */
 		?>
 
+		<?php
+		    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+		        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+		    }
+		?>
+
 		<h1 class="sectiontitle">Iniciar sesión</h1>
+
+		<p> En caso de que hayas olvidado tu código (contraseña) de login puedes pedir otro <?php echo CHtml::link('en el siguiente link', array('/usuario/resetearCodigo')) ?>
 		<div class="login-form">
 			<div class="form">
 			<?php $form=$this->beginWidget('CActiveForm', array(

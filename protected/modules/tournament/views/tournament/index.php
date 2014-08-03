@@ -25,18 +25,10 @@
 
 
 	<div class="tournament_menu">
-		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_003.png' />", array('/torneo/registro')) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_003.png' />", array('/torneo/resetearClave')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Recupera tu código</h4>', array('/torneo/registro'))?>
+			<?php echo CHtml::link('<h4>Recupera tu código</h4>', array('/torneo/resetearClave'))?>
 			<p>Reinicia tu código personal en caso de pérdida.</p>
 		</div>
 	</div>
-
-	<!--<p>
-		<ul>
-			<li> Si tienes una cuenta puedes organizar tu equipo <?php echo CHtml::link('en el siguiente link', array('/torneo/miEquipo')) ?>. </li>
-			<li> Si es que no estás registrado puedes hacerlo <?php echo CHtml::link('en la sección de registro', array('/torneo/registro')) ?>. </li>
-			<li> Si es que tienes una cuenta pero no recuerdas tu código (contraseña) puedes resetearlo <?php echo CHtml::link('en el siguiente link', array('/torneo/registro')) ?>. </li>
-		</ul>
-	</p>-->
 </div>

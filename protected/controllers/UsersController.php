@@ -29,7 +29,8 @@ class UsersController extends Controller
             array(
                 'allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array(
-					'resetCode',
+					'resetCodeForm',
+                    'resetCode',
                 ),
                 'users' => array(
                     '*'
@@ -82,10 +83,75 @@ class UsersController extends Controller
 	 *	Displays the view to reset the password for an specific user.
 	 *	In case if gets the POST of the form (with the mail) it sends the mail to the user with the instructions to reset the code.
 	 */
-	public function resetCode(){
-		if(!isset($_POST)){
-
+	public function actionResetCodeForm(){
+        
+		if(isset($_POST['Users']['mail'])){
+            $p = new CHtmlPurifier();
+            $mail = $p->purify($_POST['Users']['mail']);
+            $model= Users::model()->findByAttributes(array('mail' => $mail));
+            if(isset($model)){
+                $code = generatePassword();
+                $hashedcode = Users::model()->hashPassword($code);
+                if(Users::model()->updateByPk($model->id, array('mailcode' => $hashedcode))){
+                    $link = $this->createAbsoluteUrl('/users/resetCode', array('mail' => $mail, 'code' => $hashedcode ));
+                    $zelda = CHtml::link('en el siguiente link', $link);
+                    $body = '<p> Se acaba de pedir un reseteo del contraseña de la Pokéapp a este correo.';
+                    $body = $body . ' Para hacer efectivo el cambio tienes que hacer click '.$zelda.' </p>';
+                    $body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
+                    Mail::sendMail( 
+                        Yii::app()->params['adminEmail'], //from 
+                        $model->mail, //to
+                        'Reseteo de clave Pokéapp', //subject
+                        'Reseteo código Pokéapp', //mail_title
+                        $body//mail body
+                    );
+                }
+            }
+            Yii::app()->user->setFlash('notice', "Se recibió el correo ".$mail." con éxito. En caso de que esté registrado en nuestra base de datos se envió un correo con las instrucciones respectivas.");
         }
-        $this->render('resetCode');
+        $model = new Users;
+        $this->render('resetCodeForm', array(
+            'model' => $model
+        ));
 	}
+
+    /**
+     *  Resets the password of a certain user.
+     *  @param string mail the e-mail address asociated to the account
+     *  @param string code the hashed code to check 
+     */
+    public function actionResetCode($mail, $code){
+        $p = new CHtmlPurifier();
+        $mail = $p->purify($mail);
+        $code = $p->purify($code);
+
+        $model = Users::model()->findByAttributes(array(
+            'mail'      => $mail,
+            'mailcode'  => $code
+        ));
+
+        if(isset($model)){
+            $code = generatePassword();
+            $hashedcode = Users::model()->hashPassword($code);
+            if(Users::model()->updateByPk($model->id, array('code' => $hashedcode))){
+                $body = '<p> Se acaba de realizar con éxito el reseteo de la clave de la Pokéapp asociada a esta cuenta de correo electrónico.';
+                $body = $body . ' Tu nueva contraseña es <b> '.$code.' </p>';
+                $body = $body . ' <p> Recuerda que, por razones de seguridad, nosotros no guardaremos esta contraseña por lo que te recomendamos guardar este correo en caso de que lo necesitaras en el futuro. </p>';
+                $body = $body . ' <p> Muchas gracias por usar la Pokéapp! </p>';
+                Mail::sendMail(
+                    Yii::app()->params['adminEmail'], //from 
+                    $model->mail, //to
+                    'Nueva clave Pokéapp', //subject
+                    'Nueva clave Pokéapp', //mail_title
+                    $body//mail body
+                );
+            }
+
+            Yii::app()->user->setFlash('success', "Se reseteó la contraseña con éxito. Se envió un correo con tu nueva clave a tu casilla.");
+            $this->redirect(array('/site/login'));
+        }else{
+            Yii::app()->user->setFlash('error', "El link para reseteo de contraseña no es correcto.");
+            $this->redirect(array('/site/index'));
+        }
+    }
 }
