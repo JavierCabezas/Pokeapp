@@ -73,6 +73,7 @@ class Pokemon extends CActiveRecord
 			'pokemonSearchCriterias' => array(self::HAS_MANY, 'PokemonSearchCriteria', 'id_pokemon'),
 			'pokemonStats' => array(self::HAS_MANY, 'PokemonStats', 'pokemon_id'),
 			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'pokemon_id'),
+			'countPokemonTypes' => array(self::STAT, 'PokemonTypes', 'pokemon_id'), //STAT uses count.
 		);
 	}
 
@@ -132,5 +133,25 @@ class Pokemon extends CActiveRecord
 	public function getPokemonName()
 	{
 		return beautify($this->identifier);
+	}
+
+	/**
+	 *	Returns the type of the pokémon 
+	 *	@return string 
+	 */
+	public function getPokemonTypeList()
+	{
+		$retVal = '';
+		if($this->countPokemonTypes > 0){ //this should always be true
+			foreach($this->pokemonTypes as $index => $pokemonType){
+				if($index == $this->countPokemonTypes)
+					$retVal.= '<span>'.$pokemonType->type->identifier.'</span>';
+				else					
+					$retVal.= '<span>'.$pokemonType->type->identifier.'</span><br/>';
+			}
+			return $retVal;
+		}else{
+			return 'No Asignado';
+		}
 	}
 }

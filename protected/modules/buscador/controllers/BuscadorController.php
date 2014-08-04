@@ -5,8 +5,8 @@ class BuscadorController extends Controller
 	public function actionIndex()
 	{
 		$type_criteria = new CDbCriteria;
-        $type_criteria->addCondition("id != 10001"); //Exclude unkown type
-        $type_criteria->addCondition("id != 10002"); //Exlude shadow type
+		$type_criteria->addCondition("id != 10001"); //Exclude unkown type
+		$type_criteria->addCondition("id != 10002"); //Exlude shadow type
 
 		$array_generations 	= array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
 		$array_colors 		= array('1' => 'Black (negro)', '2' => 'Blue (azul)', '3' => 'Brown (café)', '4' => 'Gray (griz)', '5' => 'Green (verde)', '6' => 'Pink (rosa)', '7' => 'Purple (morado)', '8' => 'Red (rojo)', '9' => 'White (blanco)', '10' => 'Yellow (amarillo)');
@@ -35,81 +35,73 @@ class BuscadorController extends Controller
 
 		$criteria = new CDbCriteria;
 		$params = array();
-        $criteria->with = array(
-            'pokemonTypes',
-        	'species',
-        );
+		$criteria->with = array(
+			'pokemonTypes',
+			'species',
+		);
 		$criteria->together = true;
+
+		//HEIGHT
+		if($_POST['min_height'] != -1 ){
+			$criteria->addCondition('height >= :min_height');
+			$params['min_height'] =  intval($_POST['min_height']);
+		}
+		if($_POST['max_height'] != -1 ){
+			$criteria->addCondition('height <= :max_height');
+			$params['max_height'] =  intval($_POST['max_height']);
+		}
+		//END OF HEIGHT
+
+
+		//WEIGHT
+		if($_POST['min_weight'] != -1 ){
+			$criteria->addCondition('weight > :min_weight');
+			$params['min_weight'] =  intval($_POST['min_weight']);
+		}
+		if($_POST['max_weight'] != -1 ){
+			$criteria->addCondition('weight < :max_weight');
+			$params['max_weight'] =  intval($_POST['max_weight']);
+		}
+		//END OF WEIGHT
+
+		//TYPES
 		
-		if(isset($_POST['min_height'], $_POST['max_height'], $_POST['min_height'], $_POST['max_weight'], $_POST['gen_1'], $_POST['gen_2'], $_POST['gen_3'],
-				 $_POST['gen_4'], $_POST['gen_5'], $_POST['gen_6'], $_POST['type_1'], $_POST['type_2'], $_POST['color'], $_POST['eggie'])){ 
-			//HEIGHT
-			if($_POST['min_height'] != -1 ){
-                $criteria->addCondition('height >= :min_height');
-                $params['min_height'] =  intval($_POST['min_height']);
-			}
-            if($_POST['max_height'] != -1 ){
-                $criteria->addCondition('height <= :max_height');
-            	$params['max_height'] =  intval($_POST['max_height']);
-            }
-			//END OF HEIGHT
 
-
-            //WEIGHT
-            if($_POST['min_weight'] != -1 ){
-                $criteria->addCondition('weight > :min_weight');
-            	$params['min_weight'] =  intval($_POST['min_weight']);
-            }
-            if($_POST['max_weight'] != -1 ){
-                $criteria->addCondition('weight < :max_weight');
-                $params['max_weight'] =  intval($_POST['max_weight']);
-            }
-			//END OF WEIGHT
-            $criteria->addCondition('species.color_id = :color');
-
-            //TYPES
-            
-
-            //SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=18) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=14) as B WHERE A.pokemon_id = B.pokemon_id
-            /*
-            if( ($_POST['type_1'] != -1) && ($_POST['type_2']) ) {
-				$criteria->addCondition('pokemonTypes.type_id = :type_1 and slot=1 or :type_2 ');
-            	$params['type_1'] = intval($_POST['type_1']);
-            	$params['type_2'] = intval($_POST['type_2']);
-            }
-            if( ($_POST['type_1'] != -1) && ($_POST['type_2'] == -1) ){
-				$criteria->addCondition('pokemonTypes.type_id = :type_1');
-            	$params['type_1'] = intval($_POST['type_1']);
-            }
-            if( ($_POST['type_1'] == -1) && ($_POST['type_2'] != -1) ){
-				$criteria->addCondition('pokemonTypes.type_id = :type_2');
-            	$params['type_2'] = intval($_POST['type_2']);
-            }
-            */
-			//END OF TYPES
-            
-
-			//COLOR
-			if($_POST['color'] != -1){
-                $criteria->addCondition('species.color_id = :color');
-            	$params['color'] =  intval($_POST['color']);
-			}
-			//END OF COLOR  (that sounds sooo emo)
-
-			//EGG
-			if($_POST['eggie'] != -1){
-				echo $_POST['eggie'];
-			}
-			//END OF EGG
-
+		//SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=18) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=14) as B WHERE A.pokemon_id = B.pokemon_id
+		if( ($_POST['type_1'] != -1) && ($_POST['type_2'] != -1) ) {
+			$criteria->addCondition('
+				t.id IN (SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=:type_1) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=:type_2) as B WHERE A.pokemon_id = B.pokemon_id) ');
+			$params['type_1'] = intval($_POST['type_1']);
+			$params['type_2'] = intval($_POST['type_2']);
 		}
-		else{
-			echo "FAIL";
+		if( ($_POST['type_1'] != -1) && ($_POST['type_2'] == -1) ){
+			$criteria->addCondition('pokemonTypes.type_id = :type_1');
+			$params['type_1'] = intval($_POST['type_1']);
 		}
+		if( ($_POST['type_1'] == -1) && ($_POST['type_2'] != -1) ){
+			$criteria->addCondition('pokemonTypes.type_id = :type_2');
+			$params['type_2'] = intval($_POST['type_2']);
+		}
+		//END OF TYPES
+		
+
+		//COLOR
+		if($_POST['color'] != -1){
+			$criteria->addCondition('species.color_id = :color');
+			$params['color'] =  intval($_POST['color']);
+		}
+		//END OF COLOR  (that sounds sooo emo)
+
+		//EGG
+		if($_POST['eggie'] != -1){
+			echo $_POST['eggie'];
+		}
+		//END OF EGG
+
 		
 		$criteria->params = $params; //Im calling the params here, before the generations, because of a Yii bug.
 
-        //GENERATIONS
+		//GENERATIONS
 		$gen = array('1' => filter_var($_POST['gen_1'], FILTER_VALIDATE_BOOLEAN), '2' => filter_var($_POST['gen_2'], FILTER_VALIDATE_BOOLEAN), 
 					 '3' => filter_var($_POST['gen_3'], FILTER_VALIDATE_BOOLEAN), '4' => filter_var($_POST['gen_4'], FILTER_VALIDATE_BOOLEAN),
 					 '5' => filter_var($_POST['gen_5'], FILTER_VALIDATE_BOOLEAN), '6' => filter_var($_POST['gen_6'], FILTER_VALIDATE_BOOLEAN));
@@ -126,40 +118,45 @@ class BuscadorController extends Controller
 		}
 		//END OF GENERATIONS
 
-        $gridColumns = array(
-            array(
-                'name' => 'id_pokemon',
-                'header' => 'Pokémon',
-                'value' => '$data->pokemonName',
-            ),
-            array(
-              'type' => 'raw',
-              'value' => 'CHtml::image(Yii::app()->baseUrl . "/images/sprites/".$data->id.".png")'
-            ),
-            array(
-                'name'   => 'weight',
-                'header' => 'Altura [m]',
-                'value'  => '$data->height/10'   
-            ),
-            array(
-                'name'   => 'height',
-                'header' => 'Peso [kg]',
-                'value'  => '$data->weight/10'   
-            ),
-        );
+		$gridColumns = array(
+			array(
+				'name' => 'id_pokemon',
+				'header' => 'Pokémon',
+				'value' => '$data->pokemonName',
+			),
+			array(
+			  'type' => 'raw',
+			  'value' => 'CHtml::image(Yii::app()->baseUrl . "/images/sprites/".$data->id.".png")'
+			),
+			array(
+				'name'   => 'weight',
+				'header' => 'Altura [m]',
+				'value'  => '$data->height/10'   
+			),
+			array(
+				'name'   => 'height',
+				'header' => 'Peso [kg]',
+				'value'  => '$data->weight/10'   
+			),
+			array(
+				'header' => 'Holi',
+				'type' 	 => 'raw',
+				'value'  => '$data->pokemonTypeList'
+			)
+		);
 
-        $dataProvider = new CActiveDataProvider('Pokemon', array(
-           'criteria' => $criteria
-        ));
-       
-        $this->widget(
+		$dataProvider = new CActiveDataProvider('Pokemon', array(
+		   'criteria' => $criteria
+		));
+	   $dataProvider->setPagination(false);
+		$this->widget(
 			'bootstrap.widgets.TbGridView',
 			 array(
-			    'type' => 'striped',
-			    'dataProvider' => $dataProvider,
-			    'template' => "{items}",
-			    'columns' => $gridColumns,
-    		)
-    	);
+				'type' => 'striped',
+				'dataProvider' => $dataProvider,
+				'template' => "{items}",
+				'columns' => $gridColumns,
+			)
+		);
 	}
 }
