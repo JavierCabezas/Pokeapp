@@ -1,8 +1,13 @@
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+    margin: 0;
+    padding: 1%;
+    width: 12%;
+}
+
 #column1-wrap {
     float: left;
     width: 100%;
 }
-
 
 #column1 {
     margin-right: 30%;

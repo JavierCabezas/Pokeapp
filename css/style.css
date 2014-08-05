@@ -1,99 +1,69 @@
-h1.autor {
-	background-image: url(../images/titles/autor_title.png);
+h1.autor, h1.stats, h1.captura, h1.pokeapp, h1.art_daisuki, h1.jugadores,
+h1.crearpj, h1.buscarpj, h1.codmod, h1.modpj, h1.re_pokecalc, h1.torneos,
+h1.registro, h1.usuario, h1.login {
 	text-indent: -9000px;
 	width: 800px;
 	height: 70px;
+}
+
+h1.autor {
+	background-image: url(../images/titles/autor_title.png);
 }
 
 h1.stats {
 	background-image: url(../images/titles/stats_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.captura {
 	background-image: url(../images/titles/captura_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.pokeapp {
 	background-image: url(../images/titles/pokeapp_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.art_daisuki {
 	background-image: url(../images/titles/articulos_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.jugadores {
 	background-image: url(../images/titles/jugadores_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.crearpj {
 	background-image: url(../images/titles/crearpj_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.buscarpj {
 	background-image: url(../images/titles/buscarpj_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.codmod {
 	background-image: url(../images/titles/codmod_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.modpj {
 	background-image: url(../images/titles/modpj_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.re_pokecalc {
 	background-image: url(../images/titles/re_pokecalc_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.torneos {
 	background-image: url(../images/titles/torneos_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.registro {
 	background-image: url(../images/titles/registro_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
 }
 
 h1.usuario {
 	background-image: url(../images/titles/menuusuario_title.png);
-	text-indent: -9000px;
-	width: 800px;
-	height: 70px;
+}
+
+h1.login {
+	background-image: url(../images/titles/iniciar_title.png);
 }
 
 #userdata,
