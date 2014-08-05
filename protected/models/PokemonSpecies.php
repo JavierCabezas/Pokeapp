@@ -192,4 +192,18 @@ class PokemonSpecies extends CActiveRecord
         return CHtml::listData($model, 'id', 'pokemonName');	
 	}  
 
+	/**
+	 *	Returns the html code for inserting an image for the specific pokémon.
+	 *	@param string $type can be "static" (the default value) or "moving" (depending if we want the gif of the png)
+	 *	@return string the image html code
+	 */
+	public function Image($type = 'static'){
+		if($type == 'static'){
+			$pic = $this->pokemonName.'_XY.png';
+			return CHtml::image(Yii::app()->baseUrl.'/images/sprites_png/'.$pic);
+		}elseif($type == 'moving'){
+			$pic = $this->identifier.'.gif';
+			return CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.$pic);
+		}
+	}
 }

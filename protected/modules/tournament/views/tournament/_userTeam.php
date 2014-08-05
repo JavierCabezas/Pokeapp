@@ -9,7 +9,7 @@
 <div class="accordion-heading">
 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<?php echo $pokeyman->id ?>">
         <h2>
-            <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.$pokeyman->idPokemonSpecies->identifier.'.gif'); ?>
+            <?php echo $pokeyman->idPokemonSpecies->image('moving'); ?>
             <?php echo beautify($pokeyman->pokemonName) ?>
         </h2>
 </a>
