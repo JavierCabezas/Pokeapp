@@ -53,7 +53,7 @@
 	     			<option value="3">Tercera (RS-E-FRLG)</option>
 	  				<option value="4">Cuarta (DP-Pl-HGSS)</option>
 	   				<!-- TODO <option value="5">Quinta (BW-BW2)</option> -->
-	   				<!-- <option value="6">Sexta (XY-&alpha;S &beta;R)</option> I don't know the catch rate mechanics for sixth generation yet! -->
+	   				<option value="6">Sexta (XY-&alpha;S &beta;R)</option>
 				</select>
 			</td> 
 			<td> <div id="foto_gen" class="pball_container" style="height:100px"> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/pokeball/gen2.png'); ?> </div> </td> 
