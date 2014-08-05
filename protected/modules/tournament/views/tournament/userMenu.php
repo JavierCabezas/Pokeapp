@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
     }
 ?>
 
-<h1> Menú de usuario </h1>
+<h1 class="usuario"> Menú de usuario </h1>
 
 <div id="column1-wrap">
     <div id="column1">
@@ -42,11 +42,11 @@ $this->breadcrumbs=array(
 <div id="column2">
 	<h2> Acciones de usuario </h2>
 
-	<p> Equipo pokémon </p>
+	<h4> Equipo pokémon </h4>
 	<p> <?php echo CHtml::link('Agregar un pokémon al equipo', array('/torneo/agregarPokemon')) ?> </p>
 	<!-- TODO: Check later <p> <?php //echo CHtml::link('Agregar o quitar pokémon para un torneo en específico', array('/torneo/pokemonTorneo')) ?>. </p> -->
 	<p> <?php echo CHtml::link('Borrar o modificar pokémon', array('/torneo/modificarPokemon')) ?> </p>
 
-	<p> Torneo </p>
+	<h4> Torneo </h4>
 	<p> <?php echo CHtml::link('Ver estado de mi inscripción online', array('/torneo/estadoInscripcion')); ?> </p>
 </div>

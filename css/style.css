@@ -82,6 +82,20 @@ h1.torneos {
 	height: 70px;
 }
 
+h1.registro {
+	background-image: url(../images/titles/registro_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
+h1.usuario {
+	background-image: url(../images/titles/menuusuario_title.png);
+	text-indent: -9000px;
+	width: 800px;
+	height: 70px;
+}
+
 #userdata,
 #dueldata,
 #contactdata {
