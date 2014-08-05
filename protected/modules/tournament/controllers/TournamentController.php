@@ -36,8 +36,7 @@ class TournamentController extends Controller
                 'allow',
                 'actions' => array(
                     'userMenu',
-                    'inscription',
-
+                    'inscriptionStatus',
                 ),
                 'users' => array(
                     '@'
@@ -295,7 +294,7 @@ class TournamentController extends Controller
     /**
      *  Displays the user view to see their postulation status.
      */
-    public function actionInscription(){
+    public function actionInscriptionStatus(){
         $user = Users::model()->findByPk(Yii::app()->user->id);
         $id_tournament = Tournament::model()->getNextTournament()->id;
 
@@ -336,7 +335,7 @@ class TournamentController extends Controller
         
         $complete_inscription = $complete_team&&$admin_approval;
 
-        $this->render('inscription', array(
+        $this->render('inscriptionStatus', array(
             'team_status'            => $team_status,
             'team_short'             => $team_shorts,
             'team_class'             => $team_class,

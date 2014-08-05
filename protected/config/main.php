@@ -54,7 +54,7 @@ return array(
                 'usuario/resetearCodigo'            => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo/resetearClave'              => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
-                'torneo/estadoInscripcion'          => 'tournament/tournament/inscription',             //User view to check the inscription status
+                'torneo/estadoInscripcion'          => 'tournament/tournament/inscriptionStatus',       //User view to check the inscription status
                 'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize
                 'torneo/autorizar/<id:\d+>'         => 'tournament/tournament/authorize',               //View for the admin to actually authorize a player
