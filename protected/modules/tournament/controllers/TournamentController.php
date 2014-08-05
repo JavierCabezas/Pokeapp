@@ -179,8 +179,9 @@ class TournamentController extends Controller
                     Yii::app()->user->setFlash('success', "Se agregó el folio ".$folio_post." al jugador ".$tournament_player_folio->idTournamentPlayer->name." con éxito");
                     $body =         '<p> Un administrador acaba de revisar tu perfil de jugador en la Pokéapp y te asignó el número '.$folio_post.' (según tu número de folio). </p>';
                     $body = $body . '<p> Recuerda que las dos condiciones para tener tu inscripción online finalizada son la revisión de perfil y la creación de tu equipo pokémon online, ';
-                    $body = $body . 'por lo que si tienes el equipo listo el trámite está finalizado. </p> <p> Además considera que puedes revisar tu perfil en cualquier momento para revisar que tu equipo esté bien ingresado';
-                    $body = $body . 'en nuestro sitio web. </p> <p> Ante cualquier duda siéntete libre de contactarnos en este mismo correo y te atenderemos en cuanto antes. </p>';
+                    $body = $body . 'por lo que si tienes el equipo listo el trámite está finalizado. </p>';
+                    $body = $body . '<p> Puedes revisar el estado de tu postulación en '.CHtml::link('el siguiente link', $this->createAbsoluteUrl('/torneo/estadoInscripcion')).'</p>';
+                    $body = $body . '<p> Ante cualquier duda siéntete libre de contactarnos en este mismo correo y te atenderemos en cuanto antes. </p>';
                     Mail::sendMail( 
                         Yii::app()->params['adminEmail'],
                             $tournament_player_folio->idTournamentPlayer->mail, 

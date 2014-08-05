@@ -42,7 +42,10 @@ $this->breadcrumbs=array(
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Crear usuario' : 'Guardar',
+			'label'=> 'Actualizar información',
+			'htmlOptions' => array(
+				'confirm' => 'Se le enviará un correo al jugador avisándole del rechazo o autorización de su folio. ¿Estás seguro/a de lo que ingresaste?'
+			)
 		)); ?>
 </div>
 

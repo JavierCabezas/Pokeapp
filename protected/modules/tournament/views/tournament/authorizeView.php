@@ -16,6 +16,11 @@ $this->breadcrumbs=array(
 
 <h2> Autorización de jugadores </h2>
 
+<p> 
+    !Cuidado! Al autorizar o rechazar a un jugador se le enviará automáticamente un correo al mismo avisándole de la situación. Es por esto
+    mismo que tienen que tener extremo cuidado y no equivocarse al realizar esta operación.
+</p> 
+
 <?php
     $this->widget('bootstrap.widgets.TbGridView',
     array(
