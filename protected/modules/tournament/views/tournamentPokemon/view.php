@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 ?>
 <div id="column1-wrap">
     <div id="column1">
-		<h1>  <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.$model->idPokemonSpecies->identifier.'.gif'); ?> Mi  <?php echo $model->pokemonName ?> </h1>
+		<h1>  <?php echo $model->idPokemonSpecies->image('moving'); ?> Detalles de mi <?php echo $model->pokemonName ?> </h1>
 
 
 		<?php $this->widget('bootstrap.widgets.TbDetailView',array(
