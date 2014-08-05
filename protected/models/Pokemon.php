@@ -136,8 +136,8 @@ class Pokemon extends CActiveRecord
 	}
 
 	/**
-	 *	Returns the type of the pokémon 
-	 *	@return string 
+	 *	Returns the type(s) of this pokémon in html.
+	 *	@return string the type(s) of the pokémon. 
 	 */
 	public function getPokemonTypeList()
 	{

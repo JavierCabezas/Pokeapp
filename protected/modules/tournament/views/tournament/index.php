@@ -16,9 +16,9 @@
 	</div>
 
 	<div class="tournament_menu">
-		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_002.png' />", array('/torneo/miEquipo'	)) ?>
+		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_002.png' />", array('/torneo/menuUsuario'	)) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Ingresa a tu cuenta</h4>', array('/torneo/miEquipo'))?>
+			<?php echo CHtml::link('<h4>Ingresa a tu cuenta</h4>', array('/torneo/menuUsuario'))?>
 			<p>Si ya estás inscrito puedes ingresar a tu perfil de usuario en este link.</p>
 		</div>
 	</div>

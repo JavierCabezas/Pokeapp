@@ -36,6 +36,7 @@ class TournamentController extends Controller
                 'allow',
                 'actions' => array(
                     'userMenu',
+                    'inscription',
 
                 ),
                 'users' => array(
@@ -66,7 +67,7 @@ class TournamentController extends Controller
         if(!isset(Yii::app()->user->id))
     		$this->render('index');
         else
-            $this->redirect(array('/torneo/miEquipo')); //If the player is logged redirect to the team view.
+            $this->redirect(array('/torneo/menuUsuario')); //If the player is logged redirect to the team view.
 	}
 
     /**
@@ -291,4 +292,59 @@ class TournamentController extends Controller
         $this->render('viewTeam');
     }
 
+    /**
+     *  Displays the user view to see their postulation status.
+     */
+    public function actionInscription(){
+        $user = Users::model()->findByPk(Yii::app()->user->id);
+        $id_tournament = Tournament::model()->getNextTournament()->id;
+
+        $pokemon_in_team = TournamentPlayerPokemon::model()->pokemonInTeam($id_tournament, $user->id);
+        if($pokemon_in_team == 6){
+            $team_status    = 'El equipo está completo';
+            $team_shorts    = 'Completo'; //I like shorts.
+            $team_class     = 'win';
+            $complete_team = true;
+        }else{
+            $team_status    = 'El equipo está incompleto. Se ha elegido '.$pokemon_in_team.' de los 6 pokémon';
+            $team_shorts    = 'Incompleto';
+            $team_class     = 'fail';
+            $complete_team = false;
+        }
+
+        $folio = TournamentPlayerFolio::model()->findByAttributes(array(
+            'id_tournament_player' => $user->id, 
+            'id_tournament' => $id_tournament
+        ))->folio;
+
+        if(is_null($folio)){
+            $folio_status   = 'Aún no han revisado tu perfil.';
+            $folio_shorts   = 'Pendiente';
+            $folio_class    = 'neutral';
+            $admin_approval = false;
+        }elseif($folio == -1){
+            $folio_status   = 'Contáctanos a '.Yii::app()->params['adminEmail'].' para conseguir más detalles';
+            $folio_shorts   = 'Rechazado';
+            $folio_class    = 'fail';
+            $admin_approval = false;
+        }else{
+            $folio_status   = 'Ha sido aceptado con número de folio '.$folio;
+            $folio_shorts   = 'Aceptado';
+            $folio_class    = 'win';
+            $admin_approval = true; 
+        }
+        
+        $complete_inscription = $complete_team&&$admin_approval;
+
+        $this->render('inscription', array(
+            'team_status'            => $team_status,
+            'team_short'             => $team_shorts,
+            'team_class'             => $team_class,
+            'folio_status'           => $folio_status,
+            'folio_short'            => $folio_shorts,
+            'folio_class'            => $folio_class,
+            'complete_inscription'   => $complete_inscription,
+        ));
+
+    }
 }

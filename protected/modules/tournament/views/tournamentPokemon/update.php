@@ -3,7 +3,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
-	'Mi equipo'=>array('/torneo/miEquipo'),
+	'Menú de usuario'=>array('/torneo/menuUsuario'),
 	'Actualizando a '.$model->pokemonName,
 );
 ?>

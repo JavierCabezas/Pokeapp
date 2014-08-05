@@ -148,7 +148,10 @@ class BuscadorController extends Controller
 		$dataProvider = new CActiveDataProvider('Pokemon', array(
 		   'criteria' => $criteria
 		));
+
+		//GERMAN HIZO ESTO RECORDAR VER QUE DIABLOS PASA :P
 	   $dataProvider->setPagination(false);
+	   
 		$this->widget(
 			'bootstrap.widgets.TbGridView',
 			 array(

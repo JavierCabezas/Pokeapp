@@ -121,7 +121,7 @@
 				)
 			);
 		?>
-		<?php if($model->isNewRecord): //Just show the tournament inscription if the pokémon is a new one. ?>
+		<?php if(false): //TODO: Check later ?>
 			<label class="required" for="torneo"> Inscribir al pokémon en un torneo? </label>
 			<?php echo CHtml::dropDownList('torneo', '' , $array_tournament, array('class' => 'span5')); ?>
 		<?php endif; ?>

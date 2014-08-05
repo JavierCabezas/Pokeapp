@@ -1,5 +1,5 @@
 <?php if($pokeymans): //If the player has pokémon on the team then show them ?>
-    <p> <?php echo count($pokeymans) ?> pokémon. Para ver más detalles, editar o borrar de cualquiera de tus pokémon haz click sobre su nombre. </p>
+    <p> <?php echo count($pokeymans) ?>/6 pokémon. Para ver más detalles, editar o borrar de cualquiera de tus pokémon haz click sobre su nombre. </p>
     </br>
      <?php foreach($pokeymans as $pokeyman): ?>
      <?php isset($pokeyman->idTournamentPokemon)?$pokeyman = $pokeyman->idTournamentPokemon:''; ?>
@@ -90,6 +90,5 @@
         
      <?php endforeach; ?>
 <?php else: // Caso sin pokémons en equipos ?>
-
-    <p><b> El jugador no tiene pokémon registrados en su equipo </b>. </p>
+    <p><b> No tienes pokémon registrados en tu equipo</b>. </p>
 <?php endif; ?>

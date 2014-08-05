@@ -105,4 +105,17 @@ class TournamentPlayerPokemon extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	/**
+	 *	Returns the number of the pokemon that a specific player has for an specific team in a specific tournament.
+	 *	@param integer id_tournament the identifier of the tournament that the team belongs to.
+	 *	@param integer id_player the identifier of the player that has the team
+	 *	@return integer the number of pokémon in the team.
+	 */
+	public function pokemonInTeam($id_tournament, $id_player){
+		return count(TournamentPlayerPokemon::model()->findAllByAttributes(array(
+			'id_tournament_player'  => $id_player, 
+			'id_tournament' 		=> $id_tournament
+		)));
+	}
 }

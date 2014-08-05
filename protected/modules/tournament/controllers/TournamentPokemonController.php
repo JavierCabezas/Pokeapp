@@ -68,6 +68,11 @@ class TournamentPokemonController extends Controller
      */
     public function actionCreate()
     {
+        if(TournamentPlayerPokemon::model()->pokemonInTeam(Tournament::model()->getNextTournament()->id, Yii::app()->user->id) > 5){
+            Yii::app()->user->setFlash('error', "Ya tienes 6 pokémon en tu equipo. Si quieres agregar más tienes que eliminar, al menos, uno de ellos.");
+            $this->redirect(array('/torneo/menuUsuario'));
+        }
+
         $model = new TournamentPokemon;
         $criteria = new CDbCriteria;
         $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
@@ -76,10 +81,10 @@ class TournamentPokemonController extends Controller
             $model->attributes = $_POST['TournamentPokemon'];
             $model->id_tournament_player = Yii::app()->user->id;
             if ($model->save()){
-                $id_torneo = intval($_POST['torneo']);
-                if($id_torneo != -1){ //-1 means that the player does not want to add the pokémon to any specific tournament.
+                $id_tournament = Tournament::model()->getNextTournament()->id; //intval($_POST['torneo']); TODO Check later
+                if($id_tournament != -1){ //-1 means that the player does not want to add the pokémon to any specific tournament.
                     $tpp = new TournamentPlayerPokemon;
-                    $tpp->id_tournament = $id_torneo;
+                    $tpp->id_tournament = $id_tournament;
                     $tpp->id_tournament_pokemon = $model->id;
                     $tpp->id_tournament_player = Yii::app()->user->id;
                     $tpp->save();
@@ -167,7 +172,7 @@ class TournamentPokemonController extends Controller
                 $this->loadModel($id)->delete();
                $transaction->commit();
                 Yii::app()->user->setFlash("success","Se borró a ".$model->pokemonName." con éxito");
-                $this->redirect(array('/torneo/miEquipo'));
+                $this->redirect(array('/torneo/menuUsuario'));
             }catch(CException $e) {
                     $transaction->rollback();
                     Yii::app()->user->setFlash('error',"Ha ocurrido un error con el borrado. Por favor inténtalo nuevamente.");

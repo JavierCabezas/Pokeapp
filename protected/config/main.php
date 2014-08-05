@@ -51,10 +51,11 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                'usuario/resetearCodigo'            => 'users/resetCodeForm',                            //Displays the form to reset the user's password
-                'torneo/resetearClave'              => 'users/resetCodeForm',                          //Displays the form to reset the user's password
+                'usuario/resetearCodigo'            => 'users/resetCodeForm',                           //Displays the form to reset the user's password
+                'torneo/resetearClave'              => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
-                'torneo/miEquipo'                   => 'tournament/tournament/userMenu',                //User menu
+                'torneo/estadoInscripcion'          => 'tournament/tournament/inscription',             //User view to check the inscription status
+                'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize
                 'torneo/autorizar/<id:\d+>'         => 'tournament/tournament/authorize',               //View for the admin to actually authorize a player
                 'torneo/verEquipoJugador'           => 'tournament/tournament/viewTeam',                //View for the admin to check for players teams

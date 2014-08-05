@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
-	'Mi equipo'=>array('/torneo/miEquipo'),
+	'Menú de usuario'=>array('/torneo/menuUsuario'),
 	'Crear pokémon'=>array('/torneo/agregarPokemon'),
 	'Ver pokémon creado',
 );
@@ -86,5 +86,5 @@ $this->breadcrumbs=array(
 	<p> <?php echo CHtml::link('Cometí un error! Modificar a '.$model->pokemonName, array('/torneo/modificarPokemon/', 'id' =>$model->id)) ?> </p>
 	<p> <?php echo CHtml::link('Borrar a '.$model->pokemonName, array('/torneo/borrarPokemon/', 'id' =>$model->id),  array('confirm' => 'Se borrará el pokémon y se sacará de cualquier equipo existente. ¿Estás seguro/a de que quieres continuar?')) ?> </p>
 	<p> &nbsp; </p>
-	<p> <?php echo CHtml::link('Volver a mi perfil', array('/torneo/miEquipo')) ?> </p>
+	<p> <?php echo CHtml::link('Volver a mi perfil', array('/torneo/menuUsuario')) ?> </p>
 </div>
