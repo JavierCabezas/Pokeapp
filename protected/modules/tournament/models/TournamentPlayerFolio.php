@@ -146,6 +146,7 @@ class TournamentPlayerFolio extends CActiveRecord
                 $out[$tournament_folio->folio] = $tournament_folio->folio;
             }
         }
+        asort($out);
         return $out;
     }
 }

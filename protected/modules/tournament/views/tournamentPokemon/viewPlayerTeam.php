@@ -36,6 +36,7 @@ $this->breadcrumbs=array(
 
 
 <?php if(!is_null($team)): // Displays the team in case it isn't null ?>
+	<h1> Equipo de <?php echo $player->name ?>  </h1> (<?php echo $player->mail ?>)
 	<?php foreach($team as $poke): ?>
 		<?php 
 			$this->renderPartial('_viewDetail', array(

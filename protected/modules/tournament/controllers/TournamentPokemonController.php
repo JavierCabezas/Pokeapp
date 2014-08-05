@@ -210,6 +210,7 @@ class TournamentPokemonController extends Controller
     public function actionViewPlayerTeam()
     {
         $team = null;
+        $player = null;
         $id_tournament = Tournament::model()->getNextTournament()->id;
         
         if(isset($_POST['id_folio'])){
@@ -218,6 +219,7 @@ class TournamentPokemonController extends Controller
                 'folio' => $id_folio, 
                 'id_tournament' => $id_tournament
             ))->id_tournament_player;
+            $player = Users::model()->findByPk($id_player);
             $team = TournamentPlayerPokemon::model()->findAllByAttributes(array(
                 'id_tournament' => $id_tournament, 
                 'id_tournament_player' => $id_player
@@ -226,7 +228,8 @@ class TournamentPokemonController extends Controller
 
         $this->render('viewPlayerTeam', array(
             'team'          => $team,
-            'id_tournament' => $id_tournament
+            'id_tournament' => $id_tournament,
+            'player'        => $player
         ));
     }
 }
