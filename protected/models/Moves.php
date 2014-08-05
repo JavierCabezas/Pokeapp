@@ -153,4 +153,17 @@ class Moves extends CActiveRecord
 		else
 			return beautify($this->identifier);
 	}
+
+
+	/** 
+	 *	Returns the move list in the correct format for a dropdownlist. 
+	 *	@return array of the listdata of the Moves model.
+	 */
+	public function dropdownMoves()
+	{
+		$criteria = new CDbCriteria;
+    	$criteria->addCondition("id < 5000");
+    	$model = Moves::model()->findAll($criteria);
+        return CHtml::listData($model, 'id', 'moveName');
+	}
 }

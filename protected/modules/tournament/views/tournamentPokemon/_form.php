@@ -22,7 +22,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_pokemon_species]',
-					'data' => $array_pokemon,
+					'data' => PokemonSpecies::model()->dropdownPokemon(),
 				)
 			);
 		?>
@@ -33,7 +33,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_ability]',
-					'data' => $array_ability,
+					'data' => Abilities::model()->dropdownAbility() ,
 				)
 			);
 		?>
@@ -45,7 +45,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_nature]',
-					'data' => $array_nature,
+					'data' => Nature::model()->dropdownNature(),
 				)
 			);
 		?>
@@ -57,7 +57,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_item]',
-					'data' => $array_item,
+					'data' => Items::model()->dropdownItems(),
 					'options' => array(
 						'allowClear'=>true,
 						'placeholder' => 'Elige un objeto'
@@ -65,7 +65,7 @@
 				)
 			);
 		?>
-
+		<?php $array_moves = Moves::model()->dropdownMoves() //I get the array here to do just one query ?>
 		<label class="required" for="TournamentPokemon_id_move1"> Movimiento 1 <span class="required">*</span> </label>
 		<?php
 			$this->widget(

@@ -179,4 +179,17 @@ class PokemonSpecies extends CActiveRecord
 		else
 			return false;
 	}
+
+	/** 
+	 *	Returns the pokémon list intended for a dropdown 
+	 *	@return array of the listdata of the Pokémon model.
+	 */
+	public function dropdownPokemon()
+	{
+	    $criteria = new CDbCriteria;
+        $criteria->addCondition("id < 5000");
+        $model = PokemonSpecies::model()->findAll($criteria);
+        return CHtml::listData($model, 'id', 'pokemonName');	
+	}  
+
 }

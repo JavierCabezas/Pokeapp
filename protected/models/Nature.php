@@ -127,4 +127,14 @@ class Nature extends CActiveRecord
 		else
 			return "+".str_replace('-', ' ', ($this->decreasedStat->short)).", -".str_replace('-', ' ', ($this->increasedStat->short));
 	}
+	
+	/** 
+	 *	Returns the nature list intended for a dropdown 
+	 *	@return array of the listdata of the Nature model.
+	 */
+	public function dropdownNature()
+	{
+		$model = Nature::model()->findAll();
+	   	return CHtml::listData($model, 'id', 'natureName');
+	}
 }

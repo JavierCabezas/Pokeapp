@@ -229,4 +229,14 @@ class Items extends CActiveRecord
 		}
 		return $out;
 	}
+
+	/** 
+	 *	Returns the item list intended for a dropdown 
+	 *	@return array of the listdata of the Items model.
+	 */
+	public function dropdownItems()
+	{
+		$model = Items::model()->findAll();
+	    return CHtml::listData($model, 'id', 'itemName');
+	}
 }

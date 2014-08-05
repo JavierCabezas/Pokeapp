@@ -119,4 +119,16 @@ class Abilities extends CActiveRecord
 		else
 			return beautify($this->identifier);
 	}
+
+	/** 
+	 *	Returns the ability list in the correct format for a dropdownlist. 
+	 *	@return array of the listdata of the Ability model.
+	 */
+	public function dropdownAbility()
+	{
+        $criteria = new CDbCriteria;
+        $criteria->addCondition("id < 5000");
+		$model = Abilities::model()->findAll($criteria);
+		return CHtml::listData($model, 'id', 'abilityName');
+	}
 }

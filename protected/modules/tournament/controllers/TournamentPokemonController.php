@@ -74,9 +74,6 @@ class TournamentPokemonController extends Controller
         }
 
         $model = new TournamentPokemon;
-        $criteria = new CDbCriteria;
-        $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
-
         if (isset($_POST['TournamentPokemon'])) {
             $model->attributes = $_POST['TournamentPokemon'];
             $model->id_tournament_player = Yii::app()->user->id;
@@ -95,20 +92,9 @@ class TournamentPokemonController extends Controller
                 ));
             }
         }
-
-        $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
-        $array_moves        = CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
-        $array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
-        $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
-        $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
         
         $this->render('create', array(
             'model' 			=> $model,
-            'array_ability'		=> $array_ability,
-            'array_moves'		=> $array_moves,
-            'array_pokemon'	    => $array_pokemon,
-            'array_nature'      => $array_nature,
-            'array_item'        => $array_item,
             'array_tournament'  => array(),
         ));
     }
@@ -121,33 +107,21 @@ class TournamentPokemonController extends Controller
     public function actionUpdate($id)
     {
         $model = TournamentPokemon::model()->findByAttributes(array('id_tournament_player' => Yii::app()->user->id, 'id' => $id));
-        if(isset($model)){
-            $criteria = new CDbCriteria;
-            $criteria->addCondition("id < 5000"); //Exclude conquest and gamecube stuff.
-        
+        if(isset($model)){      
             if (isset($_POST['TournamentPokemon'])) {
                 $model->attributes = $_POST['TournamentPokemon'];
                 if ($model->save()){
                     $this->redirect(array('/torneo/verPokemon/', 'id' => $model->id));
                 }
             }
-            
-            $array_ability      = CHtml::listData(Abilities::model()->findAll($criteria), 'id', 'abilityName');
-            $array_moves        = CHtml::listData(Moves::model()->findAll($criteria), 'id', 'moveName');
-            $array_pokemon      = CHtml::listData(PokemonSpecies::model()->findAll($criteria), 'id', 'pokemonName');
-            $array_nature       = CHtml::listData(Nature::model()->findAll($criteria), 'id', 'natureName');
-            $array_item         = CHtml::listData(Items::model()->findAll($criteria), 'id', 'itemName');
+            /*
             $array_tournament   = CHtml::listData(Tournament::model()->findAll(), 'id', 'name');
             $array_tournament   = $array_tournament + array('-1' => 'No agrear a ningún torneo');    
+            TODO CHeck this */
 
             $this->render('update', array(
                 'model'             => $model,
-                'array_ability'     => $array_ability,
-                'array_moves'       => $array_moves,
-                'array_pokemon'     => $array_pokemon,
-                'array_nature'      => $array_nature,
-                'array_item'        => $array_item,
-                'array_tournament'  => $array_tournament,
+                'array_tournament'  => array(),
             ));
         }else{
              throw new CHttpException(403, 'No estás autorizado a editar pokémon de otros jugadores.');
