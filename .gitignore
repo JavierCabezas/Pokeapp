@@ -2,7 +2,7 @@ protected/runtime/*
 !protected/runtime/.htaccess
 assets/*
 .idea/*
-assets
+assets/*
 Thumbs.db
 images/foto_jugadores/*
 images/foto_folio/*
