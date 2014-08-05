@@ -48,7 +48,6 @@ class TournamentController extends Controller
                     'authorize',
                     'authorizeView',
                     'adminMenu',
-                    'viewTeam',
                 ),
                 'users' => Admin::model()->getArrayAdmins()
             ),
@@ -282,14 +281,6 @@ class TournamentController extends Controller
             'model'      => $model,
             'next_event' => $next_tournament->name,
         ));
-    }
-    
-    /**
-     *  Display the admin form to see the team of an specific player.
-     */
-    public function actionViewTeam(){
-
-        $this->render('viewTeam');
     }
 
     /**

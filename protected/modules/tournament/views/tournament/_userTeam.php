@@ -1,5 +1,5 @@
 <?php if($pokeymans): //If the player has pokémon on the team then show them ?>
-    <p> <?php echo count($pokeymans) ?>/6 pokémon. Para ver más detalles, editar o borrar de cualquiera de tus pokémon haz click sobre su nombre. </p>
+    <p> <?php echo count($pokeymans) ?>/6 pokémon. Para ver más detalles sobre algún pokémon en específico haz click sobre su nombre. </p>
     </br>
      <?php foreach($pokeymans as $pokeyman): ?>
      <?php isset($pokeyman->idTournamentPokemon)?$pokeyman = $pokeyman->idTournamentPokemon:''; ?>

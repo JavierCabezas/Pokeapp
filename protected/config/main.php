@@ -58,7 +58,7 @@ return array(
                 'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize
                 'torneo/autorizar/<id:\d+>'         => 'tournament/tournament/authorize',               //View for the admin to actually authorize a player
-                'torneo/verEquipoJugador'           => 'tournament/tournament/viewTeam',                //View for the admin to check for players teams
+                'torneo/verEquipoJugador'           => 'tournament/tournamentPokemon/viewPlayerTeam',   //View for the admin to check for players teams
                 'torneo/registro'                   => 'tournament/tournament/create',                  //Profile creation on the tournament module                
                 'torneo/jugador/<id>'               => 'tournament/tournament/view/id/<id>',            //User profile confirmation (to be called after create)
                 'torneo/agregarPokemon'             => 'tournament/tournamentPokemon/create',           //Form to create a new pokémon for a tournament user.

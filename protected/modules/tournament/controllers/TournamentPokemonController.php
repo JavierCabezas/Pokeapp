@@ -40,6 +40,13 @@ class TournamentPokemonController extends Controller
                 )
             ),
             array(
+                'allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array(
+                    'viewPlayerTeam',
+                ),
+                'users' => Admin::model()->getArrayAdmins()
+            ),              
+            array(
                 'deny', // deny all users
                 'users' => array(
                     '*'
@@ -194,5 +201,32 @@ class TournamentPokemonController extends Controller
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+    
+    /**
+     *  Display the admin form to see the team of an specific player.
+     */
+    public function actionViewPlayerTeam()
+    {
+        $team = null;
+        $id_tournament = Tournament::model()->getNextTournament()->id;
+        
+        if(isset($_POST['id_folio'])){
+            $id_folio = intval($_POST['id_folio']);
+            $id_player = TournamentPlayerFolio::model()->findByAttributes(array(
+                'folio' => $id_folio, 
+                'id_tournament' => $id_tournament
+            ))->id_tournament_player;
+            $team = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+                'id_tournament' => $id_tournament, 
+                'id_tournament_player' => $id_player
+            ));
+        }
+
+        $this->render('viewPlayerTeam', array(
+            'team'          => $team,
+            'id_tournament' => $id_tournament
+        ));
     }
 }
