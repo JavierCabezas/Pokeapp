@@ -4,7 +4,7 @@
 $this->breadcrumbs=array(
 	'Torneo'=>array('/torneo'),
 	'Menú de usuario'=>array('/torneo/menuUsuario'),
-	'Crear',
+	'Crear nuevo pokémon a mi equipo',
 );
 ?>
 
