@@ -33,6 +33,7 @@ class TournamentPokemonController extends Controller
                     'update',
                     'view',
                     'delete',
+                    'index',
                 ),
                 'users' => array(
                     '@'
@@ -157,11 +158,14 @@ class TournamentPokemonController extends Controller
     }
     
     /**
-     * Lists all models.
+     * Lists all models and 
      */
     public function actionIndex()
     {
-        $dataProvider = new CActiveDataProvider('TournamentPokemon');
+        $dataProvider = new CActiveDataProvider('TournamentPokemon', array(
+        'criteria'=>array(
+            'condition'=>'id_tournament_player = '.Yii::app()->user->id
+        )));
         $this->render('index', array(
             'dataProvider' => $dataProvider
         ));

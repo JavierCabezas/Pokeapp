@@ -66,6 +66,7 @@ return array(
                 'torneo/borrarPokemon/<id>'         => 'tournament/tournamentPokemon/delete/id/<id>',   //Deletes a tournament pokémon
                 'torneo/pokemonTorneo'              => 'tournament/tournamentPokemon/admin',            //I should remember what this was...TODO
                 'torneo/modificarPokemon/<id:\d+>'  => 'tournament/tournamentPokemon/update/id/<id>',   //Modify a tournament pokémon
+                'torneo/modificarPokemon'           => 'tournament/tournamentPokemon/index',            //Modify a tournament pokémon                
                 'torneo/<page>'                     => 'tournament/tournament/<page>',
                 'buscador'                          => 'buscador/buscador/index',
                 'jugadores'                         => 'jugadores/jugadores/index',
