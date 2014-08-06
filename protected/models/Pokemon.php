@@ -73,8 +73,13 @@ class Pokemon extends CActiveRecord
 			'pokemonSearchCriterias' => array(self::HAS_MANY, 'PokemonSearchCriteria', 'id_pokemon'),
 			'pokemonStats' => array(self::HAS_MANY, 'PokemonStats', 'pokemon_id'),
 			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'pokemon_id'),
-			'countPokemonTypes' => array(self::STAT, 'PokemonTypes', 'pokemon_id'), //STAT uses count.
+			'countPokemonTypes' => array(self::STAT, 'PokemonTypes', 'pokemon_id') //STAT uses count.
 		);
+	}
+
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
 	}
 
 	/**

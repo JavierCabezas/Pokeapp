@@ -4,18 +4,7 @@ class StatsController extends Controller
 {
 	public function actionIndex()
 	{
-		$array_pokeymans = CHtml::listData(Pokemon::model()->findAll(), 'id', 'pokemonName');
-		$array_nature 	 = CHtml::listData(Nature::model()->findAll(), 'id', 'natureName');
-		$items = Items::model()->getAllItemsThatAffectStats();
-		$array_items[0] = 'Ninguno'; //Add the "none" item.
-		foreach($items as $item)
-			$array_items[$item->id] =$item->itemName; //I guess there is a way to do this using listData but I don't really know how =P.
-		
-		$this->render('index', array(
-			'array_pokeymans' 		=> $array_pokeymans,
-			'array_items'			=> $array_items,
-			'array_nature'			=> $array_nature,
-		));
+		$this->render('index');
 	}
 
 	/**
@@ -27,12 +16,11 @@ class StatsController extends Controller
 		if(isset($_POST)){
 			$hp=0; $atk=1; 	$def=2; $spa=3; $spd=4; $spe=5;
 			//Get user imput.
-			$id_pokeyman 	= $_POST['pokemon_'.$id];
-			$id_item 	 	= $_POST['item_'.$id];
-			$id_nature 	 	= $_POST['nature_'.$id];
+			$id_pokeyman 	= intval($_POST['pokemon_'.$id]);
+			$id_item 	 	= intval($_POST['item_'.$id]);
+			$id_nature 	 	= intval($_POST['nature_'.$id]);
 			$level		 	= min( $_POST['level_text_'.$id], 100) + 0;
 			$pokemon_model 	= Pokemon::model()->findByPk($id_pokeyman);
-			$id_pokeyman 	= $pokemon_model->id;
 			$pokemon_stats 	= PokemonStats::model()->findAllByAttributes(array('pokemon_id' => $id_pokeyman));
 			$nature 		= Nature::model()->findByPk($id_nature);
 			$item 			= Items::model()->FindByPk($id_item);
@@ -71,7 +59,7 @@ class StatsController extends Controller
 
 			$this->renderPartial('_showResults', array(
 				'n'	     		=> $id,
-				'pokemon'		=> beautify($pokemon_name),
+				'pokemon'		=> $pokemon_model->pokemonName,
 				'level' 		=> $level,
 				'nature' 		=> $nature->natureName,
 				'nature_stats' 	=> $nature->natureStats,

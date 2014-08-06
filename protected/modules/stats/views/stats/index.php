@@ -11,24 +11,12 @@
 <div id="pokemon_info">
 	<div class='pokemon_1'>
 		<h3>Pokémon 1</h3>
-		<?php $this->renderPartial('_form', array(
-			'n' 			  		=> 1,
-			'array_pokeymans' 		=> $array_pokeymans,
-			'array_items' 	  		=> $array_items,
-			'array_nature'			=> $array_nature,
-			));
-		?>
+		<?php $this->renderPartial('_form', array('n'=> 1));?>
 	</div> <!-- end of form 1 -->
 
 	<div class='pokemon_2'>
 		<h3>Pokémon 2</h3>
-		<?php $this->renderPartial('_form', array(
-			'n' 			  		=> 2,
-			'array_pokeymans' 		=> $array_pokeymans,
-			'array_items' 			=> $array_items,
-			'array_nature'			=> $array_nature,
-			));
-		?>
+		<?php $this->renderPartial('_form', array('n' => 2));?>
 	</div> <!-- end of form 2 -->
 </div>
 

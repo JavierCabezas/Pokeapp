@@ -16,7 +16,7 @@
 					'bootstrap.widgets.TbSelect2',
 					array(
 						'name' => 'pokemon_'.$n,
-						'data' => $array_pokeymans,
+						'data' => PokemonSpecies::model()->dropdownPokemon(),
 						'htmlOptions' => array(
 							'multiple' => false,
 						),
@@ -31,7 +31,7 @@
 					'bootstrap.widgets.TbSelect2',
 					array(
 						'name' => 'item_'.$n,
-						'data' => $array_items,
+						'data' => Items::model()->getAllItemsThatAffectStats(),
 						'htmlOptions' => array(
 							'multiple' => false,
 						),
@@ -46,7 +46,7 @@
 					'bootstrap.widgets.TbSelect2',
 					array(
 						'name' => 'nature_'.$n,
-						'data' => $array_nature,
+						'data' => Nature::model()->dropdownNature(),
 						'htmlOptions' => array(
 							'multiple' => false,
 						),

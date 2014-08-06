@@ -127,7 +127,7 @@ class Items extends CActiveRecord
 
 	/**
 	 *	Returns just the items that can modify the pokémon stats (choice items, berrys, etc.)
-	 * @return Items the static model class of the items that affect the stats.
+	 * 	@return an array intended for a dropdownlist with all the items.
 	 */
 	public function getAllItemsThatAffectStats()
 	{
@@ -135,7 +135,12 @@ class Items extends CActiveRecord
 							 255, 264, 267, 268, 269, 270, 271, 274, 581, 682, 683); //id of the items that may affect the stats.
 		$criteria = new CDbCriteria();
 		$criteria->addInCondition("id", $array_items);
-		return Items::model()->findAll($criteria);
+		$items = Items::model()->findAll($criteria);
+		$out = array();
+		$out[0] = 'Ninguno'; //Add the "none" item.
+		foreach($items as $item)
+			$out[$item->id] =$item->itemName; //I guess there is a way to do this using listData but I don't really know how =P.
+		return $out;
 	}
 
 	/**
