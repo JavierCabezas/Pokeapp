@@ -21,11 +21,40 @@ class SiteController extends Controller
         );
     }
     
-    
+    /** 
+     *  Renders the main view for the pokéapp.
+     *  Registers the scripts for the coinslider, adds the images and info to the array for the coinslider and shuffles the array afterwards (so the order of the items of the slider its random)
+     */    
     public function actionIndex()
     {
+        $baseUrl = Yii::app()->baseUrl; 
+        $scr = Yii::app()->getClientScript();
+        $scr->registerScriptFile($baseUrl.'/js/coin-slider.min.js');
+        $scr->registerCssFile($baseUrl.'/css/coin-slider-styles.css');
+
+
+        $array_carrousel = array();
+        $array_carrousel[1]['image']    = 'capture_calculator.png';
+        $array_carrousel[1]['title']    = 'Calculadora de captura';
+        $array_carrousel[1]['caption']  = '¿Mewtwo congelado y 1 de HP no entra a tus masterball? Calcula la probabilidad y cuántas pokéballs necesitas en promedio.';
+        $array_carrousel[1]['link']     = Yii::app()->createAbsoluteUrl('/pokeball');
+        $array_carrousel[2]['image']    = 'stats_calculator.png';
+        $array_carrousel[2]['title']    = 'Calculadora de stats';
+        $array_carrousel[2]['caption']  = 'Si necesitas calcular cuantos EV asignar y que naturaleza usar velocidad necesitas para pasar a un pokémon en específico puedes usar nuestra calculadora de stats.';
+        $array_carrousel[2]['link']     = Yii::app()->createAbsoluteUrl('/stats');
+        $array_carrousel[3]['image']    = 'tournament_inscription.png';
+        $array_carrousel[3]['title']    = 'Sistema online para torneos';
+        $array_carrousel[3]['caption']  = 'La pokéapp es el medio oficial para la inscripción de distintos torneos precenciales que se realizarán en la región de Santiago de Chile.';
+        $array_carrousel[3]['link']     = Yii::app()->createAbsoluteUrl('/torneo');
+        $array_carrousel[4]['image']    = 'player_search.png';
+        $array_carrousel[4]['title']    = 'Sistema de búsqueda de otros jugadores';
+        $array_carrousel[4]['caption']  = 'Próximamente estará implementado un sistema de búsqueda de jugadores para poder agendar duelos o intercambios.';
+        $array_carrousel[4]['link']     = Yii::app()->createAbsoluteUrl('/index');
+        shuffle($array_carrousel);
+
         $this->render('index', array(
-            'is_admin' => Admin::model()->isAdmin()
+            'is_admin'      => Admin::model()->isAdmin(),
+            'items_slider'  => $array_carrousel
         ));
     }
     
