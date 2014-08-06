@@ -1,6 +1,6 @@
 h1.autor, h1.stats, h1.captura, h1.pokeapp, h1.art_daisuki, h1.jugadores,
 h1.crearpj, h1.buscarpj, h1.codmod, h1.modpj, h1.re_pokecalc, h1.torneos,
-h1.registro, h1.usuario, h1.login {
+h1.registro, h1.usuario, h1.login, h1.nuevopkmn {
 	text-indent: -9000px;
 	width: 800px;
 	height: 70px;
@@ -65,6 +65,11 @@ h1.usuario {
 h1.login {
 	background-image: url(../images/titles/iniciar_title.png);
 }
+
+h1.nuevopkmn {
+	background-image: url(../images/titles/nuevopkmn_title.png);
+}
+
 
 #userdata,
 #dueldata,

@@ -74,7 +74,7 @@ h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
     margin-left: -50%;
 }
 
-#tournament-player-form {
+#tournament-player-form, #login-form {
     width: 48%;
     margin-left: auto;
     margin-right: auto;
@@ -88,6 +88,11 @@ h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
 #tournament-player-form #Users_name, 
 #tournament-player-form #Users_mail {
     width: 97%;
+}
+
+#login-form #LoginForm_username,
+#login-form #LoginForm_password {
+    width: 95%;
 }
 
 .tournament_menu {
