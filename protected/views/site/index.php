@@ -11,10 +11,6 @@
 	<?php echo CHtml::link('Autorizar jugadores', array('jugadores/authorize')) ?>
 <?php endif; ?>
 
-<?php
-//echo Users::model()->hashPassword('2em8lcgrszpr'); 
-?>
-
 <div class="page-header">   <h1>Pokéapp </h1></div>
 <p> 
 	La pokéapp es un compilado de aplicaciones hechas por <?php echo CHtml::link('un fan', array('/sobre_mi')) ?> de pokémon y pensada para otros fans. 
