@@ -22,9 +22,6 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0;
-	background-image: url(../images/nav/header_app.png);
-	background-repeat: no-repeat;
-	background-position: center middle;	
 	height: 200px;
 }
 
@@ -75,7 +72,6 @@ u.dotted {
 #logo {
 	padding: 10px 20px;
 	font-size: 200%;
-	text-indent: -9999px;
 }
 
 #mainmenu {

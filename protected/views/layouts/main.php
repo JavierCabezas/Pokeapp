@@ -37,7 +37,11 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><a href="#"><?php echo CHtml::encode(Yii::app()->name); ?></a></div>
+		<a href="<?php echo Yii::app()->request->baseUrl ?>"> 
+			<div id="logo"> 
+				<img src="<?php echo Yii::app()->request->baseUrl ?>/images/nav/header_app.png" />
+			</div>
+		</a>
 	</div><!-- header -->
 
 	<div id="mainmenu">
