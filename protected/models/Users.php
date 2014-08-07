@@ -38,7 +38,7 @@ class Users extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, mail', 'required'),
-			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => false, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
+			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
 			array('name', 'length', 'max'=>80),
 			array('mail', 'length', 'max'=>100),
 			array('mail', 'email'),

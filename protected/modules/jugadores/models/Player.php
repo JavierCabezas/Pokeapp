@@ -84,15 +84,15 @@ class Player extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('nickname, friendcode_1, friendcode_2, friendcode_3', 'required'),
+			array('id_user, nickname, friendcode_1, friendcode_2, friendcode_3, mail', 'required'),
 			array('id_user, friendcode_1, friendcode_2, friendcode_3, id_safari_type, safari_slot_1, safari_slot_2, safari_slot_3, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
 			array('created', 'length', 'max'=>32),
 			array('tsv, friendcode_1, friendcode_2, friendcode_3', 'numerical', 'max' => 9999, 'min' => 1),
-			array('avatar', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024, 'tooLarge'=>'El archivo tiene que ser menor a 1MB'), 
+			array('avatar', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'), 
 			array('name', 'length', 'max'=>80),
 			array('mail', 'email'),
-			array('mail', 'unique'),
+			array('id_user', 'unique', 'message' => 'El correo ingresado ya está registrado en nuestra base de datos. Si deseas logearte puedes hacerlo '.CHtml::link('en el siguiente link', array('/jugadores/actualizar')).'.' ),
 			array('safari_slot_1','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
 			array('safari_slot_2','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
 			array('safari_slot_3','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.

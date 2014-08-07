@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="bloq">
-			<p class='note'>Avatar (formatos válidos png, jpg, gif. Máximo 1 megabyte) </p> 
+			<p class='note'>Avatar (formatos válidos png, jpg, gif. Máximo 2 megabytes) </p> 
 			<?php echo $form->fileField($model,'avatar'); ?>
 			<?php echo $form->error($model,'avatar'); ?>
 		</div>
