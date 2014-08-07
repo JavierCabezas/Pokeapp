@@ -1,11 +1,9 @@
-<nav>
-	<ul>
-		<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/pj_nav/n_pj_01.png" width="210" height="100" />',  Yii::app()->createurl('jugadores/jugadores/create'))?> </li>
-		<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/pj_nav/n_pj_02.png" width="210" height="100" />',  Yii::app()->createurl('jugadores/jugadores/buscador'))?> </li>
-		<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/pj_nav/n_pj_03.png" width="210" height="100" />',  Yii::app()->createurl('jugadores/jugadores/nuevo_codigo'))?> </li>
-		<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/pj_nav/n_pj_04.png" width="210" height="100" />',  Yii::app()->createurl('jugadores/jugadores/updateForm'))?> </li>
-	</ul>
-</nav>
+<?php
+$this->breadcrumbs=array(
+	'Jugadores'=>array('/jugadores'),
+	'Información safari amigo',
+);
+?>
 
 <h2> Friend Safai (Safari amigo) </h2>
 
@@ -53,7 +51,7 @@ Para ver más información de que pokémon hay por cada ranura haz click en el t
 
 
 <p>
-Para esto mismo el <?php echo CHtml::link('buscador de jugadores', array('buscador')) ?> puede ser bastante útil
+Si estás buscando a una persona con un safari en específico te invitamos a usar nuestro <?php echo CHtml::link('buscador de jugadores', array('buscador')) ?>.
 </p>
 
 <?php echo CHtml::link('Volver al módulo de jugadores', array('index')) ?>.
