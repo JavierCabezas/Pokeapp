@@ -1,10 +1,5 @@
 protected/runtime/*
 !protected/runtime/.htaccess
-assets/*
 .idea/*
-assets/*
 Thumbs.db
-images/foto_jugadores/*
-images/foto_folio/*
-protected/config/main.php
 protected/config/main.php
