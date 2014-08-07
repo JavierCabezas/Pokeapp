@@ -138,5 +138,15 @@ class Users extends CActiveRecord
     {
         return CPasswordHelper::verifyPassword($password,$this->code);
     }
- 
+ 	
+ 	/**
+ 	 *	Check if the mail passed by argument exists on the user database.
+	 *	@param string $mail the e-mail to check in the database.
+ 	 *	@return bool true in case the player exists and false otherwise.
+ 	 */
+ 	public function checkPlayerExists($mail)
+ 	{
+ 		$player = Users::model()->findByAttributes(array('mail' => $mail));
+ 		return isset($player->id);
+ 	}
 }

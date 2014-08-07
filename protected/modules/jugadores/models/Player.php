@@ -1,12 +1,12 @@
 <?php
 
 /**
- * This is the model class for table "Player".
+ * This is the model class for table "player".
  *
- * The followings are the available columns in table 'Player':
+ * The followings are the available columns in table 'player':
  * @property integer $id
+ * @property integer $id_user
  * @property string $nickname
- * @property string $name
  * @property string $pic
  * @property integer $friendcode_1
  * @property integer $friendcode_2
@@ -27,12 +27,12 @@
  * @property string $skype
  * @property string $whatsapp
  * @property string $facebook
- * @property string $mail
  * @property integer $public_mail
  * @property string $others
  * @property string $comment
  * @property integer $auth
  * @property string @created
+ * @property string $modified
  *
  * The followings are the available model relations:
  * @property Tiers $tierRotation
@@ -43,6 +43,7 @@
  * @property Pokemon $safariSlot1
  * @property Pokemon $safariSlot2
  * @property Pokemon $safariSlot3
+ * @property Users $idUser
  */
 class Player extends CActiveRecord
 {
@@ -66,7 +67,8 @@ class Player extends CActiveRecord
 	
 
 	public $avatar; //To store the avatar when creating the profile.
-		
+	public $mail; //For the Users module.
+	public $name;
 
 	/**
 	 * @return string the associated database table name
@@ -82,10 +84,10 @@ class Player extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('nickname, friendcode_1, friendcode_2, friendcode_3, mail', 'required'),
-			array('friendcode_1, friendcode_2, friendcode_3, id_safari_type, safari_slot_1, safari_slot_2, safari_slot_3, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
+			array('nickname, friendcode_1, friendcode_2, friendcode_3', 'required'),
+			array('id_user, friendcode_1, friendcode_2, friendcode_3, id_safari_type, safari_slot_1, safari_slot_2, safari_slot_3, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
-			array('created, code', 'length', 'max'=>32),
+			array('created', 'length', 'max'=>32),
 			array('tsv, friendcode_1, friendcode_2, friendcode_3', 'numerical', 'max' => 9999, 'min' => 1),
 			array('avatar', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024, 'tooLarge'=>'El archivo tiene que ser menor a 1MB'), 
 			array('name', 'length', 'max'=>80),
@@ -127,6 +129,7 @@ class Player extends CActiveRecord
 			'safariSlot1' => array(self::BELONGS_TO, 'Pokemon', 'safari_slot_1'),
 			'safariSlot2' => array(self::BELONGS_TO, 'Pokemon', 'safari_slot_2'),
 			'safariSlot3' => array(self::BELONGS_TO, 'Pokemon', 'safari_slot_3'),
+			'idUser' => array(self::BELONGS_TO, 'Users', 'id_user'),
 		);
 	}
 
@@ -137,6 +140,7 @@ class Player extends CActiveRecord
 	{
 		return array(
 			'id' 			=> 'ID',
+			'id_user' 		=> 'Id User',
 			'nickname' 		=> 'Nickname (sobrenombre)',
 			'name' 			=> 'Nombre real',
 			'pic' 			=> 'Foto de avatar',
@@ -165,8 +169,9 @@ class Player extends CActiveRecord
 			'others' 		=> 'Otras formas de contacto',
 			'comment' 		=> 'Deja algún comentario para los que lean tu perfil...',
 			'created'		=> 'Fecha de creación',
-			'code'			=> 'Código',
 			'auth' 			=> 'Auth',
+			'created' 		=> 'Created',
+			'modified' 		=> 'Modified',
 
 			'search_nickname'		=> 'Nickname',
 			'search_safari'			=> 'Tipo Safari',

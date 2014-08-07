@@ -96,20 +96,67 @@ class JugadoresController extends Controller
         $array_types        = CHtml::listData(Types::model()->findAll($criteria), 'id', 'typeName');
         $array_auth_mail    = array('0' => 'No', '1' => 'Sí');
         $array_tiers        = CHtml::listData(Tiers::model()->findAll($criteria), 'id', 'tierName');
+        
         if (isset($_POST['Player'])) {
-            $model->attributes = $_POST['Player'];
-            $avatar         = CUploadedFile::getInstance($model, 'avatar');
-            $model->created = time();
-            $model->code = md5(rand(0,100000).time());
-            $model->public_mail = 0;
+            $p = new CHtmlPurifier();
+            $mail       = $p->purify($_POST['Player']['mail']);
+            $nickname   = $p->purify($_POST['Player']['nickname']);
+            $name = ($_POST['Player']['name'] == '')?$p->purify($_POST['Player']['name']):$nickname;
+            $code = generatePassword();
+            $hashed_code = Users::model()->hashPassword($code);
+            
+            if(Users::model()->checkPlayerExists($mail)){
+                $user = Users::model()->findByAttributes(array('mail' => $mail));
+                Users::model()->updateByPk($user->id, array('code' => $hashed_code));
+            }else{
+
+                $user               = new Users();
+                $user->mail         = $mail;
+                $user->name         = $name;
+                $user->code         = $hashed_code;
+                $user->created_on   = time();
+                $user->save();
+            }
+            $model->id_user         = $user->id;
+            $model->nickname        = $nickname;
+            $model->friendcode_1    = intval($_POST['Player']['friendcode_1']);
+            $model->friendcode_2    = intval($_POST['Player']['friendcode_2']);
+            $model->friendcode_3    = intval($_POST['Player']['friendcode_3']);
+            $model->id_safari_type  = (intval($_POST['Player']['id_safari_type']) != 0)?intval($_POST['Player']['id_safari_type']):null;
+            $model->safari_slot_1   = isset($_POST['Player']['safari_slot_1'])?intval($_POST['Player']['safari_slot_1']):null;
+            $model->safari_slot_2   = isset($_POST['Player']['safari_slot_2'])?intval($_POST['Player']['safari_slot_2']):null;
+            $model->safari_slot_3   = isset($_POST['Player']['safari_slot_3'])?intval($_POST['Player']['safari_slot_3']):null;
+            $model->tsv             = isset($_POST['Player']['tsv'])?intval($_POST['Player']['tsv']):null;
+            $model->duel_single     = intval($_POST['Player']['duel_single']);
+            $model->tier_single     = isset($_POST['Player']['tier_single'])?intval($_POST['Player']['tier_single']):null;
+            $model->duel_doble      = intval($_POST['Player']['duel_doble']);
+            $model->tier_doble      = isset($_POST['Player']['tier_doble'])?intval($_POST['Player']['tier_doble']):null;
+            $model->duel_triple     = intval($_POST['Player']['duel_triple']);
+            $model->tier_triple     = isset($_POST['Player']['tier_triple'])?intval($_POST['Player']['tier_triple']):null;
+            $model->duel_rotation   = intval($_POST['Player']['duel_rotation']);
+            $model->tier_rotation   = isset($_POST['Player']['tier_rotation'])?intval($_POST['Player']['tier_rotation']):null;
+            $model->skype           = $_POST['Player']['skype'];
+            $model->whatsapp        = $_POST['Player']['whatsapp'];
+            $model->facebook        = $_POST['Player']['facebook'];
+            $model->public_mail     = 0;
+            $model->others          = $_POST['Player']['others'];
+            $model->comment         = $_POST['Player']['comment'];
+            $model->auth            = 0;
+            $model->created         = time();
+            $model->modified        = time();
+
+            $avatar                 = CUploadedFile::getInstance($model, 'avatar');
             if(isset($avatar)){
                 $model->pic =  $avatar->extensionName;
             }
+            echo var_dump($user);
+            /*
             if ($model->save()){
                     $link_form      = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
                     $link_search    = CHtml::link('el buscador de jugadores', $this->createAbsoluteUrl('jugadores/buscador'));
+                    $link_login     = CHtml::link('el siguiente link', $this->createAbsoluteUrl('/login'));
                     $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que el perfil será puesto luego de que sea aceptado por alguno de nuestros administradores. </p>';
-                    $body = $body . '<p> Además recuerda que  tu código secreto es <b>'.$model->code.'</b>. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
+                    $body = $body . '<p> Además recuerda que  tu clave es <b>'.$code.'</b> y puedes logear desde '.$link_login.'. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
                     $body = $body . '<p> Ahora te invitamos a buscar a otros jugadores en '.$link_search.' </p>';
                     $body = $body . '<p> ¡Muchas gracias por usar nuestra aplicación! </p>';
                     //Send the email to the player
@@ -129,7 +176,7 @@ class JugadoresController extends Controller
                         'Se agregó un jugador en la pokéapp', //subject
                         'Se registro un nuevo jugador', //mail_title
                         '<p>Apúrate y acéptalo. Su mail es '.$model->mail.'</p>'//mail body
-                    );*/
+                    );
 
                 if(isset($avatar)){
                     $avatar->saveAs('./images/foto_jugadores/'. $model->id . '.' .$model->pic);
@@ -137,9 +184,9 @@ class JugadoresController extends Controller
                 $this->redirect(array(
                     'view',
                     'id'    => $model->id,
-                    'code'  => $model->code,
+                    'code'  => $code,
                 ));
-            }
+            } */
         }
         
         $this->render('create', array(
