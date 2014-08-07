@@ -10,7 +10,9 @@
 	Aún así se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
-	Además ten en cuenta que hay movimientos que, si bien son legales <b> {[PATO, NECEISTO EJEMPLOS ACÁ ]} </b>
+	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, son ilegales según las reglas del torneo. 
+	Un ejemplo de esto es Metagross con Ice punch. Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, dejándolo prohibido para el torneo.
+	¡Revisa con detalle que el movimiento de los pokémon que ingreses!
 </p>
 
 <?php echo $form->errorSummary($model); ?>
