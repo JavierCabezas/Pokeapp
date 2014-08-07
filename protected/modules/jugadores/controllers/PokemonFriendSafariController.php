@@ -16,7 +16,7 @@ class PokemonFriendSafariController extends Controller
         	$criteria->addCondition("id_type = ".(int)$_POST['id_type']);
         	$criteria->addCondition("slot = ".(int)$_POST['slot']);
 			$array_pokeymans	= CHtml::listData(PokemonFriendSafari::model()->findAll($criteria), 'id_pokemon', 'pokemonName');
-			echo CHtml::dropDownList('Player[safari_slot_'. $_POST['slot'] . ']' , $model, $array_pokeymans, array('empty' => 'Ingresa pokémon 1'));
+			echo CHtml::dropDownList('Player[safari_slot_'. $_POST['slot'] . ']' , $model, $array_pokeymans, array('empty' => 'Ingresa pokémon '.$_POST['slot']));
        
 		}
 	}

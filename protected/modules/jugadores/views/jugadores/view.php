@@ -1,6 +1,16 @@
+<?php
+	$this->pageTitle=Yii::app()->name . ' - Obtención de nuevo código';
+	$this->breadcrumbs=array(
+		'Jugadores'=>array('jugadores/index'),
+		'Creación de perfil'=>array('jugadores/crear'),
+		'Confirmación de creación de perfil'
+	);
+?>
+
+
 <h1>Guardado del perfil #<?php echo $model->id; ?> exitoso </h1>
 <div class="infosec">
-	<p> Puedes modificar esta información con el código que se envió a tu correo (<?php echo $model->mail?>). </p> 
+	<p> Puedes modificar esta información con el código que se envió a tu correo (<?php echo $model->idUser->mail?>). </p> 
 	<p> Se mostrará en el buscador una vez que este sea autorizado. Los datos que se guardaron son: </p>
 
 		<?php $this->widget('bootstrap.widgets.TbDetailView',array(

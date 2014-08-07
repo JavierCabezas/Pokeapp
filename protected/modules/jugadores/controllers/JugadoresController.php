@@ -74,7 +74,7 @@ class JugadoresController extends Controller
     public function actionView($id, $code = null)
     {
         $model = $this->loadModel($id);
-        if ( ($code == $model->code) || Admin::model()->isAdmin() ){
+        if ( ($code == $model->idUser->code) || Admin::model()->isAdmin() ){
             $this->render('view', array(
                 'model'     => $model,
             ));
@@ -101,7 +101,7 @@ class JugadoresController extends Controller
             $p = new CHtmlPurifier();
             $mail       = $p->purify($_POST['Player']['mail']);
             $nickname   = $p->purify($_POST['Player']['nickname']);
-            $name = ($_POST['Player']['name'] == '')?$p->purify($_POST['Player']['name']):$nickname;
+            $name = ($_POST['Player']['name'] != '')?$p->purify($_POST['Player']['name']):$nickname; //Save the nickname if the player didn't enter a name.
             $code = generatePassword();
             $hashed_code = Users::model()->hashPassword($code);
             
@@ -109,16 +109,16 @@ class JugadoresController extends Controller
                 $user = Users::model()->findByAttributes(array('mail' => $mail));
                 Users::model()->updateByPk($user->id, array('code' => $hashed_code));
             }else{
-
                 $user               = new Users();
                 $user->mail         = $mail;
                 $user->name         = $name;
                 $user->code         = $hashed_code;
-                $user->created_on   = time();
+                $user->created_on   = (String)time();
                 $user->save();
             }
             $model->id_user         = $user->id;
             $model->nickname        = $nickname;
+            $model->mail            = $user->mail;       
             $model->friendcode_1    = intval($_POST['Player']['friendcode_1']);
             $model->friendcode_2    = intval($_POST['Player']['friendcode_2']);
             $model->friendcode_3    = intval($_POST['Player']['friendcode_3']);
@@ -126,7 +126,7 @@ class JugadoresController extends Controller
             $model->safari_slot_1   = isset($_POST['Player']['safari_slot_1'])?intval($_POST['Player']['safari_slot_1']):null;
             $model->safari_slot_2   = isset($_POST['Player']['safari_slot_2'])?intval($_POST['Player']['safari_slot_2']):null;
             $model->safari_slot_3   = isset($_POST['Player']['safari_slot_3'])?intval($_POST['Player']['safari_slot_3']):null;
-            $model->tsv             = isset($_POST['Player']['tsv'])?intval($_POST['Player']['tsv']):null;
+            $model->tsv             = intval($_POST['Player']['tsv'] != 0)?intval($_POST['Player']['tsv']):null;
             $model->duel_single     = intval($_POST['Player']['duel_single']);
             $model->tier_single     = isset($_POST['Player']['tier_single'])?intval($_POST['Player']['tier_single']):null;
             $model->duel_doble      = intval($_POST['Player']['duel_doble']);
@@ -149,8 +149,6 @@ class JugadoresController extends Controller
             if(isset($avatar)){
                 $model->pic =  $avatar->extensionName;
             }
-            echo var_dump($user);
-            /*
             if ($model->save()){
                     $link_form      = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
                     $link_search    = CHtml::link('el buscador de jugadores', $this->createAbsoluteUrl('jugadores/buscador'));
@@ -169,7 +167,6 @@ class JugadoresController extends Controller
                     );
 
                     //Send the email to me <3
-                    /*
                     Mail::sendMail( 
                         Yii::app()->params['adminEmail'], //from 
                         Yii::app()->params['adminEmail'], //to
@@ -184,9 +181,9 @@ class JugadoresController extends Controller
                 $this->redirect(array(
                     'view',
                     'id'    => $model->id,
-                    'code'  => $code,
+                    'code'  => $user->code,
                 ));
-            } */
+            } 
         }
         
         $this->render('create', array(
