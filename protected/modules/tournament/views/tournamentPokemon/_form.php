@@ -7,12 +7,12 @@
 
 <p> 
 	El que la información que entregues en este formulario sea verídica y que cumpla las reglas del torneo es de tu total responsabilidad.
-	Aún así se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
+	Aún así, para facilitar un poco el asunto, se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
-	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, son ilegales según las reglas del torneo. 
-	Un ejemplo de esto es Metagross con Ice punch. Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, dejándolo prohibido para el torneo.
-	¡Revisa con detalle que el movimiento de los pokémon que ingreses!
+	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, son quebrantan las reglas del torneo. 
+	Un ejemplo de esto es Metagross con Ice punch. Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, haciendo necesario pokémon bank para tenerlo en sexta generación. 
+	Por esto mismo estaría prohibido para el torneo. ¡Revisa con detalle que el movimiento de los pokémon que ingreses!
 </p>
 
 <?php echo $form->errorSummary($model); ?>
@@ -24,7 +24,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_pokemon_species]',
-					'data' => PokemonSpecies::model()->dropdownPokemon(),
+					'data' => PokemonSpecies::model()->dropdownPokemon(Tournament::model()->getNextTournament()->id),
 				)
 			);
 		?>
@@ -159,3 +159,26 @@
 </div>
 
 <?php $this->endWidget(); ?>
+
+<?php if(!$model->isNewRecord): //set the select2 values in case the user is editing the pokémon?>
+<script type='text/javascript'> 
+	$( document ).ready(function() {
+		$("#TournamentPokemon_id_pokemon_species").select2().select2("val", <?php echo $model->id_pokemon_species ?> );
+		$("#TournamentPokemon_id_ability").select2().select2("val", <?php echo $model->id_ability ?> );
+		$("#TournamentPokemon_id_nature").select2().select2("val", <?php echo $model->id_nature ?> );
+		<?php if(!is_null($model->id_item )): ?>
+			$("#TournamentPokemon_id_item").select2().select2("val", <?php echo $model->id_item ?> );
+		<?php endif; ?>
+		$("#TournamentPokemon_id_move1").select2().select2("val", <?php echo $model->id_move1 ?> );
+		<?php if(!is_null($model->id_move2 )): ?>
+			$("#TournamentPokemon_id_move2").select2().select2("val", <?php echo $model->id_move2 ?> );
+		<?php endif; ?>
+		<?php if(!is_null($model->id_move3 )): ?>
+		$("#TournamentPokemon_id_move3").select2().select2("val", <?php echo $model->id_move3 ?> );
+		<?php endif; ?>
+		<?php if(!is_null($model->id_move4 )): ?>
+			$("#TournamentPokemon_id_move4").select2().select2("val", <?php echo $model->id_move4 ?> );
+		<?php endif; ?>
+	});
+</script>
+<?php endif; ?>

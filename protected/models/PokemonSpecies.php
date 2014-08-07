@@ -181,13 +181,21 @@ class PokemonSpecies extends CActiveRecord
 	}
 
 	/** 
-	 *	Returns the pokémon list intended for a dropdown 
+	 *	Returns the pokémon list intended for a dropdown according to a tournament ruleset
+	 *	@param integer $id_tournament the identifier of the tournament (so we can filter by the tournament's ruleset). Defaults to null in case we want the complete list of pokémon.
 	 *	@return array of the listdata of the Pokémon model.
 	 */
-	public function dropdownPokemon()
+	public function dropdownPokemon($id_tournament = null)
 	{
 	    $criteria = new CDbCriteria;
         $criteria->addCondition("id < 5000");
+        if(!(is_null($id_tournament))){ //In case a tournament get the banned pokémon and filter them.
+        	$id_ruleset 	  = Tournament::model()->findByPk($id_tournament)->idRuleset->id;
+        	$banned_pokeymans = TournamentPokemonBan::model()->findAllByAttributes(array('id_ruleset' => $id_ruleset));
+        	foreach($banned_pokeymans as $poke){
+        		$criteria->addCondition("id != ".$poke->id_pokemon);
+        	}
+        }
         $model = PokemonSpecies::model()->findAll($criteria);
         return CHtml::listData($model, 'id', 'pokemonName');	
 	}  
