@@ -262,3 +262,191 @@ td.fail{
 td.neutral{
     background-color: #61AEC2;   
 }
+
+#poketitle {
+    background-color: #E3E3E3;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
+    width: 80%;
+    height: auto;
+}
+
+#poketitle h4, #poketitle h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1%;
+    font-size: 10pt;
+    font-weight: bold;
+    float: left;
+}
+
+#poketitle h4 {
+    margin-top: 1%;
+    width: 80%;
+}
+
+#poketitle h1 {
+    font-size: 24pt;
+    margin-bottom: 0%;
+}
+
+#poketitle img {
+    float: left;
+    width: 10%;
+    height: 10%;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+.accordion-group {
+    border: 1px solid #e5e5e5;
+    background-color: #B7B7B7;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 2px;
+    -webkit-box-shadow: -0.1em -1em 2em #777777 inset;
+    -moz-box-shadow: -0.1em -1em 2em #777777 inset;
+    box-shadow: -0.1em -1em 2em #777777 inset;
+}
+
+#column1 .accordion-group h2 {
+    font-size: 24pt;
+    text-decoration: none;
+    color: #FFF;
+    float: left;
+    width: 100%;
+    height: auto;
+}
+
+#column1 .accordion-group h2:hover {
+    font-size: 24pt;
+    text-decoration: none;
+    background-color: #000;
+    opacity: 0.8;
+}
+
+#column1 .accordion-group h2 p {
+    margin-top: 5%;
+}
+
+#column1 .accordion-group .pkmnimg,
+#poke-team .view .pkmnimg {
+    height: 100px;
+    width: 100px;
+    margin-left: 15%;
+    float: left;
+    padding: 1%;
+}
+
+#column1 .accordion-group .pkmnimg img {
+    width: auto;
+    height: auto;
+}
+
+.accordion-heading .accordion-toggle {
+    padding: 0px;
+}
+
+p.click {
+    width: 20%;
+    height: auto;
+    line-height: 110%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #05500F;
+    text-align: center;
+    padding: 1%;
+    -webkit-box-shadow: -0.1em -1em 2em #032608 inset;
+    -moz-box-shadow: -0.1em -1em 2em #032608 inset;
+    box-shadow: -0.1em -1em 2em #032608 inset;
+    float: right;
+}
+
+p.click:hover {
+    background-color: #082D0D;
+    -webkit-box-shadow: -0.1em -1em 2em #020F04 inset;
+    -moz-box-shadow: -0.1em -1em 2em #020F04 inset;
+    box-shadow: -0.1em -1em 2em #020F04 inset;
+}
+
+p.click a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#poke-team .view {
+    border: 1px solid #e5e5e5;
+    background-color: #B7B7B7;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: -0.1em -1em 2em #777777 inset;
+    -moz-box-shadow: -0.1em -1em 2em #777777 inset;
+    box-shadow: -0.1em -1em 2em #777777 inset;
+}
+
+#poke-team .view h3 {
+    font-size: 18pt;
+    float: left;
+    margin-top: 5%;
+}
+
+#poke-team .view .mod_btn {
+    width: 15%;
+    height: auto;
+    float: right;
+    padding: 1%;
+}
+
+#poke-team .view .mod_btn .mod,
+#poke-team .view .mod_btn .delete {
+    width: 100%;
+    height: auto;
+    line-height: 110%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1%;
+}
+
+#poke-team .view .mod_btn .mod a,
+#poke-team .view .mod_btn .delete a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#poke-team .view .mod_btn .mod {
+    background-color: #F99A00;
+    -webkit-box-shadow: -0.1em -1em 2em #BF7500 inset;
+    -moz-box-shadow: -0.1em -1em 2em #BF7500 inset;
+    box-shadow: -0.1em -1em 2em #BF7500 inset;
+}
+
+#poke-team .view .mod_btn .mod:hover {
+    background-color: #BF7500;
+    -webkit-box-shadow: -0.1em -1em 2em #AA4B0B inset;
+    -moz-box-shadow: -0.1em -1em 2em #AA4B0B inset;
+    box-shadow: -0.1em -1em 2em #AA4B0B inset;
+}
+
+#poke-team .view .mod_btn .delete {
+    background-color: #D60609;
+    -webkit-box-shadow: -0.1em -1em 2em #870204 inset;
+    -moz-box-shadow: -0.1em -1em 2em #870204 inset;
+    box-shadow: -0.1em -1em 2em #870204 inset;
+}
+
+#poke-team .view .mod_btn .delete:hover {
+    background-color: #870204;
+    -webkit-box-shadow: -0.1em -1em 2em #4F0405 inset;
+    -moz-box-shadow: -0.1em -1em 2em #4F0405 inset;
+    box-shadow: -0.1em -1em 2em #4F0405 inset;
+}

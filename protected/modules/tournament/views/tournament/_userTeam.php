@@ -9,8 +9,8 @@
 <div class="accordion-heading">
 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#<?php echo $pokeyman->id ?>">
         <h2>
-            <?php echo $pokeyman->idPokemonSpecies->image('moving'); ?>
-            <?php echo beautify($pokeyman->pokemonName) ?>
+            <div class="pkmnimg"><?php echo $pokeyman->idPokemonSpecies->image('moving'); ?></div>
+            <p> <?php echo beautify($pokeyman->pokemonName) ?> </p>
         </h2>
 </a>
 </div>
@@ -39,7 +39,7 @@
         )); ?>
 
         <p> &nbsp; </p>
-        <p> <?php echo CHtml::link('Haz click aquí para modificar/borrar a '.$pokeyman->pokemonName, array('/torneo/verPokemon/', 'id' =>$pokeyman->id)); ?> </p>
+        <p class="click"> <?php echo CHtml::link('Detalles de '.$pokeyman->pokemonName, array('/torneo/verPokemon/', 'id' =>$pokeyman->id)); ?> </p>
 
         </div>
     </div>

@@ -1,7 +1,10 @@
 <div id="column1-wrap">
     <div id="column1">
-		<h1>  <?php echo $model->idPokemonSpecies->image('moving'); ?> Detalles de <?php echo $model->pokemonName ?> </h1>
-
+    	<div id="poketitle">
+			<?php echo $model->idPokemonSpecies->image('moving'); ?> 
+			<h4> Detalles de </h4>
+			<h1> <?php echo $model->pokemonName ?> </h1>
+		</div>
 
 		<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 		'data'=>$model,

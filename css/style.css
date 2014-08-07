@@ -1,6 +1,6 @@
 h1.autor, h1.stats, h1.captura, h1.pokeapp, h1.art_daisuki, h1.jugadores,
 h1.crearpj, h1.buscarpj, h1.codmod, h1.modpj, h1.re_pokecalc, h1.torneos,
-h1.registro, h1.usuario, h1.login, h1.nuevopkmn, h1.index {
+h1.registro, h1.usuario, h1.login, h1.nuevopkmn, h1.index, h1.modpkmn {
 	text-indent: -9000px;
 	width: 800px;
 	height: 70px;
@@ -70,12 +70,15 @@ h1.nuevopkmn {
 	background-image: url(../images/titles/nuevopkmn_title.png);
 }
 
+h1.modpkmn {
+	background-image: url(../images/titles/modpkmn_title.png);
+}
+
 h1.index {
 	margin-left: auto;
 	margin-right: auto;
 	background-image: url(../images/titles/index_title.png);
 }
-
 
 #userdata,
 #dueldata,
@@ -384,4 +387,34 @@ img.yo {
     border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
     color: #ffffff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.login_bloq {
+	width: 95%;
+	height: auto;
+	padding: 1%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #FFF;
+	text-align: right;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.login_bloq b a {
+	padding: 0.5%;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color: #CCC;
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.login_bloq b a:hover {
+	background-color: #000;
+	color: #CCC;
+	text-decoration: none;
 }
