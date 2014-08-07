@@ -159,3 +159,26 @@
 </div>
 
 <?php $this->endWidget(); ?>
+
+<?php if(!$model->isNewRecord): //set the select2 values in case the user is editing the pokémon?>
+<script type='text/javascript'> 
+	$( document ).ready(function() {
+		$("#TournamentPokemon_id_pokemon_species").select2().select2("val", <?php echo $model->id_pokemon_species ?> );
+		$("#TournamentPokemon_id_ability").select2().select2("val", <?php echo $model->id_ability ?> );
+		$("#TournamentPokemon_id_nature").select2().select2("val", <?php echo $model->id_nature ?> );
+		<?php if(!is_null($model->id_item )): ?>
+			$("#TournamentPokemon_id_item").select2().select2("val", <?php echo $model->id_item ?> );
+		<?php endif; ?>
+		$("#TournamentPokemon_id_move1").select2().select2("val", <?php echo $model->id_move1 ?> );
+		<?php if(!is_null($model->id_move2 )): ?>
+			$("#TournamentPokemon_id_move2").select2().select2("val", <?php echo $model->id_move2 ?> );
+		<?php endif; ?>
+		<?php if(!is_null($model->id_move3 )): ?>
+		$("#TournamentPokemon_id_move3").select2().select2("val", <?php echo $model->id_move3 ?> );
+		<?php endif; ?>
+		<?php if(!is_null($model->id_move4 )): ?>
+			$("#TournamentPokemon_id_move4").select2().select2("val", <?php echo $model->id_move4 ?> );
+		<?php endif; ?>
+	});
+</script>
+<?php endif; ?>
