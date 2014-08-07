@@ -4,7 +4,8 @@ body {
 	color: #555;
 	font-family: "Trebuchet MS",Helvetica,Arial,sans-serif;
 	font-size: 10pt;
-	background: #e3e3e3;
+	background-color: #e3e3e3;
+	background-image: url(../images/varios/bg.png);
 }
 
 div {
@@ -13,6 +14,7 @@ div {
 
 #page {
 	background: #e3e3e3;
+	background-image: url(../images/varios/bg.png);
 	width: 100%;
 	font-family: "Trebuchet MS",Helvetica,Arial,sans-serif;
 }
@@ -35,11 +37,10 @@ div {
 nav {
 	height: auto;
 	width: auto;
-	padding-left: 90px;
-	padding-right: 90px;
+	padding-left: 65px;
+	padding-right: 65px;
 	padding-top: 0px;
 	padding-bottom: 0px;
-	background-color: #e3e3e3;
 }
 
 nav ul li {
@@ -47,7 +48,6 @@ nav ul li {
 	height: auto;
 	margin-left: 0px;
 	display: inline;
-	background-color: #e3e3e3;
 }
 
 u.dotted {
@@ -64,7 +64,7 @@ u.dotted {
 	padding-right: 70px;
 	font-size: 1em;
 	text-align: right;
-	background-color: #7FC680;
+	background-color: #0E843B;
 	color: #FFF;
 	font-weight: bold;
 }
@@ -75,10 +75,9 @@ u.dotted {
 }
 
 #mainmenu {
-	background: #FFFFFF;
 	margin-left: auto;
     margin-right: auto;
-    width: 95%;
+    width: 96%;
 }
 
 #mainmenu ul {
@@ -96,6 +95,11 @@ u.dotted {
 	font-size: 12px;
 	text-decoration: none;
 	padding: 0px;
+}
+
+#mainmenu ul li a:hover,
+#mainmenu ul li active.a {
+	opacity: 0.7;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a {
