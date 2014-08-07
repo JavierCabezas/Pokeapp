@@ -22,7 +22,7 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0;
-	height: 200px;
+	height: auto;
 }
 
 #content {
@@ -78,7 +78,7 @@ u.dotted {
 	background: #FFFFFF;
 	margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 95%;
 }
 
 #mainmenu ul {
@@ -95,7 +95,7 @@ u.dotted {
 	background-color: transparent;
 	font-size: 12px;
 	text-decoration: none;
-	padding: 5px 8px;
+	padding: 0px;
 }
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a {
