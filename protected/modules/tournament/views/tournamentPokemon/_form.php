@@ -10,9 +10,12 @@
 	Aún así, para facilitar un poco el asunto, se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
-	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, son quebrantan las reglas del torneo. 
-	Un ejemplo de esto es Metagross con Ice punch. Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, haciendo necesario pokémon bank para tenerlo en sexta generación. 
-	Por esto mismo estaría prohibido para el torneo. ¡Revisa con detalle que el movimiento de los pokémon que ingreses!
+	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, quebrantan las reglas del torneo. 
+	Un ejemplo de esto es Metagross con Ice punch (Puño hielo). Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, 
+	haciendo necesario pokémon bank para tenerlo en sexta generación. Por esto mismo estaría prohibido para el torneo.
+</p>
+<p>
+	 ¡Revisa con detalle que el movimiento de los pokémon que ingreses! Recuerda que todo pokémon que participe del torneo es de tu responsabilidad.
 </p>
 
 <?php echo $form->errorSummary($model); ?>
