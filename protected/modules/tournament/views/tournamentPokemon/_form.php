@@ -62,7 +62,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_item]',
-					'data' => Items::model()->dropdownItems(),
+					'data' => Items::model()->dropdownItems(true),
 					'options' => array(
 						'allowClear'=>true,
 						'placeholder' => 'Elige un objeto'
