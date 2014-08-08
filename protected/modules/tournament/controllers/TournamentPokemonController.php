@@ -132,7 +132,11 @@ class TournamentPokemonController extends Controller
                 'array_tournament'  => array(),
             ));
         }else{
-             throw new CHttpException(403, 'No estás autorizado a editar pokémon de otros jugadores.');
+            $model = TournamentPokemon::model()->findByAttributes(array('id' => $id));
+            if(isset($model))
+                throw new CHttpException(403, 'No estás autorizado a editar pokémon de otros jugadores.');
+            else
+                throw new CHttpException(404, 'El pokémon que estás intentando modificar no existe.');
         }
     }
     
