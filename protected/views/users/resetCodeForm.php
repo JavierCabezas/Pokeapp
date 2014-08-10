@@ -1,8 +1,8 @@
-<?php $this->setPageTitle('Pokéapp - Registro jugador para torneo'); ?>
+<?php $this->setPageTitle('Pokéapp - Reseteo de contraseña'); ?>
 
 <?php
 $this->breadcrumbs=array(
-	'Torneo'=>array('/torneo'),
+	$module => $url,
 	'Reseteo de contraseña',
 );
 ?>

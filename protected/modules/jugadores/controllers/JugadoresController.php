@@ -31,7 +31,6 @@ class JugadoresController extends Controller
                     'index',
                     'ShowPlayerInfo',
                     'buscador', 
-                    'newCode',
                     'update',
                     'create', 
                     'updateForm', 
@@ -107,7 +106,9 @@ class JugadoresController extends Controller
             
             if(Users::model()->checkPlayerExists($mail)){
                 $user = Users::model()->findByAttributes(array('mail' => $mail));
-                Users::model()->updateByPk($user->id, array('code' => $hashed_code));
+                if($user->custom_password == 0){
+                    Users::model()->updateByPk($user->id, array('code' => $hashed_code));
+                }
             }else{
                 $user               = new Users();
                 $user->mail         = $mail;
@@ -116,6 +117,7 @@ class JugadoresController extends Controller
                 $user->created_on   = (String)time();
                 $user->save();
             }
+            //I know this is kind of ugly but...it works. Im not sure what I was thinking when I wrote this.
             $model->id_user         = $user->id;
             $model->nickname        = $nickname;
             $model->mail            = $user->mail;       
@@ -153,8 +155,11 @@ class JugadoresController extends Controller
                     $link_form      = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
                     $link_search    = CHtml::link('el buscador de jugadores', $this->createAbsoluteUrl('jugadores/buscador'));
                     $link_login     = CHtml::link('el siguiente link', $this->createAbsoluteUrl('/login'));
-                    $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que el perfil será puesto luego de que sea aceptado por alguno de nuestros administradores. </p>';
-                    $body = $body . '<p> Además recuerda que  tu clave es <b>'.$code.'</b> y puedes logear desde '.$link_login.'. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
+                    $body =         '<p> Se acaba de crear un perfil de jugador en la Pokéapp. Recuerda que el perfil será público luego de que sea aceptado por alguno de nuestros administradores. </p>';
+                    if($user->custom_password == 0)
+                        $body = $body . '<p> Además recuerda que  tu clave es <b>'.$code.'</b> y puedes logear desde '.$link_login.'. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
+                    else
+                        $body = $body . '<p> Dado que hiciste cambio de clave previo (probablemente en el módulo de torneos) tu clave se mantiene y puedes ingresar desde '.$link_login.'. Si en cualquier momento quieres hacerle modificaciones a tu perfil puedes hacerlas con ese código en '.$link_form.'</p>';
                     $body = $body . '<p> Ahora te invitamos a buscar a otros jugadores en '.$link_search.' </p>';
                     $body = $body . '<p> ¡Muchas gracias por usar nuestra aplicación! </p>';
                     //Send the email to the player
@@ -279,43 +284,6 @@ class JugadoresController extends Controller
                 'auth' => $status
         ));
         $this->redirect( array('authorize'));
-    }
-
-    /**
-     *  Loads the form to send a new code to the player.
-     *  
-     */
-    public function actionNewCode()
-    {
-        if(isset($_POST['mail'])){
-            $p = new CHtmlPurifier();
-            $mail = $p->purify($_POST['mail']);
-            $model=Player::model()->find('mail=:mail',array(':mail'=>$mail));
-            if(isset($model)){
-                $model->code        = md5(rand(0,100000).time());
-                if($model->save()){
-                    $link_form = CHtml::link('formulario de modificación de perfil', $this->createAbsoluteUrl('jugadores/updateForm'));
-                    $body = '<p> Se acaba de pedir un reseteo del código del buscador de jugadores de la Pokéapp a este correo. </p>';
-                    $body = $body . ' <p> El nuevo código es <b>'.$model->code.'</b>.';
-                    $body = $body . ' Para editar tu perfil debes de ingresar tu correo y el código en nuestro '.$link_form.' </p>';
-                    $body = $body . ' <p> Si tu no hiciste esta petición puedes ignorar este correo. </p>';
-                    $body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
-                    Mail::sendMail( 
-                        Yii::app()->params['adminEmail'], //from 
-                        $model->mail, //to
-                        'Nuevo código para edición de perfil', //subject
-                        'Reseteo código Pokéapp', //mail_title
-                        $body//mail body
-                    );
-                    Yii::app()->user->setFlash('success', "Se envió el correo a ".$model->mail." con éxito");
-                }else{
-                    Yii::app()->user->setFlash('error', "Ocurrió un error inesperado, por favor inténtalo nuevamente");
-                }
-            }else{
-                Yii::app()->user->setFlash('error', "El correo ".$mail." no está registrado en nuestra base de datos ... ");
-            }
-        }
-        $this->render('newCode');
     }
 
     /**

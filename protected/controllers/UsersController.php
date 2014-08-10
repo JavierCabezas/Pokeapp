@@ -121,9 +121,21 @@ class UsersController extends Controller
             }
             Yii::app()->user->setFlash('notice', "Se recibió el correo ".$mail." con éxito. En caso de que esté registrado en nuestra base de datos se envió un correo con las instrucciones respectivas.");
         }
+
         $model = new Users;
+        if(Yii::app()->request->url == '/pokeapp/jugadores/resetearClave'){
+            $module = 'Jugadores';
+            $url = array('/jugadores');
+        }else{
+            $module = 'Torneo';
+            $url = array('/torneo');
+        }
+
+
         $this->render('resetCodeForm', array(
-            'model' => $model
+            'model'   => $model,
+            'url'     => $url,
+            'module'  => $module,  
         ));
 	}
 

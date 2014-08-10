@@ -60,7 +60,7 @@
 		<?php endif;?>
 
 		<?php if( (!Admin::model()->isAdmin()) && ( isset(Yii::app()->user->id) )): ?>
-			<p class="login_bloq"> Estás logeado/a como <b><?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+			<p class="login_bloq"> Estás logeado/a como <b><?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Cambiar contraseña', array('/usuario/cambiarClave'))?> <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
 		<?php endif;?>
 	
 	</div><!-- mainmenu -->

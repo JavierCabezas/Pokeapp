@@ -53,6 +53,7 @@ return array(
             'rules' => array(
                 'usuario/resetearCodigo'            => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'usuario/cambiarClave'              => 'users/changePassword',                          //Displays the change password form (for a user created password)
+                'jugadores/resetearClave'           => 'users/resetCodeForm',
                 'torneo/resetearClave'              => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
                 'torneo/estadoInscripcion'          => 'tournament/tournament/inscriptionStatus',       //User view to check the inscription status
@@ -72,7 +73,6 @@ return array(
                 'buscador'                          => 'buscador/buscador/index',
                 'jugadores'                         => 'jugadores/jugadores/index',
                 'jugadores/crear'                   => 'jugadores/jugadores/create',
-                'jugadores/nuevo_codigo'            => 'jugadores/jugadores/newCode',
                 'jugadores/actualizar'              => 'jugadores/jugadores/updateForm',
                 'jugadores/<page>'                  => 'jugadores/jugadores/<page>',
                 'pokeball'                          => 'pokeball/pokeball/index',
