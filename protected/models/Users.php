@@ -21,6 +21,10 @@
 class Users extends CActiveRecord
 {
 	public $folio;
+	public $oldpassword;
+	public $password;
+	public $repeatpassword;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -37,7 +41,10 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, mail', 'required'),
+			array('name, mail', 'required', 'except' => 'changePassword'),
+			array('oldpassword, password, repeatpassword', 'required', 'on' => 'changePassword'),
+			array('password, oldpassword, repeatpassword', 'length', 'max'=>100),
+            array('repeatpassword', 'compare', 'compareAttribute'=>'password', 'on' => array('changePassword'), 'message'=>"Las contraseñas no coinciden"),
 			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
 			array('name', 'length', 'max'=>80),
 			array('mail', 'length', 'max'=>100),
@@ -71,12 +78,15 @@ class Users extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Nombre',
-			'mail' => 'Correo',
-			'code' => 'Code',
-			'mailcode' => 'Mailcode',
-			'created_on' => 'Created On',
+			'id' 			 => 'ID',
+			'name' 			 => 'Nombre',
+			'mail' 			 => 'Correo',
+			'code' 			 => 'Code',
+			'mailcode' 		 => 'Mailcode',
+			'created_on' 	 => 'Created On',
+			'password'		 => 'Nueva contraseña',
+			'oldpassword'	 => 'Contraseña actual',
+			'repeatpassword' => 'Nueva contraseña (confirmación)'
 		);
 	}
 

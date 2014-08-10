@@ -98,12 +98,6 @@ class TournamentController extends Controller
 
 	}
 
-
-    public function actionResetPassword()
-    {
-        $this->render('resetPassword');
-    }
-
     public function actionAdminMenu()
     {
         $players_to_check = count(TournamentPlayerFolio::model()->findAllByAttributes(array('folio' => null)));

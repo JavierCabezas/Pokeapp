@@ -27,7 +27,7 @@ class UsersController extends Controller
     {
         return array(
             array(
-                'allow', // allow all users to perform 'index' and 'view' actions
+                'allow', 
                 'actions' => array(
 					'resetCodeForm',
                     'resetCode',
@@ -36,6 +36,15 @@ class UsersController extends Controller
                     '*'
                 )
             ),
+            array(
+                'allow',
+                'actions' => array(
+                    'changePassword',
+                ),
+                'users' => array(
+                    '@'
+                )
+            ),  
             array(
                 'deny', // deny all users
                 'users' => array(
@@ -92,7 +101,10 @@ class UsersController extends Controller
             if(isset($model)){
                 $code = generatePassword();
                 $hashedcode = Users::model()->hashPassword($code);
-                if(Users::model()->updateByPk($model->id, array('mailcode' => $hashedcode))){
+                if(Users::model()->updateByPk($model->id, array(
+                        'mailcode' => $hashedcode,
+                        'custom_password'   => 0
+                    ))){
                     $link = $this->createAbsoluteUrl('/users/resetCode', array('mail' => $mail, 'code' => $hashedcode ));
                     $zelda = CHtml::link('en el siguiente link', $link);
                     $body = '<p> Se acaba de pedir un reseteo del contraseña de la Pokéapp a este correo.';
@@ -153,5 +165,36 @@ class UsersController extends Controller
             Yii::app()->user->setFlash('error', "El link para reseteo de contraseña no es correcto.");
             $this->redirect(array('/site/index'));
         }
+    }
+
+    /**
+     *  Renders the password change form for a logged in user. Its intended for a user that wants to use a custom password in the application.
+     */
+    public function actionChangePassword(){
+        $model = new Users('changePassword');
+        if(isset($_POST['Users'])){
+            $model->attributes = $_POST['Users'];
+            $user = Users::model()->findByAttributes(array('id'    => Yii::app()->user->id,));
+            if(!$user->validatePassword($_POST['Users']['oldpassword'])){
+                Yii::app()->user->setFlash('error', "La contraseña anterior no corresponde con la contraseña que tenemos registrada.");
+            }else{
+                if($model->validate()){  //Do the validation
+                    $hashed_code = Users::model()->hashPassword($_POST['Users']['password']);                
+                    if(Users::model()->updateByPk($user->id, array(
+                        'code'              => $hashed_code,
+                        'custom_password'   => 1
+                        ))){
+                        Yii::app()->user->setFlash('success', "Se realizó el cambio de contraseña con éxito.");
+                    }else{
+                        Yii::app()->user->setFlash('error', "Ocurrió un error al realizar el cambio de contraseña. Por favor inténtalo nuevamente.");
+                    }
+                }else
+                var_dump($model->getErrors());
+            }
+        }
+        
+        $this->render('changePasswordForm', array(
+            'model' => $model
+        ));
     }
 }
