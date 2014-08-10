@@ -37,8 +37,8 @@ div {
 nav {
 	height: auto;
 	width: auto;
-	padding-left: 65px;
-	padding-right: 65px;
+	padding-left: 5%;
+	padding-right: 5%;
 	padding-top: 0px;
 	padding-bottom: 0px;
 }
@@ -81,8 +81,9 @@ u.dotted {
 }
 
 #mainmenu ul {
-	padding: 6px 20px 5px 20px;
 	margin: 0px;
+	padding-left: 1%;
+    padding-right: 1%;
 }
 
 #mainmenu ul li {
