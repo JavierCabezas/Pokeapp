@@ -84,7 +84,8 @@ class Player extends CActiveRecord
 	public function rules()
 	{
 		return array(
-			array('id_user, nickname, friendcode_1, friendcode_2, friendcode_3, mail', 'required'),
+			array('id_user, nickname, friendcode_1, friendcode_2, friendcode_3', 'required'),
+			array('mail', 'required', 'on' => array('create')),
 			array('id_user, friendcode_1, friendcode_2, friendcode_3, id_safari_type, safari_slot_1, safari_slot_2, safari_slot_3, tsv, duel_single, tier_single, duel_doble, tier_doble, duel_triple, tier_triple, duel_rotation, tier_rotation, public_mail, auth', 'numerical', 'integerOnly'=>true),
 			array('nickname, skype, whatsapp', 'length', 'max'=>30),
 			array('created', 'length', 'max'=>32),

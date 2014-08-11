@@ -53,8 +53,9 @@ return array(
             'rules' => array(
                 'usuario/resetearCodigo'            => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'usuario/cambiarClave'              => 'users/changePassword',                          //Displays the change password form (for a user created password)
-                'jugadores/resetearClave'           => 'users/resetCodeForm',
-                'torneo/resetearClave'              => 'users/resetCodeForm',                           //Displays the form to reset the user's password
+                'usuario/cambiarCorreo'             => 'users/changeMail',                              //Displays the change mail form for a certain user
+                'jugadores/resetearClave'           => 'users/resetCodeForm',                           //Displays the form to reset the user's password
+                'torneo/resetearClave'              => 'users/resetCodeForm',                           //Same link as the last one (but from tournament module)
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
                 'torneo/estadoInscripcion'          => 'tournament/tournament/inscriptionStatus',       //User view to check the inscription status
                 'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
@@ -69,22 +70,22 @@ return array(
                 'torneo/pokemonTorneo'              => 'tournament/tournamentPokemon/admin',            //I should remember what this was...TODO
                 'torneo/modificarPokemon/<id:\d+>'  => 'tournament/tournamentPokemon/update/id/<id>',   //Modify a tournament pokémon
                 'torneo/modificarPokemon'           => 'tournament/tournamentPokemon/index',            //Modify a tournament pokémon                
-                'torneo/<page>'                     => 'tournament/tournament/<page>',
-                'buscador'                          => 'buscador/buscador/index',
-                'jugadores'                         => 'jugadores/jugadores/index',
-                'jugadores/crear'                   => 'jugadores/jugadores/create',
-                'jugadores/actualizar'              => 'jugadores/jugadores/updateForm',
-                'jugadores/<page>'                  => 'jugadores/jugadores/<page>',
-                'pokeball'                          => 'pokeball/pokeball/index',
-                'pokeball/<page>'                   => 'pokeball/pokeball/<page>',
-                'stats'                             => 'stats/stats/index',
-                'stats/<page>'                      => 'stats/stats/<page>',
-                'sobre_mi'                          => 'site/about',
-                'gii'                               => 'gii/default/login',
-                '<page>'                            => 'site/<page>', 
-                '<controller:\w+>/<id:\d+>'         => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>'     => '<controller>/<action>',
+                'torneo/<page>'                     => 'tournament/tournament/<page>',                  //Generic page for tournament (Im not aware that this is in use but just in case)
+                'buscador'                          => 'buscador/buscador/index',                       //Index page for the search module
+                'jugadores'                         => 'jugadores/jugadores/index',                     //Index page for the players module 
+                'jugadores/crear'                   => 'jugadores/jugadores/create',                    //Create view for the players module
+                'jugadores/actualizar'              => 'jugadores/jugadores/update',                    //Update view players module
+                'jugadores/<page>'                  => 'jugadores/jugadores/<page>',                    //Generic page for the players module
+                'pokeball'                          => 'pokeball/pokeball/index',                       //Index page for the pokéball module
+                'pokeball/<page>'                   => 'pokeball/pokeball/<page>',                      //Generic page pokéball module (not in use)
+                'stats'                             => 'stats/stats/index',                             //Index page for the stats calculator module
+                'stats/<page>'                      => 'stats/stats/<page>',                            //Generic page for the stats module
+                'sobre_mi'                          => 'site/about',                                    //About me page
+                'gii'                               => 'gii/default/login',                             //Gii page (DO NOT UPLOAD THIS)
+                '<page>'                            => 'site/<page>',                                   //Generic for any page on the site controller.
+                '<controller:\w+>/<id:\d+>'         => '<controller>/view',                             //Yii generated route
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',                    //Yii generated route (I hate this one, its sooo long)
+                '<controller:\w+>/<action:\w+>'     => '<controller>/<action>',                         //Yii generated route
                
             )
         ),

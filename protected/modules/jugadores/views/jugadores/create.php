@@ -1,5 +1,5 @@
 <?php
-	$this->pageTitle=Yii::app()->name . ' - Obtención de nuevo código';
+	$this->pageTitle=Yii::app()->name . ' - Creación de perfil de jugador';
 	$this->breadcrumbs=array(
 		'Jugadores'=>array('jugadores/index'),
 		'Creación de perfil',
@@ -17,9 +17,7 @@
 </div>
 
 <?php echo $this->renderPartial('_form', array(
-		'model'=>$model,
-		'array_types'       => $array_types,
-        'array_auth_mail'   => $array_auth_mail,
-        'array_tiers'       => $array_tiers,
+		'model'   =>$model,
+        'create'  => true,
 	)); 
 ?>

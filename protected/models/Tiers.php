@@ -124,4 +124,14 @@ class Tiers extends CActiveRecord
 		else
 			return beautify($this->identifier);
 	}
+
+	/** 
+	 *	Returns the tier list intended for a dropdown 
+	 *	@return array of the listdata of the Tiers model.
+	 */
+	public function dropdownTiers()
+	{
+        $model = Tiers::model()->findAll();
+        return CHtml::listData($model, 'id', 'tierName');	
+	}  
 }

@@ -125,4 +125,14 @@ class Types extends CActiveRecord
 	{
 		return ucfirst($this->identifier) . ' (' . ucfirst($this->name_es) . ') ' ;
 	}
+
+	/** 
+	 *	Returns the type list intended for a dropdown 
+	 *	@return array of the listdata of the Types model.
+	 */
+	public function dropdownTypes()
+	{
+        $model = Types::model()->findAll();
+        return CHtml::listData($model, 'id', 'typeName');	
+	}  
 }

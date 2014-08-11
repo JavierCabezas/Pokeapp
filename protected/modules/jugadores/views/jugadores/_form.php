@@ -17,18 +17,22 @@
 			<div class="name">
 				<?php echo $form->textFieldRow($model,'nickname',array('class'=>'span5','maxlength'=>30)); ?>
 			</div>
-			<div class="name">
-				<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>80)); ?>
-			</div>
+			<?php if($create): ?>
+				<div class="name">
+					<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>80)); ?>
+				</div>
+			<?php endif; ?>
 		</div>
 		<div class="bloq">
 			<p class='note'>Avatar (formatos válidos png, jpg, gif. Máximo 2 megabytes) </p> 
 			<?php echo $form->fileField($model,'avatar'); ?>
 			<?php echo $form->error($model,'avatar'); ?>
 		</div>
-		<div class="bloq">
-			<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
-		</div>
+		<?php if($create): ?>
+			<div class="bloq">
+				<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
+			</div>
+		<?php endif; ?>
 	</div>
 
 	<div id="userdata">
@@ -48,7 +52,7 @@
 		<div class="safari">
 			<div class="bloq">
 				<?php echo $form->labelEx($model,'id_safari_type'); ?> 
-    			<?php echo CHtml::dropDownList('Player[id_safari_type]', $model->id_safari_type, $array_types, array('empty' => 'Ingresar tipo de safari'));  ?>
+    			<?php echo CHtml::dropDownList('Player[id_safari_type]', $model->id_safari_type, Types::model()->dropdownTypes(), array('empty' => 'Ingresar tipo de safari'));  ?>
 	    		<div class='loading'>
 	    			<img src="<?php echo Yii::app()->request->baseUrl ?>/images/ajax-loader.gif" /> 
 	    		</div>
@@ -65,6 +69,7 @@
 	</div>
 
 	<div id="dueldata">
+		<?php $array_tiers = Tiers::model()->dropdownTiers(); ?>
 		<h3>Interés en duelos</h3>
 		<div class="bloq">
 			<div class="duel">

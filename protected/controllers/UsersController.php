@@ -40,6 +40,7 @@ class UsersController extends Controller
                 'allow',
                 'actions' => array(
                     'changePassword',
+                    'changeMail',
                 ),
                 'users' => array(
                     '@'
@@ -191,7 +192,7 @@ class UsersController extends Controller
             if(!$user->validatePassword($_POST['Users']['oldpassword'])){
                 Yii::app()->user->setFlash('error', "La contraseña anterior no corresponde con la contraseña que tenemos registrada.");
             }else{
-                if($model->validate()){  //Do the validation
+                if($model->validate()){  //Do the validation UPDATE: This is the most useless comment I've ever written. I'll just leave it there anyway.
                     $hashed_code = Users::model()->hashPassword($_POST['Users']['password']);                
                     if(Users::model()->updateByPk($user->id, array(
                         'code'              => $hashed_code,
@@ -207,6 +208,24 @@ class UsersController extends Controller
         }
         
         $this->render('changePasswordForm', array(
+            'model' => $model
+        ));
+    }
+
+    /**
+     *  Renders the mail change form for a logged in user. 
+     */
+    public function actionChangeMail(){
+        $model = new Users('changeMail');
+        if(isset($_POST['Users'])){
+            if($model->validate()){
+                Yii::app()->user->setFlash('success', "Se recibió correctamente la dirección de correo ".$_POST['Users']['mail'].". Se te envió un correo a esa dirección para finalizar el proceso.");
+                /**
+                @todo: SEND MAIL 
+                **/
+            }
+        }
+        $this->render('changeMailForm', array(
             'model' => $model
         ));
     }
