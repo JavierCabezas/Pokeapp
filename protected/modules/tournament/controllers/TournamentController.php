@@ -259,7 +259,7 @@ class TournamentController extends Controller
                                          Se te avisará por este mismo medio del estado de la aprobación del mismo en el corto plazo. </li>
                                       </ul> </p>';
                 $body = $body . '<p> El proceso de inscripción online se considera finalizado una vez que el equipo está creado en el sitio web y el folio de la entrada es aprobado. </p>';
-                $body = $body . '<p> Muchas gracias por usar nuestro sistema online y ,ante cualquier duda, siéntete libre de responder este correo. Estaremos atentos! </p>';
+                $body = $body . '<p> Muchas gracias por usar nuestro sistema online y, ante cualquier duda, siéntete libre de responder este correo. Estaremos atentos! </p>';
                 Mail::sendMail( 
                     Yii::app()->params['adminEmail'], //from 
                         $model->mail, //to
