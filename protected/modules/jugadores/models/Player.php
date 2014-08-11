@@ -75,7 +75,7 @@ class Player extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Player';
+		return 'player';
 	}
 
 	/**
