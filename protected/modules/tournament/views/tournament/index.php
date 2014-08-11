@@ -1,4 +1,4 @@
-<?php $this->setPageTitle('Pokéapp - Inscripción de pokémon para torneos'); ?>
+<?php $this->setPageTitle('Pokéapp - Inscripción de Pokémon para torneos'); ?>
 
 <h1 class="torneos"> Inscripción de equipos </h1>
 
@@ -27,8 +27,8 @@
 	<div class="tournament_menu">
 		<?php echo CHtml::link("<img src='".imageDir()."/torneos_info/torneo_003.png' />", array('/torneo/resetearClave')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Recupera tu código</h4>', array('/torneo/resetearClave'))?>
-			<p>Reinicia tu código personal en caso de pérdida.</p>
+			<?php echo CHtml::link('<h4>Reinicia tu contraseña</h4>', array('/torneo/resetearClave'))?>
+			<p>Reinicia tu contraseña personal en caso de pérdida.</p>
 		</div>
 	</div>
 </div>

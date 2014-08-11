@@ -18,7 +18,7 @@ return false;
 <div class="infosec">
 	<p>En esta sección puedes buscar jugadores según los parámetros que se especifican más abajo. Para ello escribe lo que estés buscando en los cuadritos de más abajo y luego presiona la tecla enter o busca en los menús desplegables. 
 	Una vez que encontraste a alguien que te llame la atención puedes hacer click en el símbolo de la lupa y verás más detalles.</p>
-	<p>Si estás buscando un pokémon de safari en específico puedes ver a <a href='http://www.serebii.net/xy/friendsafari.shtml'>serebii</a> para ver en que slot se guarda cada uno de ellos.</p>
+	<p>Si estás buscando un Pokémon de safari en específico puedes ver a <a href='http://www.serebii.net/xy/friendsafari.shtml'>serebii</a> para ver en que slot se guarda cada uno de ellos.</p>
 </div>
 
 <?php 

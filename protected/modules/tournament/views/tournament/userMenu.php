@@ -1,4 +1,4 @@
-<?php $this->setPageTitle('Pokéapp - Inscripción de pokémon para torneos'); ?>
+<?php $this->setPageTitle('Pokéapp - Inscripción de Pokémon para torneos'); ?>
 
 <?php
 $this->breadcrumbs=array(
@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 <div id="column1-wrap">
     <div id="column1">
 		<?php if(!is_null($next_tournament)): ?>
-			<h2> Mis pokémon para el <?php echo $next_tournament ?> </h2>
+			<h2> Mis Pokémon para el <?php echo $next_tournament ?> </h2>
 
 			<?php $this->renderPartial('_userTeam', array(
 				'pokeymans' => $user_tournament_pokemon
@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 		<!-- Aquí podría ir un separador o algo así -->
 		 <div class='clear'> &nbsp; </div> 
 		<?php if(!is_null($next_tournament)&&(false)): //TODO: Check later?>
-			<h2> Todos mis pokémon </h2>
+			<h2> Todos mis Pokémon </h2>
 
 			<?php $this->renderPartial('_userTeam', array(
 				'pokeymans' => $user_pokemon
@@ -42,10 +42,10 @@ $this->breadcrumbs=array(
 <div id="column2">
 	<h2> Acciones de usuario </h2>
 
-	<h4> Equipo pokémon </h4>
-	<p> <?php echo CHtml::link('Agregar un pokémon al equipo', array('/torneo/agregarPokemon')) ?> </p>
-	<!-- TODO: Check later <p> <?php //echo CHtml::link('Agregar o quitar pokémon para un torneo en específico', array('/torneo/pokemonTorneo')) ?>. </p> -->
-	<p> <?php echo CHtml::link('Borrar o modificar pokémon', array('/torneo/modificarPokemon')) ?> </p>
+	<h4> Equipo Pokémon </h4>
+	<p> <?php echo CHtml::link('Agregar un Pokémon al equipo', array('/torneo/agregarPokemon')) ?> </p>
+	<!-- TODO: Check later <p> <?php //echo CHtml::link('Agregar o quitar Pokémon para un torneo en específico', array('/torneo/pokemonTorneo')) ?>. </p> -->
+	<p> <?php echo CHtml::link('Borrar o modificar Pokémon', array('/torneo/modificarPokemon')) ?> </p>
 
 	<h4> Torneo </h4>
 	<p> <?php echo CHtml::link('Ver estado de mi inscripción online', array('/torneo/estadoInscripcion')); ?> </p>

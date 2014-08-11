@@ -1,7 +1,7 @@
 <?php
 /**
- * This is the main form for the stats module. It contains the pokémon, the item, IV, EV, etc. 
- * Its called by the index view two times (once per pokémon).
+ * This is the main form for the stats module. It contains the Pokémon, the item, IV, EV, etc. 
+ * Its called by the index view two times (once per Pokémon).
  */
 ?>
 
@@ -340,7 +340,7 @@
 			?>
 		</div>
 		<div class='sum_ev'> 
-			<label>Suma EV pokémon #<?php echo $n ?>:</label>
+			<label>Suma EV Pokémon #<?php echo $n ?>:</label>
 			<input type="number" id="ev_sum_<?php echo $n ?>" value="0" disabled='true' />
 		</div>
 	</div>
@@ -456,7 +456,7 @@
 		</div>
 	</div>
 
-	<?php echo CHtml::ajaxButton('Realizar cálculo pokémon'.$n,
+	<?php echo CHtml::ajaxButton('Realizar cálculo Pokémon'.$n,
 		CController::createUrl('CalculateStats', array('id' => $n)),
 			array('update' => '.result_'.$n, 'type' => "POST")
 		); ?>

@@ -71,10 +71,10 @@ class PokeballController extends Controller
                     $is_bug_pokemon   = PokemonTypes::model()->findByAttributes(array('pokemon_id' => $id_pokeyman,'type_id' => $bug));
                     if(is_null($is_water_pokemon)&&is_null($is_bug_pokemon)){
                         $pball_multiplier 	= 1;
-                        $text_pokeball 	= 'Dado que se usó una Net Ball y el pokémon a atrapar ('.$pokemon_name.') no es tipo agua ni bicho no hay modificadores adicionales para la captura';
+                        $text_pokeball 	= 'Dado que se usó una Net Ball y el Pokémon a atrapar ('.$pokemon_name.') no es tipo agua ni bicho no hay modificadores adicionales para la captura';
                     } else {
                         $pball_multiplier = 3;
-                        $text_pokeball = 'Dado que se usó una Net Ball y el pokémon a capturar ('.$pokemon_name.') es tipo bicho o agua se tiene una modificación de x3';
+                        $text_pokeball = 'Dado que se usó una Net Ball y el Pokémon a capturar ('.$pokemon_name.') es tipo bicho o agua se tiene una modificación de x3';
                    }break;
                 case 7: //Dive ball
                     if (0 == (int) $_POST["select_diveball"]) {
@@ -92,14 +92,14 @@ class PokeballController extends Controller
                     else{
 						$pball_multiplier = max(1, (40 - $nestball_level) / 10); // ((40 - Pokémon's level) ÷ 10)×, minimum 1× 
                     }
-					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$pball_multiplier.".";
+					$text_pokeball = "Dado que se usó NestBall en ".$gentext." generación y el Pokémon a capturar es de nivel ".$nestball_level." se tiene un multiplicador de  x".$pball_multiplier.".";
                     break;
                 case 9: //Repeat ball
                     if (0 == (int) $_POST["select_repeatball"]) {
-                        $text_pokeball	= 'Dado que se usó una Repeat Ball y el pokémon a capturar no ha sido atrapado anteriormente no hay modificación por este aspecto';
+                        $text_pokeball	= 'Dado que se usó una Repeat Ball y el Pokémon a capturar no ha sido atrapado anteriormente no hay modificación por este aspecto';
                         $pball_multiplier 	= 1;
                     } else {
-                        $text_pokeball	= 'Dado que se usó una Repeat Ball y el pokémon a capturar fue capturado anteriormente se aplica un modificador de x3';
+                        $text_pokeball	= 'Dado que se usó una Repeat Ball y el Pokémon a capturar fue capturado anteriormente se aplica un modificador de x3';
                         $pball_multiplier 	= 3;
                     }
                     break;
@@ -147,10 +147,10 @@ class PokeballController extends Controller
                     	$magnemite 	= 81;
                         if (($id_pokeyman == $magnemite) || ($id_pokeyman == $tangela) || ($id_pokeyman == $grimer)) { //For some reason in second generation it works this way...
                             $pball_multiplier = 4;
-                            $text_pokeball = "Dado que se usó Fast Ball en segunda generación y el pokémon a capturar es magnemite, grimer o tangela en segunda generación se tiene un modificador de x4";
+                            $text_pokeball = "Dado que se usó Fast Ball en segunda generación y el Pokémon a capturar es magnemite, grimer o tangela en segunda generación se tiene un modificador de x4";
                         }else{
                      		$pball_multiplier = 1;
-                     		$text_pokeball = "Dado que se usó Fast Ball en segunda generación y el pokémon a capturar no es magnemite, grimer o tangela en segunda generación se tiene un modificador de x1";
+                     		$text_pokeball = "Dado que se usó Fast Ball en segunda generación y el Pokémon a capturar no es magnemite, grimer o tangela en segunda generación se tiene un modificador de x1";
                         }
                     } else {
                     	$speed = 6;
@@ -160,7 +160,7 @@ class PokeballController extends Controller
                         }else{
                         	$pball_multiplier = 1;
                         }
-                        $text_pokeball = "Dado que se usó Fast Ball en ".$gentext." generación y el pokémon a capturar tiene ".$pokemon_speed." de velocidad base se tiene un modificador de x".$pball_multiplier;
+                        $text_pokeball = "Dado que se usó Fast Ball en ".$gentext." generación y el Pokémon a capturar tiene ".$pokemon_speed." de velocidad base se tiene un modificador de x".$pball_multiplier;
                     }  break;
                 case 18: //Level Ball
                     $oponent_level = (int) $_POST["select_levelball_nivel_oponente"];
@@ -174,12 +174,12 @@ class PokeballController extends Controller
                     } else{
                         $pball_multiplier = 8;
                     }
-                    $text_pokeball = 'Dado que se usó una Level Ball, el nivel oponente es '.$oponent_level.' y el del pokémon a la defensa es '.$player_level.' se tiene un multiplicador de x'.$pball_multiplier;
+                    $text_pokeball = 'Dado que se usó una Level Ball, el nivel oponente es '.$oponent_level.' y el del Pokémon a la defensa es '.$player_level.' se tiene un multiplicador de x'.$pball_multiplier;
                     break;
                 case 19: //Lure ball
                     $lure_ball_bool = (int) $_POST["select_lureball"];
                     if ($lure_ball_bool == "0") {
-                        $text_pokeball 	= 'Dado que se usó Lure Ball y el pokémon no fue encontrado pescando no se tiene bonificador por este medio';
+                        $text_pokeball 	= 'Dado que se usó Lure Ball y el Pokémon no fue encontrado pescando no se tiene bonificador por este medio';
                         $pball_multiplier 	= 1;
                     } else {
                         $text_pokeball 	= 'Dado que se usó Lure Ball y el encuentro fue pescando se tiene modificador de x3';
@@ -192,24 +192,24 @@ class PokeballController extends Controller
 						}else{
 							$pball_multiplier = 1;
 						}
-						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son de género opuesto y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
+						$text_pokeball = 'Dado que se usó Love ball y que los Pokémon son de género opuesto y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
                     } else {
                     	if($gen != 2){
                         	$pball_multiplier = 8;
                     	}else{
                     		$pball_multiplier = 1;
                     	}
-						$text_pokeball = 'Dado que se usó Love ball y que los pokémon son del mismo género y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
+						$text_pokeball = 'Dado que se usó Love ball y que los Pokémon son del mismo género y el encuentro fue en '.$gentext.' generación se tiene un modificador de x'.$pball_multiplier;
                     }
                     break;
                 case 23: //Moon ball
                     $array_pokemon_moonball = array('29','30','31','32','33','34','35','36','39','40','300','301','517','518');
                     if (in_array($id_pokeyman, $array_pokemon_moonball)) {
                         $pball_multiplier = 4;
-                        $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un pokémon relacionado con la roca lunar se tiene un modiifcador de x4';
+                        $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un Pokémon relacionado con la roca lunar se tiene un modiifcador de x4';
                     } else {
                         $pball_multiplier = 1;
-                        $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un pokémon que no está relacionado con la roca lunar no se tiene modificación extra por este medio';
+                        $text_pokeball = 'Dado que se usó Moon Ball y '.$pokemon_name.' es un Pokémon que no está relacionado con la roca lunar no se tiene modificación extra por este medio';
                     } break;
                 default: //Fixed rate pokéball
                     $pball_multiplier 	= $pokeball->catch_rate_pokeball;
@@ -244,10 +244,10 @@ class PokeballController extends Controller
                     $math_details = "<ul>".
                                         "<li> H (porcentaje de H) = ". $H . "</li>".
                                         "<li> S (por status) =".$S."</li>".
-                                        "<li> x ('fuerza' del pokémon vs la pokéball) =".$x."</li>".
+                                        "<li> x ('fuerza' del Pokémon vs la pokéball) =".$x."</li>".
                                         "<li> y (parámetro para ver cuantas veces se agita la pokéball) =".$y."</li>".
                                         "<li> B (Multiplicador pokéball ) = ".$pball_multiplier."</li>".
-                                        "<li> R (Catch rate pokémon) = ".$catch_rate." </li>".
+                                        "<li> R (Catch rate Pokémon) = ".$catch_rate." </li>".
                                     "</ul>";
 
                     $out['prob_fail']      = 100-$out['prob_win'];
@@ -273,10 +273,10 @@ class PokeballController extends Controller
                     $math_details = "<ul>".
                                         "<li> H (porcentaje de H) = ". $H . "</li>".
                                         "<li> S (por status) =".$S."</li>".
-                                        "<li> x ('fuerza' del pokémon vs la pokéball) =".$x."</li>".
+                                        "<li> x ('fuerza' del Pokémon vs la pokéball) =".$x."</li>".
                                         "<li> y (parámetro para ver cuantas veces se agita la pokéball) =".$y."</li>".
                                         "<li> B (Multiplicador pokéball ) = ".$pball_multiplier."</li>".
-                                        "<li> R (Catch rate pokémon) = ".$catch_rate." </li>".
+                                        "<li> R (Catch rate Pokémon) = ".$catch_rate." </li>".
                                     "</ul>";
 
                     $pokemon_stays_in_pball = $y/65535;

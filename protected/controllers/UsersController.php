@@ -108,7 +108,8 @@ class UsersController extends Controller
                     $link = $this->createAbsoluteUrl('/users/resetCode', array('mail' => $mail, 'code' => $hashedcode ));
                     $zelda = CHtml::link('en el siguiente link', $link);
                     $body = '<p> Se acaba de pedir un reseteo del contraseña de la Pokéapp a este correo.';
-                    $body = $body . ' Para hacer efectivo el cambio tienes que hacer click '.$zelda.' </p>';
+                    $body = $body . ' Para hacer efectivo el cambio tienes que hacer click '.$zelda.'.</p>';
+                    $body = $body . '<p> Si tu no pediste un reseteo de contraseña puedes ignorar este correo </p>';
                     $body = $body . ' <p> Muchas gracias por usar la Pokéapp!</p>';
                     Mail::sendMail( 
                         Yii::app()->params['adminEmail'], //from 

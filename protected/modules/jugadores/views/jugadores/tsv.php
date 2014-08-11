@@ -10,8 +10,8 @@ $this->breadcrumbs=array(
 <?php echo "<img src='".imageDir()."/jugadores_info/jug_002.png' style='float: left; padding: 3px 3px 0px 3px'/>" ?>
 
 <p>
-El TSV  es un concepto nuevo en sexta generación que permite la crianza de pokémon shiny con un 100% de certeza. Esto es válido única y exclusivamente en 
-pokémon nacidos de huevo y no otros obtenidos por cualquier otro método. 
+El TSV  es un concepto nuevo en sexta generación que permite la crianza de Pokémon shiny con un 100% de certeza. Esto es válido única y exclusivamente en 
+Pokémon nacidos de huevo y no otros obtenidos por cualquier otro método. 
 </p>
 
 <p> Ok, eso suena demasiado bueno como para ser verdad, ¿Cómo funciona? </p>
@@ -20,7 +20,7 @@ pokémon nacidos de huevo y no otros obtenidos por cualquier otro método.
 Cada entrenador tiene un número único y no modificable de 4 cifras, estas entre 0 y <u class ="dotted"><span title="2 a la doceava potencia =)">4096</span></u>, llamado Trainer Shiny value 
 (algo así como el valor shiny de entrenador). Además cada huevo que es creado en el juego tiene OTRO número (Egg shiny value o ESV), también entre 0 y 4096. Es importante mencionar que el 
 ESV se genera al azar al momento de ser creado cada huevo, es decir, por cada huevo que se genere se generará un número de estos. 
-La gracia de estos números es que <b>si el número de huevo y el número de entrenador coinciden el pokémon será shiny con un 100% de probabilidad</b>.
+La gracia de estos números es que <b>si el número de huevo y el número de entrenador coinciden el Pokémon será shiny con un 100% de probabilidad</b>.
 </p>
 
 <p>

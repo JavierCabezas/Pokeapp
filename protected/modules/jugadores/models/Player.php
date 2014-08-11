@@ -108,7 +108,7 @@ class Player extends CActiveRecord
 	public function safariValidation($attribute_name, $params)
 	{
 	    if (empty($this->$attribute_name) && !empty($this->$params['safari'])) {
-	        $this->addError($attribute_name, Yii::t('user', "Si se elige un tipo de safari se tienen que elegir los pokémon de este"));
+	        $this->addError($attribute_name, Yii::t('user', "Si se elige un tipo de safari se tienen que elegir los Pokémon de este"));
 	        return false;
 	    }
 	    return true;

@@ -291,7 +291,7 @@ class TournamentController extends Controller
             $team_class     = 'win';
             $complete_team = true;
         }else{
-            $team_status    = 'El equipo está incompleto. Se ha elegido '.$pokemon_in_team.' de los 6 pokémon';
+            $team_status    = 'El equipo está incompleto. Se ha elegido '.$pokemon_in_team.' de los 6 Pokémon';
             $team_shorts    = 'Incompleto';
             $team_class     = 'fail';
             $complete_team = false;

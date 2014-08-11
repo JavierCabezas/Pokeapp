@@ -7,15 +7,15 @@
 
 <p> 
 	El que la información que entregues en este formulario sea verídica y que cumpla las reglas del torneo es de tu total responsabilidad.
-	Aún así, para facilitar un poco el asunto, se eliminó algunos de los pokémon que están prohibidos según las reglas del torneo. 
+	Aún así, para facilitar un poco el asunto, se eliminó algunos de los Pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
 	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, quebrantan las reglas del torneo. 
-	Un ejemplo de esto es Metagross con Ice punch (Puño hielo). Este pokémon aprende el ataque por medio de tutor de Black 2 o White 2, 
-	haciendo necesario pokémon bank para tenerlo en sexta generación. Por esto mismo estaría prohibido para el torneo.
+	Un ejemplo de esto es Metagross con Ice punch (Puño hielo). Este Pokémon aprende el ataque por medio de tutor de Black 2 o White 2, 
+	haciendo necesario Pokémon Bank para tenerlo en sexta generación. Por esto mismo estaría prohibido para el torneo.
 </p>
 <p>
-	 ¡Revisa con detalle que el movimiento de los pokémon que ingreses! Recuerda que todo pokémon que participe del torneo es de tu responsabilidad.
+	 ¡Revisa con detalle que los movimientos de tus Pokémon sean los correctos! Recuerda que <u>todo Pokémon que participe del torneo es de tu responsabilidad</u>.
 </p>
 
 <?php echo $form->errorSummary($model); ?>
@@ -127,7 +127,7 @@
 			);
 		?>
 		<?php if(false): //TODO: Check later ?>
-			<label class="required" for="torneo"> Inscribir al pokémon en un torneo? </label>
+			<label class="required" for="torneo"> Inscribir al Pokémon en un torneo? </label>
 			<?php echo CHtml::dropDownList('torneo', '' , $array_tournament, array('class' => 'span5')); ?>
 		<?php endif; ?>
 	
@@ -163,7 +163,7 @@
 
 <?php $this->endWidget(); ?>
 
-<?php if(!$model->isNewRecord): //set the select2 values in case the user is editing the pokémon?>
+<?php if(!$model->isNewRecord): //set the select2 values in case the user is editing the Pokémon?>
 <script type='text/javascript'> 
 	$( document ).ready(function() {
 		$("#TournamentPokemon_id_pokemon_species").select2().select2("val", <?php echo $model->id_pokemon_species ?> );

@@ -1,8 +1,8 @@
 <h1 class="captura">Calculadora de captura </h1>
 
 <div class="infosec">
-	<p>Este módulo calcula la probabilidad de capturar un pokémon bajo distintos parámetros.
-	En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en pokémon red) se realiza cálculo teórico, como si la captura fuese posible.</p>
+	<p>Este módulo calcula la probabilidad de capturar un Pokémon bajo distintos parámetros.
+	En vez de limitar la calculadora para no poder hacer casos imposibles (Ej: Captura de un Gardevoir en Pokémon red) se realiza cálculo teórico, como si la captura fuese posible.</p>
 	<p>Si te interesa conocer a fondo el algoritmo detrás de la calculadora te invito a leer <a href="http://www.pokedaisuki.cl/bajo-el-camion-del-s-s-anne-n5-formulas-de-captura-parte-1/">mi artículo al respecto</a>.</p>
 </div>
 
@@ -111,7 +111,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				¿Cuál es el nivel del pokémon que quieres capturar? 
+				¿Cuál es el nivel del Pokémon que quieres capturar? 
 			</td>
 			<td>
 				<input type="number" name="select_nestball" id='select_nestball' value='100' min="1" max="100">
@@ -127,7 +127,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				¿El pokémon fue capturado previamente?
+				¿El Pokémon fue capturado previamente?
 			</td>
 			<td>
 				<select id="select_repeatball" name="select_repeatball">
@@ -162,7 +162,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				¿Se el pokémon salvaje está en una cueva o es de noche?
+				¿Se el Pokémon salvaje está en una cueva o es de noche?
 			</td>
 			<td>
 				<select id="select_duskball" name="select_duskball">
@@ -208,7 +208,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				Nivel de tu pokémon activo
+				Nivel de tu Pokémon activo
 			</td>
 			<td>
 				<input type="number" name="select_levelball_nivel_jugador" id='hp_percentage' value='100' min="1" max="100">
@@ -224,7 +224,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'> 
-				¿El pokémon a capturar fue encontrado pescando?
+				¿El Pokémon a capturar fue encontrado pescando?
 			</td>
 			<td>
 				<select id="select_lureball" name="select_lureball">
@@ -243,7 +243,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				¿Es el pokémon oponente de la misma especie (es decir, el MISMO pokémon) y género contrario? 
+				¿Es el Pokémon oponente de la misma especie (es decir, el MISMO Pokémon) y género contrario? 
 			</td>
 			<td>	
 				<select id="select_loveball" name="select_loveball">
@@ -260,7 +260,7 @@
 	<table class='fifthgen'>
 		<tr>
 			<td colspan='2'>
-				<u class ="dotted"><span title="La hierva alta es donde hay probabilidad de tener encuentro con dos pokémon al unísono."> ¿Estás en hierva alta (high grass)? </span> </u>
+				<u class ="dotted"><span title="La hierva alta es donde hay probabilidad de tener encuentro con dos Pokémon al unísono."> ¿Estás en hierva alta (high grass)? </span> </u>
 			</td>
 			<td>
 				<select id="select_grass" name="select_grass">
@@ -271,7 +271,7 @@
 		</tr>
 		<tr>
 			<td colspan='2'>
-				<u class ="dotted"><span title="Si, les prometo que esto es un factor =P"> ¿Cuántos pokémon tienes como <b>capturados</b> según tu pokédex? </span> </u>
+				<u class ="dotted"><span title="Si, les prometo que esto es un factor =P"> ¿Cuántos Pokémon tienes como <b>capturados</b> según tu pokédex? </span> </u>
 			</td>
 			<td>
 				<select id="select_numpokemon" name="select_numpokemon">

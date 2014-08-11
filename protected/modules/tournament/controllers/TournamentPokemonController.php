@@ -67,7 +67,7 @@ class TournamentPokemonController extends Controller
                 'model' => $this->loadModel($id)
             ));
         else
-            throw new CHttpException(403, 'No estás autorizado a ver pokémon de otros jugadores.');
+            throw new CHttpException(403, 'No estás autorizado a ver Pokémon de otros jugadores.');
     }
     
     /**
@@ -77,7 +77,7 @@ class TournamentPokemonController extends Controller
     public function actionCreate()
     {
         if(TournamentPlayerPokemon::model()->pokemonInTeam(Tournament::model()->getNextTournament()->id, Yii::app()->user->id) > 5){
-            Yii::app()->user->setFlash('error', "Ya tienes 6 pokémon en tu equipo. Si quieres agregar más tienes que eliminar, al menos, uno de ellos.");
+            Yii::app()->user->setFlash('error', "Ya tienes 6 Pokémon en tu equipo. Si quieres agregar más tienes que eliminar, al menos, uno de ellos.");
             $this->redirect(array('/torneo/menuUsuario'));
         }
 
@@ -87,7 +87,7 @@ class TournamentPokemonController extends Controller
             $model->id_tournament_player = Yii::app()->user->id;
             if ($model->save()){
                 $id_tournament = Tournament::model()->getNextTournament()->id; //intval($_POST['torneo']); TODO Check later
-                if($id_tournament != -1){ //-1 means that the player does not want to add the pokémon to any specific tournament.
+                if($id_tournament != -1){ //-1 means that the player does not want to add the Pokémon to any specific tournament.
                     $tpp = new TournamentPlayerPokemon;
                     $tpp->id_tournament = $id_tournament;
                     $tpp->id_tournament_pokemon = $model->id;
@@ -134,9 +134,9 @@ class TournamentPokemonController extends Controller
         }else{
             $model = TournamentPokemon::model()->findByAttributes(array('id' => $id));
             if(isset($model))
-                throw new CHttpException(403, 'No estás autorizado a editar pokémon de otros jugadores.');
+                throw new CHttpException(403, 'No estás autorizado a editar Pokémon de otros jugadores.');
             else
-                throw new CHttpException(404, 'El pokémon que estás intentando modificar no existe.');
+                throw new CHttpException(404, 'El Pokémon que estás intentando modificar no existe.');
         }
     }
     
@@ -165,7 +165,7 @@ class TournamentPokemonController extends Controller
                     $this->redirect(array('/torneo/verPokemon/', 'id' =>$id));
             }
         } else
-            throw new CHttpException(403, 'No puedes borrar pokémon de otros jugadores.');
+            throw new CHttpException(403, 'No puedes borrar Pokémon de otros jugadores.');
     }
     
     /**

@@ -1,10 +1,10 @@
-<h1> Buscador de pokémon por criterios interesantes </h1>
+<h1> Buscador de Pokémon por criterios interesantes </h1>
 
 <div id="column1-wrap">
     <div id="column1">
 	    <!-- START OF SEARCH CRITERIA -->
     	<div class='search_criteria'>
-			<h3> Quiero un pokémon que... </h3>
+			<h3> Quiero un Pokémon que... </h3>
 	    	<div class="accordion-group">
 				<div class='height'>
 					<div class="accordion-heading">
@@ -228,7 +228,7 @@
 		</div> <!-- end of type results -->
 
 		<div class='gen_results'>
-			<p> Se mostrarán pokémon de las generaciones... </p>
+			<p> Se mostrarán Pokémon de las generaciones... </p>
 			<ul>
 				<li id='gen_result_1'> Primera </li>
 				<li id='gen_result_2'> Segunda </li>
