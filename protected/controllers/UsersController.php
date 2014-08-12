@@ -218,11 +218,29 @@ class UsersController extends Controller
     public function actionChangeMail(){
         $model = new Users('changeMail');
         if(isset($_POST['Users'])){
+            $p      = new CHtmlPurifier();
+            $mail   = $p->purify($_POST['Users']['mail_change']);
+            $model->mail_change = $mail;
+            
             if($model->validate()){
-                Yii::app()->user->setFlash('success', "Se recibió correctamente la dirección de correo ".$_POST['Users']['mail'].". Se te envió un correo a esa dirección para finalizar el proceso.");
-                /**
-                @todo: SEND MAIL 
-                **/
+                $hashedcode = Users::model()->hashPassword(generatePassword());
+                Yii::app()->user->setFlash('success', "Se recibió correctamente la dirección de correo ".$mail.". Se te envió un correo a esa dirección para finalizar el proceso.");
+                Users::model()->updateByPk(Yii::app()->user->id, array(
+                    'mail_change' => $mail,
+                    'mailcode'    => $hashedcode
+                ));
+
+                $link =  CHtml::link('el siguiente link', $this->createAbsoluteUrl('usuarios/confirmarCambioCorreo', array('mail' => $mail, 'code' => $hashedcode))); 
+                $body =         '<p> Alguien (probablemente tu) acaba de pedir un cambio del correo electrónico por defecto para el logeo de la pokéapp. </p>';
+                $body = $body . '<p> Para poder hacer efectivo el cambio debes de hacer click en '.$link.'.</p>';
+                $body = $body . '<p> Ante cualquier duda no dudes en contactarnos a '.Yii::app()->params['adminEmail'].'.</p>';
+                Mail::sendMail(
+                    Yii::app()->params['adminEmail'], //from 
+                    $mail, //to
+                    'Cambio de correo usuario pokéapp', //subject
+                    'Cambio de correo', //mail_title
+                    $body//mail body
+                );
             }
         }
         $this->render('changeMailForm', array(

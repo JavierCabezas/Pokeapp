@@ -2,7 +2,6 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Torneo'=>array('/torneo'),
 	'Reseteo de contraseña',
 );
 ?>

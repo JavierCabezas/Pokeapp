@@ -24,6 +24,7 @@ class Users extends CActiveRecord
 	public $oldpassword;
 	public $password;
 	public $repeatpassword;
+	public $mail_change;
 
 	/**
 	 * @return string the associated database table name
@@ -41,18 +42,16 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, mail', 'required', 'except' => 'changePassword'),
+			array('mail_change', 'required', 'on' => 'changeMail'), //For the changeMail action we just need the new mail.
+			array('name, mail', 'required', 'except' => 'changePassword, changeMail'),
 			array('oldpassword, password, repeatpassword', 'required', 'on' => 'changePassword'),
 			array('password, oldpassword, repeatpassword', 'length', 'max'=>100),
             array('repeatpassword', 'compare', 'compareAttribute'=>'password', 'on' => array('changePassword'), 'message'=>"Las contraseñas no coinciden"),
 			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
 			array('name', 'length', 'max'=>80),
-			array('mail', 'length', 'max'=>100),
-			array('mail', 'email'),
+			array('mail, mail_change', 'length', 'max'=>100),
+			array('mail, mail_change', 'email'),
 			array('mail', 'unique'),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, name, code, created_on', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +80,7 @@ class Users extends CActiveRecord
 			'id' 			 => 'ID',
 			'name' 			 => 'Nombre',
 			'mail' 			 => 'Correo',
+			'mail_change'    => 'Nuevo correo',
 			'code' 			 => 'Code',
 			'mailcode' 		 => 'Mailcode',
 			'created_on' 	 => 'Created On',

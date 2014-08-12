@@ -55,12 +55,16 @@
 			</ul>
 		</nav>
 
-		<?php if(Admin::model()->isAdmin()): ?>
+		<?php if(Admin::model()->isAdmin()): //Administrator logged in ?>
 			<p class="login_bloq"> Estás logeado como admin con nombre <?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
 		<?php endif;?>
 
-		<?php if( (!Admin::model()->isAdmin()) && ( isset(Yii::app()->user->id) )): ?>
-			<p class="login_bloq"> Estás logeado/a como <b><?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Cambiar contraseña', array('/usuario/cambiarClave'))?> <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+		<?php if( (!Admin::model()->isAdmin()) && ( isset(Yii::app()->user->id) )): //Normal user logged in?>
+			<p class="login_bloq"> Estás logeado/a como <b><?php echo beautify(Yii::app()->user->name) ?>. <?php echo CHtml::link('Cambiar correo', array('/usuario/cambiarCorreo'))?> <?php echo CHtml::link('Cambiar contraseña', array('/usuario/cambiarClave'))?> <?php echo CHtml::link('Deslogear', array('/logout'))?></p>
+		<?php endif;?>
+
+		<?php if(!isset(Yii::app()->user->id)): //Visitor (not logged in) ?>
+			<p class="login_bloq"> No estás logeado en el sitio. <b><?php echo CHtml::link('Login', array('/login'))?></b> </p>
 		<?php endif;?>
 	
 	</div><!-- mainmenu -->
