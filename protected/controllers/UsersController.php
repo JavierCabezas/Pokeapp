@@ -41,6 +41,7 @@ class UsersController extends Controller
                 'actions' => array(
                     'changePassword',
                     'changeMail',
+                    'confirmMailChange'
                 ),
                 'users' => array(
                     '@'
@@ -230,10 +231,10 @@ class UsersController extends Controller
                     'mailcode'    => $hashedcode
                 ));
 
-                $link =  CHtml::link('el siguiente link', $this->createAbsoluteUrl('usuarios/confirmarCambioCorreo', array('mail' => $mail, 'code' => $hashedcode))); 
+                $link =  CHtml::link('el siguiente link', $this->createAbsoluteUrl('usuario/confirmarCorreo', array('mail' => $mail, 'code' => $hashedcode))); 
                 $body =         '<p> Alguien (probablemente tu) acaba de pedir un cambio del correo electrónico por defecto para el logeo de la pokéapp. </p>';
                 $body = $body . '<p> Para poder hacer efectivo el cambio debes de hacer click en '.$link.'.</p>';
-                $body = $body . '<p> Ante cualquier duda no dudes en contactarnos a '.Yii::app()->params['adminEmail'].'.</p>';
+                $body = $body . '<p> Ante cualquier duda no dudes en contactarnos en '.Yii::app()->params['adminEmail'].'.</p>';
                 Mail::sendMail(
                     Yii::app()->params['adminEmail'], //from 
                     $mail, //to
@@ -246,5 +247,36 @@ class UsersController extends Controller
         $this->render('changeMailForm', array(
             'model' => $model
         ));
+    }
+
+    /**
+     *  Actually does the mail change for a certain user.
+     *  To do this it needs the new mail and the code given by the e-email sent by actionChangeMail.
+     */
+    public function actionConfirmMailChange($mail, $code){    
+        $p      = new CHtmlPurifier();
+        $mail   = $p->purify($mail);
+        $code   = $p->purify($code);
+
+        $model = Users::model()->findByAttributes(array(
+            'mail_change' => $mail,
+            'mailcode'    => $code
+        ));
+        $check_repeat_mail = Users::model()->findByAttributes(array(
+            'mail' => $mail
+        ));
+        if(!isset($model)){
+            Yii::app()->user->setFlash('error', "El link ingresado es inválido, no se realizó el cambio de correo. ");
+        }else if(isset($check_repeat_mail)){
+            $link = CHtml::link('en el siguiente link', array('/usuario/cambiarClave'));
+            Yii::app()->user->setFlash('error', "El correo ingresado (".$mail.") ya está en uso por otro usuario. Si esa es tu cuenta puedes intentar realizar el reseteo de esa contraseña por medio ".$link);
+        }else{
+            if(Users::model()->updateByPk($model->id, array('mail_change' => null, 'mail' => $mail))){
+                Yii::app()->user->setFlash('success', "Se realizó correctamente el cambio de correo.");
+            }else{
+                Yii::app()->user->setFlash('error', "Ocurrió un error inesperado. Por favor inténtalo nuevamente y si el error se repite contacta a nuestros administradores.");
+            }
+        }
+        $this->redirect(array('/portada'));
     }
 }

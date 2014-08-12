@@ -54,6 +54,7 @@ return array(
                 'usuario/resetearCodigo'            => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'usuario/cambiarClave'              => 'users/changePassword',                          //Displays the change password form (for a user created password)
                 'usuario/cambiarCorreo'             => 'users/changeMail',                              //Displays the change mail form for a certain user
+                'usuario/confirmarCorreo'           => 'users/confirmMailChange',                       //Actually changes the mail for a user.
                 'jugadores/resetearClave'           => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo/resetearClave'              => 'users/resetCodeForm',                           //Same link as the last one (but from tournament module)
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
@@ -82,6 +83,7 @@ return array(
                 'stats/<page>'                      => 'stats/stats/<page>',                            //Generic page for the stats module
                 'sobre_mi'                          => 'site/about',                                    //About me page
                 'gii'                               => 'gii/default/login',                             //Gii page (DO NOT UPLOAD THIS)
+                'portada'                           => 'site/index',                                    //Renders the main page for the application.
                 '<page>'                            => 'site/<page>',                                   //Generic for any page on the site controller.
                 '<controller:\w+>/<id:\d+>'         => '<controller>/view',                             //Yii generated route
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',                    //Yii generated route (I hate this one, its sooo long)
