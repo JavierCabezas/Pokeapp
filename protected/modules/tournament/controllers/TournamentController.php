@@ -92,7 +92,7 @@ class TournamentController extends Controller
     			'user_tournament_pokemon'	=> $user_tournament_pokemon,
     			'user_pokemon'				=> $user_pokemon,
     		));
-        }else{
+        }else{ //The admin shouldn't see the user menu, redirect over there =P.
             $this->redirect('adminMenu');
         }
 
@@ -100,13 +100,16 @@ class TournamentController extends Controller
 
     public function actionAdminMenu()
     {
+        $tournament = Tournament::model()->getNextTournament();
         $players_to_check = count(TournamentPlayerFolio::model()->findAllByAttributes(array('folio' => null)));
         if($players_to_check == 1)
             Yii::app()->user->setFlash('notice', "Existe ".$players_to_check." jugador con folio sin revisar");
         if($players_to_check > 1)
             Yii::app()->user->setFlash('notice', "Existen ".$players_to_check." jugadores con folio sin revisar");
         $this->render('adminMenu', array(
-
+            'total_players'     => $tournament->total_folio_number,
+            'finished_players'  => TournamentPlayer::model()->completePlayers($tournament->id),
+            'tournament_name'   => $tournament->name,
         ));
     }
 

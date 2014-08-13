@@ -55,7 +55,7 @@ class TournamentPlayer extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_user' => 'Id User',
+				'id_user' => 'Id User',
 		);
 	}
 
@@ -94,5 +94,26 @@ class TournamentPlayer extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	/** 
+	 *	Returns the number of players that have finished the online registration for an specific tournament.
+	 *	@param integer the identifier of the tournament.
+	 *	@return integer that number =P.
+	 *
+	 *	@todo Do this in a intelligent way. Frankly I don't know how to do this decently.
+	 */
+	public function completePlayers($id_tournament)
+	{
+		$criteria=new CDbCriteria;
+		$criteria->addCondition('folio > 0');
+		$criteria->addCondition('id_tournament = '.$id_tournament);
+		$players = TournamentPlayerFolio::model()->findAll($criteria);
+		$total = 0;
+		foreach($players as $player){
+			if($player->numberPokemon == 6)
+				$total = $total +1;
+		}
+		return $total;		
 	}
 }

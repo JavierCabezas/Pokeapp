@@ -149,4 +149,15 @@ class TournamentPlayerFolio extends CActiveRecord
         asort($out);
         return $out;
     }
+
+    /**
+     *  Returns the number of pokémon for the current player in the current tournament.
+     *  @return integer exactly that.
+     */
+    public function getNumberPokemon(){
+        return count(TournamentPlayerPokemon::model()->findAllByAttributes(array(
+            'id_tournament_player'  => $this->id, 
+            'id_tournament'         => $this->id_tournament
+        )));
+    }
 }
