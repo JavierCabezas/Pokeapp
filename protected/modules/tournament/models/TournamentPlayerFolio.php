@@ -143,7 +143,7 @@ class TournamentPlayerFolio extends CActiveRecord
         $out = array();
         foreach($tournament_folios as $tournament_folio){
             if( ($tournament_folio->folio != null) &&  ($tournament_folio->folio != -1) ){
-                $out[$tournament_folio->folio] = $tournament_folio->folio;
+                $out[$tournament_folio->folio] = $tournament_folio->folio. ' ('.$tournament_folio->idTournamentPlayer->name.', '.$tournament_folio->idTournamentPlayer->mail.')';
             }
         }
         asort($out);
