@@ -7,6 +7,13 @@ $this->breadcrumbs=array(
 );
 ?>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
+
 <h1 class="registro"> Registro de nuevo jugador </h1>
 
 <div class="infosec">
