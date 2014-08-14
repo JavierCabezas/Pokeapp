@@ -106,10 +106,12 @@ class TournamentController extends Controller
             Yii::app()->user->setFlash('notice', "Existe ".$players_to_check." jugador con folio sin revisar");
         if($players_to_check > 1)
             Yii::app()->user->setFlash('notice', "Existen ".$players_to_check." jugadores con folio sin revisar");
+        $player_status = TournamentPlayer::model()->completePlayers($tournament->id);
         $this->render('adminMenu', array(
-            'total_players'     => $tournament->total_folio_number,
-            'finished_players'  => TournamentPlayer::model()->completePlayers($tournament->id),
-            'tournament_name'   => $tournament->name,
+            'total_players'           => $tournament->total_folio_number,
+            'finished_players'        => $player_status['complete'],
+            'almost_finished_players' => $player_status['incomplete'],
+            'tournament_name'         => $tournament->name,
         ));
     }
 

@@ -97,9 +97,9 @@ class TournamentPlayer extends CActiveRecord
 	}
 
 	/** 
-	 *	Returns the number of players that have finished the online registration for an specific tournament.
+	 *	Returns the number of players that have finished the online registration for an specific tournament and those who have selected pokémon but not the complete party of 6.
 	 *	@param integer the identifier of the tournament.
-	 *	@return integer that number =P.
+	 *	@return integer array in the format $out['complete'] = players with 6 pokémon in their teams and $out['incomplete'] the players with more than 0 pokémon but less than 6.
 	 *
 	 *	@todo Do this in a intelligent way. Frankly I don't know how to do this decently.
 	 */
@@ -108,12 +108,19 @@ class TournamentPlayer extends CActiveRecord
 		$criteria=new CDbCriteria;
 		$criteria->addCondition('folio > 0');
 		$criteria->addCondition('id_tournament = '.$id_tournament);
-		$players = TournamentPlayerFolio::model()->findAll($criteria);
-		$total = 0;
+		$players  = TournamentPlayerFolio::model()->findAll($criteria);
+		$complete = 0;
+		$incomplete = 0;
 		foreach($players as $player){
-			if($player->numberPokemon == 6)
-				$total = $total +1;
+			$pokenumber = $player->numberPokemon;
+			if($pokenumber == 6)
+				$complete = $complete +1;
+			elseif(($pokenumber > 0)&&($pokenumber < 6))
+				$incomplete = $incomplete + 1;
 		}
-		return $total;		
+		$out = array();
+		$out['complete'] = $complete;
+		$out['incomplete'] = $incomplete;
+		return $out;		
 	}
 }

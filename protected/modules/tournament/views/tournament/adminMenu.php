@@ -11,7 +11,8 @@
 <p> Opciones </p>
 
 <p> 
-	Para el <?php echo $tournament_name ?> existen <b><?php echo $finished_players.'/'.$total_players ?></b> jugadores que han terminado su trámite. 
+	Para el <?php echo $tournament_name ?> existen <b><?php echo $finished_players + $almost_finished_players.'/'.$total_players ?></b> jugadores que han agregado pokémon. 
+	De esos <?php echo $finished_players ?> tienen su team entero y <?php echo $almost_finished_players ?> tienen elegidos pokémon pero no a los 6.
 </p>
 
 <ul>
