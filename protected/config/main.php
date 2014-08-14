@@ -58,6 +58,7 @@ return array(
                 'jugadores/resetearClave'           => 'users/resetCodeForm',                           //Displays the form to reset the user's password
                 'torneo/resetearClave'              => 'users/resetCodeForm',                           //Same link as the last one (but from tournament module)
                 'torneo'                            => 'tournament/tournament/index',                   //Main tournament window
+                'torneo/resumenTorneo'              => 'tournament/tournament/tournamentSummary',       //Admin view for a quick summary of every player in a certain tourament
                 'torneo/estadoInscripcion'          => 'tournament/tournament/inscriptionStatus',       //User view to check the inscription status
                 'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize

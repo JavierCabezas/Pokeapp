@@ -18,4 +18,5 @@
 <ul>
 	<li> <?php echo CHtml::link('Autorizar fotos de folio de jugadores', array('/torneo/vistaAutorizar')) ?> </li>
 	<li> <?php echo CHtml::link('Ver equipo de jugadores', array('/torneo/verEquipoJugador')) ?> </li>
+	<li> <?php echo CHtml::link('Ver resumen de estado de jugadores', array('/torneo/resumenTorneo')) ?> </li>
 </ul>
