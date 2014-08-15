@@ -36,7 +36,7 @@
 
 			<div class="facebook">
 				Facebook:
-				<?php echo $facebook ?>
+				<?php echo CHtml::link($facebook, $facebook) ?>
 			</div>
 
 			<div class="others">
