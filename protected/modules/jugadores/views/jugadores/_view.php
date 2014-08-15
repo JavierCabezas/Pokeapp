@@ -74,28 +74,29 @@
 	</div> <!-- end of safari -->
 
 	<div class="duel">
+		<div class="title">Interés de duelos</div>
 		<div class="single_<?php echo $duel_single?>">
+			<h5>Single:</h5>
 			<?php if(!is_null($tier_single)): ?>
-				<h5>Single:</h5>
-				<?php echo $tier_single ?>
+				<p><?php echo $tier_single ?></p>
 			<?php endif; ?>
 		</div>
 		<div class="doble_<?php echo $duel_doble?>">
+			<h5>Doble:</h5>
 			<?php if(!is_null($tier_doble)): ?>
-				<h5>Doble:</h5>
-				<?php echo $tier_doble ?>
+				<p><?php echo $tier_doble ?></p>
 			<?php endif; ?>
 		</div>
 		<div class="triple_<?php echo $duel_triple?>">
+			<h5>Triple:</h5>
 			<?php if(!is_null($tier_triple)): ?>
-				<h5>Triple:</h5>
-				<?php echo $tier_triple ?>
+				<p><?php echo $tier_triple ?></p>
 			<?php endif; ?>
 		</div>
 		<div class="rotation_<?php echo $duel_triple?>">
+			<h5>Rotation:</h5>
 			<?php if(!is_null($tier_rotation)): ?>
-				<h5>Rotation:</h5>
-				<?php echo $tier_rotation ?>
+				<p><?php echo $tier_rotation ?></p>
 			<?php endif; ?>
 		</div>
 	</div> <!-- end of duels  -->
