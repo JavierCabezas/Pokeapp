@@ -16,15 +16,15 @@ $this->breadcrumbs=array(
 
 <h1> Resumen para <?php echo $tournament_name ?> </h1>
 
-<table>
-	<tr>
+<table class='adminTable'>
+	<thead>
 		<th> # jugador </th>
 		<th> Folio asignado </th>
 		<th> Nombre jugador </th>
 		<th> Correo jugador </th>
 		<th> Foto folio </th>
 		<th> # Pokémon equipo </th>
-	</tr>
+	</thead>
 
 <?php $i = 1 ; ?>
 <?php foreach($players as $player): ?>
@@ -36,4 +36,6 @@ $this->breadcrumbs=array(
 		<td> <?php echo $player['assigned']? $player['player_picture']:'-'; ?> </td>
 		<td> <?php echo $player['assigned']? $player['number_pokemon']:''; ?> </td>
 		<?php $i = $i+1 ?>
+	</tr>
 <?php endforeach; ?>
+</table>

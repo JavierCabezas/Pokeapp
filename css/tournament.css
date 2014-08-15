@@ -1,4 +1,4 @@
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
+    h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {
     margin: 0;
     padding: 1%;
     width: 12%;
@@ -449,4 +449,29 @@ p.click a {
     -webkit-box-shadow: -0.1em -1em 2em #4F0405 inset;
     -moz-box-shadow: -0.1em -1em 2em #4F0405 inset;
     box-shadow: -0.1em -1em 2em #4F0405 inset;
+}
+table {
+  line-height: 40px;
+  border-spacing: 0;
+  border: 1px solid #428bca;
+}
+thead th {background:#0E843B;}
+
+thead tr:first-child {
+  background: #428bca;
+  color: #fff;
+  border: none;
+}
+
+th {font-weight: bold;}
+
+thead tr:last-child th {border-bottom: 2px solid #0E843B;}
+
+tbody tr:hover {background-color: #f0fbff;}
+tbody tr:last-child td {border: none;}
+tbody td {border-bottom: 1px solid #0E843B;}
+
+td:last-child {
+  text-align: right;
+  padding-right: 10px;
 }
