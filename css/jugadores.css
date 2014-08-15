@@ -2,11 +2,242 @@
     background-color: #ddf;
     float: left;
 }
+
 .col_mid {
     background-color: #dfd;
     float: none;
 }
+
 .col_right {
     background-color: #fdd;
     float: right;
+}
+
+#result .view {
+    width: 94%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result .view .basic_info,
+#result .view .safari,
+#result .view .duel,
+#result .view .contact {
+    height: auto;
+    padding: 10px;
+    clear: both;
+    width: 100%;
+}
+
+#result .view .safari,
+#result .view .duel {
+    clear: none;
+    float: left;
+    width: 47%;
+}
+
+#result .view .safari {
+	margin-left: 1.6%;
+}
+
+#result .view .basic_info .avatar {
+    float: left;
+    width: 20%;
+    height: auto;
+}
+
+#result .view .basic_info .data {
+    float: right;
+    width: 78%;
+    height: auto;
+    text-align: left;
+}
+
+#result .view .basic_info .data .nickname {
+    font-size: 24px;
+    font-weight: bold;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: -0.4em -0.2em 1.1em #7F1019 inset;
+    -moz-box-shadow: -0.4em -0.2em 1.1em #7F1019 inset;
+    box-shadow: -0.4em -0.2em 1.1em #7F1019 inset;
+    background-color: #C91221;
+    color: #FFF;
+    padding: 5px;
+    text-align: center;
+}
+
+#result .view .basic_info .data .friend_code,
+#result .view .basic_info .data .tsv {
+    font-size: 18px;
+    -webkit-border-bottom: 1px solid #7F1019;
+    -moz-border-bottom: 1px solid #7F1019;
+    border-bottom: 1px solid #7F1019;
+}
+
+#result .view .basic_info .data .comments {
+    -webkit-border-bottom: 0px;
+    -moz-border-bottom: 0px;
+    border-bottom: 0px;
+    font-size: 14px;
+    font-style: italic;
+    text-align: justify;
+    line-height: 120%;
+}
+
+#result .view .basic_info .data .contact {
+    width: 98%;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#result .view .basic_info .contact .skype, #result .view .basic_info .contact .whatsapp,
+#result .view .basic_info .contact .facebook, #result .view .basic_info .contact .others {
+    width: 21%;
+    margin-right: 2%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #7f1019;
+    color: #FFF;
+    float: left;
+    padding: 5px;
+    text-align: center;
+}
+
+#result .view .basic_info .contact .facebook {
+    width: 49%;
+    margin-right: 0;
+}
+
+ #result .view .basic_info .contact .others {
+    margin-top: 1%;
+    margin-right: 0;
+    width: 97%;
+ }
+
+#result .view .safari .type,
+#result .view .duel .title {
+    width: 90%;
+    float: left;
+    font-size: 16pt;
+    clear: both;
+    margin-bottom: 3%;
+    background-color: #7F1019;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #FFF;
+    text-align: center;
+    padding: 3%;
+}
+
+#result .view .duel .title {
+	width: 93%;
+}
+
+#result .view .safari .pokes {
+    width: 100%;
+    height: 180px;
+    float: right;
+}
+
+#result .view .safari .pokes .safari_pokemon, #result .view .safari .pokes .no_safari {
+    width: 28%;
+    height: 94%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #FFF;
+    padding: 5px;
+    float: left;
+    margin-right: 2%;
+    text-align: center;
+    width: 28%;
+    color: #000;
+    font-weight: bold;
+    -webkit-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+    -moz-box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+    box-shadow: -0.4em -0.2em 1.1em #B7B2B2 inset;
+}
+
+#result .view .safari .pokes .no_safari {
+    background-color: none;
+    background-image: url (../images/varios/duelbg.png);
+}
+
+#result .view .safari .pokes .safari_pokemon:last-child {
+    margin-bottom: 0;
+}
+
+#result .view .safari .pokes .safari_pokemon img {
+    margin-top: 20%;
+    width: 80%;
+}
+
+#result .view .duel .single_0,
+#result .view .duel .doble_0,
+#result .view .duel .triple_0,
+#result .view .duel .rotation_0 {
+    color: #FFF;
+    font-size: 14px;
+    background-color: #2D2D2D;
+    float: left;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    height: 100px;
+    width: 49%;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+
+#result .view .duel .single_1,
+#result .view .duel .doble_1,
+#result .view .duel .triple_1,
+#result .view .duel .rotation_1 {
+    color: #000;
+    text-align: center;
+    float: left;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    font-size: 24px;
+    height: 45px;
+    width: 49%;
+    padding-bottom: 35px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #FFF;
+}
+
+#result .view .duel .single_0 h5,
+#result .view .duel .doble_0 h5,
+#result .view .duel .triple_0 h5,
+#result .view .duel .rotation_0 h5,
+#result .view .duel .single_1 h5,
+#result .view .duel .doble_1 h5,
+#result .view .duel .triple_1 h5,
+#result .view .duel .rotation_1 h5 {
+    font-weight: bold;
+    margin-bottom: 1%;
+    margin-top: 0;
+    padding: 3%;
+    background-color: #CCC;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    height: 45%;
+    font-size: 14pt;
+}
+
+#result .view .duel .single_1 p,
+#result .view .duel .doble_1 p,
+#result .view .duel .triple_1 p,
+#result .view .duel .rotation_1 p {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	font-weight: bold;
 }
