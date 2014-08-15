@@ -50,27 +50,26 @@
 		<div class="type">
 			Safari: <?php echo $safari_type ?>
 		</div>
+		<?php if($safari_type != '(No ingresado)'): //Just show the safari pokémon if the safari is defined ?>
+				<div class="pokes">
+					<div class="safari_pokemon" id="1">
+						<?php echo $pokemon_safari_1 ?>
+						<?php echo $pic_pokemon_1 ?>
+					</div>
 
-		<div class="pokes">
-			<?php if($safari_type != '(No asignado)'): //Just show the safari pokémon if the safari is defined ?>
-				<div class="safari_pokemon" id="1">
-					<?php echo $pokemon_safari_1 ?>
-					<?php echo $pic_pokemon_1 ?>
+					<div class="safari_pokemon" id="2">
+						<?php echo $pokemon_safari_2 ?>
+						<?php echo $pic_pokemon_2 ?>
+					</div>
+					
+					<div class="safari_pokemon" id="3">
+						<?php echo $pokemon_safari_3 ?>
+						<?php echo $pic_pokemon_3 ?>
+					</div>
 				</div>
-
-				<div class="safari_pokemon" id="2">
-					<?php echo $pokemon_safari_2 ?>
-					<?php echo $pic_pokemon_2 ?>
-				</div>
-				
-				<div class="safari_pokemon" id="3">
-					<?php echo $pokemon_safari_3 ?>
-					<?php echo $pic_pokemon_3 ?>
-				</div>
-				
-			<?php endif; ?>
+			<?php else: ?>
 				<div class="no_safari"></div>
-		</div>
+			<?php endif; ?>
 	</div> <!-- end of safari -->
 
 	<div class="duel">
