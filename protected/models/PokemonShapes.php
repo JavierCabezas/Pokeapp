@@ -104,4 +104,14 @@ class PokemonShapes extends CActiveRecord
 	{
 		return beautify($this->identifier);
 	}
+
+	/** 
+	 *	Returns the Pokémon shape list, intended for a dropdown 
+	 *	@return array of the listdata of the PokemonShape model.
+	 */
+	public function dropdownShapes()
+	{
+        $model = PokemonShapes::model()->findAll();
+        return CHtml::listData($model, 'id', 'shapeName');
+    }  
 }

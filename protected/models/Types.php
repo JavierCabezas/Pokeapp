@@ -132,7 +132,12 @@ class Types extends CActiveRecord
 	 */
 	public function dropdownTypes()
 	{
-        $model = Types::model()->findAll();
-        return CHtml::listData($model, 'id', 'typeName');	
-	}  
+		$criteria = new CDbCriteria;
+		$criteria->addCondition("id != 10001"); //Exclude unkown type
+		$criteria->addCondition("id != 10002"); //Exlude shadow type
+		$criteria->order = 'identifier';
+
+        $model = Types::model()->findAll($criteria);
+        return CHtml::listData($model, 'id', 'typeName');
+    }  
 }

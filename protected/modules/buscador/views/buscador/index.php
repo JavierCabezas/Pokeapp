@@ -49,9 +49,9 @@
 					<div id="acc_type" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<label> Tipo 1: </label>
-							<?php echo CHtml::dropDownList('type_1', null, $array_types, array('empty' => '(Ingresar tipo 1)', 'class' => 'type_dropdown'));  ?>
+							<?php echo CHtml::dropDownList('type_1', null, Types::model()->dropdownTypes(), array('empty' => '(Ingresar tipo 1)', 'class' => 'type_dropdown'));  ?>
 							<label> Tipo 2: </label>
-							<?php echo CHtml::dropDownList('type_2', null, $array_types, array('empty' => '(Ingresar tipo 2)', 'class' => 'type_dropdown'));  ?>
+							<?php echo CHtml::dropDownList('type_2', null, Types::model()->dropdownTypes(), array('empty' => '(Ingresar tipo 2)', 'class' => 'type_dropdown'));  ?>
 						</div>
 					</div>				
 				</div>	<!-- end of type -->
@@ -95,7 +95,7 @@
 					</div>
 					<div id="acc_egg" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<?php echo CHtml::dropDownList('eggie_dropdown', '', $array_egg_groups, array('empty' => '(Seleccionar grupo)')); ?>
+							<?php echo CHtml::dropDownList('eggie_dropdown', '', EggGroups::model()->dropdownEggs(), array('empty' => '(Seleccionar grupo)')); ?>
 						</div>
 					</div>
 				</div> <!-- End of eggs (hehe) -->
@@ -108,7 +108,7 @@
 					</div>
 					<div id="acc_form" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<?php echo CHtml::dropDownList('shape', '', $array_shapes, array('empty' => '(Seleccionar forma)')); ?>
+							<?php echo CHtml::dropDownList('shape', '', PokemonShapes::model()->dropdownShapes(), array('empty' => '(Seleccionar forma)')); ?>
 						</div>
 					</div>
 				</div> <!-- end of shape -->
@@ -121,11 +121,22 @@
 					</div>
 					<div id="acc_ability" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<?php echo CHtml::dropDownList('ability', '', $array_ability, array('empty' => '(Seleccionar habilidad)')); ?>
+							<p>
+								<label for='ability'> Habilidad </label>
+								<?php
+									$this->widget('bootstrap.widgets.TbSelect2',
+										array(
+											'name' => 'ability',
+											'data' => Abilities::model()->dropdownAbility(),
+											'htmlOptions' => array( 'multiple' => false),
+										)
+									);
+								?>
+							</p>
 						</div>
 					</div>
 				</div> <!-- end of ability -->
-
+				<?php $array_moves = Moves::model()->dropdownMoves() ?>
 				<div class='moves'>
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_moves">

@@ -101,4 +101,14 @@ class EggGroups extends CActiveRecord
 	{
 		return beautify($this->identifier);
 	}
+
+	/** 
+	 *	Returns the egg list intended for a dropdown 
+	 *	@return array of the listdata of the EggGroups model.
+	 */
+	public function dropdownEggs()
+	{
+		$model = EggGroups::model()->findAll();
+		return CHtml::listData($model, 'id', 'eggGroupName');
+	}
 }

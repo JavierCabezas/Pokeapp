@@ -4,26 +4,12 @@ class BuscadorController extends Controller
 {
 	public function actionIndex()
 	{
-		$type_criteria = new CDbCriteria;
-		$type_criteria->addCondition("id != 10001"); //Exclude unkown type
-		$type_criteria->addCondition("id != 10002"); //Exlude shadow type
-
 		$array_generations 	= array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
 		$array_colors 		= array('1' => 'Black (negro)', '2' => 'Blue (azul)', '3' => 'Brown (café)', '4' => 'Gray (griz)', '5' => 'Green (verde)', '6' => 'Pink (rosa)', '7' => 'Purple (morado)', '8' => 'Red (rojo)', '9' => 'White (blanco)', '10' => 'Yellow (amarillo)');
-		$array_egg_groups 	= CHtml::listData(EggGroups::model()->findAll(), 'id', 'eggGroupName');
-		$array_shapes 		= CHtml::listData(PokemonShapes::model()->findAll(), 'id', 'shapeName');
-		$array_types        = CHtml::listData(Types::model()->findAll($type_criteria), 'id', 'typeName');
-		$array_ability      = CHtml::listData(Abilities::model()->findAll(), 'id', 'abilityName');
-		$array_moves		= CHtml::listData(Moves::model()->findAll(), 'id', 'moveName');
 		
 		$this->render('index', array(
 			'array_generations' => $array_generations,
-			'array_colors'		=> $array_colors,
-			'array_egg_groups' 	=> $array_egg_groups,
-			'array_shapes'		=> $array_shapes,
-			'array_types'		=> $array_types,
-			'array_ability'		=> $array_ability,
-			'array_moves'		=> $array_moves,
+			'array_colors'		=> $array_colors,		
 		));
 	}
 
