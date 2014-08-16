@@ -94,9 +94,7 @@ class Player extends CActiveRecord
 			array('name', 'length', 'max'=>80),
 			array('mail', 'email'),
 			array('id_user', 'unique', 'message' => 'El correo ingresado ya está registrado en nuestra base de datos. Si deseas logearte puedes hacerlo '.CHtml::link('en el siguiente link', array('/jugadores/actualizar')).'.' ),
-			array('safari_slot_1','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
-			array('safari_slot_2','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
-			array('safari_slot_3','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
+			array('safari_slot_1, safari_slot_2, safari_slot_3','safariValidation','safari'=>'id_safari_type'), //Must pick a pokémon if the player picked a Safari.
 			array('pic, facebook, mail, others', 'length', 'max'=>100),
 			array('comment', 'length', 'max'=>999),
 			array('search_nickname, search_safari, search_poke_1, search_poke_2, search_poke_3, search_tsv, search_duel_single, search_duel_doble, search_duel_triple, search_duel_rotation', 'safe', 'on'=>'search'),
@@ -239,5 +237,23 @@ class Player extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	/**
+	 *	Checks if a certain user has a created profile on the players module.
+	 *	@param itneger id_player the identifier of the player to check. This parameter is optional.
+	 *	In case a id_player value isn't passed and the user is logged in the id of that user is used instead. If its not logged it returns false.
+	 *	@return bool true in case the player has a profile and false otherwise.
+	 */
+	public function hasProfile($id_player = null){
+		if(is_null($id_player)){
+			if(isset(Yii::app()->user->id)){
+				$id_player = Yii::app()->user->id;
+			}else{
+				return false;
+			}
+		}
+		$model = Player::model()->findByAttributes(array('id_user' => $id_player));
+		return isset($model);
 	}
 }
