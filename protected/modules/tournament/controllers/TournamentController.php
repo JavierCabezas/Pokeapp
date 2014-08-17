@@ -353,6 +353,7 @@ class TournamentController extends Controller
      *  $out[number_of_folio]['player_mail'] The email of the player according to the Users table.
      *  $out[number_of_folio]['player_picture'] The picture of the players ticket (as uploaded when they registered)
      *  $out[number_of_folio]['number_pokemon'] The number of the pokémon that the player has selected for the tournament.
+     *  $oyt[number_of_folio]['date'] The date of the registration for the user.
      */
     public function actionTournamentSummary()
     {
@@ -369,6 +370,7 @@ class TournamentController extends Controller
                 $out[$folio]['player_mail']    = $model->idTournamentPlayer->mail;
                 $out[$folio]['player_picture'] = CHtml::link('Ver foto', 'images/foto_folio/'. $model->folio_photo);
                 $out[$folio]['number_pokemon'] = $model->numberPokemon;
+                $out[$folio]['date']           = date("M jS, Y m:s", $model->idTournamentPlayer->created_on);
             }
         }
         $this->render('tournamentSummary', array(

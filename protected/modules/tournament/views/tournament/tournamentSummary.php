@@ -24,6 +24,7 @@ $this->breadcrumbs=array(
 		<th> Correo jugador </th>
 		<th> Foto folio </th>
 		<th> # Pokémon equipo </th>
+		<th> Fecha de registro </th>
 	</thead>
 
 <?php $i = 1 ; ?>
@@ -35,6 +36,7 @@ $this->breadcrumbs=array(
 		<td> <?php echo $player['assigned']? $player['player_mail']:'-'; ?> </td>
 		<td> <?php echo $player['assigned']? $player['player_picture']:'-'; ?> </td>
 		<td> <?php echo $player['assigned']? $player['number_pokemon']:''; ?> </td>
+		<td> <?php echo $player['assigned']? $player['date']:''; ?> </td>
 		<?php $i = $i+1 ?>
 	</tr>
 <?php endforeach; ?>
