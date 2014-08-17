@@ -104,4 +104,16 @@ class PokemonColor extends CActiveRecord
 	{
 		return beautify($this->color);
 	}
+
+	/** 
+	 *	Returns the color list intended for a dropdown.
+	 *	This function is hand made but, since the colors aren't likely to change, I consider this way the correct way to do it.
+	 *	@return array in the format of a listData function for the color class.
+	 */
+	public function dropdownColor()
+	{
+		return array('1' => 'Black (negro)', '2' => 'Blue (azul)', '3' => 'Brown (café)', 	 '4' => 'Gray (griz)', 
+					 '5' => 'Green (verde)', '6' => 'Pink (rosa)', '7' => 'Purple (morado)', '8' => 'Red (rojo)', 
+					 '9' => 'White (blanco)', '10' => 'Yellow (amarillo)');
+	}
 }

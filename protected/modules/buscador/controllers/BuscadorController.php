@@ -5,11 +5,9 @@ class BuscadorController extends Controller
 	public function actionIndex()
 	{
 		$array_generations 	= array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
-		$array_colors 		= array('1' => 'Black (negro)', '2' => 'Blue (azul)', '3' => 'Brown (café)', '4' => 'Gray (griz)', '5' => 'Green (verde)', '6' => 'Pink (rosa)', '7' => 'Purple (morado)', '8' => 'Red (rojo)', '9' => 'White (blanco)', '10' => 'Yellow (amarillo)');
 		
 		$this->render('index', array(
 			'array_generations' => $array_generations,
-			'array_colors'		=> $array_colors,		
 		));
 	}
 

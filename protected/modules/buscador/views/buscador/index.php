@@ -82,7 +82,7 @@
 					</div>
 					<div id="acc_color" class="accordion-body collapse">
 						<div class="accordion-inner">
-							<?php echo CHtml::dropDownList('color_dropdown', '', $array_colors, array('empty' => '(Seleccionar color)')); ?>
+							<?php echo CHtml::dropDownList('color_dropdown', '', PokemonColor::model()->dropdownColor() , array('empty' => '(Seleccionar color)')); ?>
 						</div>
 					</div>
 				</div> <!-- end of color -->
