@@ -17,7 +17,7 @@
 			<div class="name">
 				<?php echo $form->textFieldRow($model,'nickname',array('class'=>'span5','maxlength'=>30)); ?>
 			</div>
-			<?php if($create): ?>
+			<?php if($create && !isset(Yii::app()->user->id)): //If the user is logged in we already have the players name ?>
 				<div class="name">
 					<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>80)); ?>
 				</div>
@@ -28,7 +28,7 @@
 			<?php echo $form->fileField($model,'avatar'); ?>
 			<?php echo $form->error($model,'avatar'); ?>
 		</div>
-		<?php if($create): ?>
+		<?php if($create && !isset(Yii::app()->user->id)): //Just show the mail form in case the users is using the create view and isn't logged in?>
 			<div class="bloq">
 				<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
 			</div>

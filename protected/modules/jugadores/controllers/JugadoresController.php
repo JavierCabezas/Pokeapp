@@ -94,11 +94,24 @@ class JugadoresController extends Controller
      */
     public function actionCreate()
     {
+        if(Player::model()->hasProfile() ){
+            //If the player has a profile redirect to the index
+            Yii::app()->user->setFlash('notice', "Ya tienes un perfil asociado a tu cuenta. Si quieres modificar tu perfil puedes hacerlo haciendo click ".CHtml::link('aquí', array('/jugadores/actualizar')).'.');
+            $this->redirect('index');
+        }
         $model = new Player('create');
-        
+
         if (isset($_POST['Player'])) {
             $p = new CHtmlPurifier();
-            $mail       = $p->purify($_POST['Player']['mail']);
+            if(isset(Yii::app()->user->id)){
+                $user_model = Users::model()->findByPk(Yii::app()->user->id);
+                $mail = $user_model->mail;
+                $_POST['Player']['name'] = $user_model->name;
+            }
+            else{
+                $mail = $p->purify($_POST['Player']['mail']);
+            }
+
             $nickname   = $p->purify($_POST['Player']['nickname']);
             $name = ($_POST['Player']['name'] != '')?$p->purify($_POST['Player']['name']):$nickname; //Save the nickname if the player didn't enter a name.
             $code = generatePassword();
@@ -107,9 +120,11 @@ class JugadoresController extends Controller
             if(Users::model()->checkPlayerExists($mail)){
                 $user = Users::model()->findByAttributes(array('mail' => $mail));
                 if($user->custom_password == 0){
+                    //Don't reset the password in case a player has a custom one.
                     Users::model()->updateByPk($user->id, array('code' => $hashed_code));
                 }
             }else{
+                //If the player does not have a mail associated with the account create a new one.
                 $user               = new Users();
                 $user->mail         = $mail;
                 $user->name         = $name;
@@ -118,31 +133,16 @@ class JugadoresController extends Controller
                 $user->save();
             }
             //I know this is kind of ugly but...it works. Im not sure what I was thinking when I wrote this.
+            $model->attributes      = $_POST['Player'];
             $model->id_user         = $user->id;
             $model->nickname        = $nickname;
-            $model->mail            = $user->mail;       
-            $model->friendcode_1    = intval($_POST['Player']['friendcode_1']);
-            $model->friendcode_2    = intval($_POST['Player']['friendcode_2']);
-            $model->friendcode_3    = intval($_POST['Player']['friendcode_3']);
+            $model->mail            = $user->mail;
             $model->id_safari_type  = (intval($_POST['Player']['id_safari_type']) != 0)?intval($_POST['Player']['id_safari_type']):null;
             $model->safari_slot_1   = isset($_POST['Player']['safari_slot_1'])?intval($_POST['Player']['safari_slot_1']):null;
             $model->safari_slot_2   = isset($_POST['Player']['safari_slot_2'])?intval($_POST['Player']['safari_slot_2']):null;
             $model->safari_slot_3   = isset($_POST['Player']['safari_slot_3'])?intval($_POST['Player']['safari_slot_3']):null;
             $model->tsv             = intval($_POST['Player']['tsv'] != 0)?intval($_POST['Player']['tsv']):null;
-            $model->duel_single     = intval($_POST['Player']['duel_single']);
-            $model->tier_single     = isset($_POST['Player']['tier_single'])?intval($_POST['Player']['tier_single']):null;
-            $model->duel_doble      = intval($_POST['Player']['duel_doble']);
-            $model->tier_doble      = isset($_POST['Player']['tier_doble'])?intval($_POST['Player']['tier_doble']):null;
-            $model->duel_triple     = intval($_POST['Player']['duel_triple']);
-            $model->tier_triple     = isset($_POST['Player']['tier_triple'])?intval($_POST['Player']['tier_triple']):null;
-            $model->duel_rotation   = intval($_POST['Player']['duel_rotation']);
-            $model->tier_rotation   = isset($_POST['Player']['tier_rotation'])?intval($_POST['Player']['tier_rotation']):null;
-            $model->skype           = $_POST['Player']['skype'];
-            $model->whatsapp        = $_POST['Player']['whatsapp'];
-            $model->facebook        = $_POST['Player']['facebook'];
             $model->public_mail     = 0;
-            $model->others          = $_POST['Player']['others'];
-            $model->comment         = $_POST['Player']['comment'];
             $model->auth            = 0;
             $model->created         = time();
             $model->modified        = time();

@@ -9,6 +9,12 @@
 	</ul>
 </nav>
 
+<?php
+    foreach(Yii::app()->user->getFlashes() as $key => $message) {
+        echo '<div class="flash-' . $key . '">' . $message . "</div>\n";
+    }
+?>
+
 <div class="infosec">
 	<p>Esta sección fue pensada para poder crear tu perfil con tus intereses de juego y además el poder buscar el de otros jugadores. Puedes buscar jugadores bajo los siguientes parámetros:</p>
 	
