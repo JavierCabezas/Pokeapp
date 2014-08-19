@@ -366,11 +366,12 @@ class TournamentController extends Controller
             if(!isset($model)){
                 $out[$folio]['assigned'] = false;
             }else{
+                $picture = imageDir()."/foto_folio/". $model->folio_photo;
                 $out[$folio]['folio']          = $folio;
                 $out[$folio]['assigned']       = true;
                 $out[$folio]['player_name']    = $model->idTournamentPlayer->name;
                 $out[$folio]['player_mail']    = $model->idTournamentPlayer->mail;
-                $out[$folio]['player_picture'] = CHtml::link('Ver foto', 'images/foto_folio/'. $model->folio_photo);
+                $out[$folio]['player_picture'] = CHtml::link('click!', $picture);
                 $out[$folio]['number_pokemon'] = $model->numberPokemon;
                 $out[$folio]['date']           = date("M jS, Y m:s", $model->idTournamentPlayer->created_on);
             }
