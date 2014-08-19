@@ -349,22 +349,24 @@ class TournamentController extends Controller
      *  The array has the following structure:
      *  $out[number_of_folio]['assigned'] If true the folio number is assigned to a player, otherwise its not used.
      *  These are filled only if the assgined value is true.
-     *  $out[number_of_folio]['player_name'] The name of the player according to the Users table.
-     *  $out[number_of_folio]['player_mail'] The email of the player according to the Users table.
+     *  $out[number_of_folio]['folio']          The folio number.
+     *  $out[number_of_folio]['player_name']    The name of the player according to the Users table.
+     *  $out[number_of_folio]['player_mail']    The email of the player according to the Users table.
      *  $out[number_of_folio]['player_picture'] The picture of the players ticket (as uploaded when they registered)
      *  $out[number_of_folio]['number_pokemon'] The number of the pokémon that the player has selected for the tournament.
-     *  $oyt[number_of_folio]['date'] The date of the registration for the user.
+     *  $oyt[number_of_folio]['date']           The date of the registration for the user.
      */
     public function actionTournamentSummary()
     {
         $next_tournament = Tournament::model()->getNextTournament();
         $total_folio_number = $next_tournament->total_folio_number;
         $out = array();
-        for($folio = 0 ; $folio < $total_folio_number ; $folio = $folio+1){
+        for($folio = 1 ; $folio < $total_folio_number ; $folio = $folio+1){
             $model = TournamentPlayerFolio::model()->findByAttributes(array('folio' => $folio));
             if(!isset($model)){
                 $out[$folio]['assigned'] = false;
             }else{
+                $out[$folio]['folio']          = $folio;
                 $out[$folio]['assigned']       = true;
                 $out[$folio]['player_name']    = $model->idTournamentPlayer->name;
                 $out[$folio]['player_mail']    = $model->idTournamentPlayer->mail;

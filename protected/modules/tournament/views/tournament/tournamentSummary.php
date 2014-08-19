@@ -18,26 +18,27 @@ $this->breadcrumbs=array(
 
 <table class='adminTable'>
 	<thead>
-		<th> # jugador </th>
-		<th> Folio asignado </th>
-		<th> Nombre jugador </th>
-		<th> Correo jugador </th>
-		<th> Foto folio </th>
-		<th> # Pokémon equipo </th>
-		<th> Fecha de registro </th>
+		<tr>
+			<th> # jugador </th>
+			<th> Folio asignado </th>
+			<th> Nombre jugador </th>
+			<th> Correo jugador </th>
+			<th> Foto folio </th>
+			<th> # Pokémon equipo </th>
+			<th> Fecha de registro </th>
+		</tr>
 	</thead>
-
-<?php $i = 1 ; ?>
-<?php foreach($players as $player): ?>
-	<tr>
-		<td> <?php echo $i ?> </td>
-		<td> <?php echo $player['assigned']?'Sí':'No'; ?> </td>
-		<td> <?php echo $player['assigned']? $player['player_name']:'-'; ?> </td>
-		<td> <?php echo $player['assigned']? $player['player_mail']:'-'; ?> </td>
-		<td> <?php echo $player['assigned']? $player['player_picture']:'-'; ?> </td>
-		<td> <?php echo $player['assigned']? $player['number_pokemon']:''; ?> </td>
-		<td> <?php echo $player['assigned']? $player['date']:''; ?> </td>
-		<?php $i = $i+1 ?>
-	</tr>
-<?php endforeach; ?>
+	<tbody>
+		<?php foreach($players as $player): ?>
+			<tr>
+				<td> <?php echo $player['folio'] ?> </td>
+				<td> <?php echo $player['assigned']?'Sí':'No'; ?> </td>
+				<td> <?php echo $player['assigned']? $player['player_name']:'-'; ?> </td>
+				<td> <?php echo $player['assigned']? $player['player_mail']:'-'; ?> </td>
+				<td> <?php echo $player['assigned']? $player['player_picture']:'-'; ?> </td>
+				<td> <?php echo $player['assigned']? $player['number_pokemon']:''; ?> </td>
+				<td> <?php echo $player['assigned']? $player['date']:''; ?> </td>
+			</tr>
+		<?php endforeach; ?>
+	</tbody>
 </table>
