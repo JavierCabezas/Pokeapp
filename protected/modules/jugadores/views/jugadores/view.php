@@ -10,8 +10,7 @@
 
 <h1>Guardado del perfil #<?php echo $model->id; ?> exitoso </h1>
 <div class="infosec">
-	<p> Puedes modificar esta información con la información que se envío a tu correo (<?php echo $model->idUser->mail?>). </p> 
-	<p> Además recuerda que esta información se mostrará en el buscador una vez que este sea autorizada por un administrador. Los datos que se guardaron son: </p>
+	<p> Recuerda que esta información se mostrará en el buscador una vez que este sea autorizada por un administrador. Los datos que se guardaron son: </p>
 
 		<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 			'data'=>$model,
