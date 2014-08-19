@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
     }
 ?>
 
-<h1> Resetear código de login </h1>
+<h1> Reseteo de contraseña </h1>
 
 <p>
 	Para poder recibir una nueva contraseña ingresa tu correo electrónico en el formulario de  más abajo y, en caso de que esté registrado en
