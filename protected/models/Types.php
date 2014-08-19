@@ -127,17 +127,43 @@ class Types extends CActiveRecord
 	}
 
 	/** 
-	 *	Returns the type list intended for a dropdown 
+	 *	Returns the type list intended for a dropdown.
+	 *	@param boolean inmunity (default to false) to filter all the types that you can't be inmune to. 
+	 *	This means that we will be showing types such as ground (since both flying type and levitate pokémon are inmune) and ghosts (that can't hit normal)
+	 *	but it will hide types such as flying or fairy (since fairy and flying can hit every other type). 
 	 *	@return array of the listdata of the Types model.
 	 */
-	public function dropdownTypes()
+	public function dropdownTypes($inmunity = false)
 	{
 		$criteria = new CDbCriteria;
 		$criteria->addCondition("id != 10001"); //Exclude unkown type
 		$criteria->addCondition("id != 10002"); //Exlude shadow type
+		if($inmunity){
+			$criteria->addCondition("id != 3");  //Flying
+			$criteria->addCondition("id != 6");  //Rock
+			$criteria->addCondition("id != 7");  //Bug
+			$criteria->addCondition("id != 9");  //Steel
+			$criteria->addCondition("id != 15"); //Ice
+			$criteria->addCondition("id != 17"); //Dark
+			$criteria->addCondition("id != 18"); //Fairy
+		}
 		$criteria->order = 'identifier';
 
         $model = Types::model()->findAll($criteria);
         return CHtml::listData($model, 'id', 'typeName');
-    }  
+    }
+
+    /**
+     *	Returns an array of every type.
+     *	@return array of all the types in the format array('type_name' => type_id)
+     */	
+    public function arrayTypes()
+    {
+    	$out = array();
+    	$types = Types::model()->findAll();
+    	foreach($types as $type){
+    		$out[$type->identifier] = $type->id;
+    	}
+    	return $out;
+    }
 }

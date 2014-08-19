@@ -12,16 +12,28 @@ class BuscadorController extends Controller
 	}
 
 	/**
-	 *	Get the ajax function call from the button on the index and echoes the results of the seach
+	 * 	Recieves the ajax call from the index view to render the pokémon to show after using the filters.
+	 *	The value "-1" is used as a "non selected" option. This means that for each one of the filters it first checks if the value is -1, in that case it igores the filter and checks the next one.
+	 * 	Right now it has the following filters:
+	 *	 - Height (from min value to max value, both of them optional.)
+	 *	 - Weight (similar to height)
+	 *	 - Types (It checks just one type or both of them)
+	 *	 - Inmunity to (another type)
+	 *	 - Generations
+	 * 	 
+	 *	@todo: Egg group
+	 *	@todo: Ability
+	 *	@todo: moves
+	 *	@todo: Shape
 	 */
 	public function actionSearchPokemon()
 	{
-
 		$criteria = new CDbCriteria;
 		$params = array();
 		$criteria->with = array(
 			'pokemonTypes',
 			'species',
+			'pokemonAbilities',
 		);
 		$criteria->together = true;
 
@@ -48,10 +60,7 @@ class BuscadorController extends Controller
 		}
 		//END OF WEIGHT
 
-		//TYPES
-		
-
-		//SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=18) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=14) as B WHERE A.pokemon_id = B.pokemon_id
+		//TYPES. Note to self: addCondition its the "WHERE" clause.
 		if( ($_POST['type_1'] != -1) && ($_POST['type_2'] != -1) ) {
 			$criteria->addCondition('
 				t.id IN (SELECT A.pokemon_id FROM (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=:type_1) as A, (SELECT pokemon_id FROM `pokemon_types` WHERE type_id=:type_2) as B WHERE A.pokemon_id = B.pokemon_id) ');
@@ -68,6 +77,65 @@ class BuscadorController extends Controller
 		}
 		//END OF TYPES
 		
+		//INMUNITY
+		if($_POST['inmunity'] != -1){
+			$inmunity = intval($_POST['inmunity']);
+			$type = Types::model()->arrayTypes();
+			
+			//Normal and fighting -> Ghosts are inmune to both of them.
+			if(($inmunity == $type['normal'])||($inmunity == $type['fighting'])){
+				$types = Types::model()->arrayTypes();
+				$criteria->addCondition('pokemonTypes.type_id = :type');
+				$params['type'] = $type['ghost'];
+			}
+			//Poison -> steel is inmune.
+			else if($inmunity == $type['steel']){
+				$criteria->addCondition('pokemonTypes.type_id = :type');
+				$params['type'] = $type['steel'];
+			}
+			//Ground -> Flying and pokémon with levitate are inmune to ground.
+			else if($inmunity == $type['ground']){
+				$criteria->addCondition('pokemonTypes.type_id = :flying or pokemonAbilities.ability_id = :levitate');
+				$params['flying'] 	=  $type['flying'];
+				$params['levitate'] =  Abilities::model()->findByAttributes(array('identifier' => 'levitate'))->id;
+			}
+			//Ghost -> Normal are inmune.
+			else if($inmunity == $type['ghost']){
+				$criteria->addCondition('pokemonTypes.type_id = :type');
+				$params['type'] = $type['normal'];
+			}
+			//Fire -> Pokémon with the flash fire ability are inmune.
+			else if($inmunity == $type['fire']){
+				$criteria->addCondition('pokemonAbilities.ability_id = :flashfire');
+				$params['flashfire'] =  Abilities::model()->findByAttributes(array('identifier' => 'flash-fire'))->id;
+			}
+			//Water -> Pokémon with storm drain, water absorb or dry skin are inmune.
+			else if($inmunity == $type['water']){
+				$criteria->addCondition('pokemonAbilities.ability_id = :stormdrain or pokemonAbilities.ability_id = :waterabsorb or pokemonAbilities.ability_id = :dryskin');
+				$params['stormdrain'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'storm-drain'))->id;
+				$params['waterabsorb'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'water-absorb'))->id;
+				$params['dryskin'] 		=  Abilities::model()->findByAttributes(array('identifier' => 'dry-skin'))->id;
+			}
+			//Grass -> Pokémon with sap sipper are inmune.
+			else if($inmunity == $type['grass']){
+				$criteria->addCondition('pokemonAbilities.ability_id = :sapsipper');
+				$params['sapsipper'] =  Abilities::model()->findByAttributes(array('identifier' => 'sap-sipper'))->id;				
+			}
+			//Electric -> Pokémon with ligthining rod, motor drive and volt absorb are inmune.
+			else if($inmunity == $type['electric']){
+				$criteria->addCondition('pokemonAbilities.ability_id = :lightningrod or pokemonAbilities.ability_id = :motordrive or pokemonAbilities.ability_id = :voltabsorb');
+				$params['lightningrod'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'lightningrod'))->id;
+				$params['motordrive'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'motor-drive'))->id;
+				$params['voltabsorb'] 		=  Abilities::model()->findByAttributes(array('identifier' => 'volt-absorb'))->id;
+			}
+			//Psychic -> Dark type pokémon don't give a shit about psychic
+			else if($inmunity == $type['psychic']){
+				$criteria->addCondition('pokemonTypes.type_id = :type');
+				$params['type'] = $type['dark'];
+			}
+		}
+
+		//END OF INMUNITY
 
 		//COLOR
 		if($_POST['color'] != -1){
