@@ -36,7 +36,7 @@
 
 			<div class="facebook">
 				Facebook:
-				<?php echo CHtml::link($facebook, $facebook) ?>
+				<?php echo ($facebook != 'No ingresado')?CHtml::link($facebook, $facebook):$facebook ?>
 			</div>
 
 			<div class="others">
