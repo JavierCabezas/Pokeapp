@@ -373,7 +373,7 @@ class TournamentController extends Controller
                 $out[$folio]['player_mail']    = $model->idTournamentPlayer->mail;
                 $out[$folio]['player_picture'] = CHtml::link('click!', $picture);
                 $out[$folio]['number_pokemon'] = $model->numberPokemon;
-                $out[$folio]['date']           = date("M jS, Y m:s", $model->idTournamentPlayer->created_on);
+                $out[$folio]['date']           = date("M jS, Y G:s", $model->idTournamentPlayer->created_on);
             }
         }
         $this->render('tournamentSummary', array(
