@@ -143,10 +143,12 @@ class Users extends CActiveRecord
 	 *	Validates the password given by argument. Its intended to be used with componets/UserIdentity.php
 	 *	@param string $password the password to be verified
 	 *	@return boolean if the password given by argument matches the one saved on this particular object.
+	 *	Since most of the login attempts are going to be from copying the password from the email, and its really easy to copy an extra space,
+	 *  it checks the password both with and without spaces. 
 	 */
     public function validatePassword($password)
     {
-        return CPasswordHelper::verifyPassword($password,$this->code);
+        return CPasswordHelper::verifyPassword($password,$this->code)||CPasswordHelper::verifyPassword(str_replace(' ', '', $password),$this->code);
     }
  	
  	/**
