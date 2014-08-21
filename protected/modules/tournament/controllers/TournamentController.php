@@ -99,6 +99,10 @@ class TournamentController extends Controller
 
 	}
 
+    /**
+     *  This function display the main admin menu. This could have been done way better than how I actually did it =P
+     *  It shows a small summary of the status of the players that are in the tournament and of their teams.
+     */
     public function actionAdminMenu()
     {
         $tournament = Tournament::model()->getNextTournament();
@@ -111,8 +115,12 @@ class TournamentController extends Controller
         $this->render('adminMenu', array(
             'total_players'           => $tournament->total_folio_number,
             'finished_players'        => $player_status['complete'],
-            'almost_finished_players' => $player_status['incomplete'],
+            'between_one_and_four'    => $player_status['between_one_and_four'],
+            'exactly_four'            => $player_status['exactly_four'],
+            'other'                   => $player_status['other'],
+            'zero'                    => $player_status['zero'],
             'tournament_name'         => $tournament->name,
+            'registered_players'      => $player_status['folio_ok'],
         ));
     }
 

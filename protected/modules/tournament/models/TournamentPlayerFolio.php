@@ -146,7 +146,6 @@ class TournamentPlayerFolio extends CActiveRecord
                 $out[$tournament_folio->folio] = $tournament_folio->folio. ' ('.$tournament_folio->idTournamentPlayer->name.', '.$tournament_folio->idTournamentPlayer->mail.')';
             }
         }
-
         ksort($out);
         return $out;
     }

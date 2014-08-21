@@ -109,18 +109,34 @@ class TournamentPlayer extends CActiveRecord
 		$criteria->addCondition('folio > 0');
 		$criteria->addCondition('id_tournament = '.$id_tournament);
 		$players  = TournamentPlayerFolio::model()->findAll($criteria);
+		
 		$complete = 0;
-		$incomplete = 0;
+		$between_one_and_four = 0;
+		$exactly_four = 0;
+		$other = 0;
+		$zero = 0;
+
 		foreach($players as $player){
 			$pokenumber = $player->numberPokemon;
 			if($pokenumber == 6)
 				$complete = $complete +1;
-			elseif(($pokenumber > 0)&&($pokenumber < 6))
-				$incomplete = $incomplete + 1;
+			elseif(($pokenumber > 0)&&($pokenumber < 3))
+				$between_one_and_four = $between_one_and_four + 1;
+			elseif(($pokenumber == 4))
+				$exactly_four = $exactly_four + 1;
+			elseif($pokenumber == 0)
+				$zero = $zero +1;
+			else
+				$other = $other +1;
 		}
 		$out = array();
-		$out['complete'] = $complete;
-		$out['incomplete'] = $incomplete;
+		$out['complete'] 			 = $complete;
+		$out['between_one_and_four'] = $between_one_and_four;
+		$out['exactly_four']		 = $exactly_four;
+		$out['other']				 = $other;
+		$out['zero']			     = $zero;
+		$out['folio_ok'] 			 = count($players);
+
 		return $out;		
 	}
 }
