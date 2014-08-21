@@ -53,7 +53,7 @@ class TournamentPlayerController extends Controller
                     Yii::app()->params['adminEmail'], //from 
                         $model->mail, //to
                         'Confirmación de creación de nuevo jugador de torneo', //subject
-                        '¡Bienvenido!', //mail_title
+                        'Te damos la bienvenida!', //mail_title
                         $body//mail body
                 );
                 $this->redirect(array('/torneo/jugador/'.$model->mail));
