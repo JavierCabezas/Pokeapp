@@ -160,4 +160,4 @@ class TournamentPlayerFolio extends CActiveRecord
             'id_tournament'         => $this->id_tournament
         )));
     }
-}
+}   

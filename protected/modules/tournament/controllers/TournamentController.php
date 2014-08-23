@@ -27,6 +27,7 @@ class TournamentController extends Controller
                     'resetPassword',
                     'create',
                     'view',
+                    'statistics',
                 ),
                 'users' => array(
                     '*'
@@ -387,6 +388,37 @@ class TournamentController extends Controller
         $this->render('tournamentSummary', array(
             'players'           => $out,
             'tournament_name'   => $next_tournament->name,
+        ));
+    }
+
+    /**
+     *  This view shows statistics about a certain tournament. 
+     */
+    public function actionStatistics()
+    {
+        //Register G-raphael for the charts.
+        $baseUrl = Yii::app()->baseUrl; 
+        $cs = Yii::app()->getClientScript();
+        $cs->registerScriptFile($baseUrl.'/js/raphael.js');
+        $cs->registerScriptFile($baseUrl.'/js/g.raphael-min.js');
+        $cs->registerScriptFile($baseUrl.'/js/g.pie-min.js');
+
+        if(!isset($_POST['id_tournament'])){
+            $model = Tournament::model()->getNextTournament();        
+        }else{
+            $model = Tournament::model()->findByPk(intval($_POST['id_tournament']));
+        }
+    
+        if(is_null($model->date_end)){
+            $date = date('d-m-y', $model->date); 
+        }else{
+            $date = date('d-m-y', $model->date).' - '.date('d-m-y', $model->date_end);
+        }
+
+        $this->render('statistics', array(
+            'tournament' => $model,
+            'date'       => $date,
+            'pokemon'    => TournamentPlayerPokemon::model()->mostPopularPokemon($model->id)
         ));
     }
 }

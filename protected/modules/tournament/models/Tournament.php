@@ -126,4 +126,15 @@ class Tournament extends CActiveRecord
 	public function getNextTournament(){
 		return Tournament::model()->findByAttributes(array('active' => 1));
 	}
+
+    /**
+     *  Returns the number of confirmed players for this tournament.
+     *  @return integer the number of confirmed player (that means, that have a value of folio assgined) for that particular tournament.
+     */
+    public function getNumberPlayers(){
+        $criteria=new CDbCriteria;
+        $criteria->addCondition('folio > 0');
+        $criteria->addCondition('id_tournament = '.$this->id);
+        return count(TournamentPlayerFolio::model()->findAll($criteria));
+    }
 }

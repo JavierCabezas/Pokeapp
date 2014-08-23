@@ -118,4 +118,25 @@ class TournamentPlayerPokemon extends CActiveRecord
 			'id_tournament' 		=> $id_tournament
 		)));
 	}
+
+	/**
+	 *	Returns the number of pokémon that a specific of an specific tournament in an array.
+	 *	@return array of each pokémon in the format array[pokemon_number] => number_of_times_it_was_selected.
+	 */
+	public function mostPopularPokemon($id_tournament){
+		$pokeymans = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+			'id_tournament' => $id_tournament
+		));
+
+		$out = array();
+		foreach($pokeymans as $pokeyman){
+			if(array_key_exists($pokeyman->idTournamentPokemon->idPokemonSpecies->id, $out))
+				$out[$pokeyman->idTournamentPokemon->idPokemonSpecies->id] = $out[$pokeyman->idTournamentPokemon->idPokemonSpecies->id] + 1;
+			else{
+				$out[$pokeyman->idTournamentPokemon->idPokemonSpecies->id] = 1;
+			}
+		}
+		arsort($out);
+		return $out;
+	}
 }
