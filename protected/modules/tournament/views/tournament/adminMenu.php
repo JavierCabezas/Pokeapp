@@ -8,8 +8,7 @@
 
 <h2> Menú de administración </h2>
 
-<p> Opciones </p>
-
+<h4> Resumen: </h4>
 <p> 
 	Para el <?php echo $tournament_name ?> existen: 
 	<ul>
@@ -21,6 +20,8 @@
 		<li> <b><?php echo $exactly_four ?></b> tienen elegidos exactamente a 4 pokémon. </li>
 	</ul>
 </p>
+
+<h4> Opciones </h4>
 
 <ul>
 	<li> <?php echo CHtml::link('Autorizar fotos de folio de jugadores', array('/torneo/vistaAutorizar')) ?> </li>
