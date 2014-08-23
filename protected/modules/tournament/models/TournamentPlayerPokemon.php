@@ -139,4 +139,74 @@ class TournamentPlayerPokemon extends CActiveRecord
 		arsort($out);
 		return $out;
 	}
+
+	/**
+	 *	Returns an array in where the id of every item is the key and the frecuency of use is the value,
+	 *	@param $id_tournament the identifier of where to get the pokémons from.
+	 *	@return array in the format array('id_item_1' => times_that_the_item_was_used, 'id_item_2' => times_it_was_used, .... )
+	 */
+	public function mostPopularItems($id_tournament){
+		$pokeymans = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+			'id_tournament' => $id_tournament
+		));
+
+		$out = array();
+		foreach($pokeymans as $pokeyman){
+			if(!is_null($pokeyman->idTournamentPokemon->id_item)){
+				if(array_key_exists($pokeyman->idTournamentPokemon->id_item, $out))
+					$out[$pokeyman->idTournamentPokemon->id_item] = $out[$pokeyman->idTournamentPokemon->id_item] + 1;
+				else{
+					$out[$pokeyman->idTournamentPokemon->id_item] = 1;
+				}
+			}
+		}
+		arsort($out);
+		return $out;
+	}
+
+	/**
+	 *	Returns an array with silly stats from the tournament.
+	 *	@param $id_tournament the identifier of where to get the stats from.
+	 *	@return array in the format:
+	 *		out['number']   			=> The number of pokémon registered for the tournament.
+	 *		out['nickname_number'] 		=> The number of nicknamed pokémon in the event.
+	 *		out['nicnkame_percent']	    => The percentage of nicknamed pokémon in the event.
+	 *		out['level']				=> The average level of the pokémon.
+	 *		out['move_n']				=> The number of Pokémon with n moves (n in [1, 3])		
+	 */
+	public function silly($id_tournament){
+		$pokeymans = TournamentPlayerPokemon::model()->findAllByAttributes(array(
+			'id_tournament' => $id_tournament
+		));
+
+		$out 		= array();
+		$total 	 	= count($pokeymans);
+		$nicknamed  = 0;
+		$level 	 	= 0;
+		$move1 		= 0;
+		$move2 		= 0;
+		$move3 		= 0;
+
+		foreach($pokeymans as $pokeyman){
+			$level = $level + $pokeyman->idTournamentPokemon->level;
+			if(!is_null($pokeyman->idTournamentPokemon->nickname))
+				$nicknamed = $nicknamed + 1;
+			if(is_null($pokeyman->idTournamentPokemon->id_move2))
+				$move1 = $move1 + 1;
+			if(is_null($pokeyman->idTournamentPokemon->id_move3))
+				$move2 = $move2 + 1;
+			if(is_null($pokeyman->idTournamentPokemon->id_move4))
+				$move3 = $move3 + 1;
+		}
+	
+		$out['number'] 				= $total;
+		$out['nickname_number']		= $nicknamed;
+		$out['nickname_percent']	= round($nicknamed*100/$total, 1);
+		$out['level']				= round($level/$total, 1);
+		$out['move1']				= $move1;
+		$out['move2']				= $move2;
+		$out['move3']				= $move3;
+
+		return $out;
+	}
 }

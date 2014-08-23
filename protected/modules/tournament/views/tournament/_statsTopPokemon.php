@@ -1,8 +1,9 @@
-<div id="holder"></div>
+<div id="pokemon_holder"></div>
+
         <script>
             window.onload = function () {
-                var r = Raphael("holder", 800, 500),
-                    pie = r.piechart(230, 220, 200, 
+                var poke_graph = Raphael("pokemon_holder", 800, 500),
+                    pie = poke_graph.piechart(230, 220, 200, 
                     	[
                     		<?php
                     			$i=0; 
@@ -31,7 +32,7 @@
                     	}
                    );
 
-                r.text(560, 120, "10 Pokémon más usados").attr({ font: "20px sans-serif" });
+                poke_graph.text(560, 120, "10 Pokémon más usados").attr({ font: "20px sans-serif" });
                 pie.hover(function () {
                     this.sector.stop();
                     this.sector.scale(1.1, 1.1, this.cx, this.cy);
@@ -67,3 +68,5 @@ foreach($pokemon as $poke_id=>$poke_quantity): ?>
 	<?php endif; ?>
 	<?php $i = $i +1 ?>
 <?php endforeach; ?>
+
+<div class='clear'> </div>

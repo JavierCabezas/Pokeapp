@@ -487,6 +487,13 @@ div.poke_pic{
     height:70%;
 }
 
+div.item_followup{
+    width:19%;
+    height:80px;    
+    margin:1%;
+    float:left;
+}
+
 b.participants{
     font-size: 19px;
 }

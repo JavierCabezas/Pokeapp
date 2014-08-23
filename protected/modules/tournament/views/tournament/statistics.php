@@ -1,20 +1,37 @@
 <div class="page-header">
-	<h1> <?php echo $tournament->name ?> <small> <?php echo $tournament->location ?>, <?php echo $date?> </h1>
+	<h1> Estadísticas <?php echo $tournament->name ?> <small> <?php echo $tournament->location ?>, <?php echo $date?> </h1>
 </div>
 
+<h2> 1. -  Del torneo mismo </h2>
 <p> En el <?php echo $tournament->name ?> participaron <b class='participants'> <?php echo $tournament->numberPlayers ?></b> jugadores. </p>
 
 <p> El torneo usó reglas modalidad <b class='size_15'> <?php echo $tournament->idRuleset->name ?></b>.  Según las reglas del torneo se tenía prohibidos: </p>
 
-<?php echo $this->renderPartial('_banned', array(
+<?php echo $this->renderPartial('_statsBanned', array(
 		'banned_pokemon' => $banned_pokemon,
 		'banned_items'	 => $banned_items, 
 		'banned_moves'	 => $banned_moves,	
 	)); 
 ?>
 
-<h3> Pokémon más populares </h3>
+<h2> 2. -  Sobre los pokémon  </h2>
 
-<p> No fue sorpresivo saber que <b class='size_15'><?php echo $most_popular ?></b> fue la elección más popular entre los participantes. </p>
+<p> Partamos con algunas estadísticas inútiles pero entretenidas: 
 
-<?php echo $this->renderPartial('_top10pokemon', array('pokemon' => $pokemon)); ?>
+<ul>
+	<li> Fueron inscritos un total de <b class='size_15'><?php echo $silly['number'] ?> Pokémon</b> en el evento. </li>
+	<li> De estos <b class='size_15'><?php echo $silly['nickname_number'] ?></b> (un <?php echo $silly['nickname_percent'] ?>%) tenían sobrenombres (o motes). ¡Esperaba un 100%! El ponerles nombres es la parte más entretenida. Lo perdono porque habían un par de nombres muy chistosos.</li>
+	<li> El nivel promedio de los Pokémon inscritos fue <b class='size_15'><?php echo $silly['level'] ?></b>. </li>
+	<li> <b class='size_15'><?php echo $silly['move1'] ?></b> Pokémon tenían un único movimiento registrado (solo se me ocurre ditto como excusa). </li>
+	<li> <b class='size_15'><?php echo $silly['move2'] ?></b> Pokémon sólo dos movimientos registrados. </li>
+	<li> <b class='size_15'><?php echo $silly['move3'] ?></b> Pokémon tenían exactamentre tres movimientos. </li>
+	<li> (El resto, obviamente, tenía 4 movimientos registrados). </li>
+</ul>
+
+<p> Ahora, si vamos a hablar sobre la popularidad de los Pokémon inscritos, no fue sorpresivo saber que <b class='size_15'><?php echo $most_popular ?></b> fue la elección más popular entre los participantes. </p>
+
+<?php echo $this->renderPartial('_statsTopPokemon', array('pokemon' => $pokemon)); ?>
+
+<h2> 3. - Sobre los objetos  </h2>
+
+<?php echo $this->renderPartial('_statsTopItems', array('items' => $items)); ?>
