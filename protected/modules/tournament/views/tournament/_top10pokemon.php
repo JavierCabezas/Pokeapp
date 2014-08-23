@@ -1,7 +1,7 @@
 <div id="holder"></div>
         <script>
             window.onload = function () {
-                var r = Raphael("holder", 800, 600),
+                var r = Raphael("holder", 800, 500),
                     pie = r.piechart(230, 220, 200, 
                     	[
                     		<?php
@@ -51,3 +51,19 @@
                 });
             };
         </script>
+
+<h3> Los 12 siguientes fueron ... </h3>
+<?php $i=0;
+foreach($pokemon as $poke_id=>$poke_quantity): ?>
+	<?php if($i>22) break; ?>
+	<?php if($i>10): ?>
+		<div class='poke_followup'>
+			<p> Usado <b><?php echo $poke_quantity ?></b> veces </p>
+			<div class='poke_pic'>
+				<?php echo PokemonSpecies::model()->findByPk($poke_id)->image('moving') ?> 
+			</div>
+			
+		</div>
+	<?php endif; ?>
+	<?php $i = $i +1 ?>
+<?php endforeach; ?>

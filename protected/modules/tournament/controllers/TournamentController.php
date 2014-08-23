@@ -415,10 +415,19 @@ class TournamentController extends Controller
             $date = date('d-m-y', $model->date).' - '.date('d-m-y', $model->date_end);
         }
 
+        $pokemon = TournamentPlayerPokemon::model()->mostPopularPokemon($model->id);
+        reset($pokemon);
+
+        $most_popular_pokemon = PokemonSpecies::model()->findByPk(key($pokemon))->pokemonName;
+
         $this->render('statistics', array(
-            'tournament' => $model,
-            'date'       => $date,
-            'pokemon'    => TournamentPlayerPokemon::model()->mostPopularPokemon($model->id)
+            'tournament'        => $model,
+            'date'              => $date,
+            'pokemon'           => $pokemon,
+            'most_popular'      => $most_popular_pokemon,
+            'banned_pokemon'    => TournamentPokemonBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset)),
+            'banned_items'      => TournamentItemBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset)),
+            'banned_moves'      => TournamentMoveBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset))
         ));
     }
 }

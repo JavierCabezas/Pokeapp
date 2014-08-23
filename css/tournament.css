@@ -475,3 +475,26 @@ td:last-child {
   text-align: right;
   padding-right: 10px;
 }
+
+div.poke_followup{
+    width:19%;
+    height:150px;    
+    margin:1%;
+    float:left;
+}
+
+div.poke_pic{
+    height:70%;
+}
+
+b.participants{
+    font-size: 19px;
+}
+
+b.size_15{
+    font-size: 15px;
+}
+
+.column-left{ float: left; width: 33%; }
+.column-right{ float: right; width: 33%; }
+.column-center{ display: inline-block; width: 33%; }
