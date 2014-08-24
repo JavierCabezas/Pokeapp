@@ -78,8 +78,6 @@
 			<h5>Single:</h5>
 			<?php if(!is_null($tier_single)): ?>
 				<p><?php echo $tier_single ?></p>
-			<?php if else: ?>
-				<p>No posee</p>
 			<?php endif; ?>
 		</div>
 		<div class="doble_<?php echo $duel_doble?>">
