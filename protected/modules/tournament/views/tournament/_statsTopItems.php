@@ -56,10 +56,11 @@
 foreach($items as $item_id=>$item_quantity): ?>
 	<?php if($i>22) break; ?>
 	<?php if($i>10): ?>
+    <?php $item = Items::model()->findByPk($item_id) ?>
 		<div class='item_followup'>
-			<p> Usado <b><?php echo $item_quantity ?></b> veces </p>
+			<p> <b><?php echo '<b class="size_15">'.$item->itemName.'</b>' ?></p>
 			<div class='item_pic'>
-				<?php echo Items::model()->findByPk($item_id)->itemName ?> 
+                <?php echo $item->image().'<b class="size_15">'.$item_quantity.'</b> veces' ?>
 			</div>
 		</div>
 	<?php endif; ?>

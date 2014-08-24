@@ -252,4 +252,13 @@ class Items extends CActiveRecord
 		}
 		return CHtml::listData($model, 'id', 'itemName');
 	}
+
+	/**
+	 *	Returns the html code for inserting an image for the specific item
+	 *	@return string the image html code
+	 */
+	public function Image(){
+		$pic = $this->identifier.'.png';
+		return CHtml::image(Yii::app()->baseUrl.'/images/items/'.$pic);
+	}
 }
