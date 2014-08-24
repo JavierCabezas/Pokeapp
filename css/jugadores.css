@@ -172,9 +172,14 @@
     margin-bottom: 0;
 }
 
+#result .view .safari .pokes .safari_pokemon p {
+    clear: both;
+}
+
 #result .view .safari .pokes .safari_pokemon img {
+    clear: both;
+    height: 45%;
     margin-top: 20%;
-    width: 80%;
 }
 
 #result .view .duel .single_0,
@@ -185,7 +190,7 @@
 #result .view .duel .doble_1,
 #result .view .duel .triple_1,
 #result .view .duel .rotation_1 {
-    color: #FFF;
+    color: #000;
     background-color: #2D2D2D;
     float: left;
     margin-bottom: 1%;
@@ -203,7 +208,6 @@
 #result .view .duel .doble_1,
 #result .view .duel .triple_1,
 #result .view .duel .rotation_1 {
-    color: #000;
     text-align: center;
     font-size: 24px;
     background-color: #FFF;
@@ -233,7 +237,9 @@
 #result .view .duel .doble_1 p,
 #result .view .duel .triple_1 p,
 #result .view .duel .rotation_1 p {
-	margin-top: 5%;
-	margin-bottom: 5%;
-	font-weight: bold;
+    font-size: 12pt;
+    font-weight: bold;
+    line-height: 100%;
+    margin-bottom: 5%;
+    margin-top: 3%;
 }

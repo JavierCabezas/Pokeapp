@@ -53,17 +53,17 @@
 		<?php if($safari_type != '(No ingresado)'): //Just show the safari pokémon if the safari is defined ?>
 				<div class="pokes">
 					<div class="safari_pokemon" id="1">
-						<?php echo $pokemon_safari_1 ?>
+						<p><?php echo $pokemon_safari_1 ?></p>
 						<?php echo $pic_pokemon_1 ?>
 					</div>
 
 					<div class="safari_pokemon" id="2">
-						<?php echo $pokemon_safari_2 ?>
+						<p><?php echo $pokemon_safari_2 ?></p>
 						<?php echo $pic_pokemon_2 ?>
 					</div>
 					
 					<div class="safari_pokemon" id="3">
-						<?php echo $pokemon_safari_3 ?>
+						<p><?php echo $pokemon_safari_3 ?></p>
 						<?php echo $pic_pokemon_3 ?>
 					</div>
 				</div>
@@ -78,6 +78,8 @@
 			<h5>Single:</h5>
 			<?php if(!is_null($tier_single)): ?>
 				<p><?php echo $tier_single ?></p>
+			<?php if else: ?>
+				<p>No posee</p>
 			<?php endif; ?>
 		</div>
 		<div class="doble_<?php echo $duel_doble?>">
