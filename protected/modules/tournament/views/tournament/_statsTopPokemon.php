@@ -1,3 +1,5 @@
+<div class='clear'> </div>
+
 <div id="pokemon_holder"></div>
 
         <script>

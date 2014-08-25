@@ -166,4 +166,14 @@ class Types extends CActiveRecord
     	}
     	return $out;
     }
+
+	/**
+	 *	Returns the html code for inserting an image for the specific pokémon.
+	 *	@param string $type can be "static" (the default value) or "moving" (depending if we want the gif of the png)
+	 *	@return string the image html code
+	 */
+	public function Image(){
+		$pic = $this->id.'.png';
+		return CHtml::image(Yii::app()->baseUrl.'/images/types/'.$pic);
+	}
 }

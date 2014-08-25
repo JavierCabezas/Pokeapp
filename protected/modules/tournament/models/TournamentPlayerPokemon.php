@@ -173,23 +173,28 @@ class TournamentPlayerPokemon extends CActiveRecord
 	 *		out['nicnkame_percent']	    => The percentage of nicknamed pokémon in the event.
 	 *		out['level']				=> The average level of the pokémon.
 	 *		out['move_n']				=> The number of Pokémon with n moves (n in [1, 3])		
+	 *		out['types']				=> array in the format array('type_id' => number of pokémon with that type)
+	 *		out['types_percent']		=> array in the format array('type_id' => percentage of this type)
 	 */
 	public function silly($id_tournament){
 		$pokeymans = TournamentPlayerPokemon::model()->findAllByAttributes(array(
 			'id_tournament' => $id_tournament
 		));
 
-		$out 		= array();
-		$total 	 	= count($pokeymans);
-		$nicknamed  = 0;
-		$level 	 	= 0;
-		$move1 		= 0;
-		$move2 		= 0;
-		$move3 		= 0;
+		$out 		 = array();
+		$total 	 	 = count($pokeymans);
+		$nicknamed   = 0;
+		$level 	 	 = 0;
+		$move1 		 = 0;
+		$move2 		 = 0;
+		$move3 		 = 0;
+		$types_total = 0;
+		$types_out 	 = array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0, '12' => 0, '13' => 0, '14' => 0, '15' => 0, '16' => 0, '17' => 0, '18' => 0);
+		$types_per 	 = array('1' => 0, '2' => 0, '3' => 0, '4' => 0, '5' => 0, '6' => 0, '7' => 0, '8' => 0, '9' => 0, '10' => 0, '11' => 0, '12' => 0, '13' => 0, '14' => 0, '15' => 0, '16' => 0, '17' => 0, '18' => 0);
 
 		foreach($pokeymans as $pokeyman){
 			$level = $level + $pokeyman->idTournamentPokemon->level;
-			if(!is_null($pokeyman->idTournamentPokemon->nickname))
+			if($pokeyman->idTournamentPokemon->nickname != '')
 				$nicknamed = $nicknamed + 1;
 			if(is_null($pokeyman->idTournamentPokemon->id_move2))
 				$move1 = $move1 + 1;
@@ -197,6 +202,15 @@ class TournamentPlayerPokemon extends CActiveRecord
 				$move2 = $move2 + 1;
 			if(is_null($pokeyman->idTournamentPokemon->id_move4))
 				$move3 = $move3 + 1;
+			$types = PokemonTypes::model()->findAllByAttributes(array('pokemon_id' => $pokeyman->idTournamentPokemon->idPokemonSpecies->id));
+			foreach($types as $type){
+				$types_out[$type->type_id] = $types_out[$type->type_id]+1;
+				$types_total = $types_total + 1;
+			}
+		}
+
+		foreach($types_out as $type_id => $type){
+			$types_per[$type_id] = round($type  *100/$types_total, 1);
 		}
 	
 		$out['number'] 				= $total;
@@ -206,6 +220,8 @@ class TournamentPlayerPokemon extends CActiveRecord
 		$out['move1']				= $move1;
 		$out['move2']				= $move2;
 		$out['move3']				= $move3;
+		$out['types']				= $types_out;
+        $out['types_per']           = $types_per;
 
 		return $out;
 	}
