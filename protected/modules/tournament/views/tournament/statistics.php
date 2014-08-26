@@ -41,6 +41,16 @@
       ));
 ?>
 
+<p> Y algunas cosas que consideré interesantes dado que el formato del torneo: </p>
+
+<?php 
+/**
+ * @todo: Generalize this.
+ */
+	$this->renderPartial('_statsDoubles', array(
+		'double' 		=> $silly['doubles']
+	));
+?>
 
 <h2> 3. - Sobre los objetos  </h2>
 

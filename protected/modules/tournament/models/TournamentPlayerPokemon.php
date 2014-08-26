@@ -222,6 +222,7 @@ class TournamentPlayerPokemon extends CActiveRecord
 		$out['move3']				= $move3;
 		$out['types']				= $types_out;
         $out['types_per']           = $types_per;
+        $out['doubles']				= array();
 
 		return $out;
 	}
