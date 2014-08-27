@@ -450,6 +450,31 @@ p.click a {
     -moz-box-shadow: -0.1em -1em 2em #4F0405 inset;
     box-shadow: -0.1em -1em 2em #4F0405 inset;
 }
+
+.infosec h2.info_torneo, .infosec h2.info_pkmn, .infosec h2.info_item {
+    text-indent: -9000px;
+    width: 800px;
+    height: 70px;
+}
+
+.infosec h2.info_torneo {
+    background-image: url(../images/titles/statstorneo_title.png);
+}
+
+.infosec h2.info_pkmn {
+    background-image: url(../images/titles/statspkmn_title.png);
+}
+
+.infosec h2.info_item {
+    background-image: url(../images/titles/statsitems_title.png);
+}
+
+.infosec #items {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 table {
   line-height: 40px;
   border-spacing: 0;
@@ -463,48 +488,75 @@ thead tr:first-child {
   border: none;
 }
 
-th {font-weight: bold;}
+th {
+    font-weight: bold;
+}
 
-thead tr:last-child th {border-bottom: 2px solid #0E843B;}
+thead tr:last-child th {
+    border-bottom: 2px solid #0E843B;
+}
 
-tbody tr:hover {background-color: #f0fbff;}
-tbody tr:last-child td {border: none;}
-tbody td {border-bottom: 1px solid #0E843B;}
+tbody tr:hover {
+    background-color: #f0fbff;
+}
+
+tbody tr:last-child td {
+    border: none;
+}
+
+tbody td {
+    border-bottom: 1px solid #0E843B;
+}
 
 td:last-child {
   text-align: right;
   padding-right: 10px;
 }
 
-div.poke_followup{
-    width:19%;
-    height:150px;    
-    margin:1%;
-    float:left;
+div.poke_pic {
+    height: 90%;
+    margin-left: 23%;
+    margin-right: auto;
+    margin-top: 0;
+    width: 60%;
 }
 
-div.poke_pic{
-    height:70%;
+div.poke_pic img {
+    height: 63%;
+    width: auto;
 }
 
+div.item_followup, div.poke_followup, div.pkmn_type {
+    width: 22%;
+    border: 1px solid #000;
+    margin: 0px;
+    padding: 1%;
+    height: 80px;    
+    float: left;
+}
 
-div.item_followup{
-    width:19%;
-    height:80px;    
-    margin:1%;
-    float:left;
+div.pkmn_type {
+    height: 130px;
+    width: 14%;
+}
+
+div.poke_followup {
+    height: 150px;
 }
 
 b.participants{
     font-size: 19px;
 }
 
-div.types{
-    width:4.5%;
-    height:150px;
-    margin:1%;
-    float:left;
+div.types, div.pkmn {
+    width: 80%;
+    height: auto;
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2%;
 }
+
 div.types_pic{
     height: 80%;
 }
@@ -513,6 +565,31 @@ b.size_15{
     font-size: 15px;
 }
 
-.column-left{ float: left; width: 33%; }
-.column-right{ float: right; width: 33%; }
-.column-center{ display: inline-block; width: 33%; }
+.column-left {
+    float: left;
+    width: 22%;
+}
+
+.column-right {
+    float: left;
+    width: 27%;
+}
+
+.column-center {
+    display: inline-block;
+    width: 33%;
+}
+
+.infosec .accordion-toggle p {
+    color: #000;
+    font-weight: bold;
+    font-size: 14pt;
+    text-align: center;
+    padding-top: 1%;
+}
+
+#pokemon_holder {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
