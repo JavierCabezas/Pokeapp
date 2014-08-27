@@ -64,11 +64,13 @@ class TournamentController extends Controller
 
 	public function actionIndex()
 	{
-        if(!isset(Yii::app()->user->id))
+       /* if(!isset(Yii::app()->user->id))
     		$this->render('index');
         else
             $this->redirect(array('/torneo/menuUsuario')); //If the player is logged redirect to the team view.
-	}
+	   */
+            $this->redirect(array('/torneo/estadisticas'));
+    }
 
     /**
      *  Displays the main user menu. Over here you can see your current teams and make modifications to them.
