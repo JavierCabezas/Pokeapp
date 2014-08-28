@@ -21,6 +21,7 @@ class BuscadorController extends Controller
 	 *	 - Inmunity to (another type)
 	 *	 - Generations
 	 * 	 
+	 *	@todo: resistant
 	 *	@todo: Egg group
 	 *	@todo: Ability
 	 *	@todo: moves
@@ -134,8 +135,13 @@ class BuscadorController extends Controller
 				$params['type'] = $type['dark'];
 			}
 		}
-
 		//END OF INMUNITY
+
+		//RESISTANT TO
+		if($_POST['resistant'] != -1){
+			//@todo
+		}
+		//END OF RESISTANT TO
 
 		//COLOR
 		if($_POST['color'] != -1){
@@ -169,6 +175,23 @@ class BuscadorController extends Controller
 			$criteria->addInCondition('species.generation_id', $gens_to_search);
 		}
 		//END OF GENERATIONS
+
+		//MOVES
+		$moves = array();
+		$_POST['move1'] = 50; //disable
+		$_POST['move2'] = 105; //Recover
+		$_POST['move3'] = -1;
+		$_POST['move4'] = -1;
+		
+		if($_POST['move1'] != -1)array_push($moves, intval($_POST['move1']));
+		if($_POST['move2'] != -1)array_push($moves, intval($_POST['move2']));
+		if($_POST['move3'] != -1)array_push($moves, intval($_POST['move3']));
+		if($_POST['move4'] != -1)array_push($moves, intval($_POST['move4']));
+		
+		if(!empty($moves)){
+			var_dump($moves);
+		}
+		//END OF MOVES
 
 		$gridColumns = array(
 			array(

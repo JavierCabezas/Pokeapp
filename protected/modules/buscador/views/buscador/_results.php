@@ -34,6 +34,13 @@
 			</div>
 		</div> <!-- end of inmunity results -->
 
+		<div class='resistant_results'>
+			<div id='div_resistant_result'>
+				<p> Resiste al tipo <span class='type' id='resistant_result'> </span> </p>
+				<div class='resistant_remove' id='resistant_remove_'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
+			</div>
+		</div> <!-- end of inmunity results -->
+
 		<div class='gen_results'>
 			<p> Se mostrarán Pokémon de las generaciones... </p>
 			<ul>
@@ -59,5 +66,13 @@
 				<div class='egg_remove'> <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar'> </div> 
 			</div>
 		</div>
+
+		<div class='move_results'>
+			<div id='div_move_result'>
+				<p> Que aprenda el(los) movimiento(s): <span class='type' id='move_result'> </span> </p>
+				<div class='move_remove' id='move_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
+			</div>
+		</div> <!-- end of move results -->
+
 	</div>
 <!-- END OF RESULTS -->

@@ -56,7 +56,7 @@
 				<div class='inmunity'>
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_inmunity">				
-							<h4> Que sea inmune a </h4>
+							<h4> Inmune al tipo </h4>
 						</a>
 					</div>
 					<div id="acc_inmunity" class="accordion-body collapse">
@@ -65,7 +65,21 @@
 							<?php echo CHtml::dropDownList('type_inmunity', null, Types::model()->dropdownTypes(true), array('empty' => '(Ingresar tipo)', 'class' => 'inmunity_dropdown'));  ?>
 						</div>
 					</div>				
-				</div>	<!-- end of type -->
+				</div>	<!-- end of inmunity -->
+
+				<div class='resistant'>
+					<div class="accordion-heading">
+						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_resistant">				
+							<h4> Resistente al tipo </h4>
+						</a>
+					</div>
+					<div id="acc_resistant" class="accordion-body collapse">
+						<div class="accordion-inner">
+							<label> Tipo al cual debe de ser resistente: </label>
+							<?php echo CHtml::dropDownList('type_resistant', null, Types::model()->dropdownTypes(), array('empty' => '(Ingresar tipo)', 'class' => 'resistant_dropdown'));  ?>
+						</div>
+					</div>				
+				</div>	<!-- end of resistant -->
 
 				<div class='gen'>
 					<div class="accordion-heading">
@@ -139,7 +153,10 @@
 										array(
 											'name' => 'ability',
 											'data' => Abilities::model()->dropdownAbility(),
-											'htmlOptions' => array( 'multiple' => false),
+											'options' 		=> array(
+												'allowClear'=>true,
+												'placeholder' => 'Elige una habilidad'
+											),
 										)
 									);
 								?>
@@ -163,7 +180,10 @@
 										array(
 											'name' => 'moves_1',
 											'data' => $array_moves,
-											'htmlOptions' => array( 'multiple' => false),
+											'options' 		=> array(
+												'allowClear'=>true,
+												'placeholder' => 'Elige un movimiento'
+											),
 										)
 									);
 								?>
@@ -175,7 +195,10 @@
 										array(
 											'name' => 'moves_2',
 											'data' => $array_moves,
-											'htmlOptions' => array( 'multiple' => false,  'allowClear' => true ),
+											'options' 		=> array(
+												'allowClear'=>true,
+												'placeholder' => 'Elige un movimiento'
+											),
 										)
 									);
 								?>
@@ -187,7 +210,10 @@
 										array(
 											'name' => 'moves_3',
 											'data' => $array_moves,
-											'htmlOptions' => array( 'multiple' => false),
+											'options' 		=> array(
+												'allowClear'=>true,
+												'placeholder' => 'Elige un movimiento'
+											),
 										)
 									);
 								?>
@@ -200,7 +226,10 @@
 										array(
 											'name' => 'moves_4',
 											'data' => $array_moves,
-											'htmlOptions' => array( 'multiple' => false),
+											'options' 		=> array(
+												'allowClear'	=> true,
+												'placeholder' 	=> 'Elige un movimiento',
+											),
 										)
 									);
 								?>

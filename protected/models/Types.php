@@ -15,6 +15,8 @@
  * @property Player[] $players
  * @property PokemonFriendSafari[] $pokemonFriendSafaris
  * @property PokemonTypes[] $pokemonTypes
+ * @property TypeEfficacy[] $typeEfficacies
+ * @property TypeEfficacy[] $typeEfficacies1
  * @property Generations $gen0
  * @property MoveDamageClasses $damageClass
  */
@@ -58,6 +60,8 @@ class Types extends CActiveRecord
 			'players' => array(self::HAS_MANY, 'Player', 'id_safari_type'),
 			'pokemonFriendSafaris' => array(self::HAS_MANY, 'PokemonFriendSafari', 'id_type'),
 			'pokemonTypes' => array(self::HAS_MANY, 'PokemonTypes', 'type_id'),
+			'typeEfficacies' => array(self::HAS_MANY, 'TypeEfficacy', 'target_type_id'),
+			'typeEfficacies1' => array(self::HAS_MANY, 'TypeEfficacy', 'damage_type_id'),
 			'gen0' => array(self::BELONGS_TO, 'Generations', 'gen'),
 			'damageClass' => array(self::BELONGS_TO, 'MoveDamageClasses', 'damage_class'),
 		);

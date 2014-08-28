@@ -24,6 +24,7 @@ $(".weight_results").children().hide();
 $(".gen_results").children().hide();
 $(".type_results").children().hide();
 $(".inmunity_results").children().hide();
+$(".resistant_results").children().hide();
 $(".color_results").children().hide();
 $(".move_results").children().hide();
 $(".egg_results").children().hide();
@@ -37,8 +38,13 @@ max_weight_calculate 	= -1;
 type_1_calculate 		= -1;
 type_2_calculate 		= -1;
 inmunity_calculate		= -1;
+resistant_calculate		= -1;
 color_calculate 		= -1;
 egg_calculate         	= -1;
+move_1_calculate		= -1;
+move_2_calculate		= -1;
+move_3_calculate		= -1;
+move_4_calculate		= -1;
 
 //Height
 $(".height_form").change(function(){
@@ -209,8 +215,30 @@ $(".inmunity_remove").click(function(){
 	inmunity_calculate		= -1;
 	$(".inmunity_results").children().hide();
 });
-
 //End of inmunity 
+
+//Start of resistant 
+$(".resistant_dropdown").change(function() {
+	type_resistant = $('#type_resistant').val();
+	resistant_text = $("#type_resistant").children("option").filter(":selected").text();
+	resistant_selected = (type_resistant != '');
+	if(resistant_selected){
+		resistant_calculate = type_resistant;
+		$(".resistant_results").children().show();
+		$("#resistant_result").html(resistant_text);
+	}else{
+		resistant_calculate		= -1;
+		$(".resistant_results").children().hide();
+		$("#resistant_result").html("");
+	}
+});
+
+$(".resistant_remove").click(function(){
+	resistant_calculate		= -1;
+	$(".resistant_results").children().hide();
+});
+//End of resistant
+
 
 //Start of color
 $("#color_dropdown").change(function() {
@@ -256,6 +284,12 @@ $(".egg_remove").click(function(){
 });
 //end of egg group
 
+//start of moves
+$(".move_dropdown").change(function() {
+	alert("holi");
+});
+//end of moves
+
 //Ajax link.
 $('#search-data').click(function() {
 	$.ajax({
@@ -274,8 +308,13 @@ $('#search-data').click(function() {
                 type_1: 	type_1_calculate,
                 type_2: 	type_2_calculate,
                 inmunity: 	inmunity_calculate,
+                resistant:  resistant_calculate,
                 color: 		color_calculate,
                 eggie: 		egg_calculate,
+                move1: 		move_1_calculate,
+                move2: 		move_2_calculate,
+                move3: 		move_3_calculate,
+                move4: 		move_4_calculate,
     	} ,
     	'success': function(data) {
       		$('.div_show_results').html(data);
