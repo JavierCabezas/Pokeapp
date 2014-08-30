@@ -285,8 +285,32 @@ $(".egg_remove").click(function(){
 //end of egg group
 
 //start of moves
-$(".move_dropdown").change(function() {
-	alert("holi");
+$('#moves_1').on("change", function(e) {
+	if($('#moves_1').select2('data'))
+		move_1_calculate = $('#moves_1').select2('data').id
+	else
+		move_1_calculate = -1;
+});
+
+$('#moves_2').on("change", function(e) {
+	if($('#moves_2').select2('data'))
+		move_2_calculate = $('#moves_2').select2('data').id
+	else
+		move_2_calculate = -1;
+});
+
+$('#moves_3').on("change", function(e) {
+	if($('#moves_3').select2('data'))
+		move_3_calculate = $('#moves_3').select2('data').id
+	else
+		move_3_calculate = -1;
+});
+
+$('#moves_4').on("change", function(e) {
+	if($('#moves_4').select2('data'))
+		move_4_calculate = $('#moves_4').select2('data').id
+	else
+		move_4_calculate = -1;
 });
 //end of moves
 

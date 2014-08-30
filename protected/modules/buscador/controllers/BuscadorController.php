@@ -11,6 +11,13 @@ class BuscadorController extends Controller
 		));
 	}
 
+	public function actionView($id)
+	{
+		$this->render('view', array(
+			'id' => $id
+		));
+	}
+
 	/**
 	 * 	Recieves the ajax call from the index view to render the pokémon to show after using the filters.
 	 *	The value "-1" is used as a "non selected" option. This means that for each one of the filters it first checks if the value is -1, in that case it igores the filter and checks the next one.
@@ -178,18 +185,15 @@ class BuscadorController extends Controller
 
 		//MOVES
 		$moves = array();
-		$_POST['move1'] = 50; //disable
-		$_POST['move2'] = 105; //Recover
-		$_POST['move3'] = -1;
-		$_POST['move4'] = -1;
-		
 		if($_POST['move1'] != -1)array_push($moves, intval($_POST['move1']));
 		if($_POST['move2'] != -1)array_push($moves, intval($_POST['move2']));
 		if($_POST['move3'] != -1)array_push($moves, intval($_POST['move3']));
 		if($_POST['move4'] != -1)array_push($moves, intval($_POST['move4']));
 		
 		if(!empty($moves)){
-			var_dump($moves);
+			foreach($moves as $move){
+				
+			}
 		}
 		//END OF MOVES
 
@@ -201,23 +205,17 @@ class BuscadorController extends Controller
 			),
 			array(
 			  'type' => 'raw',
-			  'value' => 'CHtml::image(Yii::app()->baseUrl . "/images/sprites/".$data->id.".png")'
+			  'value' => '$data->species->image("moving")'
 			),
 			array(
-				'name'   => 'weight',
-				'header' => 'Altura [m]',
-				'value'  => '$data->height/10'   
+				'type'  => 'html',
+				'value' => 'CHtml::link("Más detalles de ".$data->pokemonName, array("/buscador/verDetalle", "id" => $data->id))'
 			),
-			array(
-				'name'   => 'height',
-				'header' => 'Peso [kg]',
-				'value'  => '$data->weight/10'   
-			),
-			array(
+			/*array(
 				'header' => 'Holi',
 				'type' 	 => 'raw',
 				'value'  => '$data->pokemonTypeList'
-			)
+			)*/
 		);
 
 		$dataProvider = new CActiveDataProvider('Pokemon', array(
