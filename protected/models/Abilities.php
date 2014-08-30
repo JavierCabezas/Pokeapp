@@ -131,4 +131,23 @@ class Abilities extends CActiveRecord
 		$model = Abilities::model()->findAll($criteria);
 		return CHtml::listData($model, 'id', 'abilityName');
 	}
+
+	/**
+	 *	Returns an simple array with the abilities that affect the type inmunities (Such as volt absorb, giving inmunity to lightining, and levitate that gives inmunity to ground)
+	 *	@return array of those abilities in the format array(integer ability1, integer ability2, etc.)
+	 */
+	public function abilitiesThatGiveInmunity()
+	{
+		return array(
+			26,  //Levitate
+			18,  //Flash fire
+			144, //Storm drain
+			11,  //Water absorb
+			87,  //Dry skin
+			157, //Sap sipper
+			31,  //Lighthining rod
+			78,  //Motor drive
+			10,  //Volt absorb
+		);
+	}
 }

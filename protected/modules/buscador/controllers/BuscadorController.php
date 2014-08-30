@@ -13,8 +13,15 @@ class BuscadorController extends Controller
 
 	public function actionView($id)
 	{
+		$pokemon = Pokemon::model()->findByPk($id);
+		if(!$pokemon)
+			$this->redirect(array('index'));
+
 		$this->render('view', array(
-			'id' => $id
+			'pokemon' 		=> $pokemon,
+			'types'	  		=> PokemonTypes::model()->findAllByAttributes(array('pokemon_id' => $id)),
+			'resistances'	=> Types::model()->resistances($pokemon->id),
+			'eggies'		=> PokemonEggGroups::model()->findAllByAttributes(array('species_id' => $pokemon->species->id))
 		));
 	}
 

@@ -6,6 +6,10 @@
  * The followings are the available columns in table 'egg_groups':
  * @property integer $id
  * @property string $identifier
+ *
+ * The followings are the available model relations:
+ * @property EggGroupNames[] $eggGroupNames
+ * @property PokemonEggGroups[] $pokemonEggGroups
  */
 class EggGroups extends CActiveRecord
 {
@@ -42,6 +46,8 @@ class EggGroups extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'eggGroupNames' => array(self::HAS_MANY, 'EggGroupNames', 'egg_group_id'),
+			'pokemonEggGroups' => array(self::HAS_MANY, 'PokemonEggGroups', 'egg_group_id'),
 		);
 	}
 
@@ -93,13 +99,17 @@ class EggGroups extends CActiveRecord
 		return parent::model($className);
 	}
 
+
 	/**
-	*	Returns the egg group with correct capitalization. (Example: humanshape instead of Humanshape)
-	*	@return string the name of the color.
-	*/
+	 *	Returns the name of the egg with capitalization, spacing and with the spanish name in parenthesis.
+	 *  Ex: Water 1 (Agua 1).
+	 *	@return string the name of the egg group.
+	 */
 	public function getEggGroupName()
 	{
-		return beautify($this->identifier);
+		$spanish = 7;
+		$eggie = EggGroupNames::model()->findByAttributes(array('egg_group_id' => $this->id, 'local_language_id' => $spanish));
+		return beautify($this->identifier)." (".utf8_decode(beautify($eggie->name)).")";
 	}
 
 	/** 

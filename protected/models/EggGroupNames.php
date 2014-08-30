@@ -1,25 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "pokemon_egg_groups".
+ * This is the model class for table "egg_group_names".
  *
- * The followings are the available columns in table 'pokemon_egg_groups':
+ * The followings are the available columns in table 'egg_group_names':
  * @property integer $id
- * @property integer $species_id
  * @property integer $egg_group_id
+ * @property integer $local_language_id
+ * @property string $name
  *
  * The followings are the available model relations:
+ * @property Languages $localLanguage
  * @property EggGroups $eggGroup
- * @property PokemonSpecies $species
  */
-class PokemonEggGroups extends CActiveRecord
+class EggGroupNames extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'pokemon_egg_groups';
+		return 'egg_group_names';
 	}
 
 	/**
@@ -30,11 +31,12 @@ class PokemonEggGroups extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('species_id, egg_group_id', 'required'),
-			array('species_id, egg_group_id', 'numerical', 'integerOnly'=>true),
+			array('egg_group_id, local_language_id, name', 'required'),
+			array('egg_group_id, local_language_id', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>53),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, species_id, egg_group_id', 'safe', 'on'=>'search'),
+			array('id, egg_group_id, local_language_id, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,8 +48,8 @@ class PokemonEggGroups extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'localLanguage' => array(self::BELONGS_TO, 'Languages', 'local_language_id'),
 			'eggGroup' => array(self::BELONGS_TO, 'EggGroups', 'egg_group_id'),
-			'species' => array(self::BELONGS_TO, 'PokemonSpecies', 'species_id'),
 		);
 	}
 
@@ -58,8 +60,9 @@ class PokemonEggGroups extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'species_id' => 'Species',
 			'egg_group_id' => 'Egg Group',
+			'local_language_id' => 'Local Language',
+			'name' => 'Name',
 		);
 	}
 
@@ -82,8 +85,9 @@ class PokemonEggGroups extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('species_id',$this->species_id);
 		$criteria->compare('egg_group_id',$this->egg_group_id);
+		$criteria->compare('local_language_id',$this->local_language_id);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -94,7 +98,7 @@ class PokemonEggGroups extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return PokemonEggGroups the static model class
+	 * @return EggGroupNames the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

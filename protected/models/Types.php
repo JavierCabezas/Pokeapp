@@ -180,4 +180,40 @@ class Types extends CActiveRecord
 		$pic = $this->id.'.png';
 		return CHtml::image(Yii::app()->baseUrl.'/images/types/'.$pic);
 	}
+
+	/**
+	 *	Returns an array of every type efficacy against this pokémon.
+	 *	@param integer pokemon_id the identifier of the pokémon
+	 *	@return array in the format array['id_type']['number'] the multiplier (such as 0.25 or 0.5) and array['id_type']['name'] the name of the type (Ej: Ground(tierra))
+	 */
+	public function resistances($pokemon_id)
+	{
+		$type_criteria = new CDbCriteria;
+		$type_criteria->addCondition("id != 10001"); //Exclude unkown type
+		$type_criteria->addCondition("id != 10002"); //Exlude shadow type
+
+		$poke 					      = Pokemon::model()->findByPk($pokemon_id);
+		$pokemon_types 				  = PokemonTypes::model()->findAllByAttributes(array('pokemon_id' => $pokemon_id)); 
+		$types 						  = Types::model()->findAll($type_criteria);
+		$result						  = array();
+	
+		//Inicialize the array in x1 for every type.
+		foreach($types as $type){
+			$result[$type->id]['number'] = 1;
+			$result[$type->id]['name']	 = '';
+		}
+
+		foreach($types as $type){ 
+			foreach($pokemon_types as $poke_type){
+				//Check every type for every pokémon
+				$result[$type->id]['number']  =  $result[$type->id]['number'] * (1/100) * TypeEfficacy::model()->findByAttributes(array(
+					'damage_type_id' => $type->id,
+					'target_type_id' => $poke_type->type_id
+				))->damage_factor;
+				$result[$type->id]['name']	  = $type->typeName;
+			}
+		}
+		
+		return $result;
+	}
 }
