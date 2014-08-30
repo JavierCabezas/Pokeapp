@@ -75,6 +75,7 @@ return array(
                 'torneo/modificarPokemon'           => 'tournament/tournamentPokemon/index',            //Modify a tournament pokémon                
                 'torneo/<page>'                     => 'tournament/tournament/<page>',                  //Generic page for tournament (Im not aware that this is in use but just in case)
                 'buscador'                          => 'buscador/buscador/index',                       //Index page for the search module
+                'buscador/verDetalle/<id:\d+>'      => 'buscador/buscador/view/id/<id>',                //Views the pokéon information page for the search module.
                 'jugadores'                         => 'jugadores/jugadores/index',                     //Index page for the players module 
                 'jugadores/crear'                   => 'jugadores/jugadores/create',                    //Create view for the players module
                 'jugadores/actualizar'              => 'jugadores/jugadores/update',                    //Update view players module
