@@ -34,13 +34,6 @@
 			</div>
 		</div> <!-- end of inmunity results -->
 
-		<div class='resistant_results'>
-			<div id='div_resistant_result'>
-				<p> Resiste al tipo <span class='type' id='resistant_result'> </span> </p>
-				<div class='resistant_remove' id='resistant_remove_'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
-			</div>
-		</div> <!-- end of inmunity results -->
-
 		<div class='gen_results'>
 			<p> Se mostrarán Pokémon de las generaciones... </p>
 			<ul>

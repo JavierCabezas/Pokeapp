@@ -159,4 +159,24 @@ class Pokemon extends CActiveRecord
 			return 'No Asignado';
 		}
 	}
+
+	/**
+	 *	Returns the generation for the specified pokémon.
+	 *	@return integer the generation (between 1 and 6)
+	 */
+	public function getGeneration()
+	{
+		if(its_in_between($this->id, 1, 151))
+			return 1;
+		elseif(its_in_between($this->id, 152, 251))
+			return 2;
+		elseif(its_in_between($this->id, 252, 386))
+			return 3;
+		elseif(its_in_between($this->id, 387, 493))
+			return 4;
+		elseif(its_in_between($this->id, 494, 649))
+			return 5;
+		else 
+			return 6;
+	}
 }

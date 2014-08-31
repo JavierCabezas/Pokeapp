@@ -67,20 +67,6 @@
 					</div>				
 				</div>	<!-- end of inmunity -->
 
-				<div class='resistant'>
-					<div class="accordion-heading">
-						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_resistant">				
-							<h4> Resistente al tipo </h4>
-						</a>
-					</div>
-					<div id="acc_resistant" class="accordion-body collapse">
-						<div class="accordion-inner">
-							<label> Tipo al cual debe de ser resistente: </label>
-							<?php echo CHtml::dropDownList('type_resistant', null, Types::model()->dropdownTypes(), array('empty' => '(Ingresar tipo)', 'class' => 'resistant_dropdown'));  ?>
-						</div>
-					</div>				
-				</div>	<!-- end of resistant -->
-
 				<div class='gen'>
 					<div class="accordion-heading">
 						<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#acc_gen">				

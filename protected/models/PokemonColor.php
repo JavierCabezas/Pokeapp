@@ -97,12 +97,34 @@ class PokemonColor extends CActiveRecord
 	}
 
 	/**
-	*	Returns the pokémon color with correct capitalization. (Example: Black instead of black)
+	*	Returns the pokémon color with correct capitalization and the spanish name in () . (Example: Black (negro) instead of black)
 	*	@return string the name of the color.
 	*/
 	public function getColorName()
 	{
-		return beautify($this->color);
+		$out = beautify($this->color);
+		switch($this->id){
+			case 1:
+				return $out . '(negro)';
+			case 2:
+				return $out . '(azul)';
+			case 3:
+				return $out . '(café)';
+			case 4:
+				return $out . '(griz)';
+			case 5:
+				return $out . '(green)';
+			case 6:
+				return $out . '(pink)';
+			case 7:
+				return $out . '(purple)';
+			case 8:
+				return $out . '(red)';
+			case 9:
+				return $out . '(blanco)';
+			case 10:
+				return $out . '(rosa)';
+		}
 	}
 
 	/** 

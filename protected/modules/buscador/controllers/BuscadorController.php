@@ -21,7 +21,8 @@ class BuscadorController extends Controller
 			'pokemon' 		=> $pokemon,
 			'types'	  		=> PokemonTypes::model()->findAllByAttributes(array('pokemon_id' => $id)),
 			'resistances'	=> Types::model()->resistances($pokemon->id),
-			'eggies'		=> PokemonEggGroups::model()->findAllByAttributes(array('species_id' => $pokemon->species->id))
+			'eggies'		=> PokemonEggGroups::model()->findAllByAttributes(array('species_id' => $pokemon->species->id)),
+			'abilities'		=> pokemonAbilities::model()->findAllByAttributes(array('pokemon_id' => $id)),
 		));
 	}
 
@@ -35,10 +36,8 @@ class BuscadorController extends Controller
 	 *	 - Inmunity to (another type)
 	 *	 - Generations
 	 * 	 
-	 *	@todo: resistant
 	 *	@todo: Egg group
 	 *	@todo: Ability
-	 *	@todo: moves
 	 *	@todo: Shape
 	 */
 	public function actionSearchPokemon()
@@ -148,14 +147,12 @@ class BuscadorController extends Controller
 				$criteria->addCondition('pokemonTypes.type_id = :type');
 				$params['type'] = $type['dark'];
 			}
+			else if($inmunity == $type['dragon']){
+				$criteria->addCondition('pokemonTypes.type_id = :type');
+				$params['type'] = $type['fairy'];
+			}
 		}
 		//END OF INMUNITY
-
-		//RESISTANT TO
-		if($_POST['resistant'] != -1){
-			//@todo
-		}
-		//END OF RESISTANT TO
 
 		//COLOR
 		if($_POST['color'] != -1){
@@ -199,7 +196,7 @@ class BuscadorController extends Controller
 		
 		if(!empty($moves)){
 			foreach($moves as $move){
-				
+				$criteria->addCondition('t.id IN (SELECT DISTINCT  pokemon_id FROM `pokemon_moves` WHERE move_id='.$move.')');
 			}
 		}
 		//END OF MOVES
