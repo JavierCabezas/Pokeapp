@@ -45,4 +45,231 @@
 	<div id="items">
 		<?php echo $this->renderPartial('_statsTopItems', array('items' => $items)); ?>
 	</div>
+
+
+	<h2> 4. - Pokémon del TOP17  </h2>
+
+	<table>
+		<tr>
+			<td> <b class='size_15'> 1. </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'ditto.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'charizard.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'raichu.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'sylveon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hydreigon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'staraptor.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 2.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hydreigon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'mawile.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'chesnaught.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'lapras.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 3. </b>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aegislash.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'chandelure.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'kangaskhan.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'azumarill.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 4. </b>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'raichu.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'lucario.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'amoonguss.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'tyranitar.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'delphox.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gyarados.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 5.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'chandelure.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'mawile.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'staraptor.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'scrafty.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gothitelle.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 6.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'kangaskhan.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'talonflame.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'charizard.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'smeargle.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 7.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'talonflame.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'lapras.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'tyranitar.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'manectric.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aegislash.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 8.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'venusaur.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'conkeldurr.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'dragonite.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'nidoking.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gyarados.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'magnezone.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 9.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aegislash.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hippowdon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'ferrothorn.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hydreigon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aerodactyl.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 10.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'talonflame.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hydreigon.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'throh.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'kangaskhan.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'charizard.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gengar.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 11. </b>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'blastoise.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'kangaskhan.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'chandelure.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'nidoqueen.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'reuniclus.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gyarados.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 12.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'scrafty.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'scolipede.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'venusaur.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'azumarill.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'blastoise.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 13. </b>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'sableye.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'greninja.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'sawk.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'manectric.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gourgeist.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'dragonite.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 14. </b>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aegislash.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'talonflame.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'politoed.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'mawile.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'ludicolo.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'hydreigon.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 15.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'mawile.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'venusaur.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'raichu.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'talonflame.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'rotom.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 16.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'garchomp.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'staraptor.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'gyarados.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'meowstic.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'manectric.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'aegislash.gif') ?>  </td>
+		</tr>
+
+		<tr>
+			<td> <b class='size_15'> 17.  </b> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'charizard.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'mienshao.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'scizor.gif') ?>  </td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'sableye.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'manectric.gif') ?>  </td>
+			<td> <?php echo CHtml::image(Yii::app()->baseUrl.'/images/sprites_gif/'.'lapras.gif') ?>  </td>
+		</tr>
+	</table>
+
 </div>
