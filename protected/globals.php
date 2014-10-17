@@ -12,11 +12,7 @@
  * @return boolean true if its in the range and false otherwise. 
  */
 function its_in_between($i, $lower_boundary, $upper_boundary){
-	if (($i >= $lower_boundary) && ($i <= $upper_boundary)){
-		return true;
-	}else{
-		return false;
-	}
+	return (($i >= $lower_boundary) && ($i <= $upper_boundary));
 }
 /**
  * This function beautifys a string. This meaning using correct capitalization and replacing - for spaces. This is used for the database
@@ -75,4 +71,13 @@ function roundUp($i){
 function generatePassword(){
 	$rand = rand(5, 10);
 	return substr(md5(uniqid(mt_rand(), true)), 0, $rand);	
+}
+
+/** 
+ *	Returns an array with each one of the generations intended for a dropdown list.
+ *	@return array in the format of array('id_generation' => 'generation name')
+ */
+function arrayGenerations()
+{
+	return array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
 }
