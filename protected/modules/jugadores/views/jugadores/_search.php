@@ -17,7 +17,7 @@
 
 		<?php echo $form->textFieldRow($model,'id_safari_type',array('class'=>'span5')); ?>
 
-		<?php echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
+		<?php //echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
 
 		<?php echo $form->textFieldRow($model,'duel_single',array('class'=>'span5')); ?>
 

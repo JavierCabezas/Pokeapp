@@ -57,24 +57,28 @@
 
 		<div>
 			<label>Nivel:</label>
-			<input type="number" id="level_<?php echo $n?>" name="level_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="50" min="1" max="100" />
-			<?php
-			$this->widget('zii.widgets.jui.CJuiSliderInput', array(
-			    'name'=>'level_'.$n,
-			    'value'=>50,
-			    'event'=>'change',
-			    'options'=>array(
-			        'min'=>1, 
-			        'max'=>100, 
-			        'animate'=>true,
-			        'range'=>'max',
-			        'slide'=>'js:function(event,ui){$("#level_'.$n.'").val(ui.value);}',
-			    ),
-			    'htmlOptions'=>array(
-			        'style'=>'width:200px;background-color:red;'
-			    ),
-			));
-			?>
+			<div class='valor'>
+				<input type="number" id="level_<?php echo $n?>" name="level_text_<?php echo $n ?>" style="border:0; font-weight:bold;" value="50" min="1" max="100" />
+			</div>
+			<div class='slider'>
+				<?php
+					$this->widget('zii.widgets.jui.CJuiSliderInput', array(
+					    'name'=>'level_'.$n,
+					    'value'=>50,
+					    'event'=>'change',
+					    'options'=>array(
+					        'min'=>1, 
+					        'max'=>100, 
+					        'animate'=>true,
+					        'range'=>'max',
+					        'slide'=>'js:function(event,ui){$("#level_'.$n.'").val(ui.value);}',
+					    ),
+					    'htmlOptions'=>array(
+					        'style'=>'width:200px;background-color:red;'
+					    ),
+					));
+				?>
+			</div>
 		</div>
 	</div>
 

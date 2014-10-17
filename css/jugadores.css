@@ -1,3 +1,7 @@
+.invisible{
+    opacity: 0;
+}
+
 .col_left {
     background-color: #ddf;
     float: left;

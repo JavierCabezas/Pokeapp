@@ -25,13 +25,14 @@
 			<p>Tipo y especie de Pokémon que da el usuario por medio de su Friend Code.</p>
 		</div>
 	</div>
-	<div class="param">
-		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_002.png' />", array('tsv')) ?>
+	<div class="param invisible"> </div>
+	<!-- <div class="param">
+		<?php //echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_002.png' />", array('tsv')) ?>
 		<div class="info">
-			<?php echo CHtml::link('<h4>Trainer Shiny Value</h4>', array('tsv')) ?>
+			<?php //echo CHtml::link('<h4>Trainer Shiny Value</h4>', array('tsv')) ?>
 			<p>Busca jugadores que te puedan asegurar huevos shiny por medio del TSV (Trainer shiny value).</p>
 		</div>
-	</div>
+	</div> -->
 	<div class="param">
 		<?php echo CHtml::link("<img src='".imageDir()."/jugadores_info/jug_003.png' />", array('duelos')) ?>
 		<div class="info">

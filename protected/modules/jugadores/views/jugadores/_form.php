@@ -46,9 +46,9 @@
 		<div class="fc">
 			<?php echo $form->textFieldRow($model,'friendcode_3',array('class'=>'span5')); ?>
 		</div>
-		<div class="bloq">
-			<?php echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
-		</div>
+		<!-- <div class="bloq">
+			<?php //echo $form->textFieldRow($model,'tsv',array('class'=>'span5')); ?>
+		</div> -->
 		<div class="safari">
 			<div class="bloq">
 				<?php echo $form->labelEx($model,'id_safari_type'); ?> 

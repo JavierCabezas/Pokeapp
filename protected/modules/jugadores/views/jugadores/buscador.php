@@ -48,10 +48,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 			'name' 	=> 'search_poke_3', 
 			'value' => 'isset($data->id_safari_type)?$data->safariSlot3->pokemonName:"-"',
 		),
-		array(
-			'name' => 'search_tsv',
-			'value' => '$data->tsv?$data->tsv:"-"'
-		),
+		//array('name' => 'search_tsv','value' => '$data->tsv?$data->tsv:"-"'),
 		array(
 			'name' => 'search_duel_single',
 			'filter'	=> array(0 => 'No', 1 => 'Sí'),
