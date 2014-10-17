@@ -4,6 +4,8 @@ class PokeballController extends Controller
 {
     public function actionIndex()
 	{
+        Yii::app()->clientScript->registerMetaTag('Calcula la probabilidad de realizar la captura de algún pokémon en específico.', 'description');
+
 		//Register G-raphael for the pie chart.
 		$baseUrl = Yii::app()->baseUrl; 
 		$cs = Yii::app()->getClientScript();

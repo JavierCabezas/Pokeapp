@@ -1,3 +1,5 @@
+<?php $this->setPageTitle('Pokéapp - Buscador de pokémon.'); ?>
+
 <h1> Buscador de Pokémon por criterios interesantes </h1>
 
 <div id="column1-wrap">

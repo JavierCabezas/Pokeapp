@@ -4,11 +4,7 @@ class BuscadorController extends Controller
 {
 	public function actionIndex()
 	{
-		$array_generations 	= array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
-		
-		$this->render('index', array(
-			'array_generations' => $array_generations,
-		));
+		$this->render('index');
 	}
 
 	public function actionView($id)

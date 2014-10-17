@@ -249,6 +249,7 @@ class JugadoresController extends Controller
      */
     public function actionBuscador()
     {
+        Yii::app()->clientScript->registerMetaTag('Regístrate para buscar a otros jugadores de pokémon e intercambia sus códigos de amigo. ', 'description');
         $model = new Player('search');
         $model->unsetAttributes(); // clear any default values
         if (isset($_GET['Player']))

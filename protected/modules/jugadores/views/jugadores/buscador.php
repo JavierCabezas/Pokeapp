@@ -13,6 +13,8 @@ return false;
 ");
 ?>
 
+<?php $this->setPageTitle('Pokéapp - Buscador de jugadores.'); ?>
+
 <h1 class="buscarpj">Buscar jugadores</h1>
 
 <div class="infosec">

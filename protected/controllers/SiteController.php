@@ -27,6 +27,7 @@ class SiteController extends Controller
      */    
     public function actionIndex()
     {
+        Yii::app()->clientScript->registerMetaTag('La pokéapp es la aplicación oficial de Pokémon Daisuki. Cuenta con calculadora de captura, calculadora de stats, sección para búsqueda de jugadores entre otras aplicaciones. ', 'description');
         $baseUrl = Yii::app()->baseUrl; 
         $scr = Yii::app()->getClientScript();
         $scr->registerScriptFile($baseUrl.'/js/coin-slider.min.js');

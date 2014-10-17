@@ -4,6 +4,7 @@ class StatsController extends Controller
 {
 	public function actionIndex()
 	{
+		Yii::app()->clientScript->registerMetaTag('Con esta calculadora puedes comparar los stats de dos pokémon distintos para compararlos entre si. ', 'description');
 		$this->render('index');
 	}
 

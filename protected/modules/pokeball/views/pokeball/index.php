@@ -1,3 +1,5 @@
+<?php $this->setPageTitle('Pokéapp - Calculadora de captura.'); ?>
+
 <h1 class="captura">Calculadora de captura </h1>
 
 <div class="infosec">

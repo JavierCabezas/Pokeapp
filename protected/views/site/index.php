@@ -1,4 +1,4 @@
-<?php $this->setPageTitle('Pokéapp - Inicio'); ?>
+<?php $this->setPageTitle('Pokéapp - La aplicación oficial de pokémon Daisuki.'); ?>
 
 <?php
     foreach(Yii::app()->user->getFlashes() as $key => $message) {

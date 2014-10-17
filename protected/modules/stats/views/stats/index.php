@@ -1,3 +1,5 @@
+<?php $this->setPageTitle('Pokéapp - Calculadora de stats'); ?>
+
 <h1 class="stats"> Calculadora de stats </h1>
 
 <div class="infosec">
