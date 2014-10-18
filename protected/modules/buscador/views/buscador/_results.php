@@ -62,7 +62,7 @@
 
 		<div class='move_results'>
 			<div id='div_move_result'>
-				<p> Que aprenda el(los) movimiento(s): <span class='type' id='move_result'> </span> </p>
+				<p> Que aprenda el(los) movimiento(s): <ul class='type' id='move_results'> </ul> </p>
 				<div class='move_remove' id='move_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
 			</div>
 		</div> <!-- end of move results -->

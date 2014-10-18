@@ -4,20 +4,25 @@
 
 <div id="column1-wrap">
     <div id="column1">
-    	<?php $this->renderPartial('_criteria') ?>
+    	<div class='well'>
+	    	<?php $this->renderPartial('_criteria') ?>
+	    </div>
     </div> <!-- end of column1 -->
 </div> <!-- end of comlumn1-wrap -->
 
 <div id="column2">
-	<?php $this->renderPartial('_results') ?>
+	<div class='well'>
+		<?php $this->renderPartial('_results') ?>
+	</div>
 </div>
 
 <div id="clear"></div>
 
-<div class="div_show_results">
-	<!-- The results will be shown here -->
-</div> <!-- end of div_show_results-->
-
+<div class='well'>
+	<div class="div_show_results">
+		<!-- The results will be shown here -->
+	</div> <!-- end of div_show_results-->
+</div>
 
 
 <script>
@@ -29,9 +34,11 @@ $(".inmunity_results").children().hide();
 $(".color_results").children().hide();
 $(".move_results").children().hide();
 $(".egg_results").children().hide();
+$(".move_results").children().hide();
 
 //Variables
-var gen_calculate = new Array(false, false, false, false, false, false);
+var gen_calculate 		= new Array(false, false, false, false, false, false);
+var moves 				= new Array(-1, -1, -1, -1);
 min_height_calculate 	= -1;
 max_height_calculate 	= -1;
 min_weight_calculate 	= -1;
@@ -261,34 +268,79 @@ $(".egg_remove").click(function(){
 });
 //end of egg group
 
-//start of moves
+//Start of MOVES
+function actualizarMovimientos(moves){
+	console.log(moves);
+	$(".move_results").children().hide();
+	$("#move_results").html(" ");
+	for (var i = 0; i < 4 ; i++) {
+		if(moves[i] != -1){
+			$("#move_results").append('<li>'+moves[i]+'</li>');
+			$(".move_results").children().show();
+		}
+	}
+}
+
+$(".move_remove").click(function(){
+	$("#s2id_moves_1").select2("val", "");
+	$("#s2id_moves_2").select2("val", "");
+	$("#s2id_moves_3").select2("val", "");
+	$("#s2id_moves_4").select2("val", "");
+	$(".move_results").children().hide();
+	$("#move_results").html(" ");
+	moves[0] = moves[1] = moves[2] = moves[3] = -1;
+	move_1_calculate = move_2_calculate = move_3_calculate = move_4_calculate = -1;
+});
+
 $('#moves_1').on("change", function(e) {
-	if($('#moves_1').select2('data'))
+	if($('#moves_1').select2('data')){
 		move_1_calculate = $('#moves_1').select2('data').id
-	else
+		moves[0] 		 = $('#moves_1').select2('data').text;
+	}
+	else{
 		move_1_calculate = -1;
+		moves[0] 		 = -1;
+	}
+	actualizarMovimientos(moves);
 });
 
 $('#moves_2').on("change", function(e) {
-	if($('#moves_2').select2('data'))
+	if($('#moves_2').select2('data')){
 		move_2_calculate = $('#moves_2').select2('data').id
-	else
+		moves[1] 		 = $('#moves_2').select2('data').text;
+	}
+	else{
 		move_2_calculate = -1;
+		moves[1] 		 = -1;
+	}
+	actualizarMovimientos(moves);
 });
 
 $('#moves_3').on("change", function(e) {
-	if($('#moves_3').select2('data'))
+	if($('#moves_3').select2('data')){
 		move_3_calculate = $('#moves_3').select2('data').id
-	else
+		moves[2] 		 = $('#moves_3').select2('data').text;
+	}
+	else{
 		move_3_calculate = -1;
+		moves[2] 		 = -1;
+	}
+	actualizarMovimientos(moves);
 });
 
 $('#moves_4').on("change", function(e) {
-	if($('#moves_4').select2('data'))
+	if($('#moves_4').select2('data')){
 		move_4_calculate = $('#moves_4').select2('data').id
-	else
+		moves[3] 		 = $('#moves_4').select2('data').text;
+	}
+	else{
 		move_4_calculate = -1;
+		moves[3] 		 = -1;
+	}
+	actualizarMovimientos(moves);
 });
+
+
 //end of moves
 
 //Ajax link.
