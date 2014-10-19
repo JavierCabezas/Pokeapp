@@ -35,6 +35,7 @@ $(".color_results").children().hide();
 $(".move_results").children().hide();
 $(".egg_results").children().hide();
 $(".move_results").children().hide();
+$(".ability_results").children().hide();
 
 //Variables
 var gen_calculate 		= new Array(false, false, false, false, false, false);
@@ -52,6 +53,7 @@ move_1_calculate		= -1;
 move_2_calculate		= -1;
 move_3_calculate		= -1;
 move_4_calculate		= -1;
+ability_calculate 		= -1;
 
 //Height
 $(".height_form").change(function(){
@@ -339,9 +341,29 @@ $('#moves_4').on("change", function(e) {
 	}
 	actualizarMovimientos(moves);
 });
-
-
 //end of moves
+
+//Start of abilities
+$('#ability').on("change", function(e) {
+	if($('#ability').select2('data')){
+		ability_calculate = $('#ability').select2('data').id
+		$(".ability_results").children().show();
+		$("#ability_results").html( $('#ability').select2('data').text );
+	}else{
+		$("#ability_results").html(" ");
+		ability_calculate = -1;
+	}
+});
+
+$(".ability_remove").click(function(){
+	$(".ability_results").children().hide();
+	$("#ability_results").html('');
+	ability_calculate = -1;
+	$("#s2id_ability").select2("val", "");
+});
+//end of abilities
+
+
 
 //Ajax link.
 $('#search-data').click(function() {
@@ -367,6 +389,7 @@ $('#search-data').click(function() {
                 move2: 		move_2_calculate,
                 move3: 		move_3_calculate,
                 move4: 		move_4_calculate,
+                ability: 	ability_calculate,
     	} ,
     	'success': function(data) {
       		$('.div_show_results').html(data);

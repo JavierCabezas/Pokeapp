@@ -67,5 +67,10 @@
 			</div>
 		</div> <!-- end of move results -->
 
+		<div class='ability_results'>
+			<p> Que tenga la habilidad: <span class='ability' id='ability_results'> </span> </p>
+			<div class='ability_remove'> <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar'> </div> 
+		</div>
+
 	</div>
 <!-- END OF RESULTS -->

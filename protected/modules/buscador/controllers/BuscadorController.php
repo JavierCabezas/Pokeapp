@@ -163,26 +163,6 @@ class BuscadorController extends Controller
 		}
 		//END OF EGG
 
-		
-		$criteria->params = $params; //Im calling the params here, before the generations, because of a Yii bug.
-
-		//GENERATIONS
-		$gen = array('1' => filter_var($_POST['gen_1'], FILTER_VALIDATE_BOOLEAN), '2' => filter_var($_POST['gen_2'], FILTER_VALIDATE_BOOLEAN), 
-					 '3' => filter_var($_POST['gen_3'], FILTER_VALIDATE_BOOLEAN), '4' => filter_var($_POST['gen_4'], FILTER_VALIDATE_BOOLEAN),
-					 '5' => filter_var($_POST['gen_5'], FILTER_VALIDATE_BOOLEAN), '6' => filter_var($_POST['gen_6'], FILTER_VALIDATE_BOOLEAN));
-		if($gen[1]||$gen[2]||$gen[3]||$gen[4]||$gen[5]||$gen[6]){ // Just use the filter is the user actually clicked a generation.
-			$n = 1;
-			$gens_to_search = array();
-			foreach($gen as $g){
-				if($g){
-					array_push($gens_to_search, $n);
-				}
-				$n = $n+1;
-			}
-			$criteria->addInCondition('species.generation_id', $gens_to_search);
-		}
-		//END OF GENERATIONS
-
 		//MOVES
 		$moves = array();
 		if($_POST['move1'] != -1)array_push($moves, intval($_POST['move1']));
@@ -196,6 +176,30 @@ class BuscadorController extends Controller
 			}
 		}
 		//END OF MOVES
+
+		//ABILITIES
+		if($_POST['ability'] != -1){
+			$criteria->addCondition('pokemonAbilities.ability_id = :abi');
+			$params['abi'] =  intval($_POST['ability']);
+		}
+		//END OF ABILITIES
+
+		$criteria->params = $params; //Im calling the params here, before the generations, because of a Yii bug.
+
+		//GENERATIONS
+		$gen = array('1' => filter_var($_POST['gen_1'], FILTER_VALIDATE_BOOLEAN), '2' => filter_var($_POST['gen_2'], FILTER_VALIDATE_BOOLEAN), 
+					 '3' => filter_var($_POST['gen_3'], FILTER_VALIDATE_BOOLEAN), '4' => filter_var($_POST['gen_4'], FILTER_VALIDATE_BOOLEAN),
+					 '5' => filter_var($_POST['gen_5'], FILTER_VALIDATE_BOOLEAN), '6' => filter_var($_POST['gen_6'], FILTER_VALIDATE_BOOLEAN));
+		if($gen[1]||$gen[2]||$gen[3]||$gen[4]||$gen[5]||$gen[6]){ // Just use the filter is the user actually clicked a generation.
+			$n = 1;
+			$gens_to_search = array();
+			foreach($gen as $g){
+				if($g){ array_push($gens_to_search, $n); }
+				$n += 1;
+			}
+			$criteria->addInCondition('species.generation_id', $gens_to_search);
+		}
+		//END OF GENERATIONS
 
 		$gridColumns = array(
 			array(
