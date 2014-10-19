@@ -22,7 +22,7 @@ class TournamentPlayerController extends Controller
     public function actionCreate()
     {
         $model = new Users;       
-        $next_tournament = Tournament::model()->findByAttributes(array('active' => 1));
+        $next_tournament = Tournament::model()->getNextTournament();
 
         if (isset($_POST['Users'])) {
             $folio         = CUploadedFile::getInstance($model, 'folio');
@@ -32,7 +32,7 @@ class TournamentPlayerController extends Controller
             if ($model->save()){
 
                 $playerFolio = new TournamentPlayerFolio();
-                $id_tournament                      = 1; //TODO: FIX THIS
+                $id_tournament                      = $next_tournament->id;
                 $playerFolio->folio_photo           = $id_tournament . "_" . $model->id . "." . $folio->extensionName;
                 $playerFolio->id_tournament         = $id_tournament;
                 $playerFolio->id_tournament_player  = $model->id;

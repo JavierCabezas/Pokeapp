@@ -64,12 +64,10 @@ class TournamentController extends Controller
 
 	public function actionIndex()
 	{
-       /* if(!isset(Yii::app()->user->id))
+       if(!isset(Yii::app()->user->id))
     		$this->render('index');
         else
             $this->redirect(array('/torneo/menuUsuario')); //If the player is logged redirect to the team view.
-	   */
-            $this->redirect(array('/torneo/estadisticas'));
     }
 
     /**
@@ -249,7 +247,7 @@ class TournamentController extends Controller
     public function actionCreate()
     {
         $model = new Users('createTournament');       
-        $next_tournament = Tournament::model()->findByAttributes(array('active' => 1));
+        $next_tournament = Tournament::model()->getNextTournament();
 
         if (isset($_POST['Users'])) {
             $folio         = CUploadedFile::getInstance($model, 'folio');
@@ -265,7 +263,7 @@ class TournamentController extends Controller
             }else{
                 if ($model->save()){
                     $playerFolio = new TournamentPlayerFolio();
-                    $id_tournament                      = 1; //TODO: FIX THIS
+                    $id_tournament                      = $next_tournament->id;
                     $playerFolio->folio_photo           = $id_tournament . "_" . $model->id . "." . $folio->extensionName;
                     $playerFolio->id_tournament         = $id_tournament;
                     $playerFolio->id_tournament_player  = $model->id;
@@ -319,23 +317,29 @@ class TournamentController extends Controller
             $complete_team = false;
         }
 
-        $folio = TournamentPlayerFolio::model()->findByAttributes(array(
+        $folio_model = TournamentPlayerFolio::model()->findByAttributes(array(
             'id_tournament_player' => $user->id, 
             'id_tournament' => $id_tournament
-        ))->folio;
+        ));
 
-        if(is_null($folio)){
+        if(!isset($folio_model->folio)){
+            $folio_status   = 'Aún no has subido tu foto de folio';
+            $folio_shorts   = 'Pendiente';
+            $folio_class    = 'fail';
+            $admin_approval = false;
+        }
+        elseif(is_null($folio_model->folio)){
             $folio_status   = 'Aún no han revisado tu perfil.';
             $folio_shorts   = 'Pendiente';
             $folio_class    = 'neutral';
             $admin_approval = false;
-        }elseif($folio == -1){
+        }elseif($folio_model->folio == -1){
             $folio_status   = 'Contáctanos a '.Yii::app()->params['adminEmail'].' para conseguir más detalles';
             $folio_shorts   = 'Rechazado';
             $folio_class    = 'fail';
             $admin_approval = false;
         }else{
-            $folio_status   = 'Ha sido aceptado con número de folio '.$folio;
+            $folio_status   = 'Ha sido aceptado con número de folio '.$folio_model->folio;
             $folio_shorts   = 'Aceptado';
             $folio_class    = 'win';
             $admin_approval = true; 
