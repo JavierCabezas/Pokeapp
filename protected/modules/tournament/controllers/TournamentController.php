@@ -326,7 +326,7 @@ class TournamentController extends Controller
             'id_tournament' => $id_tournament
         ));
 
-        if(!isset($folio_model->folio)){
+        if(!TournamentPlayerFolio::model()->hasUploadedPhoto($user->id)){
             $folio_status   = 'Aún no has subido tu foto de folio';
             $folio_shorts   = 'Pendiente';
             $folio_class    = 'fail';
@@ -463,7 +463,6 @@ class TournamentController extends Controller
                 $folio->id_tournament_player = Yii::app()->user->id;
                 $folio->id_tournament        = $id_tournament;
                 $folio->folio_photo          = $photo_name;
-                $folio->folio                = -1;
 
                 if($folio->save()){
                     $model->photo_folio_upload->saveAs("./images/foto_folio/".$photo_name);

@@ -168,6 +168,6 @@ class TournamentPlayerFolio extends CActiveRecord
      */
     public function hasUploadedPhoto($id_player){
         $next_tournament = Tournament::model()->getNextTournament()->id;
-        return isset(TournamentPlayerFolio::model()->findByAttributes(array('id_tournament' => $next_tournament, 'id_tournament_player' => $id_player))->folio);
+        return isset(TournamentPlayerFolio::model()->findByAttributes(array('id_tournament' => $next_tournament, 'id_tournament_player' => $id_player))->id);
     }
 }   
