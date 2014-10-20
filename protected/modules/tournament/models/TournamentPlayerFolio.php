@@ -160,4 +160,14 @@ class TournamentPlayerFolio extends CActiveRecord
             'id_tournament'         => $this->id_tournament
         )));
     }
+
+    /**
+     *  Returns the folio status of the this certain player (that means, if the player has uplodaded the folio photo or not)
+     *  @param integer id_player the identifier of the logged in user.
+     *  @return boolean true if the player has uploaded the photo for the active tournament and false otherwise. 
+     */
+    public function hasUploadedPhoto($id_player){
+        $next_tournament = Tournament::model()->getNextTournament()->id;
+        return isset(TournamentPlayerFolio::model()->findByAttributes(array('id_tournament' => $next_tournament, 'id_tournament_player' => $id_player))->folio);
+    }
 }   

@@ -38,6 +38,7 @@ class TournamentController extends Controller
                 'actions' => array(
                     'userMenu',
                     'inscriptionStatus',
+                    'uploadPhotoFolio',
                 ),
                 'users' => array(
                     '@'
@@ -78,7 +79,6 @@ class TournamentController extends Controller
         if(!Admin::model()->isAdmin()){
     		$user = Users::model()->findByPk(Yii::app()->user->id);
     		$next_tournament = Tournament::model()->getNextTournament();
-    		
     		$user_tournament_pokemon = TournamentPlayerPokemon::model()->findAllByAttributes(array(
     			'id_tournament_player' => Yii::app()->user->id,
     			'id_tournament'		   => $next_tournament->id
@@ -88,6 +88,10 @@ class TournamentController extends Controller
     			'id_tournament_player' => Yii::app()->user->id,
     		));
 
+            if(!TournamentPlayerFolio::model()->hasUploadedPhoto(Yii::app()->user->id)){
+                Yii::app()->getComponent('user')->setFlash('error',
+                '<b>Ojo!</b> Recuerda que debes de subir tu foto de folio para completar tu registro. Revisa la opción "subir foto de folio" en el menú de la derecha.');
+            }
     		$this->render('userMenu', array(
     			'username' 					=> $user->mail,
     			'next_tournament'			=> beautify($next_tournament->name),
@@ -438,6 +442,38 @@ class TournamentController extends Controller
             'banned_pokemon'    => TournamentPokemonBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset)),
             'banned_items'      => TournamentItemBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset)),
             'banned_moves'      => TournamentMoveBan::model()->findAllByAttributes(array('id_ruleset' => $model->id_ruleset)),
+        ));
+    }
+
+    /**
+     *  Renders the folio photo upload form
+     */
+    public function actionUploadPhotoFolio()
+    {
+        $model = new Tournament('uploadPhoto');
+        if(isset($_POST['Tournament'])){
+            if($model->validate()){
+                $model->photo_folio_upload   = CUploadedFile::getInstance($model,'photo_folio_upload');
+            
+                $last_id = Yii::app()->db->createCommand()->select('max(id) as max')->from('tournament_player_folio')->queryScalar()+1;
+                $id_tournament = Tournament::model()->getNextTournament()->id;
+                $photo_name = $id_tournament.'_'.$last_id.'.'.$model->photo_folio_upload->extensionName;
+                
+                $folio = new TournamentPlayerFolio();
+                $folio->id_tournament_player = Yii::app()->user->id;
+                $folio->id_tournament        = $id_tournament;
+                $folio->folio_photo          = $photo_name;
+                $folio->folio                = -1;
+
+                if($folio->save()){
+                    $model->photo_folio_upload->saveAs("./images/foto_folio/".$photo_name);
+                    Yii::app()->user->setFlash('success', "Se subió tu foto con éxito y será revisada en cuanto antes por un administrador.");
+                    $this->redirect('userMenu');
+                }
+            }
+        }
+        $this->render('uploadPhotoFolio', array(
+            'model' => $model
         ));
     }
 }

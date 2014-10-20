@@ -20,6 +20,8 @@
  */
 class Tournament extends CActiveRecord
 {
+	public $photo_folio_upload;
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -36,8 +38,9 @@ class Tournament extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date', 'required'),
+			array('name, date', 'required', 'on' => 'create'),
 			array('id_ruleset, total_folio_number, folio_starting_from, active', 'numerical', 'integerOnly'=>true),
+            array('photo_folio_upload', 'file', 'allowEmpty'=>false, 'safe'=>true, 'types'=>'jpg,png,gif', 'on' => 'uploadPhoto', 'message' => 'Se debe de subir una foto en formato jpg, png o gif.'),
 			array('name', 'length', 'max'=>30),
 			array('date', 'length', 'max'=>32),
 			// The following rule is used by search().

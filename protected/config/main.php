@@ -62,6 +62,7 @@ return array(
                 'torneo/resumenTorneo'              => 'tournament/tournament/tournamentSummary',       //Admin view for a quick summary of every player in a certain tourament
                 'torneo/estadoInscripcion'          => 'tournament/tournament/inscriptionStatus',       //User view to check the inscription status
                 'torneo/menuUsuario'                => 'tournament/tournament/userMenu',                //User menu
+                'torneo/subirFolio'                 => 'tournament/tournament/uploadPhotoFolio',        //Folio photo upload form.
                 'torneo/vistaAutorizar'             => 'tournament/tournament/authorizeView',           //Admin view to pick a player to authorize
                 'torneo/autorizar/<id:\d+>'         => 'tournament/tournament/authorize',               //View for the admin to actually authorize a player
                 'torneo/verEquipoJugador'           => 'tournament/tournamentPokemon/viewPlayerTeam',   //View for the admin to check for players teams

@@ -23,19 +23,10 @@ $this->breadcrumbs=array(
 			<?php $this->renderPartial('_userTeam', array(
 				'pokeymans' => $user_tournament_pokemon
 			)); ?>
-
 		<?php endif; ?>
 
 		<!-- Aquí podría ir un separador o algo así -->
 		 <div class='clear'> &nbsp; </div> 
-		<?php if(!is_null($next_tournament)&&(false)): //TODO: Check later?>
-			<h2> Todos mis Pokémon </h2>
-
-			<?php $this->renderPartial('_userTeam', array(
-				'pokeymans' => $user_pokemon
-			)); ?>
-
-		<?php endif; ?>
 	</div>
 </div>
 
@@ -44,9 +35,11 @@ $this->breadcrumbs=array(
 
 	<h4> Equipo Pokémon </h4>
 	<p> <?php echo CHtml::link('Agregar un Pokémon al equipo', array('/torneo/agregarPokemon')) ?> </p>
-	<!-- TODO: Check later <p> <?php //echo CHtml::link('Agregar o quitar Pokémon para un torneo en específico', array('/torneo/pokemonTorneo')) ?>. </p> -->
 	<p> <?php echo CHtml::link('Borrar o modificar Pokémon', array('/torneo/modificarPokemon')) ?> </p>
 
 	<h4> Torneo </h4>
+	<?php if(!TournamentPlayerFolio::model()->hasUploadedPhoto(Yii::app()->user->id)): ?>
+		<p> <?php echo CHtml::link('Subir foto de folio', array('/torneo/subirFolio')) ?> </p>
+	<?php endif ?>
 	<p> <?php echo CHtml::link('Ver estado de mi inscripción online', array('/torneo/estadoInscripcion')); ?> </p>
 </div>
