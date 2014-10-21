@@ -129,14 +129,15 @@ class BuscadorController extends Controller
 			//Grass -> Pokémon with sap sipper are inmune.
 			else if($inmunity == $type['grass']){
 				$criteria->addCondition('pokemonAbilities.ability_id = :sapsipper');
-				$params['sapsipper'] =  Abilities::model()->findByAttributes(array('identifier' => 'sap-sipper'))->id;				
+				$params['sapsipper'] =  Abilities::model()->findByAttributes(array('identifier' => 'sap-sipper'))->id;
 			}
-			//Electric -> Pokémon with ligthining rod, motor drive and volt absorb are inmune.
+			//Electric -> Ground pokémon or with ligthining rod, motor drive and volt absorb are inmune.
 			else if($inmunity == $type['electric']){
-				$criteria->addCondition('pokemonAbilities.ability_id = :lightningrod or pokemonAbilities.ability_id = :motordrive or pokemonAbilities.ability_id = :voltabsorb');
+				$criteria->addCondition('pokemonAbilities.ability_id = :lightningrod or pokemonAbilities.ability_id = :motordrive or pokemonAbilities.ability_id = :voltabsorb or pokemonTypes.type_id = :type');
 				$params['lightningrod'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'lightningrod'))->id;
-				$params['motordrive'] 	=  Abilities::model()->findByAttributes(array('identifier' => 'motor-drive'))->id;
+				$params['motordrive'] 		=  Abilities::model()->findByAttributes(array('identifier' => 'motor-drive'))->id;
 				$params['voltabsorb'] 		=  Abilities::model()->findByAttributes(array('identifier' => 'volt-absorb'))->id;
+				$params['type'] = $type['ground'];
 			}
 			//Psychic -> Dark type pokémon don't give a shit about psychic
 			else if($inmunity == $type['psychic']){

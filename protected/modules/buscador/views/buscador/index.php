@@ -39,6 +39,7 @@ $(".ability_results").children().hide();
 
 //Variables
 var gen_calculate 		= new Array(false, false, false, false, false, false);
+var stats 				= new Array(false, false, false, false, false, false, false);
 var moves 				= new Array(-1, -1, -1, -1);
 min_height_calculate 	= -1;
 max_height_calculate 	= -1;
