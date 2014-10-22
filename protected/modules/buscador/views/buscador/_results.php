@@ -2,19 +2,31 @@
 	<div class='search_results'>
 		<h3> Criterios de búsqueda agregados </h3>
 
-		<div class='height_results'>
-			<h4> Tamaño: </h4>
-			<p id='height_from'> - Desde <span class='height'> </span> [m] </p> 
-			<p id='height_to'> - Hasta <span class='height'> </span> [m] </p>
-			<div class='height_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>		
-		</div> <!-- end of height results -->
+		<div class="stats_results">
+			<div id='div_stats_result'>
+				<p> Que al nivel <span class='stat_nivel'> </span> tenga al menos: </p>
+				<ul>
+					<li class='stats_hp'>   </li>
+					<li class='stats_atk'>  </li>
+					<li class='stats_def'>  </li>
+					<li class='stats_spa'>  </li>
+					<li class='stats_spd'>  </li>
+					<li class='stats_spe'>  </li>
+				</ul>
+			</div>
+		</div>
 
-		<div class='weight_results'>
-			<h4> Peso: </h4>
-			<p id='weight_from'> - Desde <span class='weight'> </span> [kg] </p> 
-			<p id='weight_to'> - Hasta <span class='weight'> </span> [kg] </p>
-			<div class='weight_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>		
-		</div> <!-- end of weight results -->
+		<div class='move_results'>
+			<div id='div_move_result'>
+				<p> Que aprenda el(los) movimiento(s): <ul class='type' id='move_results'> </ul> </p>
+				<div class='move_remove' id='move_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
+			</div>
+		</div> <!-- end of move results -->
+
+		<div class='ability_results'>
+			<p> Que tenga la habilidad: <span class='ability' id='ability_results'> </span> </p>
+			<div class='ability_remove'> <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar'> </div> 
+		</div>
 
 		<div class='type_results'>
 			<div id='div_type_1_result'>
@@ -60,17 +72,19 @@
 			</div>
 		</div>
 
-		<div class='move_results'>
-			<div id='div_move_result'>
-				<p> Que aprenda el(los) movimiento(s): <ul class='type' id='move_results'> </ul> </p>
-				<div class='move_remove' id='move_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>
-			</div>
-		</div> <!-- end of move results -->
+		<div class='height_results'>
+			<h4> Tamaño: </h4>
+			<p id='height_from'> - Desde <span class='height'> </span> [m] </p> 
+			<p id='height_to'> - Hasta <span class='height'> </span> [m] </p>
+			<div class='height_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>		
+		</div> <!-- end of height results -->
 
-		<div class='ability_results'>
-			<p> Que tenga la habilidad: <span class='ability' id='ability_results'> </span> </p>
-			<div class='ability_remove'> <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar'> </div> 
-		</div>
+		<div class='weight_results'>
+			<h4> Peso: </h4>
+			<p id='weight_from'> - Desde <span class='weight'> </span> [kg] </p> 
+			<p id='weight_to'> - Hasta <span class='weight'> </span> [kg] </p>
+			<div class='weight_remove'>  <img src='<?php echo imageDir()?>/buscador/remove.png' alt='sacar' /></div>		
+		</div> <!-- end of weight results -->
 
 	</div>
 <!-- END OF RESULTS -->

@@ -236,3 +236,7 @@ div.search-form {
 .operations li a:hover {
 	background: #80CFFF;
 }
+
+.stat{
+	width: 50px;
+}

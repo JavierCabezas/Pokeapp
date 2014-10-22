@@ -36,6 +36,7 @@ $(".move_results").children().hide();
 $(".egg_results").children().hide();
 $(".move_results").children().hide();
 $(".ability_results").children().hide();
+$(".stats_results").children().hide();
 
 //Variables
 var gen_calculate 		= new Array(false, false, false, false, false, false);
@@ -55,6 +56,12 @@ move_2_calculate		= -1;
 move_3_calculate		= -1;
 move_4_calculate		= -1;
 ability_calculate 		= -1;
+stat_hp_calculate 		= -1;
+stat_def_calculate 		= -1;
+stat_atk_calculate 		= -1;
+stat_def_calculate 		= -1;
+stat_spa_calculate 		= -1;
+stat_spd_calculate		= -1;
 
 //Height
 $(".height_form").change(function(){
@@ -364,6 +371,29 @@ $(".ability_remove").click(function(){
 });
 //end of abilities
 
+//Start of stats 
+$(".stat").change(function(e) {
+	$(".stats_results").children().hide();
+	val = e.target.value;
+	if ($("#stats_hp").val()){
+		$(".stats_results").children().show();
+		$(".stats_hp").html(val+' Hit points (puntos de impacto)');
+		$(".stats_hp").show();
+	}
+	else{
+		$(".stats_hp").hide();
+	}
+
+	if ($("#stats_atk").val()){
+		$(".stats_results").children().show();
+		$(".stats_atk").show();
+	}
+	else{
+		$(".stats_atk").hide();
+	}
+
+});
+//End of stats
 
 
 //Ajax link.
