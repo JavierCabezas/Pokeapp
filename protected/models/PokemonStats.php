@@ -17,6 +17,14 @@
  */
 class PokemonStats extends CActiveRecord
 {
+	const HP 	= 1;
+	const ATK 	= 2;
+	const DEF	= 3;
+	const SPA	= 4;
+	const SPD	= 5;
+	const SPE	= 6;
+
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -128,7 +136,7 @@ class PokemonStats extends CActiveRecord
 	/**
 	 * Returns any stat (other than HP since it uses a different algorithm)
 	 * @param int stat_id the identifier of the stat (2 atk, 3 def, 4spa, ... ).
-	 * @param int base_stat the base  stat for the pokémon (for example 125 for gardevoir's special attack or 80 for her speed).
+	 * @param int base_stat the base stat for the pokémon (for example 125 for gardevoir's special attack or 80 for her speed).
 	 * @param int id_nature the nature identifier.
 	 * @param int level the level of the pokémon.
 	 * @param int ev_stat the effort points in the stat.
@@ -173,5 +181,33 @@ class PokemonStats extends CActiveRecord
 			$changed_stat_multiplier = Stats::model()->getStatChangeMultiplier($stat_changes);
 		}
 		return intval( (( $iv_stat + (2*$base_stat) + intval($ev_stat/4))*$level/100 + 5)*$nature_multiplier * $changed_stat_multiplier * $item_multiplier);
+	}
+
+	/** 
+	 *	Returns how much base stats I need to get a certain stat ammount depending on the pokémon level, nature, ev and iv.
+	 *	@param integer stat_ammout the stat and I want to reach.
+	 *	@param integer id_stat the identifier of the stat to calculate the base to.
+	 *	@param integer ev the ev invested in that stat.
+	 *	@param integer iv the iv invested in the stat.
+	 *	@param integer id_nature the identifier of the nature to get the calculation.
+	 *	@return integer the base stat needed.
+	 */
+	public function howMuchBaseINeed($stat_ammount, $id_stat, $level, $ev, $iv, $id_nature){
+		//Nature multiplier
+		$nature = Nature::model()->findByPk($id_nature);
+		if($nature->decreased_stat_id == $nature->increased_stat_id)
+			$nature_multiplier = 1;
+		elseif($nature->increased_stat_id == $id_stat)
+			$nature_multiplier = 1.1;
+		elseif($nature->decreased_stat_id == $id_stat)
+			$nature_multiplier = 0.9;
+		else
+			$nature_multiplier = 1;	
+
+		if($id_stat == PokemonStats::HP){
+			return intval(50*($stat_ammount - 10)/$level - intval($iv/2) - intval($ev/8) - 50);
+		}else{
+			return intval(100/(2*$level) * ($stat_ammount / $nature_multiplier - 5) - intval($iv/2) - intval($ev/8)); 
+		}
 	}
 }

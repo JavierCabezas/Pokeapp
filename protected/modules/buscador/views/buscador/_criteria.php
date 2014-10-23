@@ -111,31 +111,51 @@
 					</div>
 					<div id="acc_stats" class="accordion-body collapse">
 						<div class="accordion-inner">
-								<p> Que, al nivel <input type="number" class='stat' id="stats_nivel" value="100" min="1" max="100"> pueda alcanzar de stats: </p>
+								<p> Que al nivel <input type="number" class='stat' id="stats_nivel" value="100" min="1" max="100">  
+								    y con naturaleza <?php echo CHtml::dropDownList('stats_nature', null, Nature::model()->dropdownNature(), array('class' => 'stat'))  ?>
+								    pueda alcanzar ... </p>
 								<table>
+									<tr>
+										<th> Stat </th>
+										<th> Cantidad </th>
+										<th> IV </th>
+										<th> EV </th>
+									</tr>
 									<tr> 
 										<td> Hit points (Puntos impacto) </td>
-										<td> <input type="number" class='stat' id="stats_hp" min="1" max="714"> </td>
+										<td> <input type="number" class='stat' id="stats_hp" min="11" max="714"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_hp" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_hp" min="1" max="31"> </td>
 									</tr>
 									<tr>
 										<td> Attack (Ataque) </td>
-										<td> <input type="number" class='stat' id="stats_atk" min="1" max="526"> </td>
+										<td> <input type="number" class='stat' id="stats_atk" min="5" max="526"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_atk" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_atk" min="1" max="31"> </td>
 									</tr>
 									<tr>
 										<td> Defence (Defensa) </td>
-										<td> <input type="number" class='stat' id="stats_def" min="1" max="614"> </td>
+										<td> <input type="number" class='stat' id="stats_def" min="5" max="614"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_def" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_def" min="1" max="31"> </td>
 									</tr>
 									<tr>
 										<td> Sp. Attack (Ataque especial) </td>
-										<td> <input type="number" class='stat' id="stats_spa" min="1" max="535"> </td>
+										<td> <input type="number" class='stat' id="stats_spa" min="5" max="535"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_spa" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_spa" min="1" max="31"> </td>
 									</tr>
 									<tr>
 										<td> Dp. Defence (Defensa especial) </td>
-										<td> <input type="number" class='stat' id="stats_spd" min="1" max="614"> </td>
+										<td> <input type="number" class='stat' id="stats_spd" min="5" max="614"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_spd" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_spd" min="1" max="31"> </td>
 									</tr>
 									<tr>
 										<td> Speed (Velocidad) </td>
-										<td> <input type="number" class='stat' id="stats_spe" min="1" max="504"> </td>
+										<td> <input type="number" class='stat' id="stats_spe" min="5" max="504"> </td>
+										<td> <input type="number" value="252"  class='stat' id="ev_spe" min="1" max="252"> </td>
+										<td> <input type="number" value="31"   class='stat' id="iv_spe" min="1" max="31"> </td>
 									</tr>											
 								</table>
 						</div>

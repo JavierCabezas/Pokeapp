@@ -26,14 +26,15 @@ class BuscadorController extends Controller
 	 * 	Recieves the ajax call from the index view to render the pokémon to show after using the filters.
 	 *	The value "-1" is used as a "non selected" option. This means that for each one of the filters it first checks if the value is -1, in that case it igores the filter and checks the next one.
 	 * 	Right now it has the following filters:
-	 *	 - Height (from min value to max value, both of them optional.)
-	 *	 - Weight (similar to height)
-	 *	 - Types (It checks just one type or both of them)
-	 *	 - Inmunity to (another type)
-	 *	 - Generations
+	 *	 - Height: From min value to max value, both of them optional.
+	 *	 - Weight: Similar to height
+	 *	 - Types: It checks just one type or both of them.
+	 *	 - Generations : Self explanatory.
+	 *   - Ability: Also SE.
+	 *	 - Inmunities: Checks if the pokémon is imune to certain type. It can be inmune because of typing (like dark its inmune to psychic) or by ability (like how volt absorb grants electric inmunity).
+	 *   - Stats: Checks if the pokémon can reach X on a certain stat at a Y level.
 	 * 	 
 	 *	@todo: Egg group
-	 *	@todo: Ability
 	 *	@todo: Shape
 	 */
 	public function actionSearchPokemon()
@@ -44,8 +45,103 @@ class BuscadorController extends Controller
 			'pokemonTypes',
 			'species',
 			'pokemonAbilities',
+			'pokemonStats',
 		);
 		$criteria->together = true;
+
+
+		//START OF STATS
+		/*
+		$params['stat_hp']  = PokemonStats::HP;
+		$params['stat_atk'] = PokemonStats::ATK;
+		$params['stat_def'] = PokemonStats::DEF;
+		$params['stat_spa'] = PokemonStats::SPA;
+		$params['stat_spd'] = PokemonStats::SPD;
+		$params['stat_spe'] = PokemonStats::SPE;
+		$params['hp_min']   = 1;
+		$params['atk_min']  = 1;
+		$params['def_min']  = 1;
+		$params['spa_min']  = 1;
+		$params['spd_min']  = 1;
+		$params['spe_min']  = 1;
+
+		$id_nature = intval($_POST['stat_nat']);
+		$level     = intval($_POST['stat_level']) == 0?1:intval($_POST['stat_level']);
+		if($_POST['hp'] != -1){
+			$hp 	= intval($_POST['hp']);
+			$ev_hp  = intval($_POST['ev_hp']);
+			$iv_hp  = intval($_POST['iv_hp']); 
+			$params['hp_min']  = PokemonStats::model()->howMuchBaseINeed($hp, PokemonStats::HP, $level, $ev_hp, $iv_hp, $id_nature);
+		}
+
+		if($_POST['atk'] != -1){
+			$atk 	= intval($_POST['atk']);
+			$ev_atk = intval($_POST['ev_atk']);
+			$iv_atk = intval($_POST['iv_atk']); 
+			$params['atk_min']  = PokemonStats::model()->howMuchBaseINeed($atk, PokemonStats::ATK, $level, $ev_atk, $iv_atk, $id_nature);
+		}
+
+		if($_POST['def'] != -1){
+			$def 	= intval($_POST['def']);
+			$ev_def = intval($_POST['ev_def']);
+			$iv_def = intval($_POST['iv_def']); 
+			$params['def_min']  = PokemonStats::model()->howMuchBaseINeed($def, PokemonStats::DEF, $level, $ev_def, $iv_def, $id_nature);
+		}
+
+		if($_POST['spa'] != -1){
+			$spa 	= intval($_POST['spa']);
+			$ev_spa = intval($_POST['ev_spa']);
+			$iv_spa = intval($_POST['iv_spa']); 
+			$params['spa_min']  = PokemonStats::model()->howMuchBaseINeed($spa, PokemonStats::SPA, $level, $ev_spa, $iv_spa, $id_nature);
+		}
+
+		if($_POST['spd'] != -1){
+			$spd 	= intval($_POST['spd']);
+			$ev_spd = intval($_POST['ev_spd']);
+			$iv_spd = intval($_POST['iv_spd']); 
+			$params['spd_min']  = PokemonStats::model()->howMuchBaseINeed($spd, PokemonStats::SPD, $level, $ev_spd, $iv_spd, $id_nature);
+		}
+
+		if($_POST['spe'] != -1){
+			$spe 	= intval($_POST['spe']);
+			$ev_spe = intval($_POST['ev_spe']);
+			$iv_spe = intval($_POST['iv_spe']); 
+			$params['spe_min']  = PokemonStats::model()->howMuchBaseINeed($spe, PokemonStats::SPE, $level, $ev_spe, $iv_spe, $id_nature);
+		}
+*/
+        
+        $criteria->join ='join pokemonStats as B on pokemon_id = B.pokemon_id';
+        $criteria->join ='join pokemonStats as C on pokemon_id = C.pokemon_id';
+        //$criteria->join ='inner join pokemon_stats as D on pokemon_id = D.pokemon_id';
+        //$criteria->join ='inner join pokemon_stats as E on pokemon_id = E.pokemon_id';
+       	//$criteria->join ='inner join pokemon_stats as F on pokemon_id = F.pokemon_id';
+        
+        //$criteria->condition = 'col_a.stat_id = 1 and col_a.base_stat >= 10';
+        $criteria->condition = 'B.stat_id = 2 and B.base_stat >= 100';
+        $criteria->condition = 'C.stat_id = 3 and C.base_stat >= 100';
+        //$criteria->condition = 'D.stat_id = 4 and D.base_stat >= 40';
+        //$criteria->condition = 'E.stat_id = 5 and E.base_stat >= 50';
+        //$criteria->condition = 'F.stat_id = 6 and F.base_stat >= 60';
+
+/**
+ * 	//$criteria->addCondition('pokemonStats.stat_id = :stat_atk and base_stat >= :atk_min');
+ * SELECT  DISTINCT  A.pokemon_id
+ * from pokemon_stats as A 
+ * inner join pokemon_stats as B on A.pokemon_id = B.pokemon_id
+ * inner join pokemon_stats as C on A.pokemon_id = C.pokemon_id
+ * inner join pokemon_stats as D on A.pokemon_id = D.pokemon_id
+ * inner join pokemon_stats as E on A.pokemon_id = E.pokemon_id
+ * inner join pokemon_stats as F on A.pokemon_id = F.pokemon_id
+ * inner join pokemon_stats as G on A.pokemon_id = G.pokemon_id
+ * 
+ * where A.stat_id = 1 and A.base_stat > 0
+ * and B.stat_id = 2 and B.base_stat > 0
+ * and C.stat_id = 3 and C.base_stat > 0
+ * and D.stat_id = 4 and D.base_stat > 0
+ * and F.stat_id = 5 and D.base_stat > 0
+ * and G.stat_id = 6 and G.base_stat > 0
+**/
+		//END OF STATS
 
 		//HEIGHT
 		if($_POST['min_height'] != -1 ){
@@ -57,7 +153,6 @@ class BuscadorController extends Controller
 			$params['max_height'] =  intval($_POST['max_height']);
 		}
 		//END OF HEIGHT
-
 
 		//WEIGHT
 		if($_POST['min_weight'] != -1 ){
@@ -86,7 +181,7 @@ class BuscadorController extends Controller
 			$params['type_2'] = intval($_POST['type_2']);
 		}
 		//END OF TYPES
-		
+
 		//INMUNITY
 		if($_POST['inmunity'] != -1){
 			$inmunity = intval($_POST['inmunity']);

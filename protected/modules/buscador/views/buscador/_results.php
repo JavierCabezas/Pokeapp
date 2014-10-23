@@ -4,7 +4,7 @@
 
 		<div class="stats_results">
 			<div id='div_stats_result'>
-				<p> Que al nivel <span class='stat_nivel'> </span> tenga al menos: </p>
+				<p> Que al nivel <span class='stat_nivel'> </span> y con naturaleza <span class='stat_nature'> </span> pueda alcanzar al menos un ... </p>
 				<ul>
 					<li class='stats_hp'>   </li>
 					<li class='stats_atk'>  </li>

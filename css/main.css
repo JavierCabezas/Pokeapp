@@ -237,6 +237,10 @@ div.search-form {
 	background: #80CFFF;
 }
 
-.stat{
+input.stat{
 	width: 50px;
+}
+
+select.stat{
+	width: 150px;
 }
