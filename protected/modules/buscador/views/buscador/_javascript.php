@@ -34,6 +34,25 @@ move_2_calculate		= -1;
 move_3_calculate		= -1;
 move_4_calculate		= -1;
 ability_calculate 		= -1;
+stat_nat 				= 1;
+hp_calculate  			= -1;
+atk_calculate 			= -1;
+def_calculate 			= -1;
+spa_calculate 			= -1;
+spd_calculate 			= -1;
+spe_calculate 			= -1;
+ev_hp_calculate 		= -1;
+ev_atk_calculate 		= -1;
+ev_def_calculate 		= -1;
+ev_spa_calculate 		= -1;
+ev_spd_calculate 		= -1;
+ev_spe_calculate 		= -1;
+iv_hp_calculate 		= -1;
+iv_atk_calculate 		= -1;
+iv_def_calculate 		= -1;
+iv_spa_calculate 		= -1;
+iv_spd_calculate 		= -1;
+iv_spe_calculate 		= -1;
 
 //Height
 $(".height_form").change(function(){
@@ -361,25 +380,25 @@ $(".stat").change(function(e) {
 		$(".stats_results").children().hide();
 	}
 
-	hp  				 = $("#stats_hp").val();
-	atk 				 = $("#stats_atk").val()
-	def 				 = $("#stats_def").val()
-	spa 				 = $("#stats_spa").val()
-	spd 				 = $("#stats_spd").val()
-	spe 				 = $("#stats_spe").val()
-	ev_hp 				 = $("#ev_hp").val()
-	ev_atk 				 = $("#ev_atk").val()
-	ev_def 				 = $("#ev_def").val()
-	ev_spa 				 = $("#ev_spa").val()
-	ev_spd 				 = $("#ev_spd").val()
-	ev_spe 				 = $("#ev_spe").val()
-	iv_hp 				 = $("#iv_hp").val()
-	iv_atk 				 = $("#iv_atk").val()
-	iv_def 				 = $("#iv_def").val()
-	iv_spa 				 = $("#iv_spa").val()
-	iv_spd 				 = $("#iv_spd").val()
-	iv_spe 				 = $("#iv_spe").val()
-	stat_nat 			 = $("#stats_nature").val()
+	hp_calculate  		 = $("#stats_hp").val();
+	atk_calculate 		 = $("#stats_atk").val()
+	def_calculate 		 = $("#stats_def").val()
+	spa_calculate 		 = $("#stats_spa").val()
+	spd_calculate 		 = $("#stats_spd").val()
+	spe_calculate 		 = $("#stats_spe").val()
+	ev_hp_calculate 	 = $("#ev_hp").val()
+	ev_atk_calculate 	 = $("#ev_atk").val()
+	ev_def_calculate 	 = $("#ev_def").val()
+	ev_spa_calculate 	 = $("#ev_spa").val()
+	ev_spd_calculate 	 = $("#ev_spd").val()
+	ev_spe_calculate 	 = $("#ev_spe").val()
+	iv_hp_calculate 	 = $("#iv_hp").val()
+	iv_atk_calculate 	 = $("#iv_atk").val()
+	iv_def_calculate 	 = $("#iv_def").val()
+	iv_spa_calculate 	 = $("#iv_spa").val()
+	iv_spd_calculate 	 = $("#iv_spd").val()
+	iv_spe_calculate 	 = $("#iv_spe").val()
+	stat_nat_calculate 	 = $("#stats_nature").val()
 	stat_nat_t			 = $("#stats_nature option:selected").text();
 	stat_level_calculate = $("#stats_nivel").val();
 
@@ -387,64 +406,58 @@ $(".stat").change(function(e) {
 	$(".stat_nature").html(stat_nat_t)
 
 	//Hide or show any individual stat depending on the user selection.
-	if (hp){
-		$(".stats_hp").html('Con '+ev_hp+' EV y '+iv_hp+' IV, <b>' + hp + ' Hit points </b> (puntos de impacto)');
+	if (hp_calculate != -1){
+		$(".stats_hp").html('Con '+ev_hp_calculate+' EV y '+iv_hp_calculate+' IV, <b>' + hp_calculate + ' Hit points </b> (puntos de impacto)');
 		$(".stats_hp").show();
-		stats_calculate[0] = hp;
 	}
 	else{
 		$(".stats_hp").hide();
-		stats_calculate[0] = -1;
+		hp_calculate = -1;
 	}
 
-	if (atk){
-		$(".stats_atk").html('Con '+ev_atk+' EV y '+iv_atk+' IV, <b>' + atk + ' En Attack </b> (ataque)');
+	if (atk_calculate){
+		$(".stats_atk").html('Con '+ev_atk_calculate+' EV y '+iv_atk_calculate+' IV, <b>' + atk_calculate + ' En Attack </b> (ataque)');
 		$(".stats_atk").show();
-		stats_calculate[1] = atk;
 	}
 	else{
 		$(".stats_atk").hide();
-		stats_calculate[1] = -1;
+		atk_calculate = -1;
 	}
 
-	if (def){
-		$(".stats_def").html('Con '+ev_def+' EV y '+iv_def+' IV, <b>' + def + ' En Defence </b> (defensa)');
+	if (def_calculate){
+		$(".stats_def").html('Con '+ev_def_calculate+' EV y '+iv_def_calculate+' IV, <b>' + def_calculate + ' En Defence </b> (defensa)');
 		$(".stats_def").show();
-		stats_calculate[2] = def;
 	}
 	else{
 		$(".stats_def").hide();
-		stats_calculate[2] = -1;
+		def_calculate = -1;
 	}
 
-	if (spa){
-		$(".stats_spa").html('Con '+ev_spa+' EV y '+iv_spa+' IV, <b>' + spa + ' En Special Attack </b> (ataque especial)');
+	if (spa_calculate){
+		$(".stats_spa").html('Con '+ev_spa_calculate+' EV y '+iv_spa_calculate+' IV, <b>' + spa_calculate + ' En Special Attack </b> (ataque especial)');
 		$(".stats_spa").show();
-		stats_calculate[3] = spa;
 	}
 	else{
 		$(".stats_spa").hide();
-		stats_calculate[3] = -1;
+		spa_calculate = -1;
 	}
 
-	if (spd){
-		$(".stats_spd").html('Con '+ev_spd+' EV y '+iv_spd+' IV, <b>' + spd + ' En Special Defence </b> (defensa especial)');
+	if (spd_calculate){
+		$(".stats_spd").html('Con '+ev_spd_calculate+' EV y '+iv_spd_calculate+' IV, <b>' + spd_calculate + ' En Special Defence </b> (defensa especial)');
 		$(".stats_spd").show();
-		stats_calculate[4] = spd;
 	}
 	else{
 		$(".stats_spd").hide();
-		stats_calculate[4] = -1;
+		spd_calculate = -1;
 	}
 
-	if (spe){
-		$(".stats_spe").html('Con '+ev_spe+' EV y '+iv_spe+' IV, <b>' + spe + ' En Speed </b> (velocidad)');
+	if (spe_calculate){
+		$(".stats_spe").html('Con '+ev_spe_calculate+' EV y '+iv_spe_calculate+' IV, <b>' + spe_calculate + ' En Speed </b> (velocidad)');
 		$(".stats_spe").show();
-		stats_calculate[5] = spe;
 	}
 	else{
 		$(".stats_spe").hide();
-		stats_calculate[5] = -1;
+		spe_calculate = -1;
 	}
 });
 //End of stats
@@ -477,26 +490,26 @@ $('#search-data').click(function() {
 				move3: 		move_3_calculate,
 				move4: 		move_4_calculate,
 				ability: 	ability_calculate,
-				hp: 		stats_calculate[0],
-				atk: 		stats_calculate[1],
-				def: 		stats_calculate[2],
-				spa: 		stats_calculate[3],
-				spd: 		stats_calculate[4],
-				spe: 		stats_calculate[5],
+				hp: 		hp_calculate,
+				atk: 		atk_calculate,
+				def: 		def_calculate,
+				spa: 		spa_calculate,
+				spd: 		spd_calculate,
+				spe: 		spe_calculate,
 				stat_nat:   stat_nat,
 				stat_level: stat_level_calculate,
-				ev_hp: 		ev_hp,
-				ev_atk: 	ev_atk,
-				ev_def: 	ev_def,
-				ev_spa: 	ev_spa,
-				ev_spd: 	ev_spd,
-				ev_spe: 	ev_spe,
-				iv_hp: 		iv_hp,
-				iv_atk: 	iv_atk,
-				iv_def: 	iv_def,
-				iv_spa: 	iv_spa,
-				iv_spd: 	iv_spd,
-				iv_spe: 	iv_spe,
+				ev_hp: 		ev_hp_calculate,
+				ev_atk: 	ev_atk_calculate,
+				ev_def: 	ev_def_calculate,
+				ev_spa: 	ev_spa_calculate,
+				ev_spd: 	ev_spd_calculate,
+				ev_spe: 	ev_spe_calculate,
+				iv_hp: 		iv_hp_calculate,
+				iv_atk: 	iv_atk_calculate,
+				iv_def: 	iv_def_calculate,
+				iv_spa: 	iv_spa_calculate,
+				iv_spd: 	iv_spd_calculate,
+				iv_spe: 	iv_spe_calculate,
 
     		} ,
     	'success': function(data) {

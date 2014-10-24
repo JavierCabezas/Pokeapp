@@ -49,80 +49,86 @@ class BuscadorController extends Controller
 		);
 		$criteria->together = true;
 
-
-		//START OF STATS
-		/*
+		//START OF STATS		
 		$params['stat_hp']  = PokemonStats::HP;
-		$params['stat_atk'] = PokemonStats::ATK;
-		$params['stat_def'] = PokemonStats::DEF;
-		$params['stat_spa'] = PokemonStats::SPA;
-		$params['stat_spd'] = PokemonStats::SPD;
-		$params['stat_spe'] = PokemonStats::SPE;
 		$params['hp_min']   = 1;
-		$params['atk_min']  = 1;
-		$params['def_min']  = 1;
-		$params['spa_min']  = 1;
-		$params['spd_min']  = 1;
-		$params['spe_min']  = 1;
+		$query_atk_ini = $query_def_ini = $query_spa_ini = $query_spd_ini = $query_spe_ini = "";
+		$query_atk_fin = $query_def_fin = $query_spa_fin = $query_spd_fin = $query_spe_fin = ""; 
 
 		$id_nature = intval($_POST['stat_nat']);
 		$level     = intval($_POST['stat_level']) == 0?1:intval($_POST['stat_level']);
 		if($_POST['hp'] != -1){
-			$hp 	= intval($_POST['hp']);
-			$ev_hp  = intval($_POST['ev_hp']);
-			$iv_hp  = intval($_POST['iv_hp']); 
-			$params['hp_min']  = PokemonStats::model()->howMuchBaseINeed($hp, PokemonStats::HP, $level, $ev_hp, $iv_hp, $id_nature);
+			$hp 				= intval($_POST['hp']);
+			$ev_hp  			= intval($_POST['ev_hp']);
+			$iv_hp  			= intval($_POST['iv_hp']);
+			$params['hp_min']  	= PokemonStats::model()->howMuchBaseINeed($hp, PokemonStats::HP, $level, $ev_hp, $iv_hp, $id_nature);
 		}
 
 		if($_POST['atk'] != -1){
-			$atk 	= intval($_POST['atk']);
-			$ev_atk = intval($_POST['ev_atk']);
-			$iv_atk = intval($_POST['iv_atk']); 
+			$params['stat_atk'] = PokemonStats::ATK;
+			$atk 				= intval($_POST['atk']);
+			$ev_atk 			= intval($_POST['ev_atk']);
+			$iv_atk 			= intval($_POST['iv_atk']); 
 			$params['atk_min']  = PokemonStats::model()->howMuchBaseINeed($atk, PokemonStats::ATK, $level, $ev_atk, $iv_atk, $id_nature);
+			$query_atk_ini 	    = 'inner join pokemon_stats as ATK on HP.pokemon_id = ATK.pokemon_id';
+			$query_atk_fin 		= 'and ATK.stat_id = :stat_atk  and ATK.base_stat > :atk_min';
 		}
 
 		if($_POST['def'] != -1){
-			$def 	= intval($_POST['def']);
-			$ev_def = intval($_POST['ev_def']);
-			$iv_def = intval($_POST['iv_def']); 
+			$params['stat_def'] = PokemonStats::DEF;
+			$def 				= intval($_POST['def']);
+			$ev_def 			= intval($_POST['ev_def']);
+			$iv_def 			= intval($_POST['iv_def']); 
 			$params['def_min']  = PokemonStats::model()->howMuchBaseINeed($def, PokemonStats::DEF, $level, $ev_def, $iv_def, $id_nature);
+			$query_def_ini 	    = 'inner join pokemon_stats as DEF on HP.pokemon_id = DEF.pokemon_id';
+			$query_def_fin 		= 'and DEF.stat_id = :stat_def  and DEF.base_stat > :def_min';
 		}
 
 		if($_POST['spa'] != -1){
-			$spa 	= intval($_POST['spa']);
-			$ev_spa = intval($_POST['ev_spa']);
-			$iv_spa = intval($_POST['iv_spa']); 
+			$params['stat_spa'] = PokemonStats::SPA;
+			$spa 				= intval($_POST['spa']);
+			$ev_spa 			= intval($_POST['ev_spa']);
+			$iv_spa 			= intval($_POST['iv_spa']); 
 			$params['spa_min']  = PokemonStats::model()->howMuchBaseINeed($spa, PokemonStats::SPA, $level, $ev_spa, $iv_spa, $id_nature);
+			$query_spa_ini 	    = 'inner join pokemon_stats as SPA on HP.pokemon_id = SPA.pokemon_id';
+			$query_spa_fin 		= 'and SPA.stat_id = :stat_spa  and SPA.base_stat > :spa_min';
 		}
 
 		if($_POST['spd'] != -1){
-			$spd 	= intval($_POST['spd']);
-			$ev_spd = intval($_POST['ev_spd']);
-			$iv_spd = intval($_POST['iv_spd']); 
+			$params['stat_spd'] = PokemonStats::SPD;
+			$spd 				= intval($_POST['spd']);
+			$ev_spd 			= intval($_POST['ev_spd']);
+			$iv_spd 			= intval($_POST['iv_spd']); 
 			$params['spd_min']  = PokemonStats::model()->howMuchBaseINeed($spd, PokemonStats::SPD, $level, $ev_spd, $iv_spd, $id_nature);
+			$query_spd_ini 	    = 'inner join pokemon_stats as SPD on HP.pokemon_id = SPD.pokemon_id';
+			$query_spd_fin 		= 'and SPD.stat_id = :stat_spd  and SPD.base_stat > :spd_min';
 		}
 
 		if($_POST['spe'] != -1){
-			$spe 	= intval($_POST['spe']);
-			$ev_spe = intval($_POST['ev_spe']);
-			$iv_spe = intval($_POST['iv_spe']); 
-			$params['spe_min']  = PokemonStats::model()->howMuchBaseINeed($spe, PokemonStats::SPE, $level, $ev_spe, $iv_spe, $id_nature);
+			$params['stat_spe'] = PokemonStats::SPE;
+			$spe 				= intval($_POST['spe']);
+			$ev_spe 			= intval($_POST['ev_spe']);
+			$iv_spe 			= intval($_POST['iv_spe']); 
+			$params['spe_min']	= PokemonStats::model()->howMuchBaseINeed($spe, PokemonStats::SPE, $level, $ev_spe, $iv_spe, $id_nature);
+			$query_spe_ini		= 'inner join pokemon_stats as SPE on HP.pokemon_id = SPE.pokemon_id';
+			$query_spe_fin 		= 'and SPE.stat_id = :stat_spe  and SPE.base_stat > :spe_min';
 		}
-*/
-        
-        $criteria->join ='join pokemonStats as B on pokemon_id = B.pokemon_id';
-        $criteria->join ='join pokemonStats as C on pokemon_id = C.pokemon_id';
-        //$criteria->join ='inner join pokemon_stats as D on pokemon_id = D.pokemon_id';
-        //$criteria->join ='inner join pokemon_stats as E on pokemon_id = E.pokemon_id';
-       	//$criteria->join ='inner join pokemon_stats as F on pokemon_id = F.pokemon_id';
-        
-        //$criteria->condition = 'col_a.stat_id = 1 and col_a.base_stat >= 10';
-        $criteria->condition = 'B.stat_id = 2 and B.base_stat >= 100';
-        $criteria->condition = 'C.stat_id = 3 and C.base_stat >= 100';
-        //$criteria->condition = 'D.stat_id = 4 and D.base_stat >= 40';
-        //$criteria->condition = 'E.stat_id = 5 and E.base_stat >= 50';
-        //$criteria->condition = 'F.stat_id = 6 and F.base_stat >= 60';
+		$criteria->addCondition('
+			t.id IN (SELECT  DISTINCT  HP.pokemon_id
+						from pokemon_stats as HP 
+						'.$query_atk_ini.'
+						'.$query_def_ini.'
+						'.$query_spa_ini.'
+						'.$query_spd_ini.'
+						'.$query_spe_ini.'
 
+						where HP.stat_id  = :stat_hp   and HP.base_stat > :hp_min
+						  '.$query_atk_fin.'
+						  '.$query_def_fin.'
+						  '.$query_spa_fin.'
+						  '.$query_spd_fin.'
+						  '.$query_spe_fin.'
+					)');
 /**
  * 	//$criteria->addCondition('pokemonStats.stat_id = :stat_atk and base_stat >= :atk_min');
  * SELECT  DISTINCT  A.pokemon_id

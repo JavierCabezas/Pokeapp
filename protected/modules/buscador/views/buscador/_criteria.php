@@ -146,7 +146,7 @@
 										<td> <input type="number" value="31"   class='stat' id="iv_spa" min="1" max="31"> </td>
 									</tr>
 									<tr>
-										<td> Dp. Defence (Defensa especial) </td>
+										<td> Sp. Defence (Defensa especial) </td>
 										<td> <input type="number" class='stat' id="stats_spd" min="5" max="614"> </td>
 										<td> <input type="number" value="252"  class='stat' id="ev_spd" min="1" max="252"> </td>
 										<td> <input type="number" value="31"   class='stat' id="iv_spd" min="1" max="31"> </td>
