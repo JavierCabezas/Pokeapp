@@ -2,14 +2,78 @@
     float: left;
     width: 100%;
 }
+
 #column1 {
     margin-right: 50%;
 }
+
+#column1 .well .ability, #column1 .well .moves,
+#column1 .well .type, #column1 .well .stats,
+#column1 .well .inmunity, #column1 .well .gen,
+#column1 .well .color, #column1 .well .egg,
+#column1 .well .shape, #column1 .well .height,
+#column1 .well .weight {
+	width: 49%;
+	height: auto;
+	-webkit-border: 2pt solid #000;
+	-moz-border: 2pt solid #000;
+	border: 2pt solid #000;
+	float: left;
+}
+
+#column1 .well .ability a, #column1 .well .moves a,
+#column1 .well .type a, #column1 .well .stats a,
+#column1 .well .inmunity a, #column1 .well .gen a,
+#column1 .well .color a, #column1 .well .egg a,
+#column1 .well .shape a, #column1 .well .height a,
+#column1 .well .weight a {
+	color: #000;
+}
+
+#column1 .well .ability a:hover, #column1 .well .moves a:hover,
+#column1 .well .type a:hover, #column1 .well .stats a:hover,
+#column1 .well .inmunity a:hover, #column1 .well .gen a:hover,
+#column1 .well .color a:hover, #column1 .well .egg a:hover,
+#column1 .well .shape a:hover, #column1 .well .height a:hover,
+#column1 .well .weight a:hover {
+	color: #CCC;
+	text-decoration: none;
+}
+
+#column1 .well .stats,
+#column1 .well .moves {
+	width: 98.7%;
+}
+
 #column2 {
     float: left;
     width: 50%;
     margin-left: -50%;
 }
+
 #clear {
     clear: both;
+}
+
+#column2 .move_results p, #column2 .ability_results p,
+#column2 .type_results p, #column2 .inmunity_results p,
+#column2 .color_results p, #column2 .egg_results p,
+#column2 .height_results p, #column2 .weight_results p {
+	float: right;
+	width: 90%;
+}
+
+#column2 .move_remove, #column2 .ability_remove,
+#column2 .type_remove, #column2 .inmunity_remove,
+#column2 .color_remove, #column2 .egg_remove,
+#column2 .height_remove, #column2 .weight_remove {
+	float: left;
+	width: 5%;
+}
+
+#column2 .move_remove:hover, #column2 .ability_remove:hover,
+#column2 .type_remove:hover, #column2 .inmunity_remove:hover,
+#column2 .color_remove:hover, #column2 .egg_remove:hover,
+#column2 .height_remove:hover, #column2 .weight_remove:hover {
+	cursor: pointer;
 }
