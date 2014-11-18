@@ -295,7 +295,7 @@
 			</div> <!-- end of accordeon -->
 		
 			<div style="width:40%; margin-right:auto; margin-left:auto">
-				<input id="search-data" type="submit" value="Mostrar resultados!" />
+				<input id="search-data" type="submit" value="¡Mostrar resultados!" />
 			</div> <!-- End of search button -->
 		
 		</div> <!-- END OF SEARCH CRITERIA -->
