@@ -4,37 +4,37 @@
 
 <div id="pkmn_title">
 	<div class="avatar">
-		<?php echo $pokemon->species->image('moving') ?> 
+		<?php echo $pokemon->species->image('moving') ?>
+		<div class="name">
+			<p>#<?php echo $pokemon->species->id ?> (Generación #<?php echo $pokemon->generation ?>) </p>
+			<h2> <?php echo $pokemon->pokemonName ?> </h2>
+		</div>
 	</div>
 	<div class="info">
-		#<?php echo $pokemon->species->id ?> (Generación #<?php echo $pokemon->generation ?>).
-		<h2> <?php echo $pokemon->pokemonName ?> </h2>
-		<div class="info1">
-			<h4> Tamaño: </h4>
-			<?php echo $pokemon->height/10 ?> [m]
-		</div>
-		<div class="info2">
-			<h4> Peso: </h4>
-			<?php echo $pokemon->weight/10 ?> [kg]
-		</div>
-		<div class="info3">
-			<h4> Tipo(s): </h4>
+		<div class="type">
+			<h5> Tipo(s) </h5>
 			<?php foreach($types as $type): ?>
 				<?php echo $type->type->image() ?>
 			<?php endforeach ?>
 		</div>
-	</div>
-	<div class="other">
-		<div class="info1">
-			<h4> Color: </h4>
+		<div class="others">
+			<h5> Tamaño </h5>
+			<?php echo $pokemon->height/10 ?> [m]
+		</div>
+		<div class="others">
+			<h5> Peso </h5>
+			<?php echo $pokemon->weight/10 ?> [kg]
+		</div>
+		<div class="others">
+			<h5> Color </h5>
 			<?php echo $pokemon->species->color->colorName ?> 
 		</div>
-		<div class="info2">
-			<h4> Forma: </h4>
+		<div class="others">
+			<h5> Forma </h5>
 			<?php echo $pokemon->species->shape->shapeName ?> 
 		</div>
-		<div class="info3">
-			<h4> Grupo(s) huevo </h4>
+		<div class="egg">
+			<h5> Grupo(s) huevo </h5>
 			<ul>
 				<?php foreach($eggies as $eggie): ?>
 				<li> <?php echo $eggie->eggGroup->eggGroupName ?> </li>
@@ -44,18 +44,19 @@
 	</div>
 	<div class="hab">
 		<h3> Habilidades </h3>
-		<ul>
-		<?php foreach($abilities as $ability): ?>
-			<li> <?php echo  $ability->ability->abilityName ?> </li>
-		<?php endforeach ?>
-		</ul>
+		<div class="info">
+			<ul>
+			<?php foreach($abilities as $ability): ?>
+				<li> <?php echo  $ability->ability->abilityName ?> </li>
+			<?php endforeach ?>
+			</ul>
+		</div>
 	</div>
 </div>
 
-
-
-<h3> Resistencias e inmunidades: </h3>
+<h3 class="effective"> Resistencias e inmunidades </h3>
 <table class='typeTable'>
+
 	<thead>
 		<tr>
 			<th> Tipo </th>

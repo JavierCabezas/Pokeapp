@@ -79,7 +79,7 @@
 }
 
 #pkmn_title {
-	width: 97%;
+	width: 30%;
 	background-color: #FFF;
 	-webkit-border-radius: 5pt;
 	-moz-border-radius: 5pt;
@@ -87,27 +87,58 @@
 	padding: 2%;
 	margin-left: auto;
 	margin-right: auto;
+	float: left;
+	margin-right: 5%;
 }
 
 #pkmn_title .avatar {
 	float: left;
 	margin-right: 5%;
+	width: 100%;
 }
 
-#pkmn_title .info,
-#pkmn_title .other,
-#pkmn_title .hab {
+#pkmn_title .avatar img {
 	float: left;
-	margin-right: 1%;
+	margin-right: 5%;
+}
+
+#pkmn_title .avatar .name {
+	width: auto;
+	float: left;
+}
+
+#pkmn_title .avatar .name p,
+#pkmn_title .avatar .name h2 {
+	margin: 0;
+	float: left;
+	clear: both;
 }
 
 #pkmn_title .info,
-#pkmn_title .other {
-	width: 30%;	
+#pkmn_title .hab {
+	clear: both;
+}
+
+#pkmn_title .info {
+	width: 100%;	
+	float: left;
 }
 
 #pkmn_title .hab {
 	margin-right: 0;
+	text-align: center;
+}
+
+#pkmn_title .hab h3 {
+	margin: 0;
+	text-align: center;
+	float: left;
+	background-color: #CCC;
+	width: 96%;
+	margin-left: 1%;
+	-webkit-border-radius: 5pt 5pt 0 0;
+	-moz-border-radius: 5pt 5pt 0 0;
+	border-radius: 5pt 5pt 0 0;
 }
 
 #pkmn_title .info h2 {
@@ -115,26 +146,68 @@
 	clear: both;
 }
 
-#pkmn_title .info .info1,
-#pkmn_title .info .info2,
-#pkmn_title .info .info3 {
-	width: 30%;
+#pkmn_title .info .type,
+#pkmn_title .info .egg,
+#pkmn_title .info .others,
+#pkmn_title .hab .info {
+	width: 42%;
 	margin-left: 1%;
 	margin-right: 1%;
-	float: left;
-}
-
-#pkmn_title .info .info3 img {
-	width: 80%;
-}
-
-#pkmn_title .other .info1,
-#pkmn_title .other .info2,
-#pkmn_title .other .info3 {
 	margin-bottom: 1%;
+	float: left;
+	-webkit-border-radius: 5pt;
+	-moz-border-radius: 5pt;
+	border-radius: 5pt;
+	-webkit-border: 2px solid #CCC;
+	-moz-border: 2px solid #CCC;
+	border: 2px solid #CCC;
+	padding: 2%;
+	text-align: center;
+}
+
+#pkmn_title .info .type,
+#pkmn_title .info .egg,
+#pkmn_title .hab .info {
+	width: 91%;
+	clear: both;
+}
+
+#pkmn_title .hab .info {
+	-webkit-border-radius: 0 0 5pt 5pt;
+	-moz-border-radius: 0 0 5pt 5pt;
+	border-radius: 0 0 5pt 5pt;
+}
+
+#pkmn_title .info .type img {
+	width: 35%;
 	clear: both;
 }
 
 #pkmn_title .other .info3 {
 	margin-bottom: 0;
+}
+
+#pkmn_title .info .type h5,
+#pkmn_title .info .others h5,
+#pkmn_title .info .egg h5 {
+	margin: 0;
+}
+
+.typeTable {
+	background-color: #FFF;
+	width: 60%;
+	float: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h3.effective {
+	width: 60%;
+	text-align: center;
+	float: left;
+	background-color: #CCC;
+	margin: 0%;
+	-webkit-border-radius: 5pt 5pt 0 0;
+	-moz-border-radius: 5pt 5pt 0 0;
+	border-radius: 5pt 5pt 0 0;
 }
