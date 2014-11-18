@@ -1,13 +1,18 @@
 h1.autor, h1.stats, h1.captura, h1.pokeapp, h1.art_daisuki, h1.jugadores,
 h1.crearpj, h1.buscarpj, h1.codmod, h1.modpj, h1.re_pokecalc, h1.torneos,
-h1.registro, h1.usuario, h1.login, h1.nuevopkmn, h1.index, h1.modpkmn {
+h1.registro, h1.usuario, h1.login, h1.nuevopkmn, h1.index, h1.modpkmn, h1.buscarpkmn {
 	text-indent: -9000px;
 	width: 800px;
 	height: 70px;
+	background-repeat: no-repeat;
 }
 
 h1.autor {
 	background-image: url(../images/titles/autor_title.png);
+}
+
+h1.buscarpkmn {
+	background-image: url(../images/titles/buscarpoke_title.png);
 }
 
 h1.stats {
