@@ -250,12 +250,13 @@ class TournamentController extends Controller
      */
     public function actionCreate()
     {
+        require_once Yii::app()->basePath . '/extensions/qr/qr.php';
+
         $model = new Users('createTournament');       
         $next_tournament = Tournament::model()->getNextTournament();
 
         if (isset($_POST['Users'])) {
-            $folio         = CUploadedFile::getInstance($model, 'folio');
-
+            $folio         = CUploadedFile::getInstance($model, 'folio');           
             $code = generatePassword();
             $model->code = $model->hashPassword($code);
             $model->name = $_POST['Users']['name'];
@@ -273,6 +274,9 @@ class TournamentController extends Controller
                     $playerFolio->id_tournament_player  = $model->id;
                     if($playerFolio->save())
                         $folio->saveAs('./images/foto_folio/'. $playerFolio->folio_photo);
+                    if($_POST['Users']['tipo_registro'] == 'region'){
+                
+                    }
                     $body =         '<p> Se acaba de crear tu perfil de usuario en la pokéapp asociada a esta cuenta de correo electrónico. </p>';
                     $body = $body . '<p> Para finalizar la inscripción online se requieren dos pasos:
                                         <ul> <li> El primero es el registro online de tu equipo. Para ello tienes que dirigirte a <a href="http://www.pokedaisuki.cl/pokeapp/torneo"> a la sección de torneos de la pokéapp </a>

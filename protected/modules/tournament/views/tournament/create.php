@@ -18,10 +18,7 @@ $this->breadcrumbs=array(
 
 <div class="infosec">
 	<p>Para registrarte tienes que ingresar tu dirección de correo electrónico y, con el fin de comprobar que tienes tu entrada del <?php echo $next_event ?>, 
-	subir una foto de la misma en donde <b>se vea claramente el folio. </b> </p>
-
-	<p>	Una vez que alguno de nuestros administradores autorize la creación de tu perfil (es decir, comprobar la foto con el la entrada y su folio) se te enviará
-	a tu correo tanto la contraseña para el poder ingresar al sitio y las instrucciones para continuar con el proceso de inscripción.</p>
+	subir una foto de la misma. En el caso de ser una entrada comprada en Santiago debe de <b>verse claramente el folio. </b> </p>
 
 	<p> Si ya hiciste este trámite y se te olvidó tu contraseña puedes hacer eso en el <?php echo CHtml::link('siguiente link', array('/torneo/resetearClave')) ?>.</p>
 

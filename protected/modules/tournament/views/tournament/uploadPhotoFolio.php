@@ -12,7 +12,8 @@ $this->breadcrumbs=array(
 
 	<p> 
 		Al igual que en eventos anteriores, con el fin de poder comprobar que tienes la entrada del evento, necesitamos que subas una foto
-		de la entrada del <?php echo Tournament::model()->getNextTournament()->name ?> con el <b> número de folio visible</b>.
+		que compruebe la compra de tu entrada para el <?php echo Tournament::model()->getNextTournament()->name ?>. En caso de que se trate 
+		de una foto de Santiago esta tiene que tener su <b> número de folio visible</b>.
 	</p>
 
 	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(

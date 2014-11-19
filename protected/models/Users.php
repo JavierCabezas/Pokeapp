@@ -25,6 +25,7 @@ class Users extends CActiveRecord
 	public $password;
 	public $repeatpassword;
 	public $mail_change;
+	public $tipo_registro;
 
 	/**
 	 * @return string the associated database table name
@@ -43,6 +44,7 @@ class Users extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('mail_change', 'required', 'on' => 'changeMail'), //For the changeMail action we just need the new mail.
+			array('tipo_registro', 'required'),
 			array('name, mail', 'required', 'except' => 'changePassword, changeMail'),
 			array('oldpassword, password, repeatpassword', 'required', 'on' => 'changePassword'),
 			array('password, oldpassword, repeatpassword', 'length', 'max'=>100),
@@ -86,7 +88,8 @@ class Users extends CActiveRecord
 			'created_on' 	 => 'Created On',
 			'password'		 => 'Nueva contraseña',
 			'oldpassword'	 => 'Contraseña actual',
-			'repeatpassword' => 'Nueva contraseña (confirmación)'
+			'repeatpassword' => 'Nueva contraseña (confirmación)',
+			'tipo_registro' => 'Tipo de foto de inscripción',
 		);
 	}
 

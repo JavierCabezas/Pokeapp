@@ -129,24 +129,6 @@ class BuscadorController extends Controller
 						  '.$query_spd_fin.'
 						  '.$query_spe_fin.'
 					)');
-/**
- * 	//$criteria->addCondition('pokemonStats.stat_id = :stat_atk and base_stat >= :atk_min');
- * SELECT  DISTINCT  A.pokemon_id
- * from pokemon_stats as A 
- * inner join pokemon_stats as B on A.pokemon_id = B.pokemon_id
- * inner join pokemon_stats as C on A.pokemon_id = C.pokemon_id
- * inner join pokemon_stats as D on A.pokemon_id = D.pokemon_id
- * inner join pokemon_stats as E on A.pokemon_id = E.pokemon_id
- * inner join pokemon_stats as F on A.pokemon_id = F.pokemon_id
- * inner join pokemon_stats as G on A.pokemon_id = G.pokemon_id
- * 
- * where A.stat_id = 1 and A.base_stat > 0
- * and B.stat_id = 2 and B.base_stat > 0
- * and C.stat_id = 3 and C.base_stat > 0
- * and D.stat_id = 4 and D.base_stat > 0
- * and F.stat_id = 5 and D.base_stat > 0
- * and G.stat_id = 6 and G.base_stat > 0
-**/
 		//END OF STATS
 
 		//HEIGHT
