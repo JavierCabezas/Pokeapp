@@ -1,5 +1,12 @@
 <?php $this->setPageTitle('Pokéapp - Buscador de pokémon.'); ?>
 
+<?php
+	$this->widget('bootstrap.widgets.TbBreadcrumbs',
+	array(
+		'links' => array('Buscador'),
+	));
+?>
+
 <h1 class="buscarpkmn"> Buscador Pokémon </h1>
 
 <div id="column1-wrap">

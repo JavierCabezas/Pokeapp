@@ -2,6 +2,14 @@
 	/** Renders the view to see the information about a certain pokémon. **/
 ?>
 
+<?php
+	$this->widget('bootstrap.widgets.TbBreadcrumbs',
+	array(
+		'links' => array('Buscador' => array('/buscador'), 'Detalles de '.$pokemon->pokemonName),
+	));
+?>
+
+
 <div id="pkmn_title">
 	<div class="avatar">
 		<?php echo $pokemon->species->image('moving') ?>
