@@ -45,11 +45,12 @@
 	<div id="mainmenu">
 		<nav>
 			<ul>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokecalc.png" width="220" height="100" />',  Yii::app()->createurl('/pokeball')) ?> </li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/stats.png" width="220" height="100" />',  Yii::app()->createurl('/stats'))?> </li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/jugadores.png" width="220" height="100" />', array('/jugadores')) ?></li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/inscripcion.png" width="220" height="100" />', array('/torneo')) ?></li>
-				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/autor.png" width="220" height="100" />', array('/sobre_mi')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/pokecalc.png" width="185" height="86" />',  Yii::app()->createurl('/pokeball')) ?> </li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/stats.png" width="185" height="86" />',  Yii::app()->createurl('/stats'))?> </li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/jugadores.png" width="185" height="86" />', array('/jugadores')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/buscador.png" width="185" height="86" />', array('/sobre_mi')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/inscripcion.png" width="185" height="86" />', array('/torneo')) ?></li>
+				<li><?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/nav/autor.png" width="185" height="86" />', array('/sobre_mi')) ?></li>
 			</ul>
 		</nav>
 
