@@ -10,12 +10,10 @@
 	Aún así, para facilitar un poco el asunto, se eliminó algunos de los Pokémon que están prohibidos según las reglas del torneo. 
 </p>
 <p>
-	Además ten en cuenta que hay movimientos que, si bien son legales en el juego, quebrantan las reglas del torneo. 
-	Un ejemplo de esto es Metagross con Ice punch (Puño hielo). Este Pokémon aprende el ataque por medio de tutor de Black 2 o White 2, 
-	haciendo necesario Pokémon Bank para tenerlo en sexta generación. Por esto mismo estaría prohibido para el torneo.
+    El sistema no hace distinción entre las formas de Rotom.
 </p>
 <p>
-	 ¡Revisa con detalle que los movimientos de tus Pokémon sean los correctos! Recuerda que <u>todo Pokémon que participe del torneo es de tu responsabilidad</u>.
+	 ¡Revisa con detalle que los movimientos de tus Pokémon sean los correctos! Recuerda que <u>todo Pokémon que participe del torneo es de <b>tu responsabilidad</b>.
 </p>
 
 <?php echo $form->errorSummary($model); ?>
@@ -62,7 +60,7 @@
 				'bootstrap.widgets.TbSelect2',
 				array(
 					'name' => 'TournamentPokemon[id_item]',
-					'data' => Items::model()->dropdownItems(true),
+					'data' => Items::model()->dropdownItems(true, array('202')),
 					'options' => array(
 						'allowClear'=>true,
 						'placeholder' => 'Elige un objeto'

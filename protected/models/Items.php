@@ -238,18 +238,23 @@ class Items extends CActiveRecord
 	/** 
 	 *	Returns the item list intended for a dropdown
 	 *	@param bool held indicates if the item is a duel valid item (heldable items that that don't do any effect, like potions, don't count). The default value is false, showing all items.
+     *  @param array (optional) banned. The list of items that are to be banned from the tournament.
 	 *	@return array of the listdata of the Items model.
 	 */
-	public function dropdownItems($held = false)
+	public function dropdownItems($held = false, $banned = null)
 	{
+        $criteria = new CDbCriteria;
 		if($held){
-			$criteria = new CDbCriteria;
 			$battle_items = array(2, 3, 5, 6, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 19, 42, 44);
 			$criteria->addInCondition('category_id', $battle_items);
-			$model = Items::model()->findAll($criteria);
-		}else{
-			$model = Items::model()->findAll();
 		}
+
+
+        if(!is_null($banned)){
+            $criteria->addNotInCondition('id', $banned);
+        }
+
+        $model = Items::model()->findAll($criteria);
 		return CHtml::listData($model, 'id', 'itemName');
 	}
 
