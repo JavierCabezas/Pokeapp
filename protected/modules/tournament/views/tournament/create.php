@@ -16,9 +16,9 @@ $this->breadcrumbs=array(
         En el caso de ser una entrada comprada en Santiago debe de verse claramente el folio. En el caso de ser un eTicket, subir el archivo del documento contenedor de tu QR específico.
     </p>
 
-    <p>
-        Si ya participaste en algún evento anterior <b>no debes de inscribirte nuevamente</b>. Puedes ingresar a tu perfil desde <?php echo CHtml::link('la sección de login', array('/login')) ?>. Si estás registrado pero olvidaste tu contraseña puedes resetearla desde el <?php echo CHtml::link('siguiente link', array('/torneo/resetearClave')) ?>.
-    </p>
+   <!--  <p>
+        Si ya participaste en algún evento anterior <b>no debes de inscribirte nuevamente</b>. Puedes ingresar a tu perfil desde <?php //echo CHtml::link('la sección de login', array('/login')) ?>. Si estás registrado pero olvidaste tu contraseña puedes resetearla desde el <?php //echo CHtml::link('siguiente link', array('/torneo/resetearClave')) ?>.
+    </p> -->
 
     <p>
         Puedes revisar el set oficial de reglas para el ORAS Open Tournament 2015 haciendo click <?php echo CHtml::link('aquí', 'http://pokemonday.cl/wp/reglamento-oficial-del-oras-open-tournament-2015-2/') ?>.

@@ -7,10 +7,11 @@ $this->breadcrumbs=array(
 	'Actualizando a '.$model->pokemonName,
 );
 ?>
+<div class="well">
+    <h1>Actualizando a <?php echo $model->pokemonName ?> </h1>
 
-<h1>Actualizando a <?php echo $model->pokemonName ?> </h1>
-
-<?php echo $this->renderPartial('_form', array(
-	'model'				=> $model,
-    'array_tournament'	=> $array_tournament,
-)); ?>
+    <?php echo $this->renderPartial('_form', array(
+        'model'				=> $model,
+        'array_tournament'	=> $array_tournament,
+    )); ?>
+</div>
