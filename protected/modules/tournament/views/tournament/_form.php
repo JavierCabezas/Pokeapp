@@ -9,12 +9,8 @@
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>80)); ?>
 
-
 	<?php echo $form->textFieldRow($model,'mail',array('class'=>'span5','maxlength'=>100)); ?>
-	
-	<?php echo $form->radioButtonListRow($model, 'tipo_registro', array('stgo'=>'Santiago', 'region'=>'Regiones')); ?>
-	<p> &nbsp; </p>
-	
+
 	<label class="required" for="folio"> Foto de tu entrada (con folio visible) <span class="required">*</span> </label>
 	<?php echo $form->fileField($model,'folio'); ?>
 	<?php echo $form->error($model,'folio'); ?>

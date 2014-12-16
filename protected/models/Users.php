@@ -44,12 +44,11 @@ class Users extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('mail_change', 'required', 'on' => 'changeMail'), //For the changeMail action we just need the new mail.
-			array('tipo_registro', 'required'),
 			array('name, mail', 'required', 'except' => 'changePassword, changeMail'),
 			array('oldpassword, password, repeatpassword', 'required', 'on' => 'changePassword'),
 			array('password, oldpassword, repeatpassword', 'length', 'max'=>100),
             array('repeatpassword', 'compare', 'compareAttribute'=>'password', 'on' => array('changePassword'), 'message'=>"Las contraseñas no coinciden"),
-			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => true, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
+			array('folio', 'file', 'types'=>'jpg,gif,png', 'allowEmpty' => false, 'maxSize'=>1024*1024*2, 'tooLarge'=>'El archivo tiene que ser menor a 2MB'),
 			array('name', 'length', 'max'=>80),
 			array('mail, mail_change', 'length', 'max'=>100),
 			array('mail, mail_change', 'email'),

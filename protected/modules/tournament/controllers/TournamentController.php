@@ -250,8 +250,6 @@ class TournamentController extends Controller
      */
     public function actionCreate()
     {
-        require_once Yii::app()->basePath . '/extensions/qr/qr.php';
-
         $model = new Users('createTournament');       
         $next_tournament = Tournament::model()->getNextTournament();
 
@@ -262,10 +260,7 @@ class TournamentController extends Controller
             $model->name = $_POST['Users']['name'];
             $model->mail = $_POST['Users']['mail'];
             $model->created_on = time();
-            if(is_null($folio)){
-                Yii::app()->user->setFlash('error', "Se debe de subir una foto de folio para poder continuar");
-                $this->redirect(array('/torneo/registro'));
-            }else{
+            if($model->validate()){
                 if ($model->save()){
                     $playerFolio = new TournamentPlayerFolio();
                     $id_tournament                      = $next_tournament->id;
