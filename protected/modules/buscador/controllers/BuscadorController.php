@@ -18,7 +18,7 @@ class BuscadorController extends Controller
 			'types'	  		=> PokemonTypes::model()->findAllByAttributes(array('pokemon_id' => $id)),
 			'resistances'	=> Types::model()->resistances($pokemon->id),
 			'eggies'		=> PokemonEggGroups::model()->findAllByAttributes(array('species_id' => $pokemon->species->id)),
-			'abilities'		=> pokemonAbilities::model()->findAllByAttributes(array('pokemon_id' => $id)),
+			'abilities'		=> PokemonAbilities::model()->findAllByAttributes(array('pokemon_id' => $id)),
 		));
 	}
 
