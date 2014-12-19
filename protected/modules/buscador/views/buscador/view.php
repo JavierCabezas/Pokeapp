@@ -59,6 +59,10 @@
 			<?php endforeach ?>
 			</ul>
 		</div>
+		<h3> Más detalles: </h3>
+		<div class="info">
+			<?php echo CHtml::link('Ver a '.$pokemon->pokemonName.' en dex de Veekun', 'http://veekun.com/dex/pokemon/'.$pokemon->identifier) ?>
+		</div>
 	</div>
 </div>
 
