@@ -378,7 +378,7 @@ class TournamentController extends Controller
         $total_folio_number = $next_tournament->total_folio_number;
         $out = array();
         for($folio = 1 ; $folio < $total_folio_number ; $folio = $folio+1){
-            $model = TournamentPlayerFolio::model()->findByAttributes(array('folio' => $folio));
+            $model = TournamentPlayerFolio::model()->findByAttributes(array('folio' => $folio, 'id_tournament' => $next_tournament->id));
             if(!isset($model)){
                 $out[$folio]['assigned'] = false;
             }else{

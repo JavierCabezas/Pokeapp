@@ -19,6 +19,7 @@ $this->breadcrumbs=array(
 <table class='adminTable'>
 	<thead>
 		<tr>
+			<th> Número columna </th>
 			<th> # jugador </th>
 			<th> Folio asignado </th>
 			<th> Nombre jugador </th>
@@ -29,9 +30,11 @@ $this->breadcrumbs=array(
 		</tr>
 	</thead>
 	<tbody>
+		<?php $n = 1 ?>
 		<?php foreach($players as $player): ?>
 			<tr>
-				<td> <?php echo $player['folio'] ?> </td>
+				<td> <?php echo $n; $n+=1 ?> </td>
+				<td> <?php echo isset($player['folio'])?$player['folio']:'-' ?> </td>
 				<td> <?php echo $player['assigned']?'Sí':'No'; ?> </td>
 				<td> <?php echo $player['assigned']? $player['player_name']:'-'; ?> </td>
 				<td> <?php echo $player['assigned']? $player['player_mail']:'-'; ?> </td>

@@ -22,8 +22,7 @@ $this->breadcrumbs=array(
 </p> 
 
 <?php
-    $this->widget('bootstrap.widgets.TbGridView',
-    array(
+    $this->widget('bootstrap.widgets.TbGridView', array(
     	'type'=>'striped bordered condensed',
 	    'dataProvider' => $pendingPlayers,
 	    'columns' => $pendingPlayersCol,
