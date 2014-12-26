@@ -206,7 +206,7 @@ class TournamentController extends Controller
                     $model_folio->delete();
                     $body =         '<p> Un administrador acaba de revisar tu perfil y, lamentablemente, ha rechazado tu perfil. </p>';
                     $body = $body . '<p> El rechazo de perfil se debe a que la foto que subiste no corresponde a la de tu entrada de jugador o que esta no es legible por lo que te pedimos que por favor la subas para poder revisar nuevamente tu perfil. Para subirla puedes ingresar a tu cuenta en la Pokéapp y hacer click en "subir foto de folio" en el menú de la derecha. </p>';
-                    $body = $body . '<p> Además, si eres un jugador de regiones recuerda que se te envió una entrada digital a tu correo electrónico. </p>';
+                    $body = $body . '<p> Además, si eres un jugador de regiones recuerda que se te envió una entrada digital a tu correo electrónico. Esa es la que debes de subir en el sitio. </p>';
                     $body = $body . '<p> Luego de que hayas hecho este trámite puedes revisar el estado de tu postulación en '.CHtml::link('el siguiente link', $this->createAbsoluteUrl('/torneo/estadoInscripcion')).'.</p>';
                     $body = $body . '<p> Ante cualquier duda siéntete libre de contactarnos en este mismo correo y te atenderemos en cuanto antes. </p>';
                     Mail::sendMail(
