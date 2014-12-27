@@ -21,8 +21,27 @@ $this->breadcrumbs=array(
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<label class="required" for="id_folio"> Número de folio del jugador a revisar </label>
-	<?php echo CHtml::dropDownList('id_folio', '' , TournamentPlayerFolio::model()->getAllFolio($id_tournament), array('class' => 'span5')); ?>
+	<div class="form-group">
+		<label class="required" for="id_folio"> Número de folio del jugador a revisar </label>
+		<?php
+
+		  $this->widget(
+	                    'bootstrap.widgets.TbSelect2',
+	                    array(
+	                        'name' => 'id_folio',
+	                        'data' => TournamentPlayerFolio::model()->getAllFolio($id_tournament),
+	                        'htmlOptions' => array(
+	                            'placeholder' => 'Selecciona un jugador',
+	                            'id'          => 'id_folio',
+	                            'class'       => 'span5 form-control'
+	                        ),
+	                    )
+	                );
+
+		?>
+	</div>
+
+	<?php //echo CHtml::dropDownList('id_folio', '' , TournamentPlayerFolio::model()->getAllFolio($id_tournament), array('class' => 'span5')); ?>
 
 <div class="form-actions">
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
