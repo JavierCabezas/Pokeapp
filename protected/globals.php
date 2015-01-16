@@ -81,3 +81,13 @@ function arrayGenerations()
 {
 	return array('1' => 'Primera', '2' => 'Segunda', '3' => 'Tercera', '4' => 'Cuarta', '5' => 'Quinta', '6' => 'Sexta');
 }
+
+function limpiar($in)
+{
+	$out = str_replace('Á', 'A', $in);
+	$out = str_replace('É', 'E', $out);
+	$out = str_replace('Í', 'I', $out);
+	$out = str_replace('Ó', 'O', $out);
+	$out = str_replace('Ú', 'U', $out);
+	return $out;
+}

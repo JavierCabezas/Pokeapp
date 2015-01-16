@@ -120,7 +120,7 @@ class Items extends CActiveRecord
 		$spanish = 7;
 		$items = ItemsNames::model()->findByAttributes(array('item_id' => $this->id, 'local_language_id' => $spanish));
 		if(isset($items))
-			return beautify($this->identifier)." (".utf8_decode(beautify($items->name)).")";
+			return beautify($this->identifier)." (".limpiar(utf8_decode(beautify($items->name))).")";
 		else
 			return beautify($this->identifier);
 	}
