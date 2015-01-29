@@ -21,7 +21,7 @@
 
 	<ul>
 		<li> Fueron inscritos un total de <b class='size_15'><?php echo $silly['number'] ?> Pokémon</b> en el evento. </li>
-		<li> De estos <b class='size_15'><?php echo $silly['nickname_number'] ?></b> (un <?php echo $silly['nickname_percent'] ?>%) tenían sobrenombres (o motes). ¡Esperaba un 100%! El ponerles nombres es la parte más entretenida. Lo perdono porque habían un par de nombres muy chistosos.</li>
+		<li> De estos <b class='size_15'><?php echo $silly['nickname_number'] ?></b> (un <?php echo $silly['nickname_percent'] ?>%) tenían sobrenombres (o motes).</li>
 		<li> El nivel promedio de los Pokémon inscritos fue de <b class='size_15'><?php echo $silly['level'] ?></b>. </li>
 		<li> <b class='size_15'><?php echo $silly['move1'] ?></b> Pokémon tenían un único movimiento registrado (solo se me ocurre ditto como excusa). </li>
 		<li> <b class='size_15'><?php echo $silly['move2'] ?></b> Pokémon sólo dos movimientos registrados. </li>

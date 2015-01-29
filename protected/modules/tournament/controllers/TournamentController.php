@@ -65,10 +65,13 @@ class TournamentController extends Controller
 
 	public function actionIndex()
 	{
-       if(!isset(Yii::app()->user->id))
-    		$this->render('index');
-        else
-            $this->redirect(array('/torneo/menuUsuario')); //If the player is logged redirect to the team view.
+
+        //TO-DO: Do this in a decent way
+        $this->redirect('statistics');
+       //if(!isset(Yii::app()->user->id))
+    	//	$this->render('index');
+        //else
+         //   $this->redirect(array('/torneo/menuUsuario')); //If the player is logged redirect to the team view.
     }
 
     /**
@@ -204,7 +207,7 @@ class TournamentController extends Controller
                 }else{
                     $model_folio = TournamentPlayerFolio::model()->findByPk($tournament_player_folio->id);
                     $model_folio->delete();
-                    $body =         '<p> Un administrador acaba de revisar tu perfil y, lamentablemente, ha rechazado tu perfil. </p>';
+                    $body =         '<p> Un administrador acaba de revisar tu perfil y, lamentablemente, lo ha rechazado. </p>';
                     $body = $body . '<p> El rechazo de perfil se debe a que la foto que subiste no corresponde a la de tu entrada de jugador o que esta no es legible por lo que te pedimos que por favor la subas para poder revisarlo nuevamente. Para subirla puedes ingresar a tu cuenta en la Pokéapp y hacer click en "subir foto de folio" en el menú de la derecha. </p>';
                     $body = $body . '<p> Además, si eres un jugador de regiones recuerda que se te envió una entrada digital a tu correo electrónico. Esa es la que debes de subir en el sitio. </p>';
                     $body = $body . '<p> Luego de que hayas hecho este trámite puedes revisar el estado de tu postulación en '.CHtml::link('el siguiente link', $this->createAbsoluteUrl('/torneo/estadoInscripcion')).'.</p>';
