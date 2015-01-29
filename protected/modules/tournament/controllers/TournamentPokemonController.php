@@ -220,12 +220,12 @@ class TournamentPokemonController extends Controller
         if(isset($_POST['id_folio'])){
             $id_folio = intval($_POST['id_folio']);
             $id_player = TournamentPlayerFolio::model()->findByAttributes(array(
-                'folio' => $id_folio, 
+                'folio'         => $id_folio,
                 'id_tournament' => $id_tournament
             ))->id_tournament_player;
             $player = Users::model()->findByPk($id_player);
             $team = TournamentPlayerPokemon::model()->findAllByAttributes(array(
-                'id_tournament' => $id_tournament, 
+                'id_tournament'        => $id_tournament,
                 'id_tournament_player' => $id_player
             ));
         }

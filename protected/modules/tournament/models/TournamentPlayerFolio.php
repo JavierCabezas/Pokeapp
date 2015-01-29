@@ -156,7 +156,7 @@ class TournamentPlayerFolio extends CActiveRecord
      */
     public function getNumberPokemon(){
         return count(TournamentPlayerPokemon::model()->findAllByAttributes(array(
-            'id_tournament_player'  => $this->id, 
+            'id_tournament_player'  => $this->id_tournament_player,
             'id_tournament'         => $this->id_tournament
         )));
     }
