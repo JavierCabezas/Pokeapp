@@ -14,7 +14,7 @@
 					<?php if(!empty($banned_pokemon)): ?>
 						<ul>
 						<?php foreach($banned_pokemon as $pokemon): ?>
-							<li> <?php echo $pokemon->idPokemon->pokemonName ?> </li>
+							<li> <?php echo isset($pokemon->idPokemon->pokemonName)?$pokemon->idPokemon->pokemonName:""; ?> </li>
 						<?php endforeach ?>
 						</ul>
 					<?php else: ?>
