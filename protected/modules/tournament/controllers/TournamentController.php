@@ -67,7 +67,7 @@ class TournamentController extends Controller
 	{
 
         //TO-DO: Do this in a decent way
-        $this->redirect('statistics');
+        $this->redirect(array('statistics'));
        //if(!isset(Yii::app()->user->id))
     	//	$this->render('index');
         //else
